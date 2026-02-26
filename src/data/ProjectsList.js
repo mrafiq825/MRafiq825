@@ -216,5 +216,22 @@ export const ProjectsList = {
       ],
       liveLink: "https://sleepwise-gray.vercel.app/",
     },
+    {
+      name: "Planora AI: Architectural Visualization Platform",
+      description:
+        "AI-powered architectural visualization platform revolutionizing design workflows by transforming 2D floor plans into photorealistic 3D renders in minutes. Reduces visualization time by 85% while delivering studio-quality renders at a fraction of traditional costs. Features intelligent AI-powered 3D rendering engine, comprehensive project management dashboard with multi-project organization, seamless cloud storage integration with Puter.js for real-time synchronization, and advanced grid overlay visualization for scale accuracy. Built with React 19, TypeScript, and Vite for lightning-fast performance with sub-second render previews. Implements secure authentication, responsive mobile-first design with Tailwind CSS, and collaborative sharing capabilities. Empowering architects, designers, and real estate professionals to visualize and communicate design concepts 70% faster, improving client satisfaction and accelerating project approvals with immersive photorealistic presentations.",
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "React Router",
+        "Puter.js",
+        "Lucide React",
+        "AI Rendering",
+        "Docker",
+      ],
+      liveLink: "https://planora-architecture.vercel.app/",
+    },
   ],
 };

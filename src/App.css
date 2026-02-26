@@ -65,7 +65,10 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif !important;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif !important;
   background: #0f172a;
   min-height: 100vh;
   margin: 0;
@@ -134,7 +137,9 @@ html {
   border-radius: 50%;
   border: 5px solid;
   border-color: var(--accent-gold) transparent #e57e31 transparent;
-  animation: loaderSpin 1.5s linear infinite, pulse-shadow 2s infinite;
+  animation:
+    loaderSpin 1.5s linear infinite,
+    pulse-shadow 2s infinite;
   position: relative;
 }
 
