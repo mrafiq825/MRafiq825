@@ -34,7 +34,7 @@ function App() {
     const setAppHeight = () => {
       document.documentElement.style.setProperty(
         "--app-height",
-        `${window.innerHeight}px`
+        `${window.innerHeight}px`,
       );
     };
 
