@@ -19,9 +19,9 @@ export const ProjectsList = {
       liveLink: "https://jobpsych.vercel.app/",
     },
     {
-      name: "Bookify: AI Voice-Powered Smart Library",
+      name: "Readora: AI Voice-Powered Smart Library",
       description:
-        "Modern AI-powered reading platform that transforms static PDF books into interactive voice conversations. Built with Next.js App Router and TypeScript, it enables users to upload and organize books, auto-parse and segment content for intelligent retrieval, and chat naturally with book knowledge through Vapi voice AI. Features secure Clerk authentication with plan-based access control, full-text search across segmented content, Vercel Blob file storage, and robust error handling with production-safe validation. Engineered with MongoDB indexing for fast discovery and responsive UX using Tailwind CSS + shadcn/ui. Includes Dockerized deployment workflow with multi-stage builds and CI-ready container setup for scalable production delivery.",
+        "Modern AI-powered reading platform that transforms static PDF documents into interactive voice conversations. Built with Next.js App Router and TypeScript, it enables users to upload and organize books, auto-parse and segment content for intelligent retrieval, and chat naturally with book knowledge through Vapi voice AI. Features secure Clerk authentication with plan-based access control, full-text search across segmented content, Vercel Blob file storage, and robust error handling with production-safe validation. Engineered with MongoDB indexing for fast discovery and responsive UX using Tailwind CSS + shadcn/ui. Includes Dockerized deployment workflow with multi-stage builds and CI-ready container setup for scalable production delivery.",
       technologies: [
         "Next.js 16",
         "React 19",
@@ -37,7 +37,7 @@ export const ProjectsList = {
         "Zod",
         "Docker",
       ],
-      liveLink: "https://bookify-opal-gamma.vercel.app/",
+      liveLink: "https://readora-ai.vercel.app/",
     },
 
     {
