@@ -1,47 +1,29 @@
 {
-  "name": "portfolio",
+  "name": "portfolio-v2",
   "private": true,
-  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint ./src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint ./src --ext js,jsx --fix"
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "@formspree/react": "^3.0.0",
-    "@google/generative-ai": "^0.24.0",
-    "@types/bootstrap": "^5.2.10",
-    "framer-motion": "^11.3.19",
-    "gsap": "^3.12.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-fast-marquee": "^1.6.5",
-    "react-hot-toast": "^2.5.2",
-    "react-icons": "^5.2.1",
-    "react-router-dom": "^6.25.1",
-    "react-scroll": "^1.9.0",
-    "react-window": "^1.8.11",
-    "typewriter-effect": "^2.21.0"
+    "@react-router/node": "7.14.0",
+    "@react-router/serve": "7.14.0",
+    "isbot": "^5.1.36",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router": "7.14.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "postcss": "^8.4.40",
-    "rimraf": "^5.0.10",
-    "tailwindcss": "^3.4.7",
-    "terser": "^5.39.0",
-    "vite": "^5.3.4",
-    "vite-imagetools": "^7.0.5",
-    "vite-plugin-pwa": "^1.0.0"
+    "@react-router/dev": "7.14.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^22",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.3"
   }
 }

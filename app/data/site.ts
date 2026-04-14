@@ -1,0 +1,35 @@
+import type { Site } from "~/types/site";
+
+export const site: Site = {
+  name: "Muhammad Rafiq",
+  greeting: "Hi, I'm",
+  role: "Full-Stack Developer & AI/ML Enthusiast",
+  intro:
+    "Transforming business challenges into elegant, scalable solutions. Specialized in building high-performance web and mobile applications that drive measurable results. From startup MVPs to enterprise systems, I deliver code that matters.",
+  location: "Lahore, Pakistan",
+  email: "rafiqdevhub@gmail.com",
+  availability: "Available for Hire | Open to Exciting Projects",
+  cvUrl: "https://rafiqdev.vercel.app/Rafiq%20CV.pdf",
+  primaryCtaLabel: "Let's Talk",
+  primaryCtaHref: "#contact",
+  skills: [
+    "JavaScript",
+    "TypeScript",
+    "React.js",
+    "Next.js",
+    "Node.js",
+    "Express.js",
+    "Python",
+    "FastAPI",
+    "Docker",
+    "DevOps",
+    "SDET",
+    "AI/ML",
+  ],
+  stats: [
+    { label: "Projects Completed", value: "15+" },
+    { label: "Years Experience", value: "2+" },
+    { label: "Technologies Mastered", value: "25+" },
+    { label: "Client Satisfaction", value: "99%" },
+  ],
+};

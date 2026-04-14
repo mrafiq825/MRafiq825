@@ -1,0 +1,85 @@
+import type { Experience } from "~/types/experience";
+
+export const experience: Experience[] = [
+  {
+    id: "hiskytech-intern",
+    role: "Full-Stack Developer Intern",
+    company: "HiSkyTech",
+    mode: "Remote",
+    period: "August 2024 - September 2024",
+    responsibilities: [
+      "Engineered internal automation tools that reduced manual workflow time by 35%.",
+      "Optimized API endpoints resulting in 40% faster response times and improved user experience.",
+      "Collaborated with cross-functional teams on UI/UX enhancements, increasing user engagement by 25%.",
+      "Implemented responsive design patterns ensuring seamless experience across all devices.",
+    ],
+    technologies: [
+      "JavaScript",
+      "React.js",
+      "Node.js",
+      "API Development",
+      "Version Control",
+      "Responsive Design",
+    ],
+  },
+  {
+    id: "clouditecture-backend",
+    role: "Backend Developer Intern",
+    company: "Clouditecture",
+    mode: "Hybrid",
+    period: "November 2024 - April 2025",
+    responsibilities: [
+      "Architected and deployed scalable cloud-based microservices handling 10K+ daily requests.",
+      "Developed secure RESTful APIs with JWT authentication, reducing security vulnerabilities by 60%.",
+      "Optimized database queries and caching strategies, improving system performance by 50%.",
+      "Implemented comprehensive error handling and logging for 99.9% system reliability.",
+    ],
+    technologies: [
+      "Node.js",
+      "Express.js",
+      "Python",
+      "RESTful APIs",
+      "Microservices",
+      "Cloud Architecture",
+    ],
+  },
+  {
+    id: "zypher-frontend",
+    role: "Frontend Developer",
+    company: "Zypher Enterprise",
+    mode: "Onsite",
+    period: "July 2025 - September 2025",
+    responsibilities: [
+      "Built and launched 5+ responsive web applications with mobile-first approach, increasing mobile traffic by 45%.",
+      "Reduced page load time by 55% through code splitting, lazy loading, and performance optimization.",
+      "Collaborated with UX designers and backend teams to deliver pixel-perfect, scalable features.",
+      "Implemented comprehensive component testing achieving 85% code coverage.",
+    ],
+    technologies: [
+      "React.js",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Responsive Design",
+    ],
+  },
+  {
+    id: "insite-ambassador",
+    role: "Software Ambassador Internship",
+    company: "Insite",
+    mode: "Remote",
+    period: "July 2025 - September 2025",
+    responsibilities: [
+      "Tested beta software and provided UX and usability feedback.",
+      "Contributed research shaping product features and marketing.",
+      "Engaged in AI community discussions on safe LLM use.",
+    ],
+    technologies: [
+      "Software Testing",
+      "UX Research",
+      "Product Development",
+      "AI/LLM",
+      "Community Engagement",
+    ],
+  },
+];
