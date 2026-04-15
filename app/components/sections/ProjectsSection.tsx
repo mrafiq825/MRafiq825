@@ -1,3 +1,5 @@
+import { SquareStack } from "lucide-react";
+
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Card from "~/components/ui/Card";
@@ -7,7 +9,12 @@ const ProjectsSection = () => {
   return (
     <Section
       id="projects"
-      title="Featured Projects"
+      title={
+        <>
+          <SquareStack className="h-8 w-8 text-sky-400" />
+          Featured Projects
+        </>
+      }
       description="Explore innovative projects where each build solves a unique challenge with modern technology."
       className="border-t border-slate-800"
     >

@@ -5,7 +5,7 @@ import { cn } from "~/lib/utils";
 
 type SectionProps = {
   id?: string;
-  title?: string;
+  title?: string | ReactNode;
   description?: string;
   children: ReactNode;
   className?: string;
@@ -24,7 +24,7 @@ const Section = ({
         {(title || description) && (
           <header className="mb-8 max-w-2xl md:mb-10">
             {title && (
-              <h2 className="text-2xl font-bold text-slate-100 md:text-3xl">
+              <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-100 md:text-3xl">
                 {title}
               </h2>
             )}

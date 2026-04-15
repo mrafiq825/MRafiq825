@@ -1,8 +1,16 @@
+import { Code2, Briefcase, Share2 } from "lucide-react";
+
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Button from "~/components/ui/Button";
 import { socials } from "~/data/socials";
 import { site } from "~/data/site";
+
+const SOCIAL_ICONS = {
+  Github: Code2,
+  Linkedin: Briefcase,
+  Instagram: Share2,
+};
 
 const HeroSection = () => {
   return (
@@ -35,16 +43,24 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          <div className="mt-5 flex flex-wrap gap-2">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:border-sky-300/50 hover:text-sky-200"
-              >
-                {social.label}
-              </a>
-            ))}
+          <div className="mt-5 flex flex-wrap gap-3">
+            {socials.map((social) => {
+              const Icon = social.icon
+                ? SOCIAL_ICONS[social.icon as keyof typeof SOCIAL_ICONS]
+                : null;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900 p-3 transition hover:border-sky-300/50 hover:bg-slate-800 hover:text-sky-200"
+                >
+                  {Icon ? <Icon className="h-5 w-5" /> : social.label}
+                </a>
+              );
+            })}
           </div>
         </div>
 

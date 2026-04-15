@@ -1,6 +1,7 @@
 export type SocialLink = {
   label: string;
   href: string;
+  icon?: string;
 };
 
 export type Site = {

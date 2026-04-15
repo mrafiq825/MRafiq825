@@ -1,3 +1,5 @@
+import { UserCircle2 } from "lucide-react";
+
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import { site } from "~/data/site";
@@ -29,7 +31,12 @@ const AboutSection = () => {
   return (
     <Section
       id="about"
-      title="Why Choose Me"
+      title={
+        <>
+          <UserCircle2 className="h-8 w-8 text-sky-400" />
+          Why Choose Me
+        </>
+      }
       description="A comprehensive skill set delivering end-to-end solutions from concept to deployment."
       className="border-t border-slate-800"
     >

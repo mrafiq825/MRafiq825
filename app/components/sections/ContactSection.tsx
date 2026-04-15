@@ -1,3 +1,5 @@
+import { Mail } from "lucide-react";
+
 import Section from "~/components/layout/Section";
 import Button from "~/components/ui/Button";
 import { site } from "~/data/site";
@@ -7,7 +9,12 @@ const ContactSection = () => {
   return (
     <Section
       id="contact"
-      title="Let's Talk"
+      title={
+        <>
+          <Mail className="h-8 w-8 text-sky-400" />
+          Let's Talk
+        </>
+      }
       description="Want to dive deeper? Feel free to reach out. I am always excited to share insights and collaborate."
       className="border-t border-slate-800"
     >

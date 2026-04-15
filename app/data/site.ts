@@ -28,7 +28,7 @@ export const site: Site = {
   ],
   stats: [
     { label: "Projects Completed", value: "15+" },
-    { label: "Years Experience", value: "2+" },
+    { label: "Years Experience", value: "3+" },
     { label: "Technologies Mastered", value: "25+" },
     { label: "Client Satisfaction", value: "99%" },
   ],

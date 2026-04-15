@@ -1,3 +1,5 @@
+import { Briefcase } from "lucide-react";
+
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Card from "~/components/ui/Card";
@@ -7,7 +9,12 @@ const ExperienceSection = () => {
   return (
     <Section
       id="experience"
-      title="Professional Experience"
+      title={
+        <>
+          <Briefcase className="h-8 w-8 text-sky-400" />
+          Professional Experience
+        </>
+      }
       description="A journey through roles and impactful work spanning full-stack development, AI/ML, SDET, and DevOps."
       className="border-t border-slate-800"
     >
