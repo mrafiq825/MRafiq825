@@ -63,6 +63,33 @@ body::before {
   filter: blur(40px);
 }
 
+.icon-fi {
+  flex-shrink: 0;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-fi-xs {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.icon-fi-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon-fi-md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-fi-lg {
+  width: 2rem;
+  height: 2rem;
+}
+
 .section-reveal {
   animation: sectionFadeIn 0.55s ease-out both;
 }

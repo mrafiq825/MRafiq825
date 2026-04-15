@@ -1,9 +1,10 @@
-import { SquareStack } from "lucide-react";
+import { FiLayers } from "react-icons/fi";
 
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Card from "~/components/ui/Card";
 import { projects } from "~/data/projects";
+import { ICON_CLASS } from "~/lib/constants";
 
 const ProjectsSection = () => {
   return (
@@ -11,7 +12,7 @@ const ProjectsSection = () => {
       id="projects"
       title={
         <>
-          <SquareStack className="h-8 w-8 text-sky-400" />
+          <FiLayers className={`${ICON_CLASS.section} text-sky-400`} />
           Featured Projects
         </>
       }

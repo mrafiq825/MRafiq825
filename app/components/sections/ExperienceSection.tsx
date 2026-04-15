@@ -1,9 +1,10 @@
-import { Briefcase } from "lucide-react";
+import { FiBriefcase } from "react-icons/fi";
 
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Card from "~/components/ui/Card";
 import { experience } from "~/data/experience";
+import { ICON_CLASS } from "~/lib/constants";
 
 const ExperienceSection = () => {
   return (
@@ -11,7 +12,7 @@ const ExperienceSection = () => {
       id="experience"
       title={
         <>
-          <Briefcase className="h-8 w-8 text-sky-400" />
+          <FiBriefcase className={`${ICON_CLASS.section} text-sky-400`} />
           Professional Experience
         </>
       }

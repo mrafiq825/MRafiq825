@@ -1,21 +1,21 @@
 import {
-  Briefcase,
-  Mail,
-  MessageCircle,
-  SquareStack,
-  UserCircle2,
-} from "lucide-react";
+  FiBriefcase,
+  FiLayers,
+  FiMail,
+  FiMessageCircle,
+  FiUser,
+} from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
 
+import { ICON_CLASS } from "~/lib/constants";
+
 const NAV_ITEMS = [
-  { label: "About", href: "#about", icon: UserCircle2 },
-  { label: "Experience", href: "#experience", icon: Briefcase },
-  { label: "Projects", href: "#projects", icon: SquareStack },
-  { label: "Contact", href: "#contact", icon: Mail },
+  { label: "About", href: "#about", icon: FiUser },
+  { label: "Experience", href: "#experience", icon: FiBriefcase },
+  { label: "Projects", href: "#projects", icon: FiLayers },
 ];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [activeHref, setActiveHref] = useState<string>(
     NAV_ITEMS[0]?.href ?? "#about",
@@ -31,7 +31,7 @@ const Navbar = () => {
 
       if (currentScrollY < 24) {
         setIsVisible(true);
-      } else if (scrollDelta > 8 && !isOpen) {
+      } else if (scrollDelta > 8) {
         setIsVisible(false);
       } else if (scrollDelta < -8) {
         setIsVisible(true);
@@ -44,7 +44,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isOpen]);
+  }, []);
 
   useEffect(() => {
     const sections = NAV_ITEMS.map((item) =>
@@ -78,27 +78,10 @@ const Navbar = () => {
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsOpen((prev) => {
-      const next = !prev;
-      if (next) {
-        setIsVisible(true);
-      }
-      return next;
-    });
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-    setIsVisible(true);
-  };
-
   return (
     <header
       className={`fixed inset-x-0 bottom-4 z-50 px-4 transition-all duration-300 ${
-        isVisible || isOpen
-          ? "translate-y-0 opacity-100"
-          : "translate-y-[140%] opacity-0"
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-[140%] opacity-0"
       }`}
     >
       <nav
@@ -138,7 +121,29 @@ const Navbar = () => {
                       : "text-slate-200/95 hover:bg-white/14 hover:text-white"
                   }`}
                 >
-                  <IconComponent className="h-5 w-5" />
+                  <IconComponent className={ICON_CLASS.nav} />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        <ul className="relative flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-1.5 py-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] md:hidden">
+          {NAV_ITEMS.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <li key={`mobile-icon-${item.href}`}>
+                <a
+                  href={item.href}
+                  aria-label={item.label}
+                  aria-current={activeHref === item.href ? "page" : undefined}
+                  className={`inline-flex items-center justify-center rounded-full p-2 transition ${
+                    activeHref === item.href
+                      ? "border border-white/25 bg-white/20 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32)]"
+                      : "text-slate-200/95 hover:bg-white/14 hover:text-white"
+                  }`}
+                >
+                  <IconComponent className={ICON_CLASS.nav} />
                 </a>
               </li>
             );
@@ -149,63 +154,10 @@ const Navbar = () => {
           href="#contact"
           className="relative hidden items-center gap-2 rounded-full border border-white/30 bg-white/25 px-4 py-2 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:bg-white/30 md:inline-flex"
         >
-          <MessageCircle className="h-4 w-4" />
+          <FiMessageCircle className={ICON_CLASS.action} />
           Let's Talk
         </a>
-
-        <button
-          type="button"
-          onClick={toggleMenu}
-          className="relative inline-flex items-center rounded-full border border-white/25 bg-white/12 px-4 py-2 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] md:hidden"
-          aria-expanded={isOpen}
-          aria-controls="mobile-nav"
-          aria-label="Toggle navigation menu"
-        >
-          Menu
-        </button>
       </nav>
-
-      {isOpen && (
-        <div
-          id="mobile-nav"
-          className="absolute inset-x-4 bottom-full mb-2 overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-[0_12px_36px_rgba(2,6,23,0.55)] ring-1 ring-inset ring-white/10 backdrop-blur-xl md:hidden"
-        >
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/20 via-white/7 to-transparent" />
-          <ul className="mx-auto flex w-full max-w-6xl flex-col px-4 py-3">
-            {NAV_ITEMS.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    onClick={closeMenu}
-                    aria-label={item.label}
-                    aria-current={activeHref === item.href ? "page" : undefined}
-                    className={`relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition ${
-                      activeHref === item.href
-                        ? "border border-white/20 bg-white/20 text-white"
-                        : "text-slate-100/95 hover:bg-white/14 hover:text-white"
-                    }`}
-                  >
-                    <IconComponent className="h-5 w-5" />
-                    <span>{item.label}</span>
-                  </a>
-                </li>
-              );
-            })}
-            <li className="pt-2">
-              <a
-                href="#contact"
-                onClick={closeMenu}
-                className="relative flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/24 px-3 py-2 text-center text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Let's Talk
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
     </header>
   );
 };

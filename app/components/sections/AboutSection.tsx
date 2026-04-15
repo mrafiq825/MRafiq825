@@ -1,8 +1,9 @@
-import { UserCircle2 } from "lucide-react";
+import { FiUser } from "react-icons/fi";
 
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import { site } from "~/data/site";
+import { ICON_CLASS } from "~/lib/constants";
 
 const STRENGTHS = [
   {
@@ -33,7 +34,7 @@ const AboutSection = () => {
       id="about"
       title={
         <>
-          <UserCircle2 className="h-8 w-8 text-sky-400" />
+          <FiUser className={`${ICON_CLASS.section} text-sky-400`} />
           Why Choose Me
         </>
       }
