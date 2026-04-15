@@ -8,7 +8,28 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+import ErrorState from "./components/feedback/ErrorState";
+import LoadingScreen from "./components/feedback/LoadingScreen";
 import "./app.css";
+
+export const meta: Route.MetaFunction = ({ error }) => {
+  if (isRouteErrorResponse(error)) {
+    if (error.status === 404) {
+      return [{ title: "404 | Rafiq Portfolio" }];
+    }
+
+    return [{ title: `Error ${error.status} | Rafiq Portfolio` }];
+  }
+
+  return [
+    { title: "Rafiq Portfolio" },
+    {
+      name: "description",
+      content:
+        "Portfolio of Muhammad Rafiq featuring full-stack development, SDET, DevOps, and AI/ML projects.",
+    },
+  ];
+};
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -45,13 +66,17 @@ export default function App() {
   return <Outlet />;
 }
 
+export function HydrateFallback() {
+  return <LoadingScreen message="Loading portfolio..." />;
+}
+
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
+  let message = "Something went wrong";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? "Page Not Found" : `Error ${error.status}`;
     details =
       error.status === 404
         ? "The requested page could not be found."
@@ -61,15 +86,5 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     stack = error.stack;
   }
 
-  return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
-  );
+  return <ErrorState title={message} description={details} stack={stack} />;
 }
