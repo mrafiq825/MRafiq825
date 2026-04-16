@@ -9,7 +9,8 @@ export const site: Site = {
   location: "Lahore, Pakistan",
   email: "rafiqdevhub@gmail.com",
   availability: "Available for Hire | Open to Exciting Projects",
-  cvUrl: "https://rafiqdev.vercel.app/Rafiq%20CV.pdf",
+  cvUrl:
+    "https://drive.google.com/uc?export=download&id=1kcDibEFvBP01Ewr1mi04ItSXNRyalJS7",
   primaryCtaLabel: "Let's Talk",
   primaryCtaHref: "#contact",
   skills: [

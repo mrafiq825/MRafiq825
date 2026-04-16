@@ -1,10 +1,11 @@
-import type { ReactNode } from "react";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
 
 import { cn } from "~/lib/utils";
 
 type ButtonProps = {
   children: ReactNode;
   href?: string;
+  download?: AnchorHTMLAttributes<HTMLAnchorElement>["download"];
   className?: string;
   variant?: "primary" | "secondary";
 };
@@ -12,6 +13,7 @@ type ButtonProps = {
 const Button = ({
   children,
   href,
+  download,
   className,
   variant = "primary",
 }: ButtonProps) => {
@@ -25,7 +27,7 @@ const Button = ({
 
   if (href) {
     return (
-      <a href={href} className={baseClass}>
+      <a href={href} download={download} className={baseClass}>
         {children}
       </a>
     );

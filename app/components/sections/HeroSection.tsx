@@ -1,66 +1,105 @@
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Button from "~/components/ui/Button";
-
 import { site } from "~/data/site";
 
 const HeroSection = () => {
   return (
-    <Section id="home" className="pb-12 pt-24 md:pt-32">
-      <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-        <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
-          <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-sky-400/15 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-16 -left-10 h-36 w-36 rounded-full bg-sky-300/10 blur-3xl" />
+    <Section id="home" className="pb-16 pt-24 md:pt-32">
+      <div className="grid items-start gap-8 xl:grid-cols-[1.15fr_0.85fr]">
+        <div className="relative overflow-hidden rounded-[2rem] border border-sky-200/10 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 p-6 sm:p-8 lg:p-10">
+          <div className="pointer-events-none absolute -right-14 -top-20 h-52 w-52 rounded-full bg-sky-400/15 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-14 left-8 h-36 w-36 rounded-full bg-cyan-300/10 blur-3xl" />
 
-          <Badge>{site.availability}</Badge>
-          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+          <div className="relative z-10 flex flex-wrap items-center gap-3">
+            <Badge>{site.availability}</Badge>
+            <span className="inline-flex rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-xs text-slate-300">
+              Based in {site.location}
+            </span>
+          </div>
+
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
             {site.greeting}
           </p>
 
-          <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            <span className="bg-gradient-to-r from-white via-sky-200 to-slate-300 bg-clip-text text-transparent">
-              {site.name}
+          <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl xl:text-6xl">
+            <span className="block text-slate-100">{site.name}</span>
+            <span className="mt-2 block bg-gradient-to-r from-sky-200 via-cyan-200 to-slate-300 bg-clip-text text-transparent">
+              {site.role}
             </span>
           </h1>
 
-          <p className="mt-4 text-lg font-semibold text-sky-300 sm:text-2xl">
-            {site.role}
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+            {site.intro}
           </p>
-          <p className="mt-5 max-w-2xl text-slate-300">{site.intro}</p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href={site.primaryCtaHref}>{site.primaryCtaLabel}</Button>
-            <Button href={site.cvUrl} variant="secondary">
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Button
+              href={site.cvUrl}
+              download="Muhammad-Rafiq-CV.pdf"
+              variant="secondary"
+              className="border-sky-300/30 bg-sky-400/10 text-sky-100 hover:bg-sky-400/20"
+            >
               Download CV
             </Button>
-          </div>
-        </div>
-
-        <div className="relative">
-          <div className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/80 p-3 shadow-[0_20px_50px_rgba(2,6,23,0.6)]">
-            <div className="rounded-2xl border border-slate-700/80 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-3">
-              <img
-                src="/profile.png"
-                alt="Muhammad Rafiq - Full-Stack Developer & AI Engineer"
-                className="h-[460px] w-full rounded-xl object-contain"
-              />
-            </div>
+            <a
+              href={`mailto:${site.email}`}
+              className="text-sm font-semibold text-slate-200 underline-offset-4 transition hover:text-sky-200 hover:underline"
+            >
+              {site.email}
+            </a>
           </div>
 
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {site.stats.slice(0, 2).map((stat) => (
+          <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            {site.stats.slice(0, 4).map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl border border-slate-800 bg-slate-900/70 p-3"
+                className="rounded-2xl border border-slate-800/80 bg-slate-950/50 px-4 py-3"
               >
-                <p className="text-[10px] uppercase tracking-wide text-slate-400">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
                   {stat.label}
                 </p>
-                <p className="mt-1 text-sm font-semibold text-slate-100">
+                <p className="mt-1 text-lg font-semibold text-slate-100">
                   {stat.value}
                 </p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-2">
+            {site.skills.slice(0, 8).map((skill) => (
+              <span
+                key={skill}
+                className="rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-xs font-medium text-slate-200"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="absolute -left-3 top-8 hidden h-28 w-28 rounded-2xl border border-cyan-300/20 bg-cyan-300/5 blur-[1px] sm:block" />
+
+          <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900/70 p-3 shadow-[0_28px_80px_rgba(2,6,23,0.65)]">
+            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/50 to-transparent" />
+            <div className="rounded-[1.55rem] border border-slate-700/80 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-3">
+              <img
+                src="/profile.png"
+                alt="Muhammad Rafiq - Full-Stack Developer & AI Engineer"
+                className="h-[440px] w-full rounded-[1.25rem] object-contain sm:h-[500px]"
+              />
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-2xl border border-slate-800/90 bg-slate-900/75 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Quick Intro
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              I build polished digital products with a strong focus on
+              performance, maintainability, and measurable business impact.
+            </p>
           </div>
         </div>
       </div>
