@@ -5,10 +5,12 @@ import {
   FiSend,
   FiStar,
   FiUser,
+  FiCheckCircle,
+  FiAlertCircle,
 } from "react-icons/fi";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
-import { type FormEvent, useState } from "react";
-
+import { type FormEvent, useEffect, useRef, useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import Section from "~/components/layout/Section";
 import Card from "~/components/ui/Card";
 import { site } from "~/data/site";
@@ -28,11 +30,9 @@ type ChatMessage = {
 };
 
 const ContactSection = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+  const [state, handleSubmit] = useForm("mbdqoqay");
   const [chatInput, setChatInput] = useState("");
+  const contactFormRef = useRef<HTMLFormElement>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
     {
       id: 1,
@@ -46,6 +46,12 @@ const ContactSection = () => {
     "Are you available for new projects?",
     "How can I contact you directly?",
   ];
+
+  useEffect(() => {
+    if (state.succeeded) {
+      contactFormRef.current?.reset();
+    }
+  }, [state.succeeded]);
 
   const sendChatMessage = (text: string) => {
     const trimmedText = text.trim();
@@ -96,25 +102,6 @@ const ContactSection = () => {
     sendChatMessage(chatInput);
   };
 
-  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const mailSubject =
-      subject.trim() || `Project inquiry from ${name || "the website"}`;
-    const mailBody = [
-      `Name: ${name || "Not provided"}`,
-      `Email: ${email || "Not provided"}`,
-      "",
-      message.trim() || "No message provided.",
-    ].join("\n");
-
-    const mailtoHref = `mailto:${site.email}?subject=${encodeURIComponent(
-      mailSubject,
-    )}&body=${encodeURIComponent(mailBody)}`;
-
-    window.location.href = mailtoHref;
-  };
-
   return (
     <Section
       id="contact"
@@ -151,7 +138,26 @@ const ContactSection = () => {
               {site.availability}
             </p>
 
-            <form className="mt-6 space-y-4" onSubmit={handleContactSubmit}>
+            {state.succeeded && (
+              <div className="mt-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-center">
+                <div className="mb-2 flex items-center justify-center">
+                  <FiCheckCircle className="h-6 w-6 text-emerald-400" />
+                </div>
+                <h3 className="mb-1 text-base font-semibold text-emerald-300">
+                  Message sent
+                </h3>
+                <p className="text-sm text-emerald-200">
+                  Thanks for reaching out. The form has been cleared and is
+                  ready for another message.
+                </p>
+              </div>
+            )}
+
+            <form
+              ref={contactFormRef}
+              className="mt-6 space-y-4"
+              onSubmit={handleSubmit}
+            >
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">
                   <span className="text-sm font-medium text-slate-200">
@@ -159,11 +165,12 @@ const ContactSection = () => {
                   </span>
                   <input
                     type="text"
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
+                    name="name"
                     placeholder="Muhammad Rafiq"
+                    required
                     className="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
                   />
+                  <ValidationError field="name" errors={state.errors} />
                 </label>
 
                 <label className="space-y-2">
@@ -172,11 +179,12 @@ const ContactSection = () => {
                   </span>
                   <input
                     type="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    name="email"
                     placeholder="you@example.com"
+                    required
                     className="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
                   />
+                  <ValidationError field="email" errors={state.errors} />
                 </label>
               </div>
 
@@ -186,11 +194,11 @@ const ContactSection = () => {
                 </span>
                 <input
                   type="text"
-                  value={subject}
-                  onChange={(event) => setSubject(event.target.value)}
+                  name="subject"
                   placeholder="Need a portfolio website redesign"
                   className="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
                 />
+                <ValidationError field="subject" errors={state.errors} />
               </label>
 
               <label className="space-y-2">
@@ -198,20 +206,31 @@ const ContactSection = () => {
                   Message
                 </span>
                 <textarea
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
+                  name="message"
                   placeholder="Tell me about your goals, timeline, and what you want to build."
                   rows={6}
+                  required
                   className="w-full resize-none rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
                 />
+                <ValidationError field="message" errors={state.errors} />
               </label>
+
+              {Array.isArray(state.errors) && state.errors.length > 0 && (
+                <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4">
+                  <div className="flex items-center gap-2 text-sm text-red-300">
+                    <FiAlertCircle className="h-4 w-4" />
+                    <span>Please check the errors above and try again.</span>
+                  </div>
+                </div>
+              )}
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center rounded-full bg-sky-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-sky-200"
+                  disabled={state.submitting}
+                  className="inline-flex items-center justify-center rounded-full bg-sky-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  Send Message
+                  {state.submitting ? "Sending..." : "Send Message"}
                 </button>
                 <a
                   href={`mailto:${site.email}`}

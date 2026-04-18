@@ -6,7 +6,7 @@ export const site: Site = {
   role: "Full-Stack Developer & AI/ML Enthusiast",
   intro:
     "Transforming business challenges into elegant, scalable solutions. Specialized in building high-performance web and mobile applications that drive measurable results. From startup MVPs to enterprise systems, I deliver code that matters.",
-  email: "rafiqdevhub@gmail.com",
+  email: "rafkhan9323@gmail.com",
   availability: "Available for Hire | Open to Exciting Projects",
   cvUrl:
     "https://drive.google.com/uc?export=download&id=1kcDibEFvBP01Ewr1mi04ItSXNRyalJS7",
