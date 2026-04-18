@@ -1,18 +1,15 @@
 import {
-  FiCpu,
   FiMail,
   FiMessageCircle,
-  FiSend,
-  FiStar,
-  FiUser,
   FiCheckCircle,
   FiAlertCircle,
 } from "react-icons/fi";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
-import { type FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Section from "~/components/layout/Section";
 import Card from "~/components/ui/Card";
+import Chatbot from "~/components/ui/Chatbot";
 import { site } from "~/data/site";
 import { socials } from "~/data/socials";
 import { ICON_CLASS } from "~/lib/constants";
@@ -23,84 +20,15 @@ const SOCIAL_ICONS = {
   Instagram: FaInstagram,
 };
 
-type ChatMessage = {
-  id: number;
-  role: "assistant" | "user";
-  text: string;
-};
-
 const ContactSection = () => {
   const [state, handleSubmit] = useForm("mbdqoqay");
-  const [chatInput, setChatInput] = useState("");
   const contactFormRef = useRef<HTMLFormElement>(null);
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
-    {
-      id: 1,
-      role: "assistant",
-      text: "Hi, I’m the portfolio assistant. Ask about services, availability, or how to start a project.",
-    },
-  ]);
-
-  const quickPrompts = [
-    "What services do you offer?",
-    "Are you available for new projects?",
-    "How can I contact you directly?",
-  ];
 
   useEffect(() => {
     if (state.succeeded) {
       contactFormRef.current?.reset();
     }
   }, [state.succeeded]);
-
-  const sendChatMessage = (text: string) => {
-    const trimmedText = text.trim();
-
-    if (!trimmedText) {
-      return;
-    }
-
-    const nextUserMessage: ChatMessage = {
-      id: Date.now(),
-      role: "user",
-      text: trimmedText,
-    };
-
-    const lowerText = trimmedText.toLowerCase();
-    let reply =
-      "Thanks for reaching out. Leave your message in the contact form and I’ll respond as soon as possible.";
-
-    if (lowerText.includes("service") || lowerText.includes("offer")) {
-      reply =
-        "I build full-stack web apps, mobile-ready interfaces, AI/ML integrations, and reliable delivery workflows.";
-    } else if (lowerText.includes("avail") || lowerText.includes("hire")) {
-      reply =
-        "Yes, I’m currently available for new projects and collaboration opportunities.";
-    } else if (lowerText.includes("contact") || lowerText.includes("email")) {
-      reply = `You can email me directly at ${site.email} or use the form beside this chat.`;
-    } else if (lowerText.includes("project") || lowerText.includes("build")) {
-      reply =
-        "If you have a project in mind, share the goals, timeline, and scope. I’ll help you shape the next step.";
-    }
-
-    const nextAssistantMessage: ChatMessage = {
-      id: Date.now() + 1,
-      role: "assistant",
-      text: reply,
-    };
-
-    setChatMessages((currentMessages) => [
-      ...currentMessages,
-      nextUserMessage,
-      nextAssistantMessage,
-    ]);
-    setChatInput("");
-  };
-
-  const handleChatSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    sendChatMessage(chatInput);
-  };
 
   return (
     <Section
@@ -283,111 +211,7 @@ const ContactSection = () => {
           </div>
         </Card>
 
-        <Card className="flex h-full flex-col border-slate-700/80 bg-slate-900/80">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
-              <FiCpu className={ICON_CLASS.nav} />
-            </span>
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Chatbot area
-              </p>
-              <p className="text-sm text-slate-300">
-                Quick portfolio assistant
-              </p>
-            </div>
-          </div>
-
-          <div className="flex-1 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-            <div className="max-h-90 space-y-3 overflow-y-auto pr-1">
-              {chatMessages.map((chatMessage) => {
-                const isAssistant = chatMessage.role === "assistant";
-
-                return (
-                  <div
-                    key={chatMessage.id}
-                    className={`flex items-start gap-3 ${
-                      isAssistant ? "justify-start" : "justify-end"
-                    }`}
-                  >
-                    {isAssistant && (
-                      <span className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
-                        <FiCpu className={ICON_CLASS.action} />
-                      </span>
-                    )}
-
-                    <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                        isAssistant
-                          ? "border border-slate-700 bg-slate-900/80 text-slate-200"
-                          : "border border-sky-400/20 bg-sky-400/10 text-slate-100"
-                      }`}
-                    >
-                      <p className="mb-1 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                        {isAssistant ? (
-                          <>
-                            <FiStar className={ICON_CLASS.label} /> Assistant
-                          </>
-                        ) : (
-                          <>
-                            <FiUser className={ICON_CLASS.label} /> You
-                          </>
-                        )}
-                      </p>
-                      <p>{chatMessage.text}</p>
-                    </div>
-
-                    {!isAssistant && (
-                      <span className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-sky-400/20 bg-sky-400/10 text-sky-300">
-                        <FiUser className={ICON_CLASS.action} />
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {quickPrompts.map((prompt) => (
-                <button
-                  key={prompt}
-                  type="button"
-                  onClick={() => sendChatMessage(prompt)}
-                  className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:border-cyan-400/40 hover:bg-slate-800"
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
-
-            <form className="mt-4 flex gap-3" onSubmit={handleChatSubmit}>
-              <input
-                type="text"
-                value={chatInput}
-                onChange={(event) => setChatInput(event.target.value)}
-                placeholder="Ask a quick question..."
-                className="min-w-0 flex-1 rounded-full border border-slate-700 bg-slate-950/70 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-              >
-                <FiSend className={`${ICON_CLASS.action} mr-2`} />
-                Send
-              </button>
-            </form>
-          </div>
-
-          <div className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/50 p-4 text-sm text-slate-300">
-            <p className="font-semibold text-slate-100">
-              What the chatbot can do
-            </p>
-            <p className="mt-1">
-              Answer project questions, share availability, and point visitors
-              to the best contact path for serious inquiries.
-            </p>
-          </div>
-        </Card>
+        <Chatbot />
       </div>
     </Section>
   );
