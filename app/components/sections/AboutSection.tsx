@@ -1,5 +1,4 @@
 import { FiUser } from "react-icons/fi";
-
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import { site } from "~/data/site";
@@ -51,9 +50,8 @@ const AboutSection = () => {
             to build software that drives measurable outcomes.
           </p>
           <p className="mt-4 text-slate-300">
-            Based in {site.location}, I specialize in full-stack web systems,
-            test quality, deployment workflows, and AI-powered product
-            experiences.
+            I specialize in full-stack web systems, test quality, deployment
+            workflows, and AI-powered product experiences.
           </p>
         </div>
 

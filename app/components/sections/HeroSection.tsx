@@ -13,9 +13,6 @@ const HeroSection = () => {
 
           <div className="relative z-10 flex flex-wrap items-center gap-3">
             <Badge>{site.availability}</Badge>
-            <span className="inline-flex rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-xs text-slate-300">
-              Based in {site.location}
-            </span>
           </div>
 
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
@@ -42,12 +39,6 @@ const HeroSection = () => {
             >
               Download CV
             </Button>
-            <a
-              href={`mailto:${site.email}`}
-              className="text-sm font-semibold text-slate-200 underline-offset-4 transition hover:text-sky-200 hover:underline"
-            >
-              {site.email}
-            </a>
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -63,17 +54,6 @@ const HeroSection = () => {
                   {stat.value}
                 </p>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {site.skills.slice(0, 8).map((skill) => (
-              <span
-                key={skill}
-                className="rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-xs font-medium text-slate-200"
-              >
-                {skill}
-              </span>
             ))}
           </div>
         </div>

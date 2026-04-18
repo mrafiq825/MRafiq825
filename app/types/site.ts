@@ -9,7 +9,6 @@ export type Site = {
   greeting: string;
   role: string;
   intro: string;
-  location: string;
   email: string;
   availability: string;
   cvUrl: string;
