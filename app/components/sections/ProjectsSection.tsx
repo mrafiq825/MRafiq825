@@ -117,6 +117,17 @@ const ProjectsSection = () => {
                     <FiExternalLink className="w-4 h-4" />
                     <span>Live Demo</span>
                   </a>
+                  {project.detailsUrl ? (
+                    <a
+                      href={project.detailsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link flex items-center justify-center gap-2 rounded-lg bg-linear-to-r from-slate-700/60 to-slate-600/60 px-4 py-2.5 text-sm font-semibold text-slate-200 border border-slate-600/50 hover:border-slate-500 hover:text-white hover:shadow-lg hover:shadow-slate-700/40 transition-all duration-300 hover:-translate-y-0.5"
+                    >
+                      <FiGithub className="w-4 h-4" />
+                      <span>View Code</span>
+                    </a>
+                  ) : null}
                 </div>
               </Card>
             </div>

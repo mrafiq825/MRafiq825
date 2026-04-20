@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     id: "jobpsych",
     title: "JobPsych: AI-Powered Career Intelligence Platform",
-    status: "Active",
+    status: "Live",
     summary:
       "Enterprise-grade AI career intelligence platform revolutionizing job search and interview preparation.",
     tech: [
@@ -25,7 +25,7 @@ export const projects: Project[] = [
   {
     id: "readora",
     title: "Readora: AI Voice-Powered Smart Library",
-    status: "Active",
+    status: "Live",
     summary:
       "Modern AI-powered reading platform that transforms static PDF documents into interactive voice conversations.",
     tech: [
@@ -47,7 +47,7 @@ export const projects: Project[] = [
   {
     id: "hiredesk",
     title: "HireDesk: AI-Powered Recruitment Platform",
-    status: "Active",
+    status: "Live",
     summary:
       "Next-generation recruitment platform leveraging AI to reduce hiring time by 50% and improve candidate quality.",
     tech: [
@@ -64,9 +64,30 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: "codify",
+    title: "Codify: AI Code Review Agent",
+    status: "Live",
+    summary:
+      "AI-powered code review platform that analyzes code quality, security, and maintainability with intelligent suggestions and chat assistance.",
+    tech: [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Radix UI",
+      "React Query",
+      "React Router DOM",
+      "Node.js",
+      "LangChain",
+    ],
+    imageAlt: "Codify AI code review platform preview",
+    liveUrl: "https://codify-omega.vercel.app/",
+    featured: true,
+  },
+  {
     id: "hisabkitab",
     title: "HisabKitab: Personal Budget Tracker",
-    status: "Active",
+    status: "APK Available",
     summary:
       "Cross-platform mobile budget tracking app helping users achieve financial goals with better spending insights.",
     tech: [
@@ -81,6 +102,29 @@ export const projects: Project[] = [
     imageAlt: "HisabKitab mobile app preview",
     liveUrl:
       "https://drive.google.com/file/d/1JPDjYXG1YxNe-q73HrIGLEmd8vppP8cQ/view?usp=drive_link",
+    featured: true,
+  },
+  {
+    id: "qrify",
+    title: "QRify: Modern QR Code Generator",
+    status: "APK Available",
+    summary:
+      "React Native and Expo app for generating QR codes from URLs with live preview, sharing, downloading, and polished animated UI.",
+    tech: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Expo Router",
+      "React Native Reanimated",
+      "Expo LinearGradient",
+      "Expo BlurView",
+      "Expo FileSystem",
+      "Expo Sharing",
+      "react-native-qrcode-svg",
+    ],
+    imageAlt: "QRify QR code generator app preview",
+    liveUrl:
+      "https://drive.google.com/file/d/1Iz8aUrWW6nEN5dnkt-eoKk_oho7dIJr9/view?usp=drive_link",
     featured: true,
   },
 ];
