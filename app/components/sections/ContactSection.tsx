@@ -4,7 +4,13 @@ import {
   FiCheckCircle,
   FiAlertCircle,
 } from "react-icons/fi";
-import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
+import {
+  FaFacebookF,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+  FaXTwitter,
+} from "react-icons/fa6";
 import { useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Section from "~/components/layout/Section";
@@ -15,7 +21,9 @@ import { socials } from "~/data/socials";
 import { ICON_CLASS } from "~/lib/constants";
 
 const SOCIAL_ICONS = {
+  Facebook: FaFacebookF,
   Github: FaGithub,
+  X: FaXTwitter,
   Linkedin: FaLinkedinIn,
   Instagram: FaInstagram,
 };
