@@ -27,4 +27,9 @@ export const socials: SocialLink[] = [
     href: "https://x.com/mrafiq825",
     icon: "X",
   },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/923129185825",
+    icon: "Whatsapp",
+  },
 ];

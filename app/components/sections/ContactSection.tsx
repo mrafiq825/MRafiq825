@@ -9,6 +9,7 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaWhatsapp,
   FaXTwitter,
 } from "react-icons/fa6";
 import { useEffect, useRef } from "react";
@@ -26,6 +27,7 @@ const SOCIAL_ICONS = {
   X: FaXTwitter,
   Linkedin: FaLinkedinIn,
   Instagram: FaInstagram,
+  Whatsapp: FaWhatsapp,
 };
 
 const ContactSection = () => {
