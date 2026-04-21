@@ -9,7 +9,7 @@ export const site: Site = {
   email: "rafkhan9323@gmail.com",
   availability: "Available for Hire | Open to Exciting Projects",
   cvUrl:
-    "https://drive.google.com/uc?export=download&id=1kcDibEFvBP01Ewr1mi04ItSXNRyalJS7",
+    "https://drive.google.com/file/d/1MPHxB9naiLnAoJHEj8QcaJ6IMB6Saktv/view?usp=drive_link",
   primaryCtaLabel: "Let's Talk",
   primaryCtaHref: "#contact",
   skills: [

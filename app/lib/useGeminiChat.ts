@@ -43,7 +43,7 @@ export const useGeminiChat = () => {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
     createChatMessage(
       "assistant",
-      "Hi! I'm the portfolio assistant powered by Google Gemini. Ask me about Muhammad Rafiq's experience, skills, projects, or availability. I can answer questions about his work and expertise!",
+      "Hi! I'm the portfolio assistant. Ask me about Muhammad Rafiq's experience, skills, projects, or availability. I can answer questions about his work and expertise!",
     ),
   ]);
 
