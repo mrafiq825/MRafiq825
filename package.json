@@ -5,7 +5,7 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "serve -s build/client -l ${PORT:-3000}",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
@@ -17,7 +17,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-icons": "^5.5.0",
-    "react-router": "7.14.0"
+    "react-router": "7.14.0",
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "@react-router/dev": "7.14.0",
