@@ -19,17 +19,23 @@ const Section = ({
   className,
 }: SectionProps) => {
   return (
-    <section id={id} className={cn("section-reveal py-16 md:py-24", className)}>
-      <Container>
+    <section
+      id={id}
+      className={cn("section-reveal relative py-16 md:py-24", className)}
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-sky-300/20 to-transparent" />
+      <Container className="relative">
         {(title || description) && (
-          <header className="mb-8 max-w-2xl md:mb-10">
+          <header className="mb-8 max-w-3xl md:mb-10">
             {title && (
-              <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-100 md:text-3xl">
+              <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight text-slate-50 md:text-3xl">
                 {title}
               </h2>
             )}
             {description && (
-              <p className="mt-3 text-slate-300">{description}</p>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base">
+                {description}
+              </p>
             )}
           </header>
         )}

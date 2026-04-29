@@ -22,14 +22,15 @@ export const site: Site = {
     "Python",
     "FastAPI",
     "Docker",
+    "Playwright",
     "DevOps",
     "SDET",
     "AI/ML",
   ],
   stats: [
-    { label: "Projects Completed", value: "10+" },
+    { label: "Projects Completed", value: "5+" },
     { label: "Years Experience", value: "3+" },
-    { label: "Technologies Mastered", value: "15+" },
+    { label: "Technologies Mastered", value: "10+" },
     { label: "Client Satisfaction", value: "99%" },
   ],
 };

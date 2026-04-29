@@ -1,4 +1,11 @@
-import { FiUser, FiCode, FiTrendingUp, FiZap, FiCpu } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiCpu,
+  FiCode,
+  FiTrendingUp,
+  FiUser,
+  FiZap,
+} from "react-icons/fi";
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import { site } from "~/data/site";
@@ -45,79 +52,198 @@ const AboutSection = () => {
           Why Choose Me
         </>
       }
-      description="A comprehensive skill set delivering end-to-end solutions from concept to deployment."
+      description="A blend of product thinking, engineering craft, and delivery discipline that turns ideas into polished digital experiences."
       className="border-t border-slate-800"
     >
-      {/* Hero Section */}
-      <div className="grid gap-8 md:grid-cols-2 mb-12">
-        <div className="space-y-4">
-          <div className="inline-block">
-            <span className="inline-flex items-center rounded-full bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-300 border border-sky-500/20">
-              Passion-Driven Developer
+      <div className="grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
+        <div className="relative overflow-hidden rounded-4xl border border-slate-800/80 bg-linear-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 p-6 shadow-[0_24px_80px_rgba(2,6,23,0.45)] sm:p-8 lg:p-10">
+          <div className="pointer-events-none absolute -right-10 top-0 h-40 w-40 rounded-full bg-sky-400/10 blur-3xl" />
+          <div className="pointer-events-none absolute bottom-0 left-0 h-36 w-36 rounded-full bg-cyan-300/10 blur-3xl" />
+
+          <div className="relative z-10 flex flex-wrap items-center gap-3">
+            <Badge>Passion-Driven Developer</Badge>
+            <span className="inline-flex items-center gap-2 rounded-full border border-sky-300/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
+              <span className="h-2 w-2 rounded-full bg-sky-300" />
+              Product-minded, delivery-focused
             </span>
           </div>
-          <h3 className="text-2xl font-bold bg-linear-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">
-            Always Learning, Always Growing
-          </h3>
-          <p className="text-base text-slate-300 leading-relaxed">
-            I work at the intersection of product, engineering, and performance
-            to build software that drives measurable outcomes.
-          </p>
-          <p className="text-base text-slate-400 leading-relaxed">
-            I specialize in full-stack web systems, test quality, deployment
-            workflows, and AI-powered product experiences.
-          </p>
+
+          <div className="relative z-10 mt-6 max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+              Why I build the way I do
+            </p>
+            <h3 className="mt-3 text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl">
+              Always learning, always shipping work that feels intentional.
+            </h3>
+            <p className="mt-5 text-base leading-relaxed text-slate-300 sm:text-lg">
+              I work at the intersection of product, engineering, and
+              performance to build software that drives measurable outcomes.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-slate-400">
+              My focus spans full-stack web systems, test quality, deployment
+              workflows, and AI-powered product experiences, with a strong eye
+              for usability and maintainability.
+            </p>
+          </div>
+
+          <div className="relative z-10 mt-8 grid gap-3 sm:grid-cols-3">
+            {[
+              {
+                label: "Build",
+                value: "Scalable systems",
+                icon: FiCode,
+                tone: "from-sky-500/20 to-cyan-500/20",
+              },
+              {
+                label: "Verify",
+                value: "Reliable delivery",
+                icon: FiTrendingUp,
+                tone: "from-emerald-500/20 to-teal-500/20",
+              },
+              {
+                label: "Automate",
+                value: "Smarter workflows",
+                icon: FiZap,
+                tone: "from-amber-500/20 to-orange-500/20",
+              },
+            ].map((item) => {
+              const ItemIcon = item.icon;
+
+              return (
+                <div
+                  key={item.label}
+                  className={`rounded-2xl border border-slate-700/80 bg-linear-to-br ${item.tone} p-4 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-xl border border-white/10 bg-slate-950/60 p-2 text-sky-200 shadow-inner shadow-slate-950/30">
+                      <ItemIcon className={ICON_CLASS.action} />
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-100">
+                        {item.value}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="flex flex-col justify-between">
-          <div>
-            <h3 className="text-lg font-semibold text-slate-100 mb-4">
-              Tech Arsenal
-            </h3>
-            <div className="flex flex-wrap gap-2">
+        <div className="grid gap-6">
+          <div className="rounded-4xl border border-slate-800 bg-slate-900/70 p-6 shadow-[0_22px_60px_rgba(2,6,23,0.32)] backdrop-blur-sm sm:p-7">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                  Tech Arsenal
+                </p>
+                <h3 className="mt-2 text-2xl font-bold text-slate-50">
+                  Tools I reach for every week
+                </h3>
+              </div>
+              <div className="rounded-full border border-sky-300/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
+                Always evolving
+              </div>
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-2">
               {site.skills.map((skill) => (
                 <Badge key={skill}>{skill}</Badge>
               ))}
             </div>
+
+            <div className="mt-6 rounded-2xl border border-slate-700/80 bg-linear-to-r from-slate-950/80 to-slate-900/60 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                Approach
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                I prefer lean architectures, clear interfaces, and repeatable
+                delivery practices that keep products fast to ship and easy to
+                grow.
+              </p>
+            </div>
           </div>
-          <div className="mt-6 p-4 rounded-lg bg-linear-to-r from-slate-800/50 to-slate-700/50 border border-slate-700/50">
-            <p className="text-xs text-slate-400 font-medium">
-              Combining cutting-edge tools with proven best practices
-            </p>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {site.stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className="group rounded-2xl border border-slate-800 bg-linear-to-br from-slate-900/90 to-slate-950/90 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-sky-300/25 hover:shadow-[0_18px_45px_rgba(2,6,23,0.35)]"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                      0{index + 1}
+                    </p>
+                    <p className="mt-2 text-sm font-medium text-slate-300">
+                      {stat.label}
+                    </p>
+                    <p className="mt-2 text-3xl font-bold text-slate-50">
+                      {stat.value}
+                    </p>
+                  </div>
+                  <FiArrowUpRight
+                    className={`${ICON_CLASS.action} mt-1 text-sky-300`}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Strengths Grid */}
-      <div>
-        <h3 className="text-lg font-semibold text-slate-100 mb-6">
-          Core Competencies
-        </h3>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {STRENGTHS.map((item) => {
+      <div className="mt-12">
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+              Core Competencies
+            </p>
+            <h3 className="mt-2 text-lg font-semibold text-slate-100 sm:text-xl">
+              The areas where I add the most value
+            </h3>
+          </div>
+          <div className="hidden items-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/70 px-4 py-2 text-xs font-medium text-slate-400 md:flex">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            Built for product teams that care about quality
+          </div>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {STRENGTHS.map((item, index) => {
             const IconComponent = item.icon;
+
             return (
               <article
                 key={item.title}
-                className={`group relative overflow-hidden rounded-xl border border-slate-700 bg-linear-to-br ${item.gradient} p-6 transition-all duration-300 hover:border-slate-600 hover:shadow-lg hover:shadow-slate-900/20 backdrop-blur-sm hover:-translate-y-1`}
+                className={`group relative overflow-hidden rounded-3xl border border-slate-800 bg-linear-to-br ${item.gradient} p-6 shadow-[0_14px_50px_rgba(2,6,23,0.24)] transition-all duration-300 hover:-translate-y-1 hover:border-slate-600/80 hover:shadow-[0_18px_60px_rgba(2,6,23,0.34)]`}
               >
-                {/* Background glow effect */}
-                <div className="absolute inset-0 bg-linear-to-br from-slate-600/0 to-slate-900/0 group-hover:from-slate-600/10 group-hover:to-slate-900/20 transition-all duration-300" />
+                <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/0 via-white/0 to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative flex h-full flex-col">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-3 text-sky-200 shadow-inner shadow-slate-950/30">
+                      <IconComponent className={ICON_CLASS.section} />
+                    </div>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                      0{index + 1}
+                    </span>
+                  </div>
 
-                {/* Content */}
-                <div className="relative">
-                  <h4 className="text-sm font-bold tracking-wider text-slate-100 group-hover:text-white transition-colors">
-                    {item.title}
-                  </h4>
-                  <p className="mt-3 text-sm text-slate-300 group-hover:text-slate-200 transition-colors leading-relaxed">
-                    {item.description}
-                  </p>
+                  <div className="mt-8 flex-1">
+                    <h4 className="text-sm font-bold tracking-[0.22em] text-slate-50 transition-colors group-hover:text-white">
+                      {item.title}
+                    </h4>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-300 transition-colors group-hover:text-slate-200">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div
+                    className={`mt-6 h-px w-full bg-linear-to-r ${item.gradient}`}
+                  />
                 </div>
-
-                {/* Bottom accent line */}
-                <div
-                  className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-300 bg-linear-to-r ${item.gradient}`}
-                />
               </article>
             );
           })}
