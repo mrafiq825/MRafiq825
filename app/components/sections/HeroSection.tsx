@@ -20,7 +20,9 @@ const HeroSection = () => {
           </p>
 
           <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl xl:text-6xl">
-            <span className="block text-slate-100">{site.name}</span>
+            <span className="block text-slate-100 font-script">
+              {site.name}
+            </span>
             <span className="mt-2 block bg-gradient-to-r from-sky-200 via-cyan-200 to-slate-300 bg-clip-text text-transparent">
               {site.role}
             </span>

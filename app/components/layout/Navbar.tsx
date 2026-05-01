@@ -97,11 +97,11 @@ const Navbar = () => {
           aria-label="Go to home"
         >
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 bg-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]">
-            <span className="text-sm font-bold tracking-wide text-slate-100">
+            <span className="text-sm font-bold tracking-wide text-slate-100 font-script">
               MR
             </span>
           </span>
-          <span className="text-base font-semibold tracking-tight text-slate-100/95">
+          <span className="text-base font-semibold tracking-tight text-slate-100/95 font-script">
             Rafiq
           </span>
         </a>
