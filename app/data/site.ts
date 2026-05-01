@@ -17,6 +17,7 @@ export const site: Site = {
     "TypeScript",
     "React.js",
     "Next.js",
+    "React Native",
     "Node.js",
     "Express.js",
     "Python",
