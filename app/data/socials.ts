@@ -19,7 +19,7 @@ export const socials: SocialLink[] = [
   },
   {
     label: "Facebook Profile",
-    href: "https://www.facebook.com/muhammadrak.muhammadrak/",
+    href: "https://www.facebook.com/profile.php?id=100069771234437&mibextid=wwXIfr&mibextid=wwXIfr",
     icon: "Facebook",
   },
   {
