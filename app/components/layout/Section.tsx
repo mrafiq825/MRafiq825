@@ -21,7 +21,7 @@ const Section = ({
   return (
     <section
       id={id}
-      className={cn("section-reveal relative py-16 md:py-24", className)}
+      className={cn("section-reveal relative py-5 md:py-5", className)}
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-sky-300/20 to-transparent" />
       <Container className="relative">

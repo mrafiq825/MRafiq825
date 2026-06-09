@@ -23,6 +23,25 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: "hiredesk",
+    title: "HireDesk: AI-Powered Recruitment Platform",
+    status: "Live",
+    summary:
+      "Next-generation recruitment platform leveraging AI to reduce hiring time by 50% and improve candidate quality.",
+    tech: [
+      "React",
+      "TypeScript",
+      "React Router",
+      "TailwindCSS",
+      "Vite",
+      "Docker",
+      "AI Backend API",
+    ],
+    imageAlt: "HireDesk platform preview",
+    liveUrl: "https://hiredesk.vercel.app/",
+    featured: true,
+  },
+  {
     id: "readora",
     title: "Readora: AI Voice-Powered Smart Library",
     status: "Live",
@@ -42,25 +61,6 @@ export const projects: Project[] = [
     ],
     imageAlt: "Readora smart library preview",
     liveUrl: "https://readora-ai.vercel.app/",
-    featured: true,
-  },
-  {
-    id: "hiredesk",
-    title: "HireDesk: AI-Powered Recruitment Platform",
-    status: "Live",
-    summary:
-      "Next-generation recruitment platform leveraging AI to reduce hiring time by 50% and improve candidate quality.",
-    tech: [
-      "React",
-      "TypeScript",
-      "React Router",
-      "TailwindCSS",
-      "Vite",
-      "Docker",
-      "AI Backend API",
-    ],
-    imageAlt: "HireDesk platform preview",
-    liveUrl: "https://hiredesk.vercel.app/",
     featured: true,
   },
   {

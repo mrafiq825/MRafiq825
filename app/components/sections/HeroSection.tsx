@@ -8,18 +8,21 @@ const HeroSection = () => {
   const [typed, setTyped] = useState("");
 
   useEffect(() => {
-    // Simple typewriter effect for the intro blurb
     const text = site.intro ?? "";
     let i = 0;
+    setTyped("");
+
     const interval = setInterval(() => {
       setTyped((prev) => prev + text.charAt(i));
       i += 1;
-      if (i >= text.length) clearInterval(interval);
+      if (i >= text.length) {
+        clearInterval(interval);
+      }
     }, 18);
-    return () => clearInterval(interval);
-  }, []);
 
-  // animated stat counters
+    return () => clearInterval(interval);
+  }, [site.intro]);
+
   const [counters, setCounters] = useState<string[]>(
     site.stats.slice(0, 4).map((s) => s.value),
   );
@@ -32,28 +35,40 @@ const HeroSection = () => {
 
     const duration = 900;
     const start = performance.now();
+    let rafId = 0;
 
     const raf = (now: number) => {
       const t = Math.min((now - start) / duration, 1);
       const next = targets.map((target) => Math.round(target * t));
+
       setCounters(
         next.map((n, i) => {
           const raw = site.stats[i].value;
-          // preserve suffixes like + or %
           const suffix = String(raw).replace(/\d+/g, "");
           return `${n}${suffix}`;
         }),
       );
-      if (t < 1) requestAnimationFrame(raf);
+
+      if (t < 1) {
+        rafId = requestAnimationFrame(raf);
+      }
     };
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
+
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
+  const highlights = [
+    "Fast-loading experiences",
+    "AI-enabled automation",
+    "Clean architected code",
+  ];
+
   return (
-    <Section id="home" className="pb-16 pt-24 md:pt-32">
-      <div className="grid items-start gap-8 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative overflow-hidden rounded-[2rem] border border-sky-200/10 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 p-6 sm:p-8 lg:p-10">
+    <Section id="home" className="pb-10 pt-10 md:pt-2">
+      <div className="grid items-start gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+        <div className="relative overflow-hidden rounded-[2rem] border border-sky-200/10 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 p-6 sm:p-8 lg:p-10 shadow-[0_32px_90px_rgba(15,23,42,0.35)]">
           <style>{`
             @keyframes floaty { 0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)} }
             @keyframes slideGradient { 0%{background-position:0% 50%}100%{background-position:100% 50%} }
@@ -61,50 +76,26 @@ const HeroSection = () => {
             .floaty { animation: floaty 6s ease-in-out infinite; }
             .typed-caret::after { content: "|"; opacity: 0.9; margin-left:6px; animation: blink 1s steps(2,start) infinite; }
             @keyframes blink { 50% { opacity: 0 } }
-            .socialIcon { display:inline-flex; align-items:center; justify-content:center; height:38px; width:38px; border-radius:10px; background:rgba(255,255,255,0.02); transition:transform .22s ease, box-shadow .22s ease; }
-            .socialIcon:hover { transform:translateY(-4px) scale(1.06); box-shadow:0 6px 18px rgba(124,58,237,0.18); }
-            .socialIcon svg { height:18px; width:18px; color:transparent; filter:drop-shadow(0 1px 0 rgba(0,0,0,0.2)); }
-            .particle { position:absolute; inset:0; pointer-events:none; opacity:0.18 }
+            .particle { position:absolute; inset:0; pointer-events:none; opacity:0.18; }
+            .hero-pill { background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(56, 189, 248, 0.12); }
           `}</style>
-          <svg
-            className="particle"
-            viewBox="0 0 800 400"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1">
-                <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.06" />
-                <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.06" />
-              </linearGradient>
-            </defs>
-            <circle cx="80" cy="40" r="60" fill="url(#g1)"></circle>
-            <circle
-              cx="720"
-              cy="320"
-              r="48"
-              fill="#f472b6"
-              fillOpacity="0.04"
-            ></circle>
-            <circle
-              cx="380"
-              cy="200"
-              r="100"
-              fill="#60a5fa"
-              fillOpacity="0.03"
-            ></circle>
-          </svg>
+
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.18),_transparent_25%),radial-gradient(circle_at_72%_10%,_rgba(124,58,237,0.12),_transparent_22%)]" />
           <div className="pointer-events-none absolute -right-14 -top-20 h-52 w-52 rounded-full bg-sky-400/15 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-14 left-8 h-36 w-36 rounded-full bg-cyan-300/10 blur-3xl" />
 
           <div className="relative z-10 flex flex-wrap items-center gap-3">
             <Badge>{site.availability}</Badge>
+            <span className="hero-pill inline-flex items-center rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-slate-300">
+              Next-gen portfolio
+            </span>
           </div>
 
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
             {site.greeting}
           </p>
 
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl xl:text-6xl">
+          <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-100 sm:text-5xl xl:text-6xl">
             <span className="block text-slate-100 font-script gradientMove">
               {site.name}
             </span>
@@ -120,12 +111,12 @@ const HeroSection = () => {
             {typed}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Button
               href={site.cvUrl}
               download="Muhammad-Rafiq-CV.pdf"
               variant="secondary"
-              className="border-sky-300/30 bg-sky-400/10 text-sky-100 hover:bg-sky-400/20"
+              className="min-w-[11rem]"
             >
               Download CV
             </Button>
@@ -152,6 +143,24 @@ const HeroSection = () => {
           <div className="absolute -left-6 -top-8 hidden h-40 w-40 rounded-full bg-cyan-300/6 blur-3xl floaty sm:block" />
           <div className="absolute right-0 top-4 -z-10 hidden h-24 w-24 rounded-full bg-sky-400/6 blur-2xl floaty sm:block" />
 
+          <div className="absolute right-0 top-16 hidden w-[280px] rounded-[1.85rem] border border-sky-300/10 bg-slate-900/80 p-5 text-sm text-slate-300 shadow-[0_40px_120px_rgba(8,16,35,0.35)] backdrop-blur-md sm:block">
+            <p className="text-[10px] uppercase tracking-[0.24em] text-sky-300/80">
+              Highlighted focus
+            </p>
+            <div className="mt-4 space-y-3">
+              {highlights.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-3 rounded-2xl border border-slate-800/90 bg-slate-950/75 p-3"
+                >
+                  <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-sky-400" />
+                  <span className="text-sm leading-tight text-slate-200">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900/70 p-3 shadow-[0_28px_80px_rgba(2,6,23,0.65)]">
             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/50 to-transparent" />
             <div className="rounded-[1.55rem] border border-slate-700/80 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-3">
@@ -159,7 +168,7 @@ const HeroSection = () => {
                 <img
                   src="/profile.png"
                   alt="Muhammad Rafiq - Full-Stack Developer & AI Engineer"
-                  className="h-[440px] w-full rounded-[1.25rem] object-cover sm:h-[500px] hover:scale-105 transition-transform duration-600"
+                  className="w-full rounded-[1.25rem] object-contain hover:scale-105 transition-transform duration-600"
                   style={{ willChange: "transform" }}
                 />
               </div>

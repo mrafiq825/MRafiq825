@@ -2,7 +2,7 @@ import type { Experience } from "~/types/experience";
 
 export const experience: Experience[] = [
   {
-    id: "hiskytech-intern",
+    id: "HiskyTech-intern",
     role: "Full-Stack Developer Intern",
     company: "HiSkyTech",
     mode: "Remote",
@@ -23,7 +23,7 @@ export const experience: Experience[] = [
     ],
   },
   {
-    id: "clouditecture-backend",
+    id: "Clouditecture-backend",
     role: "Backend Developer Intern",
     company: "Clouditecture",
     mode: "Hybrid",
@@ -44,7 +44,7 @@ export const experience: Experience[] = [
     ],
   },
   {
-    id: "zypher-frontend",
+    id: "Zypher-frontend",
     role: "Frontend Developer",
     company: "Zypher Enterprise",
     mode: "Onsite",
@@ -64,11 +64,11 @@ export const experience: Experience[] = [
     ],
   },
   {
-    id: "insite-ambassador",
+    id: "Insite-ambassador",
     role: "Software Ambassador Internship",
     company: "Insite",
     mode: "Remote",
-    period: "July 2025 - September 2025",
+    period: "July 2025 - October 2025",
     responsibilities: [
       "Tested beta software and provided UX and usability feedback.",
       "Contributed research shaping product features and marketing.",

@@ -5,11 +5,11 @@ export const site: Site = {
   greeting: "Hi, I'm",
   role: "Full-Stack Developer & AI/ML Enthusiast",
   intro:
-    "TTransforming business challenges into elegant, scalable solutions. Specialized in building high-performance web and mobile applications that drive measurable results. From startup MVPs to enterprise systems, I deliver code that matters.",
+    "Transforming business challenges into elegant, scalable solutions. Specialized in building high-performance web and mobile applications that drive measurable results. From startup MVPs to enterprise systems, I deliver code that matters.",
   email: "rafkhan9323@gmail.com",
   availability: "Available for Hire | Open to Exciting Projects",
   cvUrl:
-    "https://drive.google.com/file/d/12hodw21_6ZTKifSsWIwrAT_GEwCHWQum/view?usp=drive_link",
+    "https://drive.google.com/file/d/1gi34ceUAELEQTYc5BrIX0Z-8JjFZjvL-/view?usp=drive_link",
   primaryCtaLabel: "Let's Talk",
   primaryCtaHref: "#contact",
   skills: [
