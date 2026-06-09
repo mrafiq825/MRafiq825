@@ -21,13 +21,6 @@ const NotFoundPage = () => {
           >
             Go Home
           </Link>
-          <button
-            type="button"
-            onClick={() => window.history.back()}
-            className="inline-flex items-center rounded-full border border-slate-700 bg-slate-900 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-slate-800"
-          >
-            Go Back
-          </button>
         </div>
       </section>
     </main>

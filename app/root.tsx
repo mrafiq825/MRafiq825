@@ -6,7 +6,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
 import type { Route } from "./+types/root";
 import ErrorState from "./components/feedback/ErrorState";
 import LoadingScreen from "./components/feedback/LoadingScreen";
@@ -26,7 +25,7 @@ export const meta: Route.MetaFunction = ({ error }) => {
     {
       name: "description",
       content:
-        "Portfolio of Muhammad Rafiq featuring full-stack development, SDET, DevOps, and AI/ML projects.",
+        "Portfolio of Muhammad Rafiq featuring Full-stack development, SDET, DevOps, and AI/ML projects.",
     },
   ];
 };

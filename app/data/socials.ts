@@ -6,7 +6,6 @@ export const socials: SocialLink[] = [
     href: "https://github.com/mrafiq825",
     icon: "Github",
   },
-
   {
     label: "LinkedIn Profile",
     href: "https://www.linkedin.com/in/mrafiq825/",

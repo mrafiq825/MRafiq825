@@ -1,6 +1,5 @@
 import { FiBriefcase, FiLayers, FiMessageCircle, FiUser } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
-
 import { ICON_CLASS } from "~/lib/constants";
 
 const NAV_ITEMS = [

@@ -100,11 +100,11 @@ const Chatbot = () => {
             </span>
             <div>
               <p className="text-sm font-semibold text-slate-100">
-                Portfolio Assistant
+                Rafiq Assistant
               </p>
               <p className="flex items-center gap-2 text-xs text-slate-400">
                 <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                Online now
+                Online
               </p>
             </div>
           </div>
