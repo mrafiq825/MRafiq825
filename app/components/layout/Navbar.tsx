@@ -1,10 +1,4 @@
-import {
-  FiBriefcase,
-  FiLayers,
-  FiMail,
-  FiMessageCircle,
-  FiUser,
-} from "react-icons/fi";
+import { FiBriefcase, FiLayers, FiMessageCircle, FiUser } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
 
 import { ICON_CLASS } from "~/lib/constants";
