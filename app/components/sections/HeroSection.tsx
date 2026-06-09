@@ -66,7 +66,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <Section id="home" className="pb-10 pt-10 md:pt-2">
+    <Section id="home" className="pb-10 pt-10 md:pt-10">
       <div className="grid items-start gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         <div className="relative overflow-hidden rounded-[2rem] border border-sky-200/10 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 p-6 sm:p-8 lg:p-10 shadow-[0_32px_90px_rgba(15,23,42,0.35)]">
           <style>{`
@@ -87,7 +87,7 @@ const HeroSection = () => {
           <div className="relative z-10 flex flex-wrap items-center gap-3">
             <Badge>{site.availability}</Badge>
             <span className="hero-pill inline-flex items-center rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-slate-300">
-              Next-gen portfolio
+              Full-stack AI portfolio
             </span>
           </div>
 
@@ -121,46 +121,12 @@ const HeroSection = () => {
               Download CV
             </Button>
           </div>
-
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {site.stats.slice(0, 4).map((stat, idx) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-slate-800/80 bg-slate-950/50 px-4 py-3 transition-transform duration-300 hover:-translate-y-1"
-              >
-                <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
-                  {stat.label}
-                </p>
-                <p className="mt-1 text-lg font-semibold text-slate-100">
-                  {counters[idx]}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="relative">
           <div className="absolute -left-6 -top-8 hidden h-40 w-40 rounded-full bg-cyan-300/6 blur-3xl floaty sm:block" />
           <div className="absolute right-0 top-4 -z-10 hidden h-24 w-24 rounded-full bg-sky-400/6 blur-2xl floaty sm:block" />
 
-          <div className="absolute right-0 top-16 hidden w-[280px] rounded-[1.85rem] border border-sky-300/10 bg-slate-900/80 p-5 text-sm text-slate-300 shadow-[0_40px_120px_rgba(8,16,35,0.35)] backdrop-blur-md sm:block">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-sky-300/80">
-              Highlighted focus
-            </p>
-            <div className="mt-4 space-y-3">
-              {highlights.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3 rounded-2xl border border-slate-800/90 bg-slate-950/75 p-3"
-                >
-                  <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-sky-400" />
-                  <span className="text-sm leading-tight text-slate-200">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
           <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900/70 p-3 shadow-[0_28px_80px_rgba(2,6,23,0.65)]">
             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/50 to-transparent" />
             <div className="rounded-[1.55rem] border border-slate-700/80 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-3">
@@ -180,8 +146,14 @@ const HeroSection = () => {
               Quick Intro
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-300">
-              I build polished digital products with a strong focus on
-              performance, maintainability, and measurable business impact.
+              I design and ship full-stack products with performance-first
+              architecture, clean code, and AI-enabled automation that creates
+              measurable business value.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-300">
+              A great developer isn’t someone who memorizes code; a great
+              developer is someone who understands the problem and solves it
+              with sharp technical expertise.
             </p>
           </div>
         </div>
