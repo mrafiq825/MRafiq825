@@ -82,8 +82,6 @@ const Navbar = () => {
         aria-label="Main navigation"
       >
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/25 via-white/8 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-white/35" />
-
         <a
           href="#home"
           className="relative inline-flex items-center gap-2"
