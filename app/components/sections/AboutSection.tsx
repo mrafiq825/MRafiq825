@@ -80,7 +80,7 @@ const AboutSection = () => {
               performance to build software that drives measurable outcomes.
             </p>
             <p className="mt-4 text-base leading-relaxed text-slate-400">
-              My focus spans full-stack web systems, test quality, deployment
+              My focus spans Full-Stack applications, test quality, deployment
               workflows, and AI-powered product experiences, with a strong eye
               for usability and maintainability.
             </p>

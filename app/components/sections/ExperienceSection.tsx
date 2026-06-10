@@ -4,7 +4,6 @@ import {
   FiCode,
   FiArrowRight,
 } from "react-icons/fi";
-
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Card from "~/components/ui/Card";
