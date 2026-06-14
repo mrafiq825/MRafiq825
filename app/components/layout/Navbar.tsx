@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { ICON_CLASS } from "~/lib/constants";
 
 const NAV_ITEMS = [
+  { label: "Education", href: "#education", icon: FiBook },
   { label: "About", href: "#about", icon: FiUser },
   { label: "Experience", href: "#experience", icon: FiBriefcase },
-  { label: "Education", href: "#education", icon: FiBook },
   { label: "Projects", href: "#projects", icon: FiLayers },
 ];
 
@@ -31,7 +31,7 @@ const Navbar = () => {
         setIsVisible(true);
       }
 
-      lastScrollYRef.current = currentScrollY;
+      lastScrollYRef.current = currentScrollY;    
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
