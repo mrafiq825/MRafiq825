@@ -19,7 +19,7 @@ const EducationSection = () => {
       title={
         <>
           <FiBook className={`${ICON_CLASS.section} text-violet-400`} />
-          Education
+          Qualification's
         </>
       }
       description="The academic foundation that shaped my engineering mindset, blending theory with hands-on software development."
@@ -41,14 +41,12 @@ const EducationSection = () => {
                 {/* Degree badge + mode indicator */}
                 <div className="flex flex-wrap items-center gap-2">
                   <FiAward className="h-5 w-5 text-violet-400" />
-                  <Badge>{item.degree}</Badge>
+                  <Badge >{item.degree}</Badge>
                 </div>
 
-                {/* Field & Institution */}
+                {/* Institution */}
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-50 transition-colors group-hover:text-white">
-                    {item.field}
-                  </h3>
+                 
                   <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
                     <p className="font-semibold text-slate-200">
                       {item.institution}

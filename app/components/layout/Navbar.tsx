@@ -98,11 +98,11 @@ const Navbar = () => {
           </span>
         </a>
 
-        <ul className="relative hidden items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2 py-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] md:flex">
+        <ul className="relative hidden items-center gap-2  md:flex">
           {NAV_ITEMS.map((item) => {
             const IconComponent = item.icon;
             return (
-              <li key={item.href}>
+              <li key={item.href}>  
                 <a
                   href={item.href}
                   aria-label={item.label}
@@ -120,7 +120,7 @@ const Navbar = () => {
           })}
         </ul>
 
-        <ul className="relative flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-1.5 py-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] md:hidden">
+        <ul className="relative flex items-center gap-1 md:hidden">
           {NAV_ITEMS.map((item) => {
             const IconComponent = item.icon;
             return (
