@@ -31,7 +31,6 @@ const EducationSection = () => {
             key={item.id}
             className="group relative overflow-hidden border-slate-800/80 bg-slate-900/85 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 hover:shadow-[0_18px_40px_rgba(139,92,246,0.12)]"
           >
-          
 
             {/* Decorative background glow */}
             <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-violet-600/5 blur-3xl transition-all duration-500 group-hover:bg-violet-600/10" />
@@ -43,7 +42,6 @@ const EducationSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <FiAward className="h-5 w-5 text-violet-400" />
                   <Badge>{item.degree}</Badge>
-                  <Badge>{item.period}</Badge>
                 </div>
 
                 {/* Field & Institution */}
