@@ -1,10 +1,11 @@
-import { FiBriefcase, FiLayers, FiMessageCircle, FiUser } from "react-icons/fi";
+import { FiBriefcase, FiBook, FiLayers, FiMessageCircle, FiUser } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
 import { ICON_CLASS } from "~/lib/constants";
 
 const NAV_ITEMS = [
   { label: "About", href: "#about", icon: FiUser },
   { label: "Experience", href: "#experience", icon: FiBriefcase },
+  { label: "Education", href: "#education", icon: FiBook },
   { label: "Projects", href: "#projects", icon: FiLayers },
 ];
 

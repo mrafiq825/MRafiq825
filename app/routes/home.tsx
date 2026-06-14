@@ -5,6 +5,7 @@ import Navbar from "~/components/layout/Navbar";
 import AboutSection from "~/components/sections/AboutSection";
 import ContactSection from "~/components/sections/ContactSection";
 import ExperienceSection from "~/components/sections/ExperienceSection";
+import EducationSection from "~/components/sections/EducationSection";
 import HeroSection from "~/components/sections/HeroSection";
 import ProjectsSection from "~/components/sections/ProjectsSection";
 
@@ -45,6 +46,7 @@ const Home = () => {
       <Navbar />
       <main className="page-shell bg-slate-950">
         <HeroSection />
+        <EducationSection />
         <AboutSection />
         <ExperienceSection />
         <ProjectsSection />
