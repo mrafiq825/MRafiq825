@@ -25,7 +25,7 @@ export const meta: Route.MetaFunction = ({ error }) => {
     {
       name: "description",
       content:
-        "Portfolio of Muhammad Rafiq featuring Full-stack development, SDET, DevOps, and AI/ML projects.",
+        "Portfolio of Muhammad Rafiq featuring Full-Stack development, SDET, DevOps, and AI/ML projects.",
     },
   ];
 };

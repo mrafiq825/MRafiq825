@@ -31,10 +31,8 @@ const EducationSection = () => {
             key={item.id}
             className="group relative overflow-hidden border-slate-800/80 bg-slate-900/85 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 hover:shadow-[0_18px_40px_rgba(139,92,246,0.12)]"
           >
-
             {/* Decorative background glow */}
             <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-violet-600/5 blur-3xl transition-all duration-500 group-hover:bg-violet-600/10" />
-
             {/* Header */}
             <div className="relative mt-6 flex flex-wrap items-start justify-between gap-4">
               <div className="space-y-3">
@@ -43,17 +41,14 @@ const EducationSection = () => {
                   <FiAward className="h-5 w-5 text-violet-400" />
                   <Badge >{item.degree}</Badge>
                 </div>
-
                 {/* Institution */}
                 <div>
-                 
                   <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
                     <p className="font-semibold text-slate-200">
                       {item.institution}
                     </p>
                   </div>
                 </div>
-
                 {/* Location & Years */}
                 <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
                   <span className="flex items-center gap-1.5">
@@ -66,7 +61,6 @@ const EducationSection = () => {
                   </span>
                 </div>
               </div>
-
               {/* Year badge — desktop */}
               <div className="hidden shrink-0 flex-col items-center justify-center rounded-2xl border border-violet-500/20 bg-violet-500/10 px-5 py-3 text-center md:flex">
                 <span className="text-3xl font-extrabold leading-none text-violet-300">
@@ -77,7 +71,6 @@ const EducationSection = () => {
                 </span>
               </div>
             </div>
-
             {/* Body */}
             <div className="relative mt-8 grid gap-8 md:grid-cols-2">
               {/* Highlights */}
@@ -99,7 +92,6 @@ const EducationSection = () => {
                   ))}
                 </ul>
               </div>
-
               {/* Courses */}
               <div>
                 <div className="mb-4 flex items-center gap-2">

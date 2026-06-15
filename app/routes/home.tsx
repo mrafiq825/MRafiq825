@@ -16,7 +16,7 @@ export const meta: Route.MetaFunction = () => [
   {
     name: "description",
     content:
-      "Explore Muhammad Rafiq's portfolio showcasing full-stack web projects, engineering experience, and contact details.",
+      "Explore Muhammad Rafiq's portfolio showcasing Full-Stack Web projects, engineering experience, and contact details.",
   },
 ];
 
@@ -34,7 +34,7 @@ const Home = () => {
   if (isLoading) {
     return (
       <LoadingScreen
-        message="Opening portfolio"
+        message="Opening Portfolio"
         title="Muhammad Rafiq"
         subtitle="A polished portfolio built to showcase product thinking, engineering depth, and visual clarity."
       />

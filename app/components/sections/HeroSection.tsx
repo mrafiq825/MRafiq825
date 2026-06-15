@@ -87,7 +87,7 @@ const HeroSection = () => {
           <div className="relative z-10 flex flex-wrap items-center gap-3">
             <Badge>{site.availability}</Badge>
             <span className="hero-pill inline-flex items-center rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-slate-300">
-              Full-stack AI portfolio
+              Full-Stack Developer
             </span>
           </div>
 
@@ -146,7 +146,7 @@ const HeroSection = () => {
               Quick Intro
             </p>
             <p className="mt-2 text-sm leading-relaxed text-slate-300">
-              I design and ship full-stack products with performance-first
+              I design and ship Full-Stack products with performance-first
               architecture, clean code, and AI-enabled automation that creates
               measurable business value.
             </p>

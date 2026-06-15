@@ -57,7 +57,6 @@ const ProjectsSection = () => {
               <div
                 className={`absolute -inset-0.5 bg-linear-to-br ${statusConfig.gradient} rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur`}
               />
-
               {/* Card */}
               <Card
                 className={`relative flex h-full flex-col bg-linear-to-br ${statusConfig.bgGradient} border-slate-700 group-hover:border-slate-600 transition-all duration-300`}
@@ -85,7 +84,6 @@ const ProjectsSection = () => {
                     {project.summary}
                   </p>
                 </div>
-
                 {/* Tech Stack */}
                 <div className="mb-6 flex-1">
                   <div className="flex items-center gap-2 mb-3">
