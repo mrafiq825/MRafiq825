@@ -82,4 +82,24 @@ export const experience: Experience[] = [
       "Community Engagement",
     ],
   },
+  {
+    id: "ZiriumAI",
+    role: "Developer Experience (DevEx) Engineer",
+    company: "ZiriumAI",
+    mode: "Onsite",
+    period: "June 2026 - Present",
+    responsibilities: [
+      "A Full Stack Developer Role with dev-ex responsiblities",
+      "Maintain and improve customer-facing applications",
+      "Collaborate with product and engineering teams to advocate for developer needs and influence product roadmap",
+    ],
+    technologies: [
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn UI",
+      "Community Engagement",
+    ],
+  },
 ];
