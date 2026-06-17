@@ -16,4 +16,7 @@ export type Site = {
   primaryCtaHref: string;
   skills: string[];
   stats: Array<{ label: string; value: string }>;
+  url?: string;
+  keywords?: string[];
+  ogImage?: string;
 };

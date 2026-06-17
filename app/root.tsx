@@ -21,12 +21,20 @@ export const meta: Route.MetaFunction = ({ error }) => {
   }
 
   return [
-    { title: "Rafiq Portfolio" },
+    { title: "Muhammad Rafiq | Full-Stack Developer & Software Engineer" },
     {
       name: "description",
       content:
-        "Portfolio of Muhammad Rafiq featuring Full-Stack development, SDET, DevOps, and AI/ML projects.",
+        "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
     },
+    {
+      name: "keywords",
+      content:
+        "Muhammad Rafiq, Rafiq Portfolio, Full-Stack Developer, Software Engineer, DevOps, SDET, React, Next.js, Node.js, Express, Python, FastAPI, Docker, Playwright, Vercel",
+    },
+    { name: "author", content: "Muhammad Rafiq" },
+    { name: "robots", content: "index, follow" },
+    { name: "theme-color", content: "#020617" },
   ];
 };
 

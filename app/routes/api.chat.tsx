@@ -1,16 +1,16 @@
-import { json, type ActionFunction } from "@react-router/node";
+import { data, type ActionFunctionArgs } from "react-router";
 import { getPortfolioChatResponse } from "~/lib/geminiAI.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   if (request.method !== "POST") {
-    return json({ error: "Method not allowed" }, { status: 405 });
+    return data({ error: "Method not allowed" }, { status: 405 });
   }
 
   try {
     const { message } = await request.json();
 
     if (!message || typeof message !== "string") {
-      return json(
+      return data(
         { error: "Invalid request body. Message is required." },
         { status: 400 },
       );
@@ -18,15 +18,15 @@ export const action: ActionFunction = async ({ request }) => {
 
     if (!process.env.VITE_GEMINI_API_KEY) {
       console.error("VITE_GEMINI_API_KEY is not set");
-      return json({ error: "AI service not configured" }, { status: 500 });
+      return data({ error: "AI service not configured" }, { status: 500 });
     }
 
     const response = await getPortfolioChatResponse(message);
 
-    return json({ response });
+    return data({ response });
   } catch (error) {
     console.error("Chatbot API error:", error);
-    return json(
+    return data(
       {
         error:
           error instanceof Error

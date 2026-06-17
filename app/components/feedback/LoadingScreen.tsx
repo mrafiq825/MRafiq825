@@ -101,7 +101,7 @@ const LoadingScreen = ({
         <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-sky-400/30 bg-slate-900/80 shadow-[0_0_0_1px_rgba(125,211,252,0.1),0_0_50px_rgba(56,189,248,0.16)]">
           <img
             src="/Rafiq-logo.png"
-            alt="Rafiq logo"
+            alt="Muhammad Rafiq logo - Full-Stack Developer & Software Engineer"
             className="h-16 w-16 object-contain"
           />
         </div>
