@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "~/lib/utils";
 
 type ButtonProps = {
@@ -7,6 +7,9 @@ type ButtonProps = {
   download?: AnchorHTMLAttributes<HTMLAnchorElement>["download"];
   className?: string;
   variant?: "primary" | "secondary";
+  type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
+  disabled?: boolean;
 };
 
 const Button = ({
@@ -15,12 +18,15 @@ const Button = ({
   download,
   className,
   variant = "primary",
+  type = "button",
+  onClick,
+  disabled,
 }: ButtonProps) => {
   const baseClass = cn(
-    "inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition",
+    "inline-flex items-center justify-center font-body text-sm font-medium transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2",
     variant === "primary"
-      ? "bg-sky-300 text-slate-950 hover:bg-sky-200"
-      : "border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800",
+      ? "bg-accent-600 text-white rounded-[12px] px-6 py-3 hover:bg-accent-700 active:bg-accent-800 disabled:bg-accent-100 disabled:text-text-muted disabled:cursor-not-allowed"
+      : "bg-transparent border border-border-default text-text-primary rounded-[12px] px-6 py-3 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80 disabled:opacity-50 disabled:cursor-not-allowed",
     className,
   );
 
@@ -32,7 +38,11 @@ const Button = ({
     );
   }
 
-  return <button className={baseClass}>{children}</button>;
+  return (
+    <button type={type} onClick={onClick} disabled={disabled} className={baseClass}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;

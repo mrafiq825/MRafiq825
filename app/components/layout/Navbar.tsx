@@ -79,26 +79,25 @@ const Navbar = () => {
       }`}
     >
       <nav
-        className="relative mx-auto flex w-full max-w-6xl items-center justify-between overflow-hidden rounded-[1.35rem] border border-white/20 bg-white/10 px-4 py-3 shadow-[0_14px_44px_rgba(2,6,23,0.55)] ring-1 ring-inset ring-white/10 backdrop-blur-xl"
+        className="relative mx-auto flex w-full max-w-4xl items-center justify-between rounded-full px-4 py-2.5 transition-all duration-300 liquid-glass-nav focus-within:ring-2 focus-within:ring-accent-100"
         aria-label="Main navigation"
       >
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/25 via-white/8 to-transparent" />
         <a
           href="#home"
-          className="relative inline-flex items-center gap-2"
+          className="relative inline-flex items-center gap-2 rounded-full p-1 pr-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600"
           aria-label="Go to home"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 bg-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]">
-            <span className="text-sm font-bold tracking-wide text-slate-100 font-script">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-default/50 bg-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7)]">
+            <span className="text-sm font-bold tracking-wide text-text-primary font-heading">
               MR
             </span>
           </span>
-          <span className="text-base font-semibold tracking-tight text-slate-100/95 font-script">
+          <span className="text-base font-bold tracking-tight text-text-primary font-heading">
             Rafiq
           </span>
         </a>
 
-        <ul className="relative hidden items-center gap-2  md:flex">
+        <ul className="relative hidden items-center gap-2 md:flex">
           {NAV_ITEMS.map((item) => {
             const IconComponent = item.icon;
             return (
@@ -107,10 +106,10 @@ const Navbar = () => {
                   href={item.href}
                   aria-label={item.label}
                   aria-current={activeHref === item.href ? "page" : undefined}
-                  className={`inline-flex items-center justify-center rounded-full p-2 transition ${
+                  className={`inline-flex items-center justify-center rounded-full px-5 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
                     activeHref === item.href
-                      ? "border border-white/25 bg-white/20 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32)]"
-                      : "text-slate-200/95 hover:bg-white/14 hover:text-white"
+                      ? "liquid-glass-active-item text-accent-700 font-semibold shadow-sm"
+                      : "text-text-secondary hover:bg-white/40 hover:text-text-primary"
                   }`}
                 >
                   <IconComponent className={ICON_CLASS.nav} />
@@ -129,10 +128,10 @@ const Navbar = () => {
                   href={item.href}
                   aria-label={item.label}
                   aria-current={activeHref === item.href ? "page" : undefined}
-                  className={`inline-flex items-center justify-center rounded-full p-2 transition ${
+                  className={`inline-flex items-center justify-center rounded-full px-5 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
                     activeHref === item.href
-                      ? "border border-white/25 bg-white/20 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32)]"
-                      : "text-slate-200/95 hover:bg-white/14 hover:text-white"
+                      ? "liquid-glass-active-item text-accent-700 font-semibold shadow-sm"
+                      : "text-text-secondary hover:bg-white/40 hover:text-text-primary"
                   }`}
                 >
                   <IconComponent className={ICON_CLASS.nav} />
@@ -144,7 +143,7 @@ const Navbar = () => {
 
         <a
           href="#contact"
-          className="relative hidden items-center gap-2 rounded-full border border-white/30 bg-white/25 px-4 py-2 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:bg-white/30 md:inline-flex"
+          className="relative hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 md:inline-flex liquid-glass-accent-button text-white"
         >
           <FiMessageCircle className={ICON_CLASS.action} />
           Let's Talk

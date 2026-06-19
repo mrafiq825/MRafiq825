@@ -2,22 +2,22 @@ import { Link } from "react-router";
 
 const NotFoundPage = () => {
   return (
-    <main className="page-shell flex min-h-screen items-center justify-center bg-slate-950 px-6">
-      <section className="w-full max-w-2xl rounded-3xl border border-slate-800 bg-slate-900/80 p-8 text-center shadow-[0_20px_50px_rgba(2,6,23,0.6)]">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+    <main className="page-shell flex min-h-screen items-center justify-center bg-bg-page px-6">
+      <section className="w-full max-w-xl rounded-[20px] border border-border-default bg-bg-surface p-8 text-center shadow-sm">
+        <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
           404
         </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-100 sm:text-4xl">
+        <h1 className="mt-3 font-heading text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
           Page Not Found
         </h1>
-        <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-300 sm:text-base">
+        <p className="mx-auto mt-4 max-w-md font-body text-sm leading-relaxed text-text-secondary">
           The page you are looking for does not exist or has been moved.
         </p>
 
         <div className="mt-7 flex items-center justify-center gap-3">
           <Link
             to="/"
-            className="inline-flex items-center rounded-full bg-sky-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-sky-200"
+            className="inline-flex items-center justify-center font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-6 py-3 hover:bg-accent-700 active:bg-accent-800"
           >
             Go Home
           </Link>

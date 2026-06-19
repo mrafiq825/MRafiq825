@@ -17,28 +17,24 @@ const STRENGTHS = [
     description:
       "End-to-end web and mobile solutions from concept to deployment.",
     icon: FiCode,
-    gradient: "from-blue-500/20 to-cyan-500/20",
   },
   {
     title: "SDET",
     description:
       "Quality-first test automation and reliability-focused engineering.",
     icon: FiTrendingUp,
-    gradient: "from-purple-500/20 to-pink-500/20",
   },
   {
     title: "DEVOPS",
     description:
       "Seamless CI/CD pipelines, cloud deployment, and observability.",
     icon: FiZap,
-    gradient: "from-orange-500/20 to-red-500/20",
   },
   {
     title: "AI/ML",
     description:
       "Intelligent automation, AI integrations, and practical ML insights.",
     icon: FiCpu,
-    gradient: "from-emerald-500/20 to-green-500/20",
   },
 ];
 
@@ -48,38 +44,35 @@ const AboutSection = () => {
       id="about"
       title={
         <>
-          <FiUser className={`${ICON_CLASS.section} text-sky-400`} />
+          <FiUser className={`${ICON_CLASS.section} text-accent-600`} />
           Why Choose Me
         </>
       }
       description="A blend of product thinking, engineering craft, and delivery discipline that turns ideas into polished digital experiences."
-      className="border-t border-slate-800"
+      className="border-t border-border-default bg-bg-page"
     >
       <div className="grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative overflow-hidden rounded-4xl border border-slate-800/80 bg-linear-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 p-6 shadow-[0_24px_80px_rgba(2,6,23,0.45)] sm:p-8 lg:p-10">
-          <div className="pointer-events-none absolute -right-10 top-0 h-40 w-40 rounded-full bg-sky-400/10 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-0 left-0 h-36 w-36 rounded-full bg-cyan-300/10 blur-3xl" />
-
+        <div className="relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface p-6 shadow-sm sm:p-8 lg:p-10">
           <div className="relative z-10 flex flex-wrap items-center gap-3">
             <Badge>Passion-Driven Developer</Badge>
-            <span className="inline-flex items-center gap-2 rounded-full border border-sky-300/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
-              <span className="h-2 w-2 rounded-full bg-sky-300" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent-100 bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700">
+              <span className="h-2 w-2 rounded-full bg-accent-600" />
               Product-minded, delivery-focused
             </span>
           </div>
 
           <div className="relative z-10 mt-6 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
               Why I build the way I do
             </p>
-            <h3 className="mt-3 text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl">
+            <h3 className="mt-3 font-heading text-h3 font-bold tracking-tight text-text-primary">
               Always learning, always shipping work that feels intentional.
             </h3>
-            <p className="mt-5 text-base leading-relaxed text-slate-300 sm:text-lg">
+            <p className="mt-5 text-base leading-relaxed text-text-secondary">
               I work at the intersection of product, engineering, and
               performance to build software that drives measurable outcomes.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-slate-400">
+            <p className="mt-4 text-base leading-relaxed text-text-muted">
               My focus spans Full-Stack applications, test quality, deployment
               workflows, and AI-powered product experiences, with a strong eye
               for usability and maintainability.
@@ -92,19 +85,16 @@ const AboutSection = () => {
                 label: "Build",
                 value: "Scalable systems",
                 icon: FiCode,
-                tone: "from-sky-500/20 to-cyan-500/20",
               },
               {
                 label: "Verify",
                 value: "Reliable delivery",
                 icon: FiTrendingUp,
-                tone: "from-emerald-500/20 to-teal-500/20",
               },
               {
                 label: "Automate",
                 value: "Smarter workflows",
                 icon: FiZap,
-                tone: "from-amber-500/20 to-orange-500/20",
               },
             ].map((item) => {
               const ItemIcon = item.icon;
@@ -112,17 +102,17 @@ const AboutSection = () => {
               return (
                 <div
                   key={item.label}
-                  className={`rounded-2xl border border-slate-700/80 bg-linear-to-br ${item.tone} p-4 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5`}
+                  className="rounded-2xl border border-border-default bg-bg-surface-hover p-4 transition-transform duration-200 hover:-translate-y-0.5"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="rounded-xl border border-white/10 bg-slate-950/60 p-2 text-sky-200 shadow-inner shadow-slate-950/30">
+                    <div className="rounded-xl border border-border-default bg-bg-surface p-2 text-accent-700 shadow-sm">
                       <ItemIcon className={ICON_CLASS.action} />
                     </div>
                     <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
                         {item.label}
                       </p>
-                      <p className="mt-1 text-sm font-semibold text-slate-100">
+                      <p className="mt-1 text-sm font-bold text-text-primary">
                         {item.value}
                       </p>
                     </div>
@@ -134,17 +124,17 @@ const AboutSection = () => {
         </div>
 
         <div className="grid gap-6">
-          <div className="rounded-4xl border border-slate-800 bg-slate-900/70 p-6 shadow-[0_22px_60px_rgba(2,6,23,0.32)] backdrop-blur-sm sm:p-7">
+          <div className="rounded-[20px] border border-border-default bg-bg-surface p-6 shadow-sm sm:p-7">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
                   Tech Arsenal
                 </p>
-                <h3 className="mt-2 text-2xl font-bold text-slate-50">
+                <h3 className="mt-2 font-heading text-xl font-bold text-text-primary">
                   Tools I reach for every week
                 </h3>
               </div>
-              <div className="rounded-full border border-sky-300/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
+              <div className="rounded-full border border-accent-100 bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700">
                 Always evolving
               </div>
             </div>
@@ -155,11 +145,11 @@ const AboutSection = () => {
               ))}
             </div>
 
-            <div className="mt-6 rounded-2xl border border-slate-700/80 bg-linear-to-r from-slate-950/80 to-slate-900/60 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            <div className="mt-6 rounded-2xl border border-border-default bg-bg-surface-hover p-4">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
                 Approach
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              <p className="mt-2 text-sm leading-relaxed text-text-secondary">
                 I prefer lean architectures, clear interfaces, and repeatable
                 delivery practices that keep products fast to ship and easy to
                 grow.
@@ -171,22 +161,22 @@ const AboutSection = () => {
             {site.stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="group rounded-2xl border border-slate-800 bg-linear-to-br from-slate-900/90 to-slate-950/90 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-sky-300/25 hover:shadow-[0_18px_45px_rgba(2,6,23,0.35)]"
+                className="group rounded-2xl border border-border-default bg-bg-surface p-5 transition-all duration-200 hover:-translate-y-1 hover:border-border-hover hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                    <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
                       0{index + 1}
                     </p>
-                    <p className="mt-2 text-sm font-medium text-slate-300">
+                    <p className="mt-2 text-sm font-medium text-text-secondary">
                       {stat.label}
                     </p>
-                    <p className="mt-2 text-3xl font-bold text-slate-50">
+                    <p className="mt-2 font-heading text-3xl font-bold text-text-primary">
                       {stat.value}
                     </p>
                   </div>
                   <FiArrowUpRight
-                    className={`${ICON_CLASS.action} mt-1 text-sky-300`}
+                    className={`${ICON_CLASS.action} mt-1 text-accent-600`}
                   />
                 </div>
               </div>
@@ -198,15 +188,15 @@ const AboutSection = () => {
       <div className="mt-12">
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
               Core Competencies
             </p>
-            <h3 className="mt-2 text-lg font-semibold text-slate-100 sm:text-xl">
+            <h3 className="mt-2 font-heading text-lg font-semibold text-text-primary sm:text-xl">
               The areas where I add the most value
             </h3>
           </div>
-          <div className="hidden items-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/70 px-4 py-2 text-xs font-medium text-slate-400 md:flex">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <div className="hidden items-center gap-2 rounded-full border border-border-default bg-bg-surface px-4 py-2 text-xs font-medium text-text-secondary md:flex">
+            <span className="h-2 w-2 rounded-full bg-accent-600" />
             Built for product teams that care about quality
           </div>
         </div>
@@ -218,31 +208,28 @@ const AboutSection = () => {
             return (
               <article
                 key={item.title}
-                className={`group relative overflow-hidden rounded-3xl border border-slate-800 bg-linear-to-br ${item.gradient} p-6 shadow-[0_14px_50px_rgba(2,6,23,0.24)] transition-all duration-300 hover:-translate-y-1 hover:border-slate-600/80 hover:shadow-[0_18px_60px_rgba(2,6,23,0.34)]`}
+                className="group relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-border-hover hover:shadow-md"
               >
-                <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/0 via-white/0 to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative flex h-full flex-col">
                   <div className="flex items-start justify-between gap-4">
-                    <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-3 text-sky-200 shadow-inner shadow-slate-950/30">
+                    <div className="rounded-2xl border border-border-default bg-bg-surface-hover p-3 text-accent-700 shadow-sm">
                       <IconComponent className={ICON_CLASS.section} />
                     </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                    <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
                       0{index + 1}
                     </span>
                   </div>
 
                   <div className="mt-8 flex-1">
-                    <h4 className="text-sm font-bold tracking-[0.22em] text-slate-50 transition-colors group-hover:text-white">
+                    <h4 className="font-mono text-sm font-bold tracking-[0.22em] text-text-primary">
                       {item.title}
                     </h4>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-300 transition-colors group-hover:text-slate-200">
+                    <p className="mt-3 text-sm leading-relaxed text-text-secondary">
                       {item.description}
                     </p>
                   </div>
 
-                  <div
-                    className={`mt-6 h-px w-full bg-linear-to-r ${item.gradient}`}
-                  />
+                  <div className="mt-6 h-px w-full bg-border-default" />
                 </div>
               </article>
             );

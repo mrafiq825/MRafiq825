@@ -12,22 +12,22 @@ import { ICON_CLASS } from "~/lib/constants";
 
 const STATUS_CONFIG: Record<
   string,
-  { color: string; gradient: string; bgGradient: string }
+  { color: string; bg: string; border: string }
 > = {
   Live: {
-    color: "text-emerald-400",
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    bgGradient: "from-emerald-500/10 to-teal-500/10",
+    color: "text-emerald-700",
+    bg: "bg-emerald-50",
+    border: "border-emerald-200",
   },
   "In Progress": {
-    color: "text-amber-400",
-    gradient: "from-amber-500/20 to-orange-500/20",
-    bgGradient: "from-amber-500/10 to-orange-500/10",
+    color: "text-amber-700",
+    bg: "bg-amber-50",
+    border: "border-amber-200",
   },
   Archived: {
-    color: "text-slate-400",
-    gradient: "from-slate-500/20 to-slate-600/20",
-    bgGradient: "from-slate-500/10 to-slate-600/10",
+    color: "text-neutral-600",
+    bg: "bg-neutral-50",
+    border: "border-neutral-200",
   },
 };
 
@@ -41,76 +41,83 @@ const ProjectsSection = () => {
       id="projects"
       title={
         <>
-          <FiLayers className={`${ICON_CLASS.section} text-sky-400`} />
+          <FiLayers className={`${ICON_CLASS.section} text-accent-600`} />
           Featured Projects
         </>
       }
       description="Explore innovative projects where each build solves a unique challenge with modern technology."
-      className="border-t border-slate-800"
+      className="border-t border-border-default bg-bg-page"
     >
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => {
+        {projects.map((project) => {
           const statusConfig = getStatusConfig(project.status);
+          
+          // Tag capping configuration (AGENTS.md: limit to 4, +X more)
+          const maxTags = 4;
+          const visibleTech = project.tech.slice(0, maxTags);
+          const remainingTagsCount = project.tech.length - maxTags;
+
           return (
-            <div key={project.id} className="group relative">
-              {/* Background glow effect */}
-              <div
-                className={`absolute -inset-0.5 bg-linear-to-br ${statusConfig.gradient} rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur`}
-              />
-              {/* Card */}
-              <Card
-                className={`relative flex h-full flex-col bg-linear-to-br ${statusConfig.bgGradient} border-slate-700 group-hover:border-slate-600 transition-all duration-300`}
-              >
-                {/* Header Section */}
-                <div className="mb-6 pb-6 border-b border-slate-700/50">
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold bg-linear-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent group-hover:to-white transition-all">
-                        {project.title}
-                      </h3>
-                    </div>
-                    <div className="shrink-0">
-                      <div
-                        className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${statusConfig.color} border border-current/20 bg-current/5`}
-                      >
-                        <span
-                          className={`mr-1.5 h-2 w-2 rounded-full bg-current animate-pulse`}
-                        />
-                        {project.status}
+            <div key={project.id} className="flex h-full flex-col">
+              <Card className="flex flex-col h-full justify-between">
+                <div>
+                  {/* Header Section */}
+                  <div className="mb-6 pb-6 border-b border-border-default">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="flex-1">
+                        <h3 className="font-heading text-lg font-bold text-text-primary">
+                          {project.title}
+                        </h3>
+                      </div>
+                      <div className="shrink-0">
+                        <div
+                          className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${statusConfig.color} border ${statusConfig.border} ${statusConfig.bg}`}
+                        >
+                          <span
+                            className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current"
+                          />
+                          {project.status}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <p className="text-sm text-slate-300 group-hover:text-slate-200 transition-colors leading-relaxed">
-                    {project.summary}
-                  </p>
-                </div>
-                {/* Tech Stack */}
-                <div className="mb-6 flex-1">
-                  <div className="flex items-center gap-2 mb-3">
-                    <FiCode className="w-4 h-4 text-purple-400" />
-                    <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                      Tech Stack
+                    <p className="font-body text-sm text-text-secondary leading-relaxed">
+                      {project.summary}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((item) => (
-                      <div
-                        key={item}
-                        className="group/tech inline-flex items-center gap-1 rounded-lg bg-slate-800/50 px-2.5 py-1.5 text-xs font-semibold text-slate-300 border border-slate-700/50 hover:border-purple-500/50 hover:text-purple-300 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20"
-                      >
-                        {item}
-                      </div>
-                    ))}
+
+                  {/* Tech Stack */}
+                  <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <FiCode className="w-4 h-4 text-accent-600" />
+                      <p className="font-mono text-xs font-bold uppercase tracking-wide text-text-muted">
+                        Tech Stack
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {visibleTech.map((item) => (
+                        <span
+                          key={item}
+                          className="inline-flex items-center font-mono text-[13px] bg-accent-50 text-accent-700 px-2.5 py-1 rounded-[8px] border-none font-medium select-none"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                      {remainingTagsCount > 0 && (
+                        <span className="inline-flex items-center font-mono text-[13px] text-text-muted select-none font-medium px-1">
+                          +{remainingTagsCount} more
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
                 {/* CTA Section */}
-                <div className="flex gap-2 pt-6 border-t border-slate-700/50">
+                <div className="flex gap-2 pt-6 border-t border-border-default">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/link flex-1 flex items-center justify-center gap-2 rounded-lg bg-linear-to-r from-sky-500/20 to-cyan-500/20 px-4 py-2.5 text-sm font-semibold text-sky-300 border border-sky-500/30 hover:border-sky-400 hover:text-sky-200 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 hover:-translate-y-0.5"
+                    className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-4 py-2.5 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
                   >
                     <FiExternalLink className="w-4 h-4" />
                     <span>Live Demo</span>
@@ -120,9 +127,9 @@ const ProjectsSection = () => {
                       href={project.detailsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/link flex items-center justify-center gap-2 rounded-lg bg-linear-to-r from-slate-700/60 to-slate-600/60 px-4 py-2.5 text-sm font-semibold text-slate-200 border border-slate-600/50 hover:border-slate-500 hover:text-white hover:shadow-lg hover:shadow-slate-700/40 transition-all duration-300 hover:-translate-y-0.5"
+                      className="inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-transparent border border-border-default text-text-primary rounded-[12px] px-4 py-2.5 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
                     >
-                      <FiGithub className="w-4 h-4" />
+                      <FiGithub className="w-4 h-4 text-text-secondary" />
                       <span>View Code</span>
                     </a>
                   ) : null}
@@ -133,14 +140,14 @@ const ProjectsSection = () => {
         })}
       </div>
 
-      {/* Optional: Stats or CTA at bottom */}
-      <div className="mt-12 rounded-xl border border-slate-700/50 bg-linear-to-r from-slate-800/30 to-slate-700/30 p-6 backdrop-blur-sm">
+      {/* GitHub CTA at bottom */}
+      <div className="mt-12 rounded-[16px] border border-border-default bg-bg-surface p-6 shadow-sm">
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="flex items-center justify-center gap-2">
-            <FiTrendingUp className="w-5 h-5 text-emerald-400" />
-            <p className="text-sm font-semibold text-slate-300">
+            <FiTrendingUp className="w-5 h-5 text-accent-600" />
+            <p className="text-sm font-medium text-text-secondary">
               Currently working on{" "}
-              <span className="text-emerald-400 font-bold">new projects</span>{" "}
+              <span className="text-accent-700 font-bold">new projects</span>{" "}
               that push boundaries
             </p>
           </div>
@@ -148,9 +155,9 @@ const ProjectsSection = () => {
             href="https://github.com/mrafiq825"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r from-slate-700/50 to-slate-600/50 px-6 py-2.5 text-sm font-semibold text-slate-200 border border-slate-600/50 hover:border-slate-500 hover:text-white hover:shadow-lg hover:shadow-slate-700/50 transition-all duration-300 hover:-translate-y-0.5 group"
+            className="inline-flex items-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-transparent border border-border-default text-text-primary rounded-[12px] px-6 py-2.5 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
           >
-            <FiGithub className="w-4 h-4 group-hover:text-slate-100" />
+            <FiGithub className="w-4 h-4 text-text-secondary" />
             <span>View More Projects on GitHub</span>
           </a>
         </div>

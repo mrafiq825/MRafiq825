@@ -123,7 +123,7 @@ const Home = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <Navbar />
-      <main className="page-shell bg-slate-950">
+      <main className="page-shell text-text-primary">
         <HeroSection />
         <EducationSection />
         <AboutSection />

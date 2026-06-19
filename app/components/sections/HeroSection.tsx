@@ -1,159 +1,96 @@
-import { useEffect, useState } from "react";
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Button from "~/components/ui/Button";
+import Card from "~/components/ui/Card";
 import { site } from "~/data/site";
 
 const HeroSection = () => {
-  const [typed, setTyped] = useState("");
-
-  useEffect(() => {
-    const text = site.intro ?? "";
-    let i = 0;
-    setTyped("");
-
-    const interval = setInterval(() => {
-      setTyped((prev) => prev + text.charAt(i));
-      i += 1;
-      if (i >= text.length) {
-        clearInterval(interval);
-      }
-    }, 18);
-
-    return () => clearInterval(interval);
-  }, [site.intro]);
-
-  const [counters, setCounters] = useState<string[]>(
-    site.stats.slice(0, 4).map((s) => s.value),
-  );
-
-  useEffect(() => {
-    const targets = site.stats.slice(0, 4).map((s) => {
-      const num = parseInt(String(s.value).replace(/\D/g, "")) || 0;
-      return num;
-    });
-
-    const duration = 900;
-    const start = performance.now();
-    let rafId = 0;
-
-    const raf = (now: number) => {
-      const t = Math.min((now - start) / duration, 1);
-      const next = targets.map((target) => Math.round(target * t));
-
-      setCounters(
-        next.map((n, i) => {
-          const raw = site.stats[i].value;
-          const suffix = String(raw).replace(/\d+/g, "");
-          return `${n}${suffix}`;
-        }),
-      );
-
-      if (t < 1) {
-        rafId = requestAnimationFrame(raf);
-      }
-    };
-
-    rafId = requestAnimationFrame(raf);
-
-    return () => cancelAnimationFrame(rafId);
-  }, []);
-
-  const highlights = [
-    "Fast-loading experiences",
-    "AI-enabled automation",
-    "Clean architected code",
-  ];
-
   return (
-    <Section id="home" className="pb-10 pt-10 md:pt-10">
+    <Section id="home" className="pb-12 pt-16 md:pt-5">
       <div className="grid items-start gap-8 xl:grid-cols-[1.1fr_0.9fr]">
-        <div className="relative overflow-hidden rounded-[2rem] border border-sky-200/10 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 p-6 sm:p-8 lg:p-10 shadow-[0_32px_90px_rgba(15,23,42,0.35)]">
-          <style>{`
-            @keyframes floaty { 0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)} }
-            @keyframes slideGradient { 0%{background-position:0% 50%}100%{background-position:100% 50%} }
-            .gradientMove { background: linear-gradient(90deg,#0ea5e9,#7c3aed,#f472b6); background-size:200% 200%; animation: slideGradient 4s linear infinite; }
-            .floaty { animation: floaty 6s ease-in-out infinite; }
-            .typed-caret::after { content: "|"; opacity: 0.9; margin-left:6px; animation: blink 1s steps(2,start) infinite; }
-            @keyframes blink { 50% { opacity: 0 } }
-            .particle { position:absolute; inset:0; pointer-events:none; opacity:0.18; }
-            .hero-pill { background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(56, 189, 248, 0.12); }
-          `}</style>
-
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.18),_transparent_25%),radial-gradient(circle_at_72%_10%,_rgba(124,58,237,0.12),_transparent_22%)]" />
-          <div className="pointer-events-none absolute -right-14 -top-20 h-52 w-52 rounded-full bg-sky-400/15 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-14 left-8 h-36 w-36 rounded-full bg-cyan-300/10 blur-3xl" />
-
-          <div className="relative z-10 flex flex-wrap items-center gap-3">
+        {/* Left Column: Content */}
+        <div className="relative overflow-hidden rounded-[2rem] border border-border-default bg-bg-surface p-6 sm:p-8 lg:p-10 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+          <div className="flex flex-wrap items-center gap-3">
             <Badge>{site.availability}</Badge>
-            <span className="hero-pill inline-flex items-center rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-slate-300">
-              Full-Stack Developer
-            </span>
+            {site.role.split(" & ").map((rolePart) => (
+              <span
+                key={rolePart}
+                className="inline-flex items-center font-mono text-[13px] bg-bg-surface-hover text-text-secondary px-2.5 py-1 rounded-[8px] border border-border-default font-medium"
+              >
+                {rolePart}
+              </span>
+            ))}
           </div>
 
-          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          <p className="mt-6 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
             {site.greeting}
           </p>
 
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-100 sm:text-5xl xl:text-6xl">
-            <span className="block text-slate-100 font-script gradientMove">
-              {site.name}
-            </span>
-            <span
-              className="mt-2 block bg-clip-text text-transparent gradientMove"
-              style={{ WebkitBackgroundClip: "text" }}
-            >
-              {site.role}
-            </span>
+          <h1 className="mt-3 font-heading text-hero font-extrabold leading-tight tracking-tight text-text-primary">
+            {site.name}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg typed-caret">
-            {typed}
+          <h2 className="mt-2 font-heading text-h3 font-medium leading-tight text-text-secondary">
+            {site.role}
+          </h2>
+
+          <p className="mt-6 max-w-[50ch] font-body text-body-lg leading-relaxed text-text-secondary">
+            {site.intro}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4 items-center">
+            <Button
+              href="#projects"
+              variant="secondary"
+            >
+              View Projects
+            </Button>
             <Button
               href={site.cvUrl}
               download="Muhammad-Rafiq-CV.pdf"
               variant="secondary"
-              className="min-w-[11rem]"
             >
               Download CV
             </Button>
           </div>
         </div>
 
-        <div className="relative">
-          <div className="absolute -left-6 -top-8 hidden h-40 w-40 rounded-full bg-cyan-300/6 blur-3xl floaty sm:block" />
-          <div className="absolute right-0 top-4 -z-10 hidden h-24 w-24 rounded-full bg-sky-400/6 blur-2xl floaty sm:block" />
-
-          <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900/70 p-3 shadow-[0_28px_80px_rgba(2,6,23,0.65)]">
-            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/50 to-transparent" />
-            <div className="rounded-[1.55rem] border border-slate-700/80 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-3">
-              <div className="overflow-hidden rounded-[1.25rem] ring-1 ring-sky-400/10 hover:scale-102 transition-transform duration-500 transform-gpu">
+        {/* Right Column: Profile & Summary */}
+        <div className="relative flex flex-col gap-6">
+          <div className="relative overflow-hidden rounded-[2rem] border border-border-default bg-bg-surface p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+            <div className="rounded-[1.55rem] border border-border-default bg-bg-page p-3">
+              <div className="overflow-hidden rounded-[1.25rem] transition-transform duration-300 hover:scale-[1.02] transform-gpu">
                 <img
                   src="/profile.png"
-                  alt="Muhammad Rafiq - Full-Stack Developer & AI Engineer"
-                  className="w-full rounded-[1.25rem] object-contain hover:scale-105 transition-transform duration-600"
+                  alt={`${site.name} - ${site.role}`}
+                  className="w-full rounded-[1.25rem] object-contain transition-transform duration-300 hover:scale-105"
                   style={{ willChange: "transform" }}
                 />
               </div>
             </div>
           </div>
 
-          <div className="mt-4 rounded-2xl border border-slate-800/90 bg-slate-900/75 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-              Quick Intro
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {site.stats.map((stat) => (
+              <Card key={stat.label} className="p-4 sm:p-5 flex flex-col justify-center text-center">
+                <span className="font-heading text-3xl font-extrabold text-accent-600">
+                  {stat.value}
+                </span>
+                <span className="mt-1 font-mono text-[11px] font-bold uppercase tracking-wider text-text-secondary">
+                  {stat.label}
+                </span>
+              </Card>
+            ))}
+          </div>
+
+          {/* Core Philosophy */}
+          <div className="rounded-[16px] border border-border-default bg-bg-surface p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
+              Core Philosophy
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-300">
-              I design and ship Full-Stack products with performance-first
-              architecture, clean code, and AI-enabled automation that creates
-              measurable business value.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-300">
-              A great developer isn’t someone who memorizes code; a great
-              developer is someone who understands the problem and solves it
-              with sharp technical expertise.
+            <p className="mt-2 text-sm italic leading-relaxed text-text-secondary">
+              "A great developer isn't someone who memorizes code; a great developer is someone who understands the problem and solves it with sharp technical expertise."
             </p>
           </div>
         </div>
@@ -163,3 +100,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

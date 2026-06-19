@@ -45,46 +45,43 @@ const ContactSection = () => {
       id="contact"
       title={
         <>
-          <FiMail className={`${ICON_CLASS.section} text-sky-400`} />
+          <FiMail className={`${ICON_CLASS.section} text-accent-600`} />
           Contact and Chat
         </>
       }
       description="Use the contact form for project inquiries and the chatbot panel for quick questions about services, availability, and next steps."
-      className="border-t border-slate-800"
+      className="border-t border-border-default bg-bg-page"
     >
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <Card className="relative overflow-hidden border-slate-700/80 bg-slate-900/80">
-          <div className="pointer-events-none absolute -right-16 -top-20 h-44 w-44 rounded-full bg-sky-400/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-12 h-44 w-44 rounded-full bg-cyan-300/10 blur-3xl" />
-
+        <Card className="relative flex flex-col justify-between">
           <div className="relative">
             <div className="mb-5 flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-400/10 text-sky-300">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-accent-100 bg-accent-50 text-accent-700">
                 <FiMessageCircle className={ICON_CLASS.nav} />
               </span>
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
                   Contact form
                 </p>
-                <p className="text-sm text-slate-300">
+                <p className="text-sm text-text-secondary">
                   Start a project conversation
                 </p>
               </div>
             </div>
 
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 mb-6">
               {site.availability}
             </p>
 
             {state.succeeded && (
-              <div className="mt-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-center">
+              <div className="mt-6 rounded-[12px] border border-emerald-200 bg-emerald-50 p-4 text-center">
                 <div className="mb-2 flex items-center justify-center">
-                  <FiCheckCircle className="h-6 w-6 text-emerald-400" />
+                  <FiCheckCircle className="h-6 w-6 text-emerald-700" />
                 </div>
-                <h3 className="mb-1 text-base font-semibold text-emerald-300">
+                <h3 className="mb-1 text-base font-bold text-emerald-800">
                   Message sent
                 </h3>
-                <p className="text-sm text-emerald-200">
+                <p className="text-sm text-emerald-700">
                   Thanks for reaching out. The form has been cleared and is
                   ready for another message.
                 </p>
@@ -97,8 +94,8 @@ const ContactSection = () => {
               onSubmit={handleSubmit}
             >
               <div className="grid gap-4 sm:grid-cols-2">
-                <label className="space-y-2">
-                  <span className="text-sm font-medium text-slate-200">
+                <label className="space-y-2 block">
+                  <span className="text-sm font-medium text-text-secondary">
                     Your name
                   </span>
                   <input
@@ -106,13 +103,13 @@ const ContactSection = () => {
                     name="name"
                     placeholder="Muhammad Rafiq"
                     required
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
+                    className="w-full bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
                   />
                   <ValidationError field="name" errors={state.errors} />
                 </label>
 
-                <label className="space-y-2">
-                  <span className="text-sm font-medium text-slate-200">
+                <label className="space-y-2 block">
+                  <span className="text-sm font-medium text-text-secondary">
                     Email address
                   </span>
                   <input
@@ -120,27 +117,27 @@ const ContactSection = () => {
                     name="email"
                     placeholder="you@example.com"
                     required
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
+                    className="w-full bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
                   />
                   <ValidationError field="email" errors={state.errors} />
                 </label>
               </div>
 
-              <label className="space-y-2">
-                <span className="text-sm font-medium text-slate-200">
+              <label className="space-y-2 block">
+                <span className="text-sm font-medium text-text-secondary">
                   Subject
                 </span>
                 <input
                   type="text"
                   name="subject"
                   placeholder="Need a portfolio website redesign"
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
+                  className="w-full bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
                 />
                 <ValidationError field="subject" errors={state.errors} />
               </label>
 
-              <label className="space-y-2">
-                <span className="text-sm font-medium text-slate-200">
+              <label className="space-y-2 block">
+                <span className="text-sm font-medium text-text-secondary">
                   Message
                 </span>
                 <textarea
@@ -148,15 +145,15 @@ const ContactSection = () => {
                   placeholder="Tell me about your goals, timeline, and what you want to build."
                   rows={6}
                   required
-                  className="w-full resize-none rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
+                  className="w-full resize-none bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
                 />
                 <ValidationError field="message" errors={state.errors} />
               </label>
 
               {Array.isArray(state.errors) && state.errors.length > 0 && (
-                <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4">
-                  <div className="flex items-center gap-2 text-sm text-red-300">
-                    <FiAlertCircle className="h-4 w-4" />
+                <div className="rounded-[12px] border border-rose-200 bg-rose-50 p-4">
+                  <div className="flex items-center gap-2 text-sm text-rose-800">
+                    <FiAlertCircle className="h-4 w-4 text-rose-700" />
                     <span>Please check the errors above and try again.</span>
                   </div>
                 </div>
@@ -166,25 +163,25 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={state.submitting}
-                  className="inline-flex items-center justify-center rounded-full bg-sky-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex items-center justify-center rounded-[12px] bg-accent-600 text-white px-6 py-3 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent-700 active:bg-accent-800 disabled:cursor-not-allowed disabled:bg-accent-100 disabled:text-text-muted"
                 >
                   {state.submitting ? "Sending..." : "Send Message"}
                 </button>
                 <a
                   href={`mailto:${site.email}`}
-                  className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-slate-800"
+                  className="inline-flex items-center justify-center rounded-[12px] border border-border-default bg-transparent text-text-primary px-6 py-3 text-sm font-medium transition hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
                 >
                   Direct Email
                 </a>
               </div>
             </form>
 
-            <div className="mt-6 border-t border-slate-800 pt-5">
-              <p className="text-sm text-slate-300">
+            <div className="mt-6 border-t border-border-default pt-5">
+              <p className="text-sm text-text-secondary">
                 Reach me at{" "}
                 <a
                   href={`mailto:${site.email}`}
-                  className="font-semibold text-sky-300"
+                  className="font-bold text-accent-700 hover:text-accent-800 transition-colors"
                 >
                   {site.email}
                 </a>
@@ -198,7 +195,7 @@ const ContactSection = () => {
                     rel="noopener noreferrer"
                     aria-label={social.label}
                     title={social.label}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 text-slate-100 transition hover:border-sky-400/40 hover:bg-slate-800 hover:text-sky-200"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border-default bg-transparent text-text-primary transition hover:border-border-hover hover:bg-bg-surface-hover hover:text-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2"
                   >
                     {social.icon ? (
                       (() => {

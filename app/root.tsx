@@ -34,7 +34,7 @@ export const meta: Route.MetaFunction = ({ error }) => {
     },
     { name: "author", content: "Muhammad Rafiq" },
     { name: "robots", content: "index, follow" },
-    { name: "theme-color", content: "#020617" },
+    { name: "theme-color", content: "#FAFAF9" },
   ];
 };
 
@@ -47,7 +47,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Gelasio:ital,wght@0,400..700;1,400..700&family=Petit+Formal+Script&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap",
   },
 ];
 

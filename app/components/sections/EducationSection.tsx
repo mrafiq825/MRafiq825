@@ -18,55 +18,50 @@ const EducationSection = () => {
       id="education"
       title={
         <>
-          <FiBook className={`${ICON_CLASS.section} text-violet-400`} />
-          Qualification's
+          <FiBook className={`${ICON_CLASS.section} text-accent-600`} />
+          Qualifications
         </>
       }
       description="The academic foundation that shaped my engineering mindset, blending theory with hands-on software development."
-      className="border-t border-slate-800"
+      className="border-t border-border-default bg-bg-page"
     >
       <div className="space-y-8">
         {education.map((item) => (
-          <Card
-            key={item.id}
-            className="group relative overflow-hidden border-slate-800/80 bg-slate-900/85 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40 hover:shadow-[0_18px_40px_rgba(139,92,246,0.12)]"
-          >
-            {/* Decorative background glow */}
-            <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-violet-600/5 blur-3xl transition-all duration-500 group-hover:bg-violet-600/10" />
+          <Card key={item.id}>
             {/* Header */}
-            <div className="relative mt-6 flex flex-wrap items-start justify-between gap-4">
+            <div className="relative flex flex-wrap items-start justify-between gap-4">
               <div className="space-y-3">
                 {/* Degree badge + mode indicator */}
                 <div className="flex flex-wrap items-center gap-2">
-                  <FiAward className="h-5 w-5 text-violet-400" />
-                  <Badge >{item.degree}</Badge>
+                  <FiAward className="h-5 w-5 text-accent-600" />
+                  <Badge>{item.degree}</Badge>
                 </div>
                 {/* Institution */}
                 <div>
                   <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
-                    <p className="font-semibold text-slate-200">
+                    <p className="font-bold text-text-primary text-base">
                       {item.institution}
                     </p>
                   </div>
                 </div>
                 {/* Location & Years */}
-                <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
+                <div className="flex flex-wrap items-center gap-4 text-xs text-text-secondary">
                   <span className="flex items-center gap-1.5">
-                    <FiMapPin className="h-3.5 w-3.5 text-violet-400/70" />
+                    <FiMapPin className="h-3.5 w-3.5 text-accent-600" />
                     {item.location}
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <FiCalendar className="h-3.5 w-3.5 text-violet-400/70" />
+                    <FiCalendar className="h-3.5 w-3.5 text-accent-600" />
                     {item.startYear} – {item.endYear}
                   </span>
                 </div>
               </div>
               {/* Year badge — desktop */}
-              <div className="hidden shrink-0 flex-col items-center justify-center rounded-2xl border border-violet-500/20 bg-violet-500/10 px-5 py-3 text-center md:flex">
-                <span className="text-3xl font-extrabold leading-none text-violet-300">
+              <div className="hidden shrink-0 flex-col items-center justify-center rounded-2xl border border-border-default bg-bg-surface-hover px-5 py-3 text-center md:flex">
+                <span className="text-3xl font-extrabold leading-none text-accent-700">
                   {item.endYear}
                 </span>
-                <span className="mt-1 text-xs font-medium uppercase tracking-widest text-violet-400/70">
+                <span className="mt-1 text-xs font-medium uppercase tracking-widest text-text-muted">
                   Graduated
                 </span>
               </div>
@@ -76,16 +71,16 @@ const EducationSection = () => {
               {/* Highlights */}
               <div>
                 <div className="mb-4 flex items-center gap-2">
-                  <FiCheckCircle className="h-5 w-5 text-emerald-400" />
-                  <h4 className="text-sm font-bold uppercase tracking-wider text-slate-100">
+                  <FiCheckCircle className="h-5 w-5 text-accent-600" />
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-text-primary">
                     Highlights
                   </h4>
                 </div>
                 <ul className="space-y-3 text-sm">
                   {item.highlights.map((point) => (
                     <li key={point} className="flex items-start gap-3">
-                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r from-violet-400 to-fuchsia-400" />
-                      <span className="leading-relaxed text-slate-300 transition-colors group-hover:text-slate-100">
+                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent-600" />
+                      <span className="leading-relaxed text-text-secondary transition-colors group-hover:text-text-primary">
                         {point}
                       </span>
                     </li>
@@ -95,19 +90,14 @@ const EducationSection = () => {
               {/* Courses */}
               <div>
                 <div className="mb-4 flex items-center gap-2">
-                  <FiCode className="h-5 w-5 text-violet-400" />
-                  <h4 className="text-sm font-bold uppercase tracking-wider text-slate-100">
+                  <FiCode className="h-5 w-5 text-accent-600" />
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-text-primary">
                     Key Courses
                   </h4>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {item.courses.map((course) => (
-                    <span
-                      key={course}
-                      className="inline-flex items-center rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-300 transition-colors duration-200 hover:border-violet-400/40 hover:bg-violet-500/20 hover:text-violet-200"
-                    >
-                      {course}
-                    </span>
+                    <Badge key={course}>{course}</Badge>
                   ))}
                 </div>
               </div>

@@ -10,12 +10,11 @@ const Card = ({ children, className }: CardProps) => {
   return (
     <article
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-slate-800/90 bg-linear-to-br from-slate-900/95 via-slate-900/80 to-slate-950/95 p-6 shadow-[0_18px_50px_rgba(2,6,23,0.42)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-700",
+        "bg-bg-surface border border-border-default rounded-[16px] p-6 sm:px-8 sm:py-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:border-border-hover",
         className,
       )}
     >
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/0 via-white/0 to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="relative">{children}</div>
+      {children}
     </article>
   );
 };

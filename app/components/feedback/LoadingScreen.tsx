@@ -95,10 +95,9 @@ const LoadingScreen = ({
     (typedTitle.length < title.length || typedMessage.length < message.length);
 
   return (
-    <main className="page-shell flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.16),transparent_52%),radial-gradient(circle_at_bottom,rgba(14,165,233,0.1),transparent_48%)]" />
-      <div className="relative z-10 w-full max-w-xl rounded-4xl border border-slate-800/80 bg-slate-950/70 px-6 py-10 text-center shadow-[0_28px_90px_rgba(2,6,23,0.72)] backdrop-blur-xl sm:px-10">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-sky-400/30 bg-slate-900/80 shadow-[0_0_0_1px_rgba(125,211,252,0.1),0_0_50px_rgba(56,189,248,0.16)]">
+    <main className="page-shell flex min-h-screen items-center justify-center bg-bg-page px-6">
+      <div className="relative z-10 w-full max-w-xl rounded-[20px] border border-border-default bg-bg-surface px-6 py-10 text-center shadow-sm sm:px-10">
+        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-border-default bg-bg-surface-hover shadow-sm">
           <img
             src="/Rafiq-logo.png"
             alt="Muhammad Rafiq logo - Full-Stack Developer & Software Engineer"
@@ -106,41 +105,41 @@ const LoadingScreen = ({
           />
         </div>
 
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h1 className="mt-4 font-heading text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
           {typedTitle || (showTypewriter ? "" : "\u00a0")}
           {(showTypewriter || typedTitle.length > 0) && (
             <span
               aria-hidden="true"
-              className="ml-1 inline-block h-[1em] w-0.5 animate-pulse bg-sky-300 align-[-0.15em]"
+              className="ml-1 inline-block h-[1em] w-0.5 animate-pulse bg-accent-600 align-[-0.15em]"
             />
           )}
         </h1>
-        <p className="mt-3 min-h-6 text-xs font-semibold uppercase tracking-[0.38em] text-sky-300/80 sm:text-sm">
+        <p className="mt-3 min-h-6 font-mono text-xs font-semibold uppercase tracking-[0.3em] text-accent-700 sm:text-sm">
           {typedMessage || (showTypewriter ? "" : "\u00a0")}
           {typedTitle.length === title.length &&
             typedMessage.length < message.length && (
               <span
                 aria-hidden="true"
-                className="ml-1 inline-block h-[1em] w-0.5 animate-pulse bg-sky-300 align-[-0.15em]"
+                className="ml-1 inline-block h-[1em] w-0.5 animate-pulse bg-accent-600 align-[-0.15em]"
               />
             )}
         </p>
         <p
-          className={`mt-3 text-sm leading-6 text-slate-300 transition-opacity duration-500 sm:text-base ${
+          className={`mt-3 font-body text-sm leading-relaxed text-text-secondary transition-opacity duration-500 sm:text-base ${
             typedMessage.length === message.length ? "opacity-100" : "opacity-0"
           }`}
         >
           {subtitle}
         </p>
 
-        <div className="mt-8 h-1.5 overflow-hidden rounded-full bg-slate-800">
-          <div className="h-full w-2/3 rounded-full bg-linear-to-r from-sky-300 via-cyan-300 to-sky-500 shadow-[0_0_18px_rgba(125,211,252,0.65)]" />
+        <div className="mt-8 h-2 overflow-hidden rounded-full bg-bg-surface-hover border border-border-default">
+          <div className="h-full w-2/3 rounded-full bg-accent-600" />
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-[0.3em] text-slate-400">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-sky-300" />
+        <div className="mt-6 flex items-center justify-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-accent-600" />
           <span>{isTyping ? "Starting up" : "Preparing the experience"}</span>
-          <span className="h-2 w-2 animate-pulse rounded-full bg-sky-300 [animation-delay:150ms]" />
+          <span className="h-2 w-2 animate-pulse rounded-full bg-accent-600 [animation-delay:150ms]" />
         </div>
       </div>
     </main>
