@@ -26,7 +26,7 @@ const Button = ({
     "inline-flex items-center justify-center font-body text-sm font-medium transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2",
     variant === "primary"
       ? "bg-accent-600 text-white rounded-[12px] px-6 py-3 hover:bg-accent-700 active:bg-accent-800 disabled:bg-accent-100 disabled:text-text-muted disabled:cursor-not-allowed"
-      : "bg-transparent border border-border-default text-text-primary rounded-[12px] px-6 py-3 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80 disabled:opacity-50 disabled:cursor-not-allowed",
+      : "glass-button-secondary text-text-primary rounded-[12px] px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed",
     className,
   );
 

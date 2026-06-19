@@ -49,10 +49,10 @@ const AboutSection = () => {
         </>
       }
       description="A blend of product thinking, engineering craft, and delivery discipline that turns ideas into polished digital experiences."
-      className="border-t border-border-default bg-bg-page"
+      className="border-t border-border-default bg-transparent"
     >
       <div className="grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface p-6 shadow-sm sm:p-8 lg:p-10">
+        <div className="relative overflow-hidden rounded-[20px] glass-panel p-6 sm:p-8 lg:p-10">
           <div className="relative z-10 flex flex-wrap items-center gap-3">
             <Badge>Passion-Driven Developer</Badge>
             <span className="inline-flex items-center gap-2 rounded-full border border-accent-100 bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700">
@@ -102,10 +102,10 @@ const AboutSection = () => {
               return (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-border-default bg-bg-surface-hover p-4 transition-transform duration-200 hover:-translate-y-0.5"
+                  className="rounded-2xl glass-panel-inset p-4 transition-transform duration-200 hover:-translate-y-0.5"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="rounded-xl border border-border-default bg-bg-surface p-2 text-accent-700 shadow-sm">
+                    <div className="rounded-xl border border-border-default/50 bg-white/40 p-2 text-accent-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]">
                       <ItemIcon className={ICON_CLASS.action} />
                     </div>
                     <div>
@@ -124,7 +124,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid gap-6">
-          <div className="rounded-[20px] border border-border-default bg-bg-surface p-6 shadow-sm sm:p-7">
+          <div className="rounded-[20px] glass-panel p-6 sm:p-7">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
@@ -145,7 +145,7 @@ const AboutSection = () => {
               ))}
             </div>
 
-            <div className="mt-6 rounded-2xl border border-border-default bg-bg-surface-hover p-4">
+            <div className="mt-6 rounded-2xl glass-panel-inset p-4">
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
                 Approach
               </p>
@@ -161,7 +161,7 @@ const AboutSection = () => {
             {site.stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="group rounded-2xl border border-border-default bg-bg-surface p-5 transition-all duration-200 hover:-translate-y-1 hover:border-border-hover hover:shadow-md"
+                className="group rounded-2xl glass-panel glass-panel-hover p-5"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -208,11 +208,11 @@ const AboutSection = () => {
             return (
               <article
                 key={item.title}
-                className="group relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-border-hover hover:shadow-md"
+                className="group relative overflow-hidden rounded-[20px] glass-panel glass-panel-hover p-6"
               >
                 <div className="relative flex h-full flex-col">
                   <div className="flex items-start justify-between gap-4">
-                    <div className="rounded-2xl border border-border-default bg-bg-surface-hover p-3 text-accent-700 shadow-sm">
+                    <div className="rounded-2xl glass-panel-inset p-3 text-accent-700 shadow-sm">
                       <IconComponent className={ICON_CLASS.section} />
                     </div>
                     <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">

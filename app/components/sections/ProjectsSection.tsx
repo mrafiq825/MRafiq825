@@ -46,7 +46,7 @@ const ProjectsSection = () => {
         </>
       }
       description="Explore innovative projects where each build solves a unique challenge with modern technology."
-      className="border-t border-border-default bg-bg-page"
+      className="border-t border-border-default bg-transparent"
     >
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => {
@@ -141,7 +141,7 @@ const ProjectsSection = () => {
       </div>
 
       {/* GitHub CTA at bottom */}
-      <div className="mt-12 rounded-[16px] border border-border-default bg-bg-surface p-6 shadow-sm">
+      <div className="mt-12 rounded-[16px] glass-panel p-6">
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="flex items-center justify-center gap-2">
             <FiTrendingUp className="w-5 h-5 text-accent-600" />

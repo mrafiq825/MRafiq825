@@ -8,7 +8,7 @@ const HeroSection = () => {
     <Section id="home" className="pb-5 pt-5 md:pt-5">
       <div className="grid items-start gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         {/* Left Column: Content */}
-        <div className="relative overflow-hidden rounded-[2rem] border border-border-default bg-bg-surface p-6 sm:p-8 lg:p-10 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+        <div className="relative overflow-hidden rounded-[2rem] glass-panel p-6 sm:p-8 lg:p-10">
           <div className="flex flex-wrap items-center gap-3">
             <Badge>{site.availability}</Badge>
             {site.role.split(" & ").map((rolePart) => (
@@ -56,8 +56,8 @@ const HeroSection = () => {
 
         {/* Right Column: Profile & Summary */}
         <div className="relative flex flex-col gap-6">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border-default bg-bg-surface p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-            <div className="rounded-[1.55rem] border border-border-default bg-bg-page p-3">
+          <div className="relative overflow-hidden rounded-[2rem] glass-panel p-3">
+            <div className="rounded-[1.55rem] glass-panel-inset p-3">
               <div className="overflow-hidden rounded-[1.25rem] transition-transform duration-300 hover:scale-[1.02] transform-gpu">
                 <img
                   src="/profile.png"
@@ -70,7 +70,7 @@ const HeroSection = () => {
           </div>
 
           {/* Core Philosophy */}
-          <div className="rounded-[16px] border border-border-default bg-bg-surface p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+          <div className="rounded-[16px] glass-panel p-6">
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
               Core Philosophy
             </p>

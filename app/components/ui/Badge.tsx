@@ -6,7 +6,7 @@ type BadgeProps = {
 
 const Badge = ({ children }: BadgeProps) => {
   return (
-    <span className="inline-flex items-center font-mono text-[13px] bg-accent-50 text-accent-700 px-2.5 py-1 rounded-[8px] border-none font-medium select-none">
+    <span className="inline-flex items-center font-mono text-[13px] glass-badge px-2.5 py-1 rounded-[8px] font-medium select-none">
       {children}
     </span>
   );

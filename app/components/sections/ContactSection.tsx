@@ -50,7 +50,7 @@ const ContactSection = () => {
         </>
       }
       description="Use the contact form for project inquiries and the chatbot panel for quick questions about services, availability, and next steps."
-      className="border-t border-border-default bg-bg-page"
+      className="border-t border-border-default bg-transparent"
     >
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <Card className="relative flex flex-col justify-between">
@@ -103,7 +103,7 @@ const ContactSection = () => {
                     name="name"
                     placeholder="Muhammad Rafiq"
                     required
-                    className="w-full bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
+                    className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                   />
                   <ValidationError field="name" errors={state.errors} />
                 </label>
@@ -117,7 +117,7 @@ const ContactSection = () => {
                     name="email"
                     placeholder="you@example.com"
                     required
-                    className="w-full bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
+                    className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                   />
                   <ValidationError field="email" errors={state.errors} />
                 </label>
@@ -131,7 +131,7 @@ const ContactSection = () => {
                   type="text"
                   name="subject"
                   placeholder="Need a portfolio website redesign"
-                  className="w-full bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
+                  className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                 />
                 <ValidationError field="subject" errors={state.errors} />
               </label>
@@ -145,7 +145,7 @@ const ContactSection = () => {
                   placeholder="Tell me about your goals, timeline, and what you want to build."
                   rows={6}
                   required
-                  className="w-full resize-none bg-bg-surface border border-border-default rounded-[10px] py-2.5 px-3.5 text-text-primary outline-none transition duration-200 placeholder:text-text-muted focus:border-accent-600 focus:ring-4 focus:ring-accent-50"
+                  className="w-full resize-none glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                 />
                 <ValidationError field="message" errors={state.errors} />
               </label>
@@ -169,7 +169,7 @@ const ContactSection = () => {
                 </button>
                 <a
                   href={`mailto:${site.email}`}
-                  className="inline-flex items-center justify-center rounded-[12px] border border-border-default bg-transparent text-text-primary px-6 py-3 text-sm font-medium transition hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
+                  className="inline-flex items-center justify-center rounded-[12px] glass-button-secondary text-text-primary px-6 py-3 text-sm font-medium"
                 >
                   Direct Email
                 </a>
@@ -195,7 +195,7 @@ const ContactSection = () => {
                     rel="noopener noreferrer"
                     aria-label={social.label}
                     title={social.label}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border-default bg-transparent text-text-primary transition hover:border-border-hover hover:bg-bg-surface-hover hover:text-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full glass-button-secondary text-text-primary hover:text-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-600"
                   >
                     {social.icon ? (
                       (() => {

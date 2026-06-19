@@ -21,7 +21,7 @@ const ExperienceSection = () => {
         </>
       }
       description="A journey through roles and impactful work spanning full-stack development, AI/ML, SDET, and DevOps."
-      className="border-t border-border-default bg-bg-page"
+      className="border-t border-border-default bg-transparent"
     >
       <div className="grid gap-6 md:grid-cols-2">
         {experience.map((item) => {

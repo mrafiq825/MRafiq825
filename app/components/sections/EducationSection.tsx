@@ -23,7 +23,7 @@ const EducationSection = () => {
         </>
       }
       description="The academic foundation that shaped my engineering mindset, blending theory with hands-on software development."
-      className="border-t border-border-default bg-bg-page"
+      className="border-t border-border-default bg-transparent"
     >
       <div className="space-y-8">
         {education.map((item) => (
@@ -57,7 +57,7 @@ const EducationSection = () => {
                 </div>
               </div>
               {/* Year badge — desktop */}
-              <div className="hidden shrink-0 flex-col items-center justify-center rounded-2xl border border-border-default bg-bg-surface-hover px-5 py-3 text-center md:flex">
+              <div className="hidden shrink-0 flex-col items-center justify-center rounded-2xl glass-panel-inset px-5 py-3 text-center md:flex">
                 <span className="text-3xl font-extrabold leading-none text-accent-700">
                   {item.endYear}
                 </span>
