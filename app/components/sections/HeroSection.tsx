@@ -6,7 +6,7 @@ import { site } from "~/data/site";
 
 const HeroSection = () => {
   return (
-    <Section id="home" className="pb-12 pt-16 md:pt-5">
+    <Section id="home" className="pb-5 pt-5 md:pt-5">
       <div className="grid items-start gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         {/* Left Column: Content */}
         <div className="relative overflow-hidden rounded-[2rem] border border-border-default bg-bg-surface p-6 sm:p-8 lg:p-10 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
@@ -68,20 +68,6 @@ const HeroSection = () => {
                 />
               </div>
             </div>
-          </div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {site.stats.map((stat) => (
-              <Card key={stat.label} className="p-4 sm:p-5 flex flex-col justify-center text-center">
-                <span className="font-heading text-3xl font-extrabold text-accent-600">
-                  {stat.value}
-                </span>
-                <span className="mt-1 font-mono text-[11px] font-bold uppercase tracking-wider text-text-secondary">
-                  {stat.label}
-                </span>
-              </Card>
-            ))}
           </div>
 
           {/* Core Philosophy */}
