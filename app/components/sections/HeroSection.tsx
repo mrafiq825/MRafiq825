@@ -1,7 +1,6 @@
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Button from "~/components/ui/Button";
-import Card from "~/components/ui/Card";
 import { site } from "~/data/site";
 
 const HeroSection = () => {
@@ -76,7 +75,7 @@ const HeroSection = () => {
               Core Philosophy
             </p>
             <p className="mt-2 text-sm italic leading-relaxed text-text-secondary">
-              "A great developer isn't someone who memorizes code; a great developer is someone who understands the problem and solves it with sharp technical expertise."
+              "A great software engineer does not just write code; they analyze complex problems, design modular, resilient systems, and ship products that deliver measurable real-world value."
             </p>
           </div>
         </div>

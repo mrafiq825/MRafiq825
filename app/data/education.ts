@@ -11,9 +11,9 @@ export const education: Education[] = [
     startYear: 2022,
     endYear: 2026,
     highlights: [
-      "Graduated with a strong foundation in Computer Science.",
-      "Completed advanced coursework in AI, and data-driven systems using Python, HTML, CSS, JavaScript.",
-      "Collaborated on real-world projects using modern technologies and tools.",
+      "Built a robust academic foundation in computer science theory, systems architecture, and design patterns.",
+      "Completed advanced coursework in AI, machine learning, and data-driven web/mobile systems using Python and JavaScript.",
+      "Collaborated on real-world team projects, applying Agile methodologies and version control best practices.",
     ],
     courses: [
       "Data Structures & Algorithms",

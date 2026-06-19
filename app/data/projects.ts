@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: "JobPsych: AI-Powered Career Intelligence Platform",
     status: "Live",
     summary:
-      "Enterprise-grade AI career intelligence platform revolutionizing job search and interview preparation.",
+      "An enterprise-grade AI career intelligence platform utilizing Google Gemini LLM API to automate tailored resume analysis, cover letter generation, and interactive interview simulations.",
     tech: [
       "TypeScript",
       "React.js",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
     title: "HireDesk: AI-Powered Recruitment Platform",
     status: "Live",
     summary:
-      "Next-generation recruitment platform leveraging AI to reduce hiring time by 50% and improve candidate quality.",
+      "A next-generation AI-powered recruitment platform designed to parse candidates, analyze alignment to job descriptions, and streamline interview loops, reducing hiring cycles by 50%.",
     tech: [
       "React",
       "TypeScript",
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     title: "Readora: AI Voice-Powered Smart Library",
     status: "Live",
     summary:
-      "Modern AI-powered reading platform that transforms static PDF documents into interactive voice conversations.",
+      "A smart digital library utilizing Next.js, Radix UI, and AI voice integrations (Vapi AI) to transform static PDFs into interactive, spoken-dialogue learning sessions.",
     tech: [
       "Next.js 16",
       "React 19",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     title: "Codify: AI Code Review Agent",
     status: "Live",
     summary:
-      "AI-powered code review platform that analyzes code quality, security, and maintainability with intelligent suggestions and chat assistance.",
+      "An AI-driven code analysis and review agent leveraging LangChain and Node.js to evaluate repository quality, safety vulnerabilities, and maintainability with chat-assisted feedback.",
     tech: [
       "React 18",
       "TypeScript",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     title: "HisabKitab: Personal Budget Tracker",
     status: "APK Available",
     summary:
-      "Cross-platform mobile budget tracking app helping users achieve financial goals with better spending insights.",
+      "A cross-platform personal finance mobile application built with React Native and Expo, incorporating local data persistence and dynamic visual charts for real-time spending insights.",
     tech: [
       "React Native",
       "Expo",
@@ -109,7 +109,7 @@ export const projects: Project[] = [
     title: "QRify: Modern QR Code Generator",
     status: "APK Available",
     summary:
-      "React Native and Expo app for generating QR codes from URLs with live preview, sharing, downloading, and polished animated UI.",
+      "A sleek mobile QR code utility utilizing Expo and React Native Reanimated, enabling dynamic QR code generation, sharing, and file system management with micro-interactions.",
     tech: [
       "React Native",
       "Expo",

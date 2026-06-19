@@ -15,25 +15,25 @@ const STRENGTHS = [
   {
     title: "FULL-STACK",
     description:
-      "End-to-end web and mobile solutions from concept to deployment.",
+      "Architecting and implementing scalable client-server applications and cross-platform mobile apps.",
     icon: FiCode,
   },
   {
     title: "SDET",
     description:
-      "Quality-first test automation and reliability-focused engineering.",
+      "Designing robust end-to-end test automation frameworks to guarantee high-fidelity releases.",
     icon: FiTrendingUp,
   },
   {
     title: "DEVOPS",
     description:
-      "Seamless CI/CD pipelines, cloud deployment, and observability.",
+      "Configuring optimized CI/CD pipelines, containerized deployments, and cloud infrastructure.",
     icon: FiZap,
   },
   {
     title: "AI/ML",
     description:
-      "Intelligent automation, AI integrations, and practical ML insights.",
+      "Integrating state-of-the-art LLMs, AI agents, and custom machine learning inference endpoints.",
     icon: FiCpu,
   },
 ];
