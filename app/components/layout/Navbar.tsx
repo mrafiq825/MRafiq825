@@ -1,6 +1,7 @@
 import { FiBriefcase, FiBook, FiLayers, FiMessageCircle, FiUser } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
 import { ICON_CLASS } from "~/lib/constants";
+import { useGlassCursor } from "~/hooks/useGlassCursor";
 
 const NAV_ITEMS = [
   { label: "Education", href: "#education", icon: FiBook },
@@ -15,6 +16,7 @@ const Navbar = () => {
     NAV_ITEMS[0]?.href ?? "#about",
   );
   const lastScrollYRef = useRef(0);
+  const glassRef = useGlassCursor<HTMLElement>();
 
   useEffect(() => {
     lastScrollYRef.current = window.scrollY;
@@ -79,9 +81,11 @@ const Navbar = () => {
       }`}
     >
       <nav
+        ref={glassRef}
         className="relative mx-auto flex w-full max-w-4xl items-center justify-between rounded-full px-4 py-2.5 transition-all duration-300 liquid-glass-nav focus-within:ring-2 focus-within:ring-accent-100"
         aria-label="Main navigation"
       >
+        <div className="liquid-glass-cursor-glow" aria-hidden="true" />
         <a
           href="#home"
           className="relative inline-flex items-center gap-2 rounded-full p-1 pr-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600"

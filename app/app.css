@@ -126,61 +126,145 @@ body {
 }
 
 /* Liquid Glass Styling (White Theme Refraction Dock) */
+/* === Liquid Glass — Navbar Pill ===
+   Tint is neutral dark glass (not white-frosted) so whatever colors sit
+   behind the bar — sky, photo, gradient — bleed through tinted, exactly
+   like the reference iOS dock screenshot. */
 .liquid-glass-nav {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.35) 100%);
-  backdrop-filter: blur(24px) saturate(190%);
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
-  border: 1px solid rgba(228, 228, 231, 0.6);
-  box-shadow: 
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.85),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.02),
-    0 1px 3px rgba(0, 0, 0, 0.01),
-    0 12px 30px -10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  isolation: isolate;
+  background: rgba(20, 22, 28, 0.32);
+  backdrop-filter: url(#liquid-glass-distort) blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); /* Safari ignores SVG ref gracefully */
+  box-shadow:
+    0 12px 40px -8px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  /* cursor-reactive custom properties, driven by useGlassCursor.ts */
+  --glass-x: 50%;
+  --glass-y: 50%;
+  --glass-glow-opacity: 0;
+  --glass-tilt-x: 0deg;
+  --glass-tilt-y: 0deg;
+
+  transform: perspective(800px) rotateX(var(--glass-tilt-x)) rotateY(var(--glass-tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
-.liquid-glass-nav:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%);
-  border-color: rgba(228, 228, 231, 0.8);
-  box-shadow: 
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.02),
-    0 2px 4px rgba(0, 0, 0, 0.01),
-    0 16px 36px -8px rgba(0, 0, 0, 0.07);
+/* Gradient ring — glass edges catch light unevenly, never a flat border */
+.liquid-glass-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.05) 35%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
 }
 
+/* Top specular streak — thin bright rim line, brightest where it curves
+   over the top-left, exactly like the reference photo's highlight arc */
+.liquid-glass-nav::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 6%;
+  right: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Cursor-tracked specular highlight — the moving "wet glass" glow.
+   This is a real DOM element (.liquid-glass-cursor-glow), not a pseudo-element,
+   because it needs to sit above ::before/::after in paint order. See §4. */
+.liquid-glass-cursor-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle 160px at var(--glass-x) var(--glass-y),
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.08) 45%,
+    transparent 70%
+  );
+  opacity: var(--glass-glow-opacity);
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* === Active nav item — sits "inside" the glass, slightly pressed === */
 .liquid-glass-active-item {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(228, 228, 231, 0.5);
-  box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
-    0 2px 8px -1px rgba(0, 0, 0, 0.03);
+  position: relative;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
+/* === Accent CTA — "Let's Talk" === */
 .liquid-glass-accent-button {
-  background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-700) 100%);
-  border: 1px solid var(--accent-800);
-  box-shadow: 
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.05),
-    0 4px 12px rgba(37, 99, 235, 0.12);
-  color: #FFFFFF;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, rgba(10, 10, 15, 0.9), rgba(30, 30, 40, 0.85));
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
 }
 
 .liquid-glass-accent-button:hover {
-  background: linear-gradient(135deg, var(--accent-700) 0%, var(--accent-800) 100%);
-  box-shadow: 
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.3),
-    0 2px 4px rgba(0, 0, 0, 0.05),
-    0 6px 16px rgba(37, 99, 235, 0.18);
-  transform: translateY(-0.5px);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.liquid-glass-accent-button:active {
-  background: var(--accent-800);
-  box-shadow: 
-    inset 0 1px 0 0 rgba(0, 0, 0, 0.1),
-    0 1px 2px rgba(0, 0, 0, 0.05);
-  transform: translateY(0.5px);
+.liquid-glass-accent-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), transparent 50%);
+  pointer-events: none;
+}
+
+/* Respect reduced motion: kill tilt + transition, keep static glass look */
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass-nav {
+    transition: none;
+    transform: none;
+  }
+  .liquid-glass-cursor-glow {
+    display: none;
+  }
+  .liquid-glass-accent-button {
+    transition: none;
+  }
 }
 

@@ -9,6 +9,7 @@ import {
 import type { Route } from "./+types/root";
 import ErrorState from "./components/feedback/ErrorState";
 import LoadingScreen from "./components/feedback/LoadingScreen";
+import GlassDistortion from "./components/GlassDistortion";
 import "./app.css";
 
 export const meta: Route.MetaFunction = ({ error }) => {
@@ -61,6 +62,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <GlassDistortion />
         {children}
         <ScrollRestoration />
         <Scripts />
