@@ -1,5 +1,5 @@
 import { FiBriefcase, FiBook, FiLayers, FiMessageCircle, FiUser } from "react-icons/fi";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ICON_CLASS } from "~/lib/constants";
 import { useGlassCursor } from "~/hooks/useGlassCursor";
 
@@ -11,36 +11,10 @@ const NAV_ITEMS = [
 ];
 
 const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(true);
   const [activeHref, setActiveHref] = useState<string>(
     NAV_ITEMS[0]?.href ?? "#about",
   );
-  const lastScrollYRef = useRef(0);
   const glassRef = useGlassCursor<HTMLElement>();
-
-  useEffect(() => {
-    lastScrollYRef.current = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDelta = currentScrollY - lastScrollYRef.current;
-
-      if (currentScrollY < 24) {
-        setIsVisible(true);
-      } else if (scrollDelta > 8) {
-        setIsVisible(false);
-      } else if (scrollDelta < -8) {
-        setIsVisible(true);
-      }
-
-      lastScrollYRef.current = currentScrollY;    
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     const sections = NAV_ITEMS.map((item) =>
@@ -76,9 +50,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed inset-x-0 bottom-4 z-50 px-4 transition-all duration-300 ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-[140%] opacity-0"
-      }`}
+      className="fixed inset-x-0 bottom-4 z-50 px-4 transition-all duration-300 translate-y-0 opacity-100"
     >
       <nav
         ref={glassRef}
