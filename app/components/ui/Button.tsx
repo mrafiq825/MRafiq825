@@ -10,6 +10,8 @@ type ButtonProps = {
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
   disabled?: boolean;
+  target?: AnchorHTMLAttributes<HTMLAnchorElement>["target"];
+  rel?: AnchorHTMLAttributes<HTMLAnchorElement>["rel"];
 };
 
 const Button = ({
@@ -21,6 +23,8 @@ const Button = ({
   type = "button",
   onClick,
   disabled,
+  target,
+  rel,
 }: ButtonProps) => {
   const baseClass = cn(
     "inline-flex items-center justify-center font-body text-sm font-medium transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2",
@@ -32,7 +36,7 @@ const Button = ({
 
   if (href) {
     return (
-      <a href={href} download={download} className={baseClass}>
+      <a href={href} download={download} target={target} rel={rel || (target === "_blank" ? "noopener noreferrer" : undefined)} className={baseClass}>
         {children}
       </a>
     );

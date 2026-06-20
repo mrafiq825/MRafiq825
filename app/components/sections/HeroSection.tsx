@@ -46,10 +46,10 @@ const HeroSection = () => {
             </Button>
             <Button
               href={site.cvUrl}
-              download="Muhammad-Rafiq-CV.pdf"
+              target="_blank"
               variant="secondary"
             >
-              Download CV
+              Resume
             </Button>
           </div>
         </div>
