@@ -1,5 +1,6 @@
-import { FiBriefcase, FiBook, FiLayers, FiMessageCircle, FiUser } from "react-icons/fi";
+import { FiBriefcase, FiBook, FiLayers, FiMessageCircle, FiUser, FiBookOpen } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import { ICON_CLASS } from "~/lib/constants";
 import { useGlassCursor } from "~/hooks/useGlassCursor";
 
@@ -8,16 +9,26 @@ const NAV_ITEMS = [
   { label: "About", href: "#about", icon: FiUser },
   { label: "Experience", href: "#experience", icon: FiBriefcase },
   { label: "Projects", href: "#projects", icon: FiLayers },
+  { label: "Blog", href: "/blog", icon: FiBookOpen },
 ];
 
 const Navbar = () => {
-  const [activeHref, setActiveHref] = useState<string>(
-    NAV_ITEMS[0]?.href ?? "#about",
-  );
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const [activeHref, setActiveHref] = useState<string>("");
   const glassRef = useGlassCursor<HTMLElement>();
 
   useEffect(() => {
-    const sections = NAV_ITEMS.map((item) =>
+    if (!isHomePage) {
+      if (location.pathname.startsWith("/blog")) {
+        setActiveHref("/blog");
+      } else {
+        setActiveHref("");
+      }
+      return;
+    }
+
+    const sections = NAV_ITEMS.filter((item) => item.href.startsWith("#")).map((item) =>
       document.getElementById(item.href.slice(1)),
     ).filter((section): section is HTMLElement => section !== null);
 
@@ -46,7 +57,14 @@ const Navbar = () => {
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
     };
-  }, []);
+  }, [isHomePage, location.pathname]);
+
+  const getHref = (href: string) => {
+    if (href.startsWith("/")) {
+      return href;
+    }
+    return isHomePage ? href : `/${href}`;
+  };
 
   return (
     <header
@@ -59,7 +77,7 @@ const Navbar = () => {
       >
         <div className="liquid-glass-cursor-glow" aria-hidden="true" />
         <a
-          href="#home"
+          href={isHomePage ? "#home" : "/"}
           className="relative inline-flex items-center gap-2 rounded-full p-1 pr-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600"
           aria-label="Go to home"
         >
@@ -76,10 +94,11 @@ const Navbar = () => {
         <ul className="relative hidden items-center gap-2 md:flex">
           {NAV_ITEMS.map((item) => {
             const IconComponent = item.icon;
+            const itemHref = getHref(item.href);
             return (
               <li key={item.href}>  
                 <a
-                  href={item.href}
+                  href={itemHref}
                   aria-label={item.label}
                   aria-current={activeHref === item.href ? "page" : undefined}
                   className={`inline-flex items-center justify-center rounded-full px-5 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
@@ -98,10 +117,11 @@ const Navbar = () => {
         <ul className="relative flex items-center gap-1 md:hidden">
           {NAV_ITEMS.map((item) => {
             const IconComponent = item.icon;
+            const itemHref = getHref(item.href);
             return (
               <li key={`mobile-icon-${item.href}`}>
                 <a
-                  href={item.href}
+                  href={itemHref}
                   aria-label={item.label}
                   aria-current={activeHref === item.href ? "page" : undefined}
                   className={`inline-flex items-center justify-center rounded-full px-5 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
@@ -118,7 +138,7 @@ const Navbar = () => {
         </ul>
 
         <a
-          href="#contact"
+          href={isHomePage ? "#contact" : "/#contact"}
           className="relative hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 md:inline-flex liquid-glass-accent-button text-white"
         >
           <FiMessageCircle className={ICON_CLASS.action} />
@@ -130,3 +150,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
