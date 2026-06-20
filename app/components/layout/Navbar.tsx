@@ -78,7 +78,7 @@ const Navbar = () => {
         <div className="liquid-glass-cursor-glow" aria-hidden="true" />
         <a
           href={isHomePage ? "#home" : "/"}
-          className="relative inline-flex items-center gap-2 rounded-full p-1 pr-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600"
+          className="relative inline-flex items-center gap-1.5 sm:gap-2 rounded-full p-1 sm:pr-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600"
           aria-label="Go to home"
         >
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-default/50 bg-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7)]">
@@ -86,45 +86,22 @@ const Navbar = () => {
               MR
             </span>
           </span>
-          <span className="text-base font-bold tracking-tight text-text-primary font-heading">
+          <span className="hidden sm:inline text-base font-bold tracking-tight text-text-primary font-heading">
             Rafiq
           </span>
         </a>
 
-        <ul className="relative hidden items-center gap-2 md:flex">
+        <ul className="relative flex items-center gap-1 md:gap-2">
           {NAV_ITEMS.map((item) => {
             const IconComponent = item.icon;
             const itemHref = getHref(item.href);
             return (
-              <li key={item.href}>  
+              <li key={item.href}>
                 <a
                   href={itemHref}
                   aria-label={item.label}
                   aria-current={activeHref === item.href ? "page" : undefined}
-                  className={`inline-flex items-center justify-center rounded-full px-5 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
-                    activeHref === item.href
-                      ? "liquid-glass-active-item text-accent-700 font-semibold shadow-sm"
-                      : "text-text-secondary hover:bg-white/40 hover:text-text-primary"
-                  }`}
-                >
-                  <IconComponent className={ICON_CLASS.nav} />
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-
-        <ul className="relative flex items-center gap-1 md:hidden">
-          {NAV_ITEMS.map((item) => {
-            const IconComponent = item.icon;
-            const itemHref = getHref(item.href);
-            return (
-              <li key={`mobile-icon-${item.href}`}>
-                <a
-                  href={itemHref}
-                  aria-label={item.label}
-                  aria-current={activeHref === item.href ? "page" : undefined}
-                  className={`inline-flex items-center justify-center rounded-full px-5 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
+                  className={`inline-flex items-center justify-center rounded-full p-2.5 md:px-5 md:py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
                     activeHref === item.href
                       ? "liquid-glass-active-item text-accent-700 font-semibold shadow-sm"
                       : "text-text-secondary hover:bg-white/40 hover:text-text-primary"
