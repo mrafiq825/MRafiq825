@@ -81,7 +81,7 @@ const Navbar = () => {
           className="relative inline-flex items-center gap-1.5 sm:gap-2 rounded-full p-1 sm:pr-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600"
           aria-label="Go to home"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-default/50 bg-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7)]">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-default/50 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
             <span className="text-sm font-bold tracking-wide text-text-primary font-heading">
               MR
             </span>
@@ -104,7 +104,7 @@ const Navbar = () => {
                   className={`inline-flex items-center justify-center rounded-full p-2.5 md:px-5 md:py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 ${
                     activeHref === item.href
                       ? "liquid-glass-active-item text-accent-700 font-semibold shadow-sm"
-                      : "text-text-secondary hover:bg-white/40 hover:text-text-primary"
+                      : "text-text-secondary hover:bg-white/10 hover:text-text-primary"
                   }`}
                 >
                   <IconComponent className={ICON_CLASS.nav} />

@@ -91,7 +91,7 @@ const Chatbot = () => {
     <Card className="relative overflow-hidden p-0 flex flex-col justify-between">
       <div className="relative flex h-full min-h-[500px] flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-border-default bg-white/20 backdrop-blur-sm px-4 py-3">
+        <div className="flex items-center justify-between border-b border-border-default bg-white/5 backdrop-blur-sm px-4 py-3">
           <div className="flex items-center gap-3">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-accent-100 bg-accent-50 text-accent-700">
               <FiCpu className={ICON_CLASS.nav} />
@@ -185,7 +185,7 @@ const Chatbot = () => {
         </div>
 
         {/* Input box */}
-        <div className="border-t border-border-default bg-white/20 backdrop-blur-sm p-3">
+        <div className="border-t border-border-default bg-white/5 backdrop-blur-sm p-3">
           <form className="flex items-center gap-2" onSubmit={handleChatSubmit}>
             <div className="relative flex-1">
               <input

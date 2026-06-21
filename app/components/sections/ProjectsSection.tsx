@@ -15,19 +15,19 @@ const STATUS_CONFIG: Record<
   { color: string; bg: string; border: string }
 > = {
   Live: {
-    color: "text-emerald-700",
-    bg: "bg-emerald-50",
-    border: "border-emerald-200",
+    color: "text-emerald-400",
+    bg: "bg-emerald-950/30",
+    border: "border-emerald-800/40",
   },
   "In Progress": {
-    color: "text-amber-700",
-    bg: "bg-amber-50",
-    border: "border-amber-200",
+    color: "text-amber-400",
+    bg: "bg-amber-950/30",
+    border: "border-amber-800/40",
   },
   Archived: {
-    color: "text-neutral-600",
-    bg: "bg-neutral-50",
-    border: "border-neutral-200",
+    color: "text-neutral-400",
+    bg: "bg-neutral-900/30",
+    border: "border-neutral-800/40",
   },
 };
 

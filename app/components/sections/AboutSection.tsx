@@ -105,7 +105,7 @@ const AboutSection = () => {
                   className="rounded-2xl glass-panel-inset p-4 transition-transform duration-200 hover:-translate-y-0.5"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="rounded-xl border border-border-default/50 bg-white/40 p-2 text-accent-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]">
+                    <div className="rounded-xl border border-border-default/50 bg-white/5 p-2 text-accent-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
                       <ItemIcon className={ICON_CLASS.action} />
                     </div>
                     <div>

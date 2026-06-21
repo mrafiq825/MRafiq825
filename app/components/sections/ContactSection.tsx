@@ -74,14 +74,14 @@ const ContactSection = () => {
             </p>
 
             {state.succeeded && (
-              <div className="mt-6 rounded-[12px] border border-emerald-200 bg-emerald-50 p-4 text-center">
+              <div className="mt-6 rounded-[12px] border border-emerald-800/40 bg-emerald-950/30 p-4 text-center">
                 <div className="mb-2 flex items-center justify-center">
-                  <FiCheckCircle className="h-6 w-6 text-emerald-700" />
+                  <FiCheckCircle className="h-6 w-6 text-emerald-400" />
                 </div>
-                <h3 className="mb-1 text-base font-bold text-emerald-800">
+                <h3 className="mb-1 text-base font-bold text-emerald-400">
                   Message sent
                 </h3>
-                <p className="text-sm text-emerald-700">
+                <p className="text-sm text-emerald-400/90">
                   Thanks for reaching out. The form has been cleared and is
                   ready for another message.
                 </p>
@@ -151,9 +151,9 @@ const ContactSection = () => {
               </label>
 
               {Array.isArray(state.errors) && state.errors.length > 0 && (
-                <div className="rounded-[12px] border border-rose-200 bg-rose-50 p-4">
-                  <div className="flex items-center gap-2 text-sm text-rose-800">
-                    <FiAlertCircle className="h-4 w-4 text-rose-700" />
+                <div className="rounded-[12px] border border-rose-800/40 bg-rose-950/30 p-4">
+                  <div className="flex items-center gap-2 text-sm text-rose-400">
+                    <FiAlertCircle className="h-4 w-4 text-rose-400" />
                     <span>Please check the errors above and try again.</span>
                   </div>
                 </div>

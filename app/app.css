@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --bg-page: #F3F0EA;
-  --bg-surface: #FBFAF7;
-  --bg-surface-hover: #F6F3ED;
+  --bg-page: #0B0C10;
+  --bg-surface: #14161C;
+  --bg-surface-hover: #1D1F27;
 
-  --border-default: #DDD8CE;
-  --border-hover: #CAC4B8;
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
 
-  --text-primary: #1F1D1A;
-  --text-secondary: #5C5852;
-  --text-muted: #8C8881;
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
 
-  --accent-50: #EFF6FF;
-  --accent-100: #DBEAFE;
-  --accent-600: #2563EB;
-  --accent-700: #1D4ED8;
-  --accent-800: #1E40AF;
+  --accent-50: rgba(59, 130, 246, 0.1);
+  --accent-100: rgba(59, 130, 246, 0.2);
+  --accent-600: #3B82F6;
+  --accent-700: #60A5FA;
+  --accent-800: #93C5FD;
 }
 
 @theme {
@@ -65,9 +65,9 @@ html,
 body {
   background:
     radial-gradient(circle at top center,
-      rgba(255,255,255,0.85) 0%,
-      rgba(243,240,234,1) 45%,
-      rgba(236,232,225,1) 100%);
+      rgba(20, 22, 28, 0.95) 0%,
+      rgba(12, 13, 17, 1) 45%,
+      rgba(10, 11, 14, 1) 100%);
 
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -88,9 +88,9 @@ body {
   pointer-events: none;
 
   background:
-    radial-gradient(circle at 15% 20%, rgba(37,99,235,0.06), transparent 40%),
-    radial-gradient(circle at 85% 25%, rgba(255,255,255,0.8), transparent 35%),
-    radial-gradient(circle at 50% 85%, rgba(37,99,235,0.04), transparent 45%);
+    radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(13, 14, 18, 0.8), transparent 35%),
+    radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.05), transparent 45%);
 }
 
 /* =========================
@@ -138,58 +138,52 @@ body {
 .liquid-glass-nav {
   position: relative;
   isolation: isolate;
-
-  /* adjusted from too-dark → softer Apple-like tint */
-  background: rgba(35, 37, 42, 0.22);
-
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-
+  background: rgba(20, 22, 28, 0.32);
+  backdrop-filter: url(#liquid-glass-distort) blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); /* Safari ignores SVG ref gracefully */
   box-shadow:
-    0 14px 42px -10px rgba(0, 0, 0, 0.28),
-    0 2px 10px rgba(0, 0, 0, 0.12),
-    inset 0 1px 1px rgba(255, 255, 255, 0.45),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.05),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+    0 12px 40px -8px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 
+  /* cursor-reactive custom properties, driven by useGlassCursor.ts */
   --glass-x: 50%;
   --glass-y: 50%;
   --glass-glow-opacity: 0;
   --glass-tilt-x: 0deg;
   --glass-tilt-y: 0deg;
 
-  transform: perspective(800px)
-    rotateX(var(--glass-tilt-x))
-    rotateY(var(--glass-tilt-y));
-
+  transform: perspective(800px) rotateX(var(--glass-tilt-x)) rotateY(var(--glass-tilt-y));
+  transform-style: preserve-3d;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
-/* Edge highlight */
+/* Gradient ring — glass edges catch light unevenly, never a flat border */
 .liquid-glass-nav::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-
   background: linear-gradient(
     135deg,
-    rgba(255,255,255,0.55),
-    rgba(255,255,255,0.05),
-    rgba(255,255,255,0)
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.05) 35%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0.25) 100%
   );
-
-  -webkit-mask: linear-gradient(#000 0 0) content-box,
-                linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-
   pointer-events: none;
+  z-index: 2;
 }
 
-/* Specular top streak */
+/* Top specular streak — thin bright rim line, brightest where it curves
+   over the top-left, exactly like the reference photo's highlight arc */
 .liquid-glass-nav::after {
   content: "";
   position: absolute;
@@ -197,68 +191,85 @@ body {
   left: 6%;
   right: 30%;
   height: 1px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.65),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  pointer-events: none;
+  z-index: 2;
 }
 
-/* Cursor glow */
+/* Cursor-tracked specular highlight — the moving "wet glass" glow.
+   This is a real DOM element (.liquid-glass-cursor-glow), not a pseudo-element,
+   because it needs to sit above ::before/::after in paint order. See §4. */
 .liquid-glass-cursor-glow {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-
   background: radial-gradient(
     circle 160px at var(--glass-x) var(--glass-y),
-    rgba(255,255,255,0.5),
-    rgba(255,255,255,0.08) 45%,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.08) 45%,
     transparent 70%
   );
-
   opacity: var(--glass-glow-opacity);
+  transition: opacity 0.3s ease;
   mix-blend-mode: overlay;
   pointer-events: none;
   z-index: 3;
 }
 
-/* Active item */
+/* === Active nav item — sits "inside" the glass, slightly pressed === */
 .liquid-glass-active-item {
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255,255,255,0.35);
-
+  position: relative;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,0.8),
-    0 2px 8px rgba(0,0,0,0.06);
+    inset 0 1px 2px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-/* CTA button */
+/* === Accent CTA — "Let's Talk" === */
 .liquid-glass-accent-button {
-  background: linear-gradient(135deg, rgba(10,10,15,0.9), rgba(30,30,40,0.85));
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, rgba(10, 10, 15, 0.9), rgba(30, 30, 40, 0.85));
   backdrop-filter: blur(12px) saturate(160%);
-
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   box-shadow:
-    0 6px 18px rgba(0,0,0,0.22),
-    inset 0 1px 1px rgba(255,255,255,0.25);
+    0 4px 14px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
 }
 
 .liquid-glass-accent-button:hover {
   transform: translateY(-1px) scale(1.02);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.3);
 }
 
-/* Reduced motion */
+.liquid-glass-accent-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), transparent 50%);
+  pointer-events: none;
+}
+
+/* Respect reduced motion: kill tilt + transition, keep static glass look */
 @media (prefers-reduced-motion: reduce) {
   .liquid-glass-nav {
+    transition: none;
     transform: none;
   }
-
   .liquid-glass-cursor-glow {
     display: none;
+  }
+  .liquid-glass-accent-button {
+    transition: none;
   }
 }
 
@@ -266,14 +277,14 @@ body {
    Glassmorphism UI System
 ========================= */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(20, 22, 28, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(221, 216, 206, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
-    0 4px 20px -2px rgba(28, 25, 23, 0.03),
-    0 2px 8px -1px rgba(28, 25, 23, 0.02),
-    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+    0 4px 20px -2px rgba(0, 0, 0, 0.35),
+    0 2px 8px -1px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -283,83 +294,83 @@ body {
 
 .glass-panel-hover:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(37, 99, 235, 0.2); /* Subtle blue tint on hover to match ambient glows */
+  background: rgba(26, 28, 36, 0.6);
+  border-color: rgba(59, 130, 246, 0.25); /* Subtle blue tint on hover to match ambient glows */
   box-shadow: 
-    0 20px 40px -8px rgba(28, 25, 23, 0.08),
-    0 4px 12px -2px rgba(28, 25, 23, 0.03),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    0 20px 40px -8px rgba(0, 0, 0, 0.45),
+    0 4px 12px -2px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 .glass-panel-inset {
-  background: rgba(243, 240, 234, 0.45);
-  border: 1px solid rgba(221, 216, 206, 0.55);
-  box-shadow: inset 0 2px 4px rgba(28, 25, 23, 0.02);
+  background: rgba(13, 14, 18, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .glass-input {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(20, 22, 28, 0.3);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(221, 216, 206, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease-out;
 }
 
 .glass-input:focus {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(26, 28, 36, 0.65);
   border-color: var(--accent-600);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
   outline: none;
 }
 
 .glass-badge {
-  background: rgba(37, 99, 235, 0.06);
-  border: 1px solid rgba(37, 99, 235, 0.12);
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   color: var(--accent-700);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .glass-button-secondary {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(221, 216, 206, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.02),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease-out;
 }
 
 .glass-button-secondary:hover {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(221, 216, 206, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
   box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glass-button-secondary:active {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.07);
   transform: translateY(0);
 }
 
 /* Chatbot Messages */
 .glass-chatbot-message-assistant {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(20, 22, 28, 0.65);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(221, 216, 206, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-chatbot-message-user {
-  background: rgba(37, 99, 235, 0.08);
+  background: rgba(59, 130, 246, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(37, 99, 235, 0.18);
-  color: var(--accent-800);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: var(--accent-700);
 }
 
 /* =========================
