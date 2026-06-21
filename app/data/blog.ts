@@ -11,7 +11,7 @@ export * from "./blog-types";
 
 const defaultAuthor = {
   name: "Muhammad Rafiq",
-  role: "AI Engineer & Full-Stack Developer",
+  role: "Full-Stack Developer & AI/ML Enthusiast",
   avatar: "MR"
 };
 
@@ -265,8 +265,8 @@ jobs:
 ];
 
 export const blogPosts: BlogPost[] = [
-  ...aiMlPosts,
   ...fullstackPosts,
+  ...aiMlPosts,
   ...systemDesignPosts,
   ...devopsSrePosts,
   ...caseStudiesPosts,

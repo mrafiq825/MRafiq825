@@ -2,7 +2,7 @@ import type { BlogPost } from "../blog-types";
 
 const defaultAuthor = {
   name: "Muhammad Rafiq",
-  role: "AI Engineer & Full-Stack Developer",
+  role: "Full-Stack Developer & AI/ML Enthusiast",
   avatar: "MR"
 };
 
