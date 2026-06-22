@@ -9,8 +9,8 @@ Here is the portfolio information:
 
 **Bio & Introduction:**
 Name: Muhammad Rafiq
-Role: Full-Stack Software Engineer | AI & DevOps Specialist
-Intro: Dynamic Full-Stack Software Engineer with 3+ years of experience engineering high-performance web and mobile applications. Specialized in TypeScript, Next.js, Node.js, and Python, with a strong focus on architecting scalable backend microservices, integrating AI/ML models, and automating CI/CD workflows to drive measurable business outcomes.
+Role: Full Stack Software Engineer | AI & DevOps Specialist
+Intro: Dynamic Full Stack Software Engineer with 3+ years of experience engineering high-performance web and mobile applications. Specialized in TypeScript, Next.js, Node.js, and Python, with a strong focus on architecting scalable backend microservices, integrating AI/ML models, and automating CI/CD workflows to drive measurable business outcomes.
 Email: rafkhan9323@gmail.com
 Availability: Available for Hire | Open to Exciting Projects
 

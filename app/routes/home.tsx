@@ -12,11 +12,11 @@ import ProjectsSection from "~/components/sections/ProjectsSection";
 const HOME_LOADING_DURATION = 2400;
 
 export const meta: Route.MetaFunction = () => [
-  { title: "Muhammad Rafiq | Full-Stack Developer & Software Engineer" },
+  { title: "Muhammad Rafiq | Full Stack Developer & Software Engineer" },
   {
     name: "description",
     content:
-      "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
+      "Explore Muhammad Rafiq's portfolio. Full Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
   },
   {
     name: "keywords",
@@ -28,11 +28,11 @@ export const meta: Route.MetaFunction = () => [
   { name: "theme-color", content: "#020617" },
   
   // Open Graph
-  { property: "og:title", content: "Muhammad Rafiq | Full-Stack Developer & Software Engineer" },
+  { property: "og:title", content: "Muhammad Rafiq | Full Stack Developer & Software Engineer" },
   {
     property: "og:description",
     content:
-      "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
+      "Explore Muhammad Rafiq's portfolio. Full Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
   },
   { property: "og:image", content: "https://mrafiq85.vercel.app/profile.png" },
   { property: "og:url", content: "https://mrafiq85.vercel.app/" },
@@ -41,11 +41,11 @@ export const meta: Route.MetaFunction = () => [
 
   // Twitter
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Muhammad Rafiq | Full-Stack Developer & Software Engineer" },
+  { name: "twitter:title", content: "Muhammad Rafiq | Full Stack Developer & Software Engineer" },
   {
     name: "twitter:description",
     content:
-      "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
+      "Explore Muhammad Rafiq's portfolio. Full Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
   },
   { name: "twitter:image", content: "https://mrafiq85.vercel.app/profile.png" },
   { name: "twitter:creator", content: "@mrafiq825" }, 
@@ -70,7 +70,7 @@ const Home = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Muhammad Rafiq",
-    jobTitle: "Full-Stack Developer & Software Engineer",
+    jobTitle: "Full Stack Developer & Software Engineer",
     url: "https://mrafiq85.vercel.app",
     email: "rafkhan9323@gmail.com",
     sameAs: [
@@ -81,7 +81,7 @@ const Home = () => {
       "https://www.facebook.com/profile.php?id=100069771234437&mibextid=wwXIfr&mibextid=wwXIfr"
     ],
     description:
-      "Full-Stack Developer specializing in high-performance web and mobile applications, DevOps, SDET, and AI/ML integrations.",
+      "Full Stack Developer specializing in high-performance web and mobile applications, DevOps, SDET, and AI/ML integrations.",
     knowsAbout: [
       "JavaScript",
       "TypeScript",
