@@ -24,7 +24,7 @@ export const meta: Route.MetaFunction = ({ params }) => {
     { property: "og:description", content: post.metaDescription || post.excerpt },
     { property: "og:type", content: "article" },
     { property: "og:site_name", content: "Muhammad Rafiq Blog" },
-    { property: "og:image", content: post.ogImage || "https://muhammadrafiq.dev/images/og-default.png" }, // Fallback URL
+    { property: "og:image", content: post.ogImage || "https://mrafiq85.vercel.app/images/og-default.png" }, // Fallback URL
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: post.title },
     { name: "twitter:description", content: post.metaDescription || post.excerpt },

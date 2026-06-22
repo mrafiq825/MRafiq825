@@ -36,7 +36,7 @@ export const site: Site = {
     { label: "Technologies Mastered", value: "25+" },
     { label: "Client Satisfaction", value: "99%" },
   ],
-  url: "https://rafiqdev.com",
+  url: "https://mrafiq85.vercel.app",
   keywords: [
     "Muhammad Rafiq",
     "Rafiq Portfolio",

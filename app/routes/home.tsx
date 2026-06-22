@@ -34,8 +34,8 @@ export const meta: Route.MetaFunction = () => [
     content:
       "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
   },
-  { property: "og:image", content: "https://rafiqdev.com/profile.png" },
-  { property: "og:url", content: "https://rafiqdev.com/" },
+  { property: "og:image", content: "https://mrafiq85.vercel.app/profile.png" },
+  { property: "og:url", content: "https://mrafiq85.vercel.app/" },
   { property: "og:type", content: "website" },
   { property: "og:site_name", content: "Muhammad Rafiq Portfolio" },
 
@@ -47,12 +47,12 @@ export const meta: Route.MetaFunction = () => [
     content:
       "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
   },
-  { name: "twitter:image", content: "https://rafiqdev.com/profile.png" },
-  { name: "twitter:creator", content: "@mrafiq825" },
+  { name: "twitter:image", content: "https://mrafiq85.vercel.app/profile.png" },
+  { name: "twitter:creator", content: "@mrafiq825" }, 
 ];
 
 export const links: Route.LinksFunction = () => [
-  { rel: "canonical", href: "https://rafiqdev.com/" },
+  { rel: "canonical", href: "https://mrafiq85.vercel.app/" },
 ];
 
 const Home = () => {
@@ -71,7 +71,7 @@ const Home = () => {
     "@type": "Person",
     name: "Muhammad Rafiq",
     jobTitle: "Full-Stack Developer & Software Engineer",
-    url: "https://rafiqdev.com",
+    url: "https://mrafiq85.vercel.app",
     email: "rafkhan9323@gmail.com",
     sameAs: [
       "https://github.com/mrafiq825",
