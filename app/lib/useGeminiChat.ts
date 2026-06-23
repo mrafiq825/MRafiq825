@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { PORTFOLIO_CONTEXT } from "~/data/chatbotContext";
+import { getChatbotPrompt } from "~/data/chatbotContext";
 
 export type ChatMessage = {
   id: number;
@@ -81,7 +81,7 @@ export const useGeminiChat = () => {
       const chat = model.startChat({ history: chatHistory });
 
       const result = await chat.sendMessage(
-        `${PORTFOLIO_CONTEXT}\n\nUser question: ${trimmedText}`,
+        `${getChatbotPrompt(trimmedText)}\n\nUser question: ${trimmedText}`,
       );
       const response = result.response.text();
 

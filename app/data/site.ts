@@ -3,9 +3,9 @@ import type { Site } from "~/types/site";
 export const site: Site = {
   name: "Muhammad Rafiq",
   greeting: "Hi, I'm",
-  role: "Full Stack Software Engineer | AI/ML and DevOps Enthusiast",
+  role: "Full-Stack Software Engineer | AI/ML and DevOps Enthusiast",
   intro:
-    "Dynamic Full Stack Software Engineer with 3+ years of experience engineering high-performance web and mobile applications. Specialized in TypeScript, Next.js, Node.js, and Python, with a strong focus on architecting scalable backend microservices, integrating AI/ML models, and automating CI/CD workflows to drive measurable business outcomes.",
+    "Dynamic Full-Stack Software Engineer with 3+ years of experience engineering high-performance web and mobile applications. Specialized in TypeScript, Next.js, Node.js, and Python, with a strong focus on architecting scalable backend microservices, integrating AI/ML models, and automating CI/CD workflows to drive measurable business outcomes.",
   email: "rafkhan9323@gmail.com",
   availability: "Available for Hire | Open to Exciting Projects",
   cvUrl:

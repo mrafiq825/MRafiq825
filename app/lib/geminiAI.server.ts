@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { PORTFOLIO_CONTEXT } from "~/data/chatbotContext";
+import { getChatbotPrompt } from "~/data/chatbotContext";
 
 const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_API_KEY!);
 
@@ -14,7 +14,7 @@ export async function getPortfolioChatResponse(userMessage: string) {
     });
 
     const result = await chat.sendMessage(
-      `${PORTFOLIO_CONTEXT}\n\nUser question: ${userMessage}`,
+      `${getChatbotPrompt(userMessage)}\n\nUser question: ${userMessage}`,
     );
     const response = result.response;
     return response.text();
