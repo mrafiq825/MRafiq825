@@ -101,7 +101,7 @@ export const projects: Project[] = [
     ],
     imageAlt: "HisabKitab mobile app preview",
     liveUrl:
-      "https://drive.google.com/file/d/1JPDjYXG1YxNe-q73HrIGLEmd8vppP8cQ/view?usp=drive_link",
+      "#",
     featured: true,
   },
   {
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     ],
     imageAlt: "QRify QR code generator app preview",
     liveUrl:
-      "https://drive.google.com/file/d/1Iz8aUrWW6nEN5dnkt-eoKk_oho7dIJr9/view?usp=drive_link",
+      "#",
     featured: true,
   },
 ];

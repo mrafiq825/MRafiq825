@@ -1,14 +1,20 @@
+import { useState } from "react";
 import {
   FiLayers,
   FiExternalLink,
   FiCode,
   FiTrendingUp,
   FiGithub,
+  FiSmartphone,
+  FiMail,
+  FiMessageCircle,
 } from "react-icons/fi";
 import Section from "~/components/layout/Section";
 import Card from "~/components/ui/Card";
+import Modal from "~/components/ui/Modal";
 import { projects } from "~/data/projects";
 import { ICON_CLASS } from "~/lib/constants";
+import type { Project } from "~/types/project";
 
 const STATUS_CONFIG: Record<
   string,
@@ -29,6 +35,11 @@ const STATUS_CONFIG: Record<
     bg: "bg-neutral-900/30",
     border: "border-neutral-800/40",
   },
+  "APK Available": {
+    color: "text-blue-400",
+    bg: "bg-blue-950/30",
+    border: "border-blue-800/40",
+  },
 };
 
 const getStatusConfig = (status: string) => {
@@ -36,6 +47,8 @@ const getStatusConfig = (status: string) => {
 };
 
 const ProjectsSection = () => {
+  const [selectedProjectForApk, setSelectedProjectForApk] = useState<Project | null>(null);
+
   return (
     <Section
       id="projects"
@@ -113,15 +126,25 @@ const ProjectsSection = () => {
 
                 {/* CTA Section */}
                 <div className="flex gap-2 pt-6 border-t border-border-default">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-4 py-2.5 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
-                  >
-                    <FiExternalLink className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+                  {project.status === "APK Available" ? (
+                    <button
+                      onClick={() => setSelectedProjectForApk(project)}
+                      className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium cursor-pointer transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-4 py-2.5 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
+                    >
+                      <FiSmartphone className="w-4 h-4" />
+                      <span>Get APK</span>
+                    </button>
+                  ) : (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-4 py-2.5 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
+                    >
+                      <FiExternalLink className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
                   {project.detailsUrl ? (
                     <a
                       href={project.detailsUrl}
@@ -162,6 +185,61 @@ const ProjectsSection = () => {
           </a>
         </div>
       </div>
+
+      {/* APK Review Modal */}
+      <Modal
+        isOpen={selectedProjectForApk !== null}
+        onClose={() => setSelectedProjectForApk(null)}
+        title="APK Review Request"
+      >
+        {selectedProjectForApk && (
+          <div className="space-y-5">
+            <div className="flex items-center gap-3 p-4 rounded-[16px] bg-accent-50/50 border border-accent-100/50">
+              <FiSmartphone className="w-8 h-8 text-accent-600 shrink-0" />
+              <div>
+                <h4 className="font-heading font-bold text-text-primary text-[15px]">
+                  {selectedProjectForApk.title}
+                </h4>
+                <p className="text-xs text-text-secondary mt-0.5">
+                  Mobile Application Build (APK)
+                </p>
+              </div>
+            </div>
+
+            <p className="text-[14px] text-text-secondary leading-relaxed">
+              This project is built for Android mobile devices. To review the application, test its features, or request the APK file for installation, please get in touch.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <a
+                href={`mailto:rafkhan9323@gmail.com?subject=APK%20Review%20Request:%20${encodeURIComponent(
+                  selectedProjectForApk.title,
+                )}`}
+                className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-5 py-3 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
+              >
+                <FiMail className="w-4 h-4" />
+                <span>Email Request</span>
+              </a>
+              <a
+                href="#contact"
+                onClick={() => {
+                  setSelectedProjectForApk(null);
+                  setTimeout(() => {
+                    const contactSection = document.getElementById("contact");
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }, 100);
+                }}
+                className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-transparent border border-border-default text-text-primary rounded-[12px] px-5 py-3 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
+              >
+                <FiMessageCircle className="w-4 h-4 text-text-secondary" />
+                <span>Contact Form</span>
+              </a>
+            </div>
+          </div>
+        )}
+      </Modal>
     </Section>
   );
 };
