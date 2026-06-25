@@ -1,4 +1,4 @@
-# Project Brain: Single Source of Truth
+# Developer Brain
 
 Welcome to the **Developer Brain** of the Rafiq Portfolio project. This document serves as the absolute, single source of truth (SSOT) for the architecture, data models, workflows, styling rules, deployment configurations, and code relationships of this system. It is designed to allow any developer or AI coding agent to immediately understand, debug, test, maintain, and extend this codebase.
 
