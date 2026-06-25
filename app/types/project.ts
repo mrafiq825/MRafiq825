@@ -8,4 +8,5 @@ export type Project = {
   liveUrl: string;
   detailsUrl?: string;
   featured?: boolean;
+  thumbnail?: string;
 };

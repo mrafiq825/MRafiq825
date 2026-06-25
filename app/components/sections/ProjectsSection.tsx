@@ -72,8 +72,21 @@ const ProjectsSection = () => {
 
           return (
             <div key={project.id} className="flex h-full flex-col">
-              <Card className="flex flex-col h-full justify-between">
+              <Card className="flex flex-col h-full justify-between group">
                 <div>
+                  {/* Project Thumbnail */}
+                  {project.thumbnail && (
+                    <div className="mb-5 overflow-hidden rounded-[12px] border border-border-default/50 aspect-video relative bg-bg-surface-hover/30">
+                      <img
+                        src={project.thumbnail}
+                        alt={project.imageAlt}
+                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10]/20 to-transparent pointer-events-none" />
+                    </div>
+                  )}
+
                   {/* Header Section */}
                   <div className="mb-6 pb-6 border-b border-border-default">
                     <div className="flex items-start justify-between gap-3 mb-3">
@@ -115,11 +128,6 @@ const ProjectsSection = () => {
                           {item}
                         </span>
                       ))}
-                      {remainingTagsCount > 0 && (
-                        <span className="inline-flex items-center font-mono text-[13px] text-text-muted select-none font-medium px-1">
-                          +{remainingTagsCount} more
-                        </span>
-                      )}
                     </div>
                   </div>
                 </div>
