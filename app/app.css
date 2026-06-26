@@ -469,3 +469,110 @@ body {
 .code-from {
   color: #2563EB;
 }
+
+/* ==========================================================================
+   Education Section Background Image Styling
+   ========================================================================== */
+#education {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background image wrapper with opacity and mix-blend-mode */
+#education::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/Graduated.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle zoom effect when hovering the education section */
+#education:hover::before {
+  transform: scale(1.03);
+}
+
+/* 100% opacity masking gradients to blend the background image perfectly
+   with the dark theme (#0B0C10) and maintain text readability. */
+#education::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, #0B0C10 0%, transparent 12%, transparent 88%, #0B0C10 100%),
+    radial-gradient(circle at center, rgba(11, 12, 16, 0.2) 0%, #0B0C10 82%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Elevate section container content above the background overlays */
+#education > div {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   About Section Background Image Styling
+   ========================================================================== */
+#about {
+  position: relative;
+  overflow: hidden;
+  
+  /* Easily adjustable parameters for background aesthetics */
+  --about-bg-opacity: 0.08;
+  --about-bg-hover-opacity: 0.12;
+  --about-bg-scale: 1.04;
+  --about-bg-transition-dur: 1.5s;
+  --about-bg-blend: luminosity;
+  --about-bg-blur: 0px; /* Increase to blur the image background e.g. 2px */
+}
+
+/* Background image wrapper with adjustable styling */
+#about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/about.jpeg');
+  background-size: cover;
+  background-position: center 35%; /* Adjustable vertical alignment */
+  background-repeat: no-repeat;
+  opacity: var(--about-bg-opacity);
+  mix-blend-mode: var(--about-bg-blend);
+  filter: blur(var(--about-bg-blur)) grayscale(25%);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform var(--about-bg-transition-dur) cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  will-change: transform, opacity;
+}
+
+/* Smooth zoom effect on hover */
+#about:hover::before {
+  transform: scale(var(--about-bg-scale));
+  opacity: var(--about-bg-hover-opacity);
+}
+
+/* 100% opacity masking gradients to blend the background image perfectly
+   with the dark theme (#0B0C10) and maintain text readability. */
+#about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, #0B0C10 0%, transparent 12%, transparent 88%, #0B0C10 100%),
+    radial-gradient(circle at center, rgba(11, 12, 16, 0.2) 0%, #0B0C10 82%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Elevate section container content above the background overlays */
+#about > div {
+  position: relative;
+  z-index: 2;
+}
