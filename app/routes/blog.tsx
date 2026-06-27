@@ -29,9 +29,16 @@ const BlogList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<"All" | BlogCategory>("All");
 
+  // Sort posts by date descending so the latest uploads are always at the top
+  const sortedPosts = useMemo(() => {
+    return [...blogPosts].sort((a, b) => {
+      return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+    });
+  }, []);
+
   // Filter posts based on search query and category
   const filteredPosts = useMemo(() => {
-    return blogPosts.filter((post) => {
+    return sortedPosts.filter((post) => {
       const matchesSearch =
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -42,7 +49,12 @@ const BlogList = () => {
 
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, sortedPosts]);
+
+  // The latest upload overall (used to mark the absolute newest post in the listing)
+  const absoluteLatestPost = useMemo(() => {
+    return sortedPosts[0] || null;
+  }, [sortedPosts]);
 
   // Featured post is the first match of the current filter list (or overall first)
   const featuredPost = useMemo(() => {
@@ -58,32 +70,41 @@ const BlogList = () => {
   return (
     <>
       <Navbar />
-      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-12 pb-32 px-4 md:px-8">
+      {/* Dynamic ambient lights in the background for a modern glow effect */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+        <div className="absolute top-[20%] left-[10%] w-[350px] h-[350px] rounded-full bg-accent-600/5 blur-[120px]" />
+        <div className="absolute top-[60%] right-[5%] w-[450px] h-[450px] rounded-full bg-purple-600/5 blur-[140px]" />
+      </div>
+
+      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-16 pb-32 px-4 md:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Header Section */}
-          <div className="text-center md:text-left mt-8 mb-12">
-            <span className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100 px-3 py-1 rounded-full">
+          <div className="text-center md:text-left mt-8 mb-12 relative">
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100/50 px-3.5 py-1.5 rounded-full backdrop-blur-md">
               Engineering Logs
             </span>
-            <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight sm:text-5xl text-text-primary">
+            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight sm:text-6xl text-text-primary bg-gradient-to-r from-white via-white to-text-secondary bg-clip-text text-transparent">
               The Developer Log
             </h1>
-            <p className="mt-3 max-w-2xl font-body text-base md:text-lg text-text-secondary leading-relaxed">
-              In-depth technical case studies, system design guides, and developer roadmap write-ups on AI, DevOps, and Full-Stack Engineering.
+            <p className="mt-4 max-w-2xl font-body text-base md:text-lg text-text-secondary leading-relaxed">
+              Deep-dives, tutorials, and career insights. Exploring high-scale architectures, artificial intelligence, and developer culture.
             </p>
           </div>
 
           {/* Search and Category Filters */}
-          <div className="mb-12 flex flex-col gap-6 bg-bg-surface/50 backdrop-blur-md border border-border-default/40 p-5 rounded-[24px] shadow-sm">
+          <div className="mb-12 flex flex-col gap-6 bg-bg-surface/30 backdrop-blur-xl border border-border-default/55 p-6 rounded-[28px] shadow-2xl relative overflow-hidden group">
+            {/* Ambient border gradient highlight */}
+            <div className="absolute inset-0 bg-gradient-to-r from-accent-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
             {/* Search Input */}
             <div className="relative w-full">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" />
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-lg transition-colors duration-200 group-focus-within:text-accent-600" />
               <input
                 type="text"
-                placeholder="Search articles by title, tags, category..."
+                placeholder="Search insights by title, tags, or concept..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 text-sm rounded-[14px] glass-input text-text-primary placeholder-text-muted/70"
+                className="w-full pl-12 pr-5 py-4 text-sm rounded-[18px] border border-border-default bg-bg-page/40 text-text-primary placeholder-text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-600/50 focus:border-accent-600 transition-all duration-300 backdrop-blur-md"
               />
             </div>
 
@@ -93,10 +114,10 @@ const BlogList = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-[12px] text-xs font-mono transition-all duration-200 cursor-pointer ${
+                  className={`px-4 py-2.5 rounded-[14px] text-xs font-mono transition-all duration-300 cursor-pointer border ${
                     selectedCategory === category
-                      ? "bg-accent-600 text-white shadow-sm font-semibold border-transparent"
-                      : "bg-bg-surface border border-border-default text-text-secondary hover:bg-bg-surface-hover hover:text-text-primary"
+                      ? "bg-accent-600 text-white shadow-lg shadow-accent-600/25 font-semibold border-accent-500"
+                      : "bg-bg-page/30 border-border-default/80 text-text-secondary hover:bg-bg-surface-hover hover:border-border-hover hover:text-text-primary"
                   }`}
                 >
                   {category}
@@ -107,14 +128,14 @@ const BlogList = () => {
 
           {/* No Results Fallback */}
           {filteredPosts.length === 0 && (
-            <div className="text-center py-20 bg-bg-surface border border-border-default rounded-[24px] glass-panel">
+            <div className="text-center py-20 bg-bg-surface/40 border border-border-default/60 rounded-[28px] backdrop-blur-xl">
               <p className="font-body text-text-secondary text-base">No articles found matching your filters.</p>
               <button
                 onClick={() => {
                   setSearchQuery("");
                   setSelectedCategory("All");
                 }}
-                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent-700 hover:text-accent-800"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent-700 hover:text-accent-800 transition-colors duration-200 cursor-pointer"
               >
                 Clear all filters
               </button>
@@ -123,20 +144,36 @@ const BlogList = () => {
 
           {/* Featured Spotlight Card */}
           {featuredPost && (
-            <div className="mb-12">
-              <Link to={`/blog/${featuredPost.slug}`} className="group block">
-                <article className="grid grid-cols-1 md:grid-cols-12 overflow-hidden rounded-[24px] border border-border-default bg-bg-surface shadow-sm glass-panel glass-panel-hover">
+            <div className="mb-14 relative">
+              {/* Card shadow glow */}
+              <div className="absolute -inset-1.5 rounded-[30px] bg-gradient-to-r from-accent-600/30 to-purple-600/30 opacity-30 blur-xl group-hover:opacity-100 transition duration-1000 pointer-events-none" />
+              
+              <Link to={`/blog/${featuredPost.slug}`} className="group block relative">
+                <article className="grid grid-cols-1 md:grid-cols-12 overflow-hidden rounded-[28px] border border-border-default bg-bg-surface/40 backdrop-blur-xl shadow-2xl transition-all duration-300 hover:border-border-hover">
                   {/* Decorative Gradient Cover */}
                   <div
-                    className="md:col-span-5 h-48 md:h-full min-h-[260px] relative transition-transform duration-500 group-hover:scale-[1.01]"
+                    className="md:col-span-5 h-56 md:h-full min-h-[300px] relative overflow-hidden"
                     style={{ background: featuredPost.coverGradient }}
                   >
-                    <div className="absolute inset-0 bg-black/15 backdrop-blur-[1px]" />
+                    {/* Glass sheen overlay */}
+                    <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-0" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                    
                     <div className="absolute inset-0 flex flex-col justify-between p-6">
-                      <span className="self-start font-mono text-[10px] font-bold tracking-widest uppercase text-white bg-black/20 backdrop-blur-md px-2.5 py-1 rounded-md">
-                        FEATURED WRITE-UP
-                      </span>
-                      <span className="self-center font-heading text-xl md:text-2xl font-extrabold text-white text-center tracking-wide opacity-90 drop-shadow-md select-none">
+                      <div className="flex flex-wrap gap-2">
+                        {absoluteLatestPost && featuredPost.slug === absoluteLatestPost.slug ? (
+                          <span className="self-start inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white font-mono text-[9px] font-bold uppercase tracking-wider border border-white/25 shadow-sm animate-pulse">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                            NEW RELEASE
+                          </span>
+                        ) : (
+                          <span className="self-start inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white font-mono text-[9px] font-bold uppercase tracking-wider border border-white/10">
+                            SPOTLIGHT
+                          </span>
+                        )}
+                      </div>
+                      
+                      <span className="self-center font-heading text-2xl md:text-3xl font-extrabold text-white text-center tracking-wide drop-shadow-md select-none group-hover:scale-105 transition-transform duration-500">
                         {featuredPost.category}
                       </span>
                       <div />
@@ -144,11 +181,11 @@ const BlogList = () => {
                   </div>
 
                   {/* Spotlight Info */}
-                  <div className="md:col-span-7 p-6 md:p-8 flex flex-col justify-between">
+                  <div className="md:col-span-7 p-8 flex flex-col justify-between">
                     <div>
                       {/* Meta info */}
                       <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-text-muted mb-4">
-                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-accent-50 text-accent-700 font-semibold text-[10px] uppercase">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-accent-50 text-accent-700 font-semibold text-[10px] uppercase border border-accent-100/50">
                           {featuredPost.category}
                         </span>
                         <span className="inline-flex items-center gap-1">
@@ -167,30 +204,30 @@ const BlogList = () => {
                       </h2>
 
                       {/* Excerpt */}
-                      <p className="mt-3 font-body text-sm md:text-base text-text-secondary leading-relaxed">
+                      <p className="mt-4 font-body text-sm md:text-base text-text-secondary leading-relaxed line-clamp-3">
                         {featuredPost.excerpt}
                       </p>
                     </div>
 
-                    <div className="mt-6 pt-6 border-t border-border-default/50 flex flex-wrap gap-4 items-center justify-between">
+                    <div className="mt-8 pt-6 border-t border-border-default flex flex-wrap gap-4 items-center justify-between">
                       {/* Author Bio */}
                       <div className="flex items-center gap-3">
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent-600 text-white font-mono text-xs font-semibold">
+                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent-600 text-white font-mono text-sm font-semibold shadow-md">
                           {featuredPost.author.avatar}
                         </span>
                         <div className="flex flex-col">
                           <span className="text-xs font-semibold text-text-primary leading-none">
                             {featuredPost.author.name}
                           </span>
-                          <span className="text-[10px] text-text-muted">
+                          <span className="text-[10px] text-text-muted mt-1">
                             {featuredPost.author.role}
                           </span>
                         </div>
                       </div>
 
                       {/* CTA */}
-                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 group-hover:translate-x-1 transition-transform duration-200">
-                        Read Post <FiArrowRight />
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 group-hover:text-accent-800 group-hover:translate-x-1.5 transition-all duration-300">
+                        Read Post <FiArrowRight className="transition-transform duration-300" />
                       </span>
                     </div>
                   </div>
@@ -202,20 +239,35 @@ const BlogList = () => {
           {/* Grid of Other Posts */}
           {otherPosts.length > 0 && (
             <div>
-              <h2 className="font-heading text-xl font-bold mb-6 text-text-primary pl-1 border-l-4 border-accent-600 ml-1">
-                More Articles
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex items-center justify-between mb-8 pl-1 border-l-4 border-accent-600">
+                <h2 className="font-heading text-2xl font-bold text-text-primary ml-2">
+                  All Publications
+                </h2>
+                <span className="text-xs font-mono text-text-muted">
+                  Showing {filteredPosts.length} article{filteredPosts.length > 1 ? "s" : ""}
+                </span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {otherPosts.map((post) => (
-                  <Link key={post.slug} to={`/blog/${post.slug}`} className="group block">
-                    <article className="h-full flex flex-col justify-between overflow-hidden rounded-[20px] border border-border-default bg-bg-surface shadow-sm glass-panel glass-panel-hover">
+                  <Link key={post.slug} to={`/blog/${post.slug}`} className="group block h-full">
+                    <article className="h-full flex flex-col justify-between overflow-hidden rounded-[24px] border border-border-default bg-bg-surface/30 backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-border-hover hover:-translate-y-1">
                       {/* Gradient Header */}
                       <div
-                        className="h-36 w-full relative transition-transform duration-500 group-hover:scale-[1.01]"
+                        className="h-44 w-full relative overflow-hidden"
                         style={{ background: post.coverGradient }}
                       >
-                        <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px]" />
-                        <span className="absolute bottom-4 left-4 font-mono text-[10px] font-bold tracking-widest uppercase text-white bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
+                        <div className="absolute inset-0 bg-black/10 backdrop-blur-[0.5px] transition-opacity duration-300 group-hover:opacity-0" />
+                        
+                        <div className="absolute top-4 right-4">
+                          {absoluteLatestPost && post.slug === absoluteLatestPost.slug && (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 backdrop-blur-md text-emerald-300 font-mono text-[8px] font-bold uppercase tracking-wider border border-emerald-500/30">
+                              LATEST
+                            </span>
+                          )}
+                        </div>
+
+                        <span className="absolute bottom-4 left-4 font-mono text-[9px] font-bold tracking-widest uppercase text-white bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
                           {post.category}
                         </span>
                       </div>
@@ -236,21 +288,21 @@ const BlogList = () => {
                           </div>
 
                           {/* Title */}
-                          <h3 className="font-heading text-lg font-bold text-text-primary group-hover:text-accent-600 transition-colors duration-200 leading-tight">
+                          <h3 className="font-heading text-lg font-bold text-text-primary group-hover:text-accent-600 transition-colors duration-200 leading-snug line-clamp-2">
                             {post.title}
                           </h3>
 
                           {/* Excerpt */}
-                          <p className="mt-2.5 font-body text-xs md:text-sm text-text-secondary leading-relaxed line-clamp-3">
+                          <p className="mt-3 font-body text-xs md:text-sm text-text-secondary leading-relaxed line-clamp-3">
                             {post.excerpt}
                           </p>
                         </div>
 
-                        <div className="mt-5 pt-4 border-t border-border-default/40 flex flex-col gap-4">
+                        <div className="mt-6 pt-5 border-t border-border-default/50 flex flex-col gap-4">
                           {/* Tags */}
                           <div className="flex flex-wrap gap-1">
                             {post.tags.slice(0, 3).map((tag) => (
-                              <span key={tag} className="px-2 py-0.5 rounded-[5px] text-[10px] font-mono bg-accent-50 text-accent-700 border border-accent-100">
+                              <span key={tag} className="px-2 py-0.5 rounded-[6px] text-[10px] font-mono bg-accent-50 text-accent-700 border border-accent-100/50">
                                 {tag}
                               </span>
                             ))}
@@ -264,7 +316,7 @@ const BlogList = () => {
                           <div className="flex items-center justify-between pt-1">
                             {/* Author Info */}
                             <div className="flex items-center gap-2">
-                              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent-600/90 text-white font-mono text-[9px] font-semibold">
+                              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-accent-600/90 text-white font-mono text-[9px] font-semibold">
                                 {post.author.avatar}
                               </span>
                               <span className="text-[11px] font-semibold text-text-secondary">
@@ -273,7 +325,7 @@ const BlogList = () => {
                             </div>
 
                             {/* Read more */}
-                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent-700 group-hover:translate-x-1 transition-transform duration-200">
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent-700 group-hover:text-accent-800 group-hover:translate-x-1 transition-all duration-200">
                               Read <FiArrowRight />
                             </span>
                           </div>

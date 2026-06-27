@@ -576,3 +576,64 @@ body {
   position: relative;
   z-index: 2;
 }
+
+/* ==========================================================================
+   Hero Section Background Image Styling
+   ========================================================================== */
+#home {
+  position: relative;
+  overflow: hidden;
+  
+  /* Easily adjustable parameters for background aesthetics */
+  --home-bg-opacity: 0.10;
+  --home-bg-hover-opacity: 0.14;
+  --home-bg-scale: 1.05;
+  --home-bg-transition-dur: 2.0s;
+  --home-bg-blend: luminosity;
+  --home-bg-blur: 0px; /* Increase to blur the image background e.g. 2px */
+  --home-bg-grayscale: 15%; /* Grayscale filter percentage */
+  --home-bg-position-y: 25%; /* Adjustable vertical alignment */
+}
+
+/* Background image wrapper with adjustable styling */
+#home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/HeroSection.jpeg');
+  background-size: cover;
+  background-position: center var(--home-bg-position-y);
+  background-repeat: no-repeat;
+  opacity: var(--home-bg-opacity);
+  mix-blend-mode: var(--home-bg-blend);
+  filter: blur(var(--home-bg-blur)) grayscale(var(--home-bg-grayscale));
+  pointer-events: none;
+  z-index: 0;
+  transition: transform var(--home-bg-transition-dur) cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  will-change: transform, opacity;
+}
+
+/* Smooth zoom effect on hover */
+#home:hover::before {
+  transform: scale(var(--home-bg-scale));
+  opacity: var(--home-bg-hover-opacity);
+}
+
+/* 100% opacity masking gradients to blend the background image perfectly
+   with the dark theme (#0B0C10) and maintain text readability. */
+#home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, #0B0C10 0%, transparent 15%, transparent 85%, #0B0C10 100%),
+    radial-gradient(circle at center, rgba(11, 12, 16, 0.15) 0%, #0B0C10 85%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Elevate section container content above the background overlays */
+#home > div {
+  position: relative;
+  z-index: 2;
+}
