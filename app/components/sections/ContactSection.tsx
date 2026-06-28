@@ -201,7 +201,7 @@ const ContactSection = () => {
                       (() => {
                         const Icon =
                           SOCIAL_ICONS[
-                            social.icon as keyof typeof SOCIAL_ICONS
+                          social.icon as keyof typeof SOCIAL_ICONS
                           ];
 
                         return <Icon className={ICON_CLASS.nav} />;

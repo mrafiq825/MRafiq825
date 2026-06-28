@@ -64,7 +64,7 @@ const ProjectsSection = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => {
           const statusConfig = getStatusConfig(project.status);
-          
+
           // Tag capping configuration (AGENTS.md: limit to 4, +X more)
           const maxTags = 4;
           const visibleTech = project.tech.slice(0, maxTags);

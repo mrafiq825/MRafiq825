@@ -26,7 +26,7 @@ export const meta: Route.MetaFunction = () => [
   { name: "author", content: "Muhammad Rafiq" },
   { name: "robots", content: "index, follow" },
   { name: "theme-color", content: "#020617" },
-  
+
   // Open Graph
   { property: "og:title", content: "Muhammad Rafiq | Full Stack Developer & Software Engineer" },
   {
@@ -48,7 +48,7 @@ export const meta: Route.MetaFunction = () => [
       "Explore Muhammad Rafiq's portfolio. Full Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
   },
   { name: "twitter:image", content: "https://mrafiq85.vercel.app/profile.png" },
-  { name: "twitter:creator", content: "@mrafiq825" }, 
+  { name: "twitter:creator", content: "@mrafiq825" },
 ];
 
 export const links: Route.LinksFunction = () => [

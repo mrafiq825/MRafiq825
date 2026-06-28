@@ -103,10 +103,25 @@ body {
   stroke-linejoin: round;
 }
 
-.icon-fi-xs { width: 0.875rem; height: 0.875rem; }
-.icon-fi-sm { width: 1rem; height: 1rem; }
-.icon-fi-md { width: 1.25rem; height: 1.25rem; }
-.icon-fi-lg { width: 2rem; height: 2rem; }
+.icon-fi-xs {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.icon-fi-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon-fi-md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-fi-lg {
+  width: 2rem;
+  height: 2rem;
+}
 
 /* =========================
    Animation
@@ -120,6 +135,7 @@ body {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -140,7 +156,8 @@ body {
   isolation: isolate;
   background: rgba(20, 22, 28, 0.32);
   backdrop-filter: url(#liquid-glass-distort) blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%); /* Safari ignores SVG ref gracefully */
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  /* Safari ignores SVG ref gracefully */
   box-shadow:
     0 12px 40px -8px rgba(0, 0, 0, 0.35),
     0 2px 8px rgba(0, 0, 0, 0.15),
@@ -168,13 +185,11 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.05) 35%,
-    rgba(255, 255, 255, 0) 55%,
-    rgba(255, 255, 255, 0.25) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.05) 35%,
+      rgba(255, 255, 255, 0) 55%,
+      rgba(255, 255, 255, 0.25) 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -203,12 +218,10 @@ body {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(
-    circle 160px at var(--glass-x) var(--glass-y),
-    rgba(255, 255, 255, 0.55),
-    rgba(255, 255, 255, 0.08) 45%,
-    transparent 70%
-  );
+  background: radial-gradient(circle 160px at var(--glass-x) var(--glass-y),
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.08) 45%,
+      transparent 70%);
   opacity: var(--glass-glow-opacity);
   transition: opacity 0.3s ease;
   mix-blend-mode: overlay;
@@ -265,9 +278,11 @@ body {
     transition: none;
     transform: none;
   }
+
   .liquid-glass-cursor-glow {
     display: none;
   }
+
   .liquid-glass-accent-button {
     transition: none;
   }
@@ -281,7 +296,7 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
+  box-shadow:
     0 4px 20px -2px rgba(0, 0, 0, 0.35),
     0 2px 8px -1px rgba(0, 0, 0, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.1);
@@ -295,8 +310,9 @@ body {
 .glass-panel-hover:hover {
   transform: translateY(-2px);
   background: rgba(26, 28, 36, 0.6);
-  border-color: rgba(59, 130, 246, 0.25); /* Subtle blue tint on hover to match ambient glows */
-  box-shadow: 
+  border-color: rgba(59, 130, 246, 0.25);
+  /* Subtle blue tint on hover to match ambient glows */
+  box-shadow:
     0 20px 40px -8px rgba(0, 0, 0, 0.45),
     0 4px 12px -2px rgba(0, 0, 0, 0.25),
     inset 0 1px 1px rgba(255, 255, 255, 0.15);
@@ -337,7 +353,7 @@ body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
+  box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease-out;
@@ -347,7 +363,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
-  box-shadow: 
+  box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -450,7 +466,8 @@ body {
 }
 
 .code-string {
-  color: #059669; /* Soft green */
+  color: #059669;
+  /* Soft green */
 }
 
 .code-comment {
@@ -459,11 +476,13 @@ body {
 }
 
 .code-function {
-  color: #7C3AED; /* Purple */
+  color: #7C3AED;
+  /* Purple */
 }
 
 .code-number {
-  color: #D97706; /* Dark amber */
+  color: #D97706;
+  /* Dark amber */
 }
 
 .code-from {
@@ -505,7 +524,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: 
+  background:
     linear-gradient(to bottom, #0B0C10 0%, transparent 12%, transparent 88%, #0B0C10 100%),
     radial-gradient(circle at center, rgba(11, 12, 16, 0.2) 0%, #0B0C10 82%);
   pointer-events: none;
@@ -513,7 +532,7 @@ body {
 }
 
 /* Elevate section container content above the background overlays */
-#education > div {
+#education>div {
   position: relative;
   z-index: 2;
 }
@@ -524,14 +543,15 @@ body {
 #about {
   position: relative;
   overflow: hidden;
-  
+
   /* Easily adjustable parameters for background aesthetics */
   --about-bg-opacity: 0.08;
   --about-bg-hover-opacity: 0.12;
   --about-bg-scale: 1.04;
   --about-bg-transition-dur: 1.5s;
   --about-bg-blend: luminosity;
-  --about-bg-blur: 0px; /* Increase to blur the image background e.g. 2px */
+  --about-bg-blur: 0px;
+  /* Increase to blur the image background e.g. 2px */
 }
 
 /* Background image wrapper with adjustable styling */
@@ -541,7 +561,8 @@ body {
   inset: 0;
   background-image: url('/about.jpeg');
   background-size: cover;
-  background-position: center 35%; /* Adjustable vertical alignment */
+  background-position: center 35%;
+  /* Adjustable vertical alignment */
   background-repeat: no-repeat;
   opacity: var(--about-bg-opacity);
   mix-blend-mode: var(--about-bg-blend);
@@ -564,7 +585,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: 
+  background:
     linear-gradient(to bottom, #0B0C10 0%, transparent 12%, transparent 88%, #0B0C10 100%),
     radial-gradient(circle at center, rgba(11, 12, 16, 0.2) 0%, #0B0C10 82%);
   pointer-events: none;
@@ -572,7 +593,7 @@ body {
 }
 
 /* Elevate section container content above the background overlays */
-#about > div {
+#about>div {
   position: relative;
   z-index: 2;
 }
@@ -583,16 +604,19 @@ body {
 #home {
   position: relative;
   overflow: hidden;
-  
+
   /* Easily adjustable parameters for background aesthetics */
   --home-bg-opacity: 0.10;
   --home-bg-hover-opacity: 0.14;
   --home-bg-scale: 1.05;
   --home-bg-transition-dur: 2.0s;
   --home-bg-blend: luminosity;
-  --home-bg-blur: 0px; /* Increase to blur the image background e.g. 2px */
-  --home-bg-grayscale: 15%; /* Grayscale filter percentage */
-  --home-bg-position-y: 25%; /* Adjustable vertical alignment */
+  --home-bg-blur: 0px;
+  /* Increase to blur the image background e.g. 2px */
+  --home-bg-grayscale: 15%;
+  /* Grayscale filter percentage */
+  --home-bg-position-y: 25%;
+  /* Adjustable vertical alignment */
 }
 
 /* Background image wrapper with adjustable styling */
@@ -625,7 +649,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: 
+  background:
     linear-gradient(to bottom, #0B0C10 0%, transparent 15%, transparent 85%, #0B0C10 100%),
     radial-gradient(circle at center, rgba(11, 12, 16, 0.15) 0%, #0B0C10 85%);
   pointer-events: none;
@@ -633,7 +657,7 @@ body {
 }
 
 /* Elevate section container content above the background overlays */
-#home > div {
+#home>div {
   position: relative;
   z-index: 2;
 }
