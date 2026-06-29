@@ -1,4 +1,4 @@
-import { LuBriefcase, LuGraduationCap, LuLayers, LuMessageCircle, LuUser, LuBookOpen } from "react-icons/lu";
+import { LuBriefcase, LuGraduationCap, LuLayers, LuMessageCircle, LuUser, LuBookOpen, LuTerminal } from "react-icons/lu";
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
 import { ICON_CLASS } from "~/lib/constants";
@@ -440,6 +440,7 @@ const NAV_ITEMS = [
   { label: "Experience", href: "#experience", icon: LuBriefcase },
   { label: "Projects", href: "#projects", icon: LuLayers, morphType: "github" },
   { label: "Blog", href: "/blog", icon: LuBookOpen, morphType: "blog" },
+  { label: "Prompts", href: "/prompts", icon: LuTerminal },
 ];
 
 const Navbar = () => {
@@ -456,6 +457,8 @@ const Navbar = () => {
     if (!isHomePage) {
       if (location.pathname.startsWith("/blog")) {
         setActiveHref("/blog");
+      } else if (location.pathname.startsWith("/prompts")) {
+        setActiveHref("/prompts");
       } else {
         setActiveHref("");
       }

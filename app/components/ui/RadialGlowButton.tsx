@@ -14,6 +14,7 @@ export interface RadialGlowButtonProps {
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLElement>;
   type?: "button" | "submit" | "reset";
+  style?: React.CSSProperties;
 }
 
 export function RadialGlowButton({
