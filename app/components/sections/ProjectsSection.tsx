@@ -12,6 +12,8 @@ import {
 import Section from "~/components/layout/Section";
 import Card from "~/components/ui/Card";
 import Modal from "~/components/ui/Modal";
+import RadialGlowButton from "~/components/ui/RadialGlowButton";
+import GenerateButton from "~/components/ui/GenerateButton";
 import { projects } from "~/data/projects";
 import { ICON_CLASS } from "~/lib/constants";
 import type { Project } from "~/types/project";
@@ -135,23 +137,23 @@ const ProjectsSection = () => {
                 {/* CTA Section */}
                 <div className="flex gap-2 pt-6 border-t border-border-default">
                   {project.status === "APK Available" ? (
-                    <button
+                    <RadialGlowButton
                       onClick={() => setSelectedProjectForApk(project)}
-                      className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium cursor-pointer transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-4 py-2.5 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
+                      containerClassName="flex-1 flex"
                     >
                       <FiSmartphone className="w-4 h-4" />
                       <span>Get APK</span>
-                    </button>
+                    </RadialGlowButton>
                   ) : (
-                    <a
+                    <RadialGlowButton
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-4 py-2.5 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
+                      containerClassName="flex-1 flex"
                     >
                       <FiExternalLink className="w-4 h-4" />
                       <span>Live Demo</span>
-                    </a>
+                    </RadialGlowButton>
                   )}
                   {project.detailsUrl ? (
                     <a
@@ -182,15 +184,15 @@ const ProjectsSection = () => {
               that push boundaries
             </p>
           </div>
-          <a
+          <GenerateButton
             href="https://github.com/mrafiq825"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-transparent border border-border-default text-text-primary rounded-[12px] px-6 py-2.5 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
-          >
-            <FiGithub className="w-4 h-4 text-text-secondary" />
-            <span>View More Projects on GitHub</span>
-          </a>
+            text="GitHub Profile"
+            activeText="Opening GitHub"
+            hue={250}
+            icon={<FiGithub />}
+          />
         </div>
       </div>
 
@@ -219,15 +221,15 @@ const ProjectsSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
+              <RadialGlowButton
                 href={`mailto:rafkhan9323@gmail.com?subject=APK%20Review%20Request:%20${encodeURIComponent(
                   selectedProjectForApk.title,
                 )}`}
-                className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-5 py-3 hover:bg-accent-700 active:bg-accent-800 shadow-sm"
+                containerClassName="flex-1 flex"
               >
                 <FiMail className="w-4 h-4" />
                 <span>Email Request</span>
-              </a>
+              </RadialGlowButton>
               <a
                 href="#contact"
                 onClick={() => {

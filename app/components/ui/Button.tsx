@@ -1,17 +1,23 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "~/lib/utils";
+import LiquidMetalButton, { type LiquidMetalProps } from "./LiquidMetalButton";
 
 type ButtonProps = {
   children: ReactNode;
   href?: string;
   download?: AnchorHTMLAttributes<HTMLAnchorElement>["download"];
   className?: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "metal";
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
   disabled?: boolean;
   target?: AnchorHTMLAttributes<HTMLAnchorElement>["target"];
   rel?: AnchorHTMLAttributes<HTMLAnchorElement>["rel"];
+  // Props for the metal variant:
+  icon?: ReactNode;
+  borderWidth?: number;
+  metalConfig?: Omit<LiquidMetalProps, "className" | "style">;
+  size?: "sm" | "md" | "lg";
 };
 
 const Button = ({
@@ -25,7 +31,34 @@ const Button = ({
   disabled,
   target,
   rel,
+  icon,
+  borderWidth,
+  metalConfig,
+  size,
+  ...props
 }: ButtonProps) => {
+  if (variant === "metal") {
+    return (
+      <LiquidMetalButton
+        href={href}
+        download={download}
+        target={target}
+        rel={rel}
+        disabled={disabled}
+        onClick={onClick}
+        className={className}
+        icon={icon}
+        borderWidth={borderWidth}
+        metalConfig={metalConfig}
+        size={size}
+        type={type}
+        {...props}
+      >
+        {children}
+      </LiquidMetalButton>
+    );
+  }
+
   const baseClass = cn(
     "inline-flex items-center justify-center font-body text-sm font-medium transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2",
     variant === "primary"

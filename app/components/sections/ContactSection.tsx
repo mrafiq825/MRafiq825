@@ -16,6 +16,8 @@ import { useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Section from "~/components/layout/Section";
 import Card from "~/components/ui/Card";
+import Button from "~/components/ui/Button";
+import AnimatedButton from "~/components/ui/AnimatedButton";
 import Chatbot from "~/components/ui/Chatbot";
 import { site } from "~/data/site";
 import { socials } from "~/data/socials";
@@ -160,19 +162,22 @@ const ContactSection = () => {
               )}
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
+                <Button
                   type="submit"
                   disabled={state.submitting}
-                  className="inline-flex items-center justify-center rounded-[12px] bg-accent-600 text-white px-6 py-3 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent-700 active:bg-accent-800 disabled:cursor-not-allowed disabled:bg-accent-100 disabled:text-text-muted"
+                  variant="metal"
+                  size="sm"
+                  icon={state.submitting ? null : <FiMessageCircle className="h-4 w-4" />}
                 >
                   {state.submitting ? "Sending..." : "Send Message"}
-                </button>
-                <a
+                </Button>
+                <AnimatedButton
+                  as="a"
                   href={`mailto:${site.email}`}
-                  className="inline-flex items-center justify-center rounded-[12px] glass-button-secondary text-text-primary px-6 py-3 text-sm font-medium"
+                  className="group py-3 font-medium transition-all duration-300"
                 >
                   Direct Email
-                </a>
+                </AnimatedButton>
               </div>
             </form>
 

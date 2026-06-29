@@ -2,6 +2,7 @@ import { FiArrowRight, FiDownload } from "react-icons/fi";
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Button from "~/components/ui/Button";
+import AnimatedButton from "~/components/ui/AnimatedButton";
 import { site } from "~/data/site";
 
 const HeroSection = () => {
@@ -41,21 +42,21 @@ const HeroSection = () => {
           <div className="mt-8 flex flex-wrap gap-4 items-center">
             <Button
               href="#projects"
-              variant="primary"
-              className="group bg-gradient-to-r from-accent-600 via-indigo-600 to-violet-600 hover:from-accent-700 hover:via-indigo-700 hover:to-violet-700 text-white shadow-[0_4px_20px_rgba(59,130,246,0.25)] hover:shadow-[0_4px_30px_rgba(99,102,241,0.45)] hover:-translate-y-0.5 active:translate-y-0.5 transition-all duration-300 border-0 font-medium"
+              variant="metal"
+              icon={<FiArrowRight className="h-5 w-5" />}
+              size="md"
             >
-              <span>View Projects</span>
-              <FiArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              View Projects
             </Button>
-            <Button
+            <AnimatedButton
+              as="a"
               href={site.cvUrl}
               target="_blank"
-              variant="secondary"
-              className="group hover:border-accent-600/50 hover:bg-bg-surface-hover hover:text-accent-600 hover:-translate-y-0.5 active:translate-y-0.5 transition-all duration-300 font-medium"
+              className="group py-3 font-medium transition-all duration-300"
             >
               <FiDownload className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" />
               <span>Resume</span>
-            </Button>
+            </AnimatedButton>
           </div>
         </div>
 
