@@ -490,54 +490,6 @@ body {
 }
 
 /* ==========================================================================
-   Education Section Background Image Styling
-   ========================================================================== */
-#education {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Background image wrapper with opacity and mix-blend-mode */
-#education::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url('/Graduated.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.12;
-  mix-blend-mode: luminosity;
-  pointer-events: none;
-  z-index: 0;
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Subtle zoom effect when hovering the education section */
-#education:hover::before {
-  transform: scale(1.03);
-}
-
-/* 100% opacity masking gradients to blend the background image perfectly
-   with the dark theme (#0B0C10) and maintain text readability. */
-#education::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom, #0B0C10 0%, transparent 12%, transparent 88%, #0B0C10 100%),
-    radial-gradient(circle at center, rgba(11, 12, 16, 0.2) 0%, #0B0C10 82%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Elevate section container content above the background overlays */
-#education>div {
-  position: relative;
-  z-index: 2;
-}
-
-/* ==========================================================================
    About Section Background Image Styling
    ========================================================================== */
 #about {

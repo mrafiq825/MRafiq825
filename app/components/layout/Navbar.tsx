@@ -436,7 +436,6 @@ const MorphingIcon = ({ type, isActive, isHovered }: MorphingIconProps) => {
 };
 
 const NAV_ITEMS = [
-  { label: "Education", href: "#education", icon: LuGraduationCap },
   { label: "About", href: "#about", icon: LuUser, morphType: "home" },
   { label: "Experience", href: "#experience", icon: LuBriefcase },
   { label: "Projects", href: "#projects", icon: LuLayers, morphType: "github" },
