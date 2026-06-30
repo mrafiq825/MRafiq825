@@ -44,7 +44,7 @@ const BlogList = () => {
         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
         post.category.toLowerCase().includes(searchQuery.toLowerCase());
-      
+
       const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
 
       return matchesSearch && matchesCategory;
@@ -98,7 +98,6 @@ const BlogList = () => {
 
             {/* Search Input */}
             <div className="relative w-full">
-              <AppleSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-lg transition-colors duration-200 group-focus-within:text-accent-600" />
               <input
                 type="text"
                 placeholder="Search insights by title, tags, or concept..."
@@ -114,11 +113,10 @@ const BlogList = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2.5 rounded-[14px] text-xs font-mono transition-all duration-300 cursor-pointer border ${
-                    selectedCategory === category
+                  className={`px-4 py-2.5 rounded-[14px] text-xs font-mono transition-all duration-300 cursor-pointer border ${selectedCategory === category
                       ? "bg-accent-600 text-white shadow-lg shadow-accent-600/25 font-semibold border-accent-500"
                       : "bg-bg-page/30 border-border-default/80 text-text-secondary hover:bg-bg-surface-hover hover:border-border-hover hover:text-text-primary"
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
@@ -147,7 +145,7 @@ const BlogList = () => {
             <div className="mb-14 relative">
               {/* Card shadow glow */}
               <div className="absolute -inset-1.5 rounded-[30px] bg-gradient-to-r from-accent-600/30 to-purple-600/30 opacity-30 blur-xl group-hover:opacity-100 transition duration-1000 pointer-events-none" />
-              
+
               <Link to={`/blog/${featuredPost.slug}`} className="group block relative">
                 <article className="grid grid-cols-1 md:grid-cols-12 overflow-hidden rounded-[28px] border border-border-default bg-bg-surface/40 backdrop-blur-xl shadow-2xl transition-all duration-300 hover:border-border-hover">
                   {/* Decorative Gradient Cover */}
@@ -158,7 +156,7 @@ const BlogList = () => {
                     {/* Glass sheen overlay */}
                     <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-0" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                    
+
                     <div className="absolute inset-0 flex flex-col justify-between p-6">
                       <div className="flex flex-wrap gap-2">
                         {absoluteLatestPost && featuredPost.slug === absoluteLatestPost.slug ? (
@@ -172,7 +170,7 @@ const BlogList = () => {
                           </span>
                         )}
                       </div>
-                      
+
                       <span className="self-center font-heading text-2xl md:text-3xl font-extrabold text-white text-center tracking-wide drop-shadow-md select-none group-hover:scale-105 transition-transform duration-500">
                         {featuredPost.category}
                       </span>
@@ -189,11 +187,11 @@ const BlogList = () => {
                           {featuredPost.category}
                         </span>
                         <span className="inline-flex items-center gap-1">
-                          <AppleCalendar />
+                          <AppleCalendar className="w-3.5 h-3.5" />
                           {featuredPost.publishedAt}
                         </span>
                         <span className="inline-flex items-center gap-1">
-                          <AppleClock />
+                          <AppleClock className="w-3.5 h-3.5" />
                           {featuredPost.readTime}
                         </span>
                       </div>
@@ -227,7 +225,7 @@ const BlogList = () => {
 
                       {/* CTA */}
                       <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 group-hover:text-accent-800 group-hover:translate-x-1.5 transition-all duration-300">
-                        Read Post <AppleArrowRight className="transition-transform duration-300" />
+                        Read Post <AppleArrowRight className="w-3.5 h-3.5 transition-transform duration-300" />
                       </span>
                     </div>
                   </div>
@@ -247,7 +245,7 @@ const BlogList = () => {
                   Showing {filteredPosts.length} article{filteredPosts.length > 1 ? "s" : ""}
                 </span>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {otherPosts.map((post) => (
                   <Link key={post.slug} to={`/blog/${post.slug}`} className="group block h-full">
@@ -258,7 +256,7 @@ const BlogList = () => {
                         style={{ background: post.coverGradient }}
                       >
                         <div className="absolute inset-0 bg-black/10 backdrop-blur-[0.5px] transition-opacity duration-300 group-hover:opacity-0" />
-                        
+
                         <div className="absolute top-4 right-4">
                           {absoluteLatestPost && post.slug === absoluteLatestPost.slug && (
                             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 backdrop-blur-md text-emerald-300 font-mono text-[8px] font-bold uppercase tracking-wider border border-emerald-500/30">
@@ -278,11 +276,11 @@ const BlogList = () => {
                           {/* Meta */}
                           <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-text-muted mb-3">
                             <span className="inline-flex items-center gap-1">
-                              <AppleCalendar />
+                              <AppleCalendar className="w-3.5 h-3.5" />
                               {post.publishedAt}
                             </span>
                             <span className="inline-flex items-center gap-1">
-                              <AppleClock />
+                              <AppleClock className="w-3.5 h-3.5" />
                               {post.readTime}
                             </span>
                           </div>
@@ -326,7 +324,7 @@ const BlogList = () => {
 
                             {/* Read more */}
                             <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent-700 group-hover:text-accent-800 group-hover:translate-x-1 transition-all duration-200">
-                              Read <AppleArrowRight />
+                              Read <AppleArrowRight className="w-3.5 h-3.5" />
                             </span>
                           </div>
                         </div>

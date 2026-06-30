@@ -153,7 +153,7 @@ export default function PromptsPage() {
           {/* Header section */}
           <div className="text-center md:text-left mt-8 mb-12 relative">
             <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100/50 px-3.5 py-1.5 rounded-full backdrop-blur-md">
-              <AppleSparkles className="animate-pulse" /> AI Engine Toolkit
+              <AppleSparkles className="w-3.5 h-3.5 animate-pulse" /> AI Engine Toolkit
             </span>
             <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight sm:text-6xl text-text-primary">
               The AI Prompt Deck
@@ -170,7 +170,7 @@ export default function PromptsPage() {
 
             {/* Search Input */}
             <div className="relative w-full z-10">
-              <AppleSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-lg transition-colors duration-200" />
+
               <input
                 type="text"
                 placeholder="Search prompts by title, description, or concepts..."
@@ -187,8 +187,8 @@ export default function PromptsPage() {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-[14px] text-xs font-mono transition-all duration-300 cursor-pointer border ${selectedCategory === category
-                      ? "bg-accent-600 text-white shadow-lg shadow-accent-600/25 font-semibold border-accent-500"
-                      : "bg-bg-page/30 border-border-default/80 text-text-secondary hover:bg-bg-surface-hover hover:border-border-hover hover:text-text-primary"
+                    ? "bg-accent-600 text-white shadow-lg shadow-accent-600/25 font-semibold border-accent-500"
+                    : "bg-bg-page/30 border-border-default/80 text-text-secondary hover:bg-bg-surface-hover hover:border-border-hover hover:text-text-primary"
                     }`}
                 >
                   {category}
@@ -205,8 +205,8 @@ export default function PromptsPage() {
                     key={platform}
                     onClick={() => setSelectedPlatform(platform)}
                     className={`px-3 py-1 rounded-full text-xs font-body transition-all duration-300 cursor-pointer border ${selectedPlatform === platform
-                        ? "bg-accent-50 border-accent-200 text-accent-700 font-semibold dark:bg-accent-950/20 dark:border-accent-900/30 dark:text-accent-400"
-                        : "bg-transparent border-transparent text-text-muted hover:border-border-default hover:text-text-primary"
+                      ? "bg-accent-50 border-accent-200 text-accent-700 font-semibold dark:bg-accent-950/20 dark:border-accent-900/30 dark:text-accent-400"
+                      : "bg-transparent border-transparent text-text-muted hover:border-border-default hover:text-text-primary"
                       }`}
                   >
                     {platform}
@@ -219,7 +219,7 @@ export default function PromptsPage() {
           {/* Empty state fallback */}
           {filteredPrompts.length === 0 && (
             <div className="text-center py-20 bg-bg-surface/40 border border-border-default/60 rounded-[28px] backdrop-blur-xl">
-              <AppleTerminal className="mx-auto text-4xl text-text-muted mb-4" />
+              <AppleTerminal className="mx-auto w-10 h-10 text-text-muted mb-4" />
               <p className="font-body text-text-secondary text-base">No prompt templates found matching your selections.</p>
               <button
                 onClick={() => {
@@ -277,7 +277,7 @@ export default function PromptsPage() {
                     {hasVariables && (
                       <div className="mb-6 p-4 rounded-2xl bg-bg-page/35 border border-border-default/45 backdrop-blur-md">
                         <div className="flex items-center gap-1.5 mb-3">
-                          <AppleSliders className="text-accent-600 text-xs" />
+                          <AppleSliders className="w-3.5 h-3.5 text-accent-600" />
                           <span className="font-mono text-[10px] uppercase tracking-wider text-text-secondary font-semibold">
                             Playground Variables
                           </span>
@@ -331,9 +331,9 @@ export default function PromptsPage() {
                           onClick={() => toggleTips(prompt.id)}
                           className="flex items-center gap-1.5 text-xs text-text-muted hover:text-text-primary transition-colors duration-200 cursor-pointer font-mono font-semibold"
                         >
-                          <AppleLightbulb className="text-amber-500" />
+                          <AppleLightbulb className="w-3.5 h-3.5 text-amber-500" />
                           <span>Pro Tips for Best Results</span>
-                          {tipsExpanded ? <AppleChevronUp /> : <AppleChevronDown />}
+                          {tipsExpanded ? <AppleChevronUp className="w-3.5 h-3.5" /> : <AppleChevronDown className="w-3.5 h-3.5" />}
                         </button>
                         {tipsExpanded && (
                           <ul className="mt-2.5 space-y-1.5 list-disc pl-4 text-xs text-text-secondary leading-relaxed font-body">
@@ -362,12 +362,12 @@ export default function PromptsPage() {
                     >
                       {isCopied ? (
                         <>
-                          <AppleCheck className="text-lg animate-bounce" />
+                          <AppleCheck className="w-4 h-4 animate-bounce" />
                           <span>Copied to Clipboard!</span>
                         </>
                       ) : (
                         <>
-                          <AppleCopy className="text-sm" />
+                          <AppleCopy className="w-3.5 h-3.5" />
                           <span>Copy Prompt Template</span>
                         </>
                       )}
