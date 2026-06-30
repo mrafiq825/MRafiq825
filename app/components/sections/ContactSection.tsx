@@ -167,6 +167,7 @@ const ContactSection = () => {
                   disabled={state.submitting}
                   variant="metal"
                   size="sm"
+                  dark
                   icon={state.submitting ? null : <FiMessageCircle className="h-4 w-4" />}
                 >
                   {state.submitting ? "Sending..." : "Send Message"}
@@ -174,6 +175,7 @@ const ContactSection = () => {
                 <AnimatedButton
                   as="a"
                   href={`mailto:${site.email}`}
+                  dark
                   className="group py-3 font-medium transition-all duration-300"
                 >
                   Direct Email

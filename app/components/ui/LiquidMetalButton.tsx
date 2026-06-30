@@ -94,6 +94,8 @@ export interface LiquidMetalButtonProps {
   onClick?: React.MouseEventHandler<HTMLElement>;
   /** Button type attribute (only applies when rendering as a button) */
   type?: "button" | "submit" | "reset";
+  /** Force the button to be dark in all modes */
+  dark?: boolean;
 }
 
 export const LiquidMetalButton = forwardRef<
@@ -115,6 +117,7 @@ export const LiquidMetalButton = forwardRef<
       rel,
       onClick,
       type = "button",
+      dark = false,
       ...props
     },
     ref
@@ -150,28 +153,29 @@ export const LiquidMetalButton = forwardRef<
         {/* Inner Button Body */}
         <div
           className={cn(
-            "relative z-10 rounded-full flex items-center justify-center",
-            "bg-white dark:bg-black",
-            "transition-colors duration-200",
-            "group-hover:bg-neutral-50 dark:group-hover:bg-neutral-900",
+            "relative z-10 rounded-full flex items-center justify-center transition-colors duration-200",
+            dark
+              ? "bg-black group-hover:bg-neutral-900"
+              : "bg-white dark:bg-black group-hover:bg-neutral-50 dark:group-hover:bg-neutral-900",
             sizeStyles[size]
           )}
         >
           {icon && (
             <div
               className={cn(
-                "rounded-full flex items-center justify-center flex-shrink-0",
-                "bg-neutral-100 dark:bg-neutral-800",
-                "shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)]",
+                "rounded-full flex items-center justify-center flex-shrink-0 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)]",
+                dark
+                  ? "bg-neutral-800"
+                  : "bg-neutral-100 dark:bg-neutral-800",
                 iconSizes[size]
               )}
             >
-              <span className="text-neutral-700 dark:text-neutral-300">
+              <span className={dark ? "text-neutral-300" : "text-neutral-700 dark:text-neutral-300"}>
                 {icon}
               </span>
             </div>
           )}
-          <span className="font-medium tracking-tight text-neutral-900 dark:text-white">
+          <span className={cn("font-medium tracking-tight", dark ? "text-white" : "text-neutral-900 dark:text-white")}>
             {children}
           </span>
         </div>

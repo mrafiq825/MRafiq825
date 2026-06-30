@@ -18,6 +18,7 @@ type ButtonProps = {
   borderWidth?: number;
   metalConfig?: Omit<LiquidMetalProps, "className" | "style">;
   size?: "sm" | "md" | "lg";
+  dark?: boolean;
 };
 
 const Button = ({
@@ -35,6 +36,7 @@ const Button = ({
   borderWidth,
   metalConfig,
   size,
+  dark,
   ...props
 }: ButtonProps) => {
   if (variant === "metal") {
@@ -52,6 +54,7 @@ const Button = ({
         metalConfig={metalConfig}
         size={size}
         type={type}
+        dark={dark}
         {...props}
       >
         {children}

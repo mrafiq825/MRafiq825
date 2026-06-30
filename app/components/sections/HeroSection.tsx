@@ -43,6 +43,7 @@ const HeroSection = () => {
             <Button
               href="#projects"
               variant="metal"
+              dark
               icon={<FiArrowRight className="h-5 w-5" />}
               size="md"
             >
@@ -52,6 +53,7 @@ const HeroSection = () => {
               as="a"
               href={site.cvUrl}
               target="_blank"
+              dark
               className="group py-3 font-medium transition-all duration-300"
             >
               <FiDownload className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" />
