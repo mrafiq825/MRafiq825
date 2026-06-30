@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router";
 import Navbar from "~/components/layout/Navbar";
 import { blogPosts } from "~/data/blog";
 import NotFoundPage from "~/components/feedback/NotFoundPage";
-import { FiArrowLeft, FiCalendar, FiClock, FiShare2, FiArrowRight } from "react-icons/fi";
+import { AppleArrowLeft, AppleCalendar, AppleClock, AppleShare, AppleArrowRight } from "~/components/ui/AppleIcons";
 import type { Route } from "./+types/blog-detail";
 
 export const meta: Route.MetaFunction = ({ params }) => {
@@ -181,7 +181,7 @@ const BlogDetail = () => {
             to="/blog"
             className="group inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-accent-600 transition-colors duration-200 mb-8"
           >
-            <FiArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
+            <AppleArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Articles
           </Link>
 
@@ -211,11 +211,11 @@ const BlogDetail = () => {
                 <div className="px-6 md:px-8 py-4 border-b border-border-default/40 bg-bg-surface-hover/30 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-4 text-xs font-mono text-text-muted">
                     <span className="inline-flex items-center gap-1">
-                      <FiCalendar />
+                      <AppleCalendar />
                       {post.publishedAt}
                     </span>
                     <span className="inline-flex items-center gap-1">
-                      <FiClock />
+                      <AppleClock />
                       {post.readTime}
                     </span>
                   </div>
@@ -225,7 +225,7 @@ const BlogDetail = () => {
                     onClick={handleShare}
                     className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-text-secondary hover:text-accent-600 bg-bg-surface border border-border-default/80 hover:border-accent-100 rounded-lg py-1.5 px-3 transition-all duration-200 cursor-pointer"
                   >
-                    <FiShare2 />
+                    <AppleShare />
                     {isCopied ? "Link Copied!" : "Share Post"}
                   </button>
                 </div>
@@ -320,7 +320,7 @@ const BlogDetail = () => {
                             {rPost.category}
                           </span>
                           <span className="inline-flex items-center gap-0.5 text-xs font-semibold text-accent-700 group-hover:translate-x-0.5 transition-transform duration-200">
-                            Read <FiArrowRight />
+                            Read <AppleArrowRight />
                           </span>
                         </div>
                       </div>

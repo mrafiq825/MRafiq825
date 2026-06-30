@@ -1,14 +1,14 @@
 import { useState } from "react";
 import {
-  FiLayers,
-  FiExternalLink,
-  FiCode,
-  FiTrendingUp,
-  FiGithub,
-  FiSmartphone,
-  FiMail,
-  FiMessageCircle,
-} from "react-icons/fi";
+  AppleLayers,
+  AppleExternalLink,
+  AppleCode,
+  AppleTrendingUp,
+  AppleGithub,
+  AppleDevice,
+  AppleMail,
+  AppleMessage,
+} from "~/components/ui/AppleIcons";
 import Section from "~/components/layout/Section";
 import Card from "~/components/ui/Card";
 import Modal from "~/components/ui/Modal";
@@ -56,7 +56,7 @@ const ProjectsSection = () => {
       id="projects"
       title={
         <>
-          <FiLayers className={`${ICON_CLASS.section} text-accent-600`} />
+          <AppleLayers className={`${ICON_CLASS.section} text-accent-600`} />
           Featured Projects
         </>
       }
@@ -116,7 +116,7 @@ const ProjectsSection = () => {
                   {/* Tech Stack */}
                   <div className="mb-6">
                     <div className="flex items-center gap-2 mb-3">
-                      <FiCode className="w-4 h-4 text-accent-600" />
+                      <AppleCode className="w-4 h-4 text-accent-600" />
                       <p className="font-mono text-xs font-bold uppercase tracking-wide text-text-muted">
                         Tech Stack
                       </p>
@@ -141,7 +141,7 @@ const ProjectsSection = () => {
                       onClick={() => setSelectedProjectForApk(project)}
                       containerClassName="flex-1 flex"
                     >
-                      <FiSmartphone className="w-4 h-4" />
+                      <AppleDevice className="w-4 h-4" />
                       <span>Get APK</span>
                     </RadialGlowButton>
                   ) : (
@@ -151,7 +151,7 @@ const ProjectsSection = () => {
                       rel="noopener noreferrer"
                       containerClassName="flex-1 flex"
                     >
-                      <FiExternalLink className="w-4 h-4" />
+                      <AppleExternalLink className="w-4 h-4" />
                       <span>Live Demo</span>
                     </RadialGlowButton>
                   )}
@@ -162,7 +162,7 @@ const ProjectsSection = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-transparent border border-border-default text-text-primary rounded-[12px] px-4 py-2.5 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
                     >
-                      <FiGithub className="w-4 h-4 text-text-secondary" />
+                      <AppleGithub className="w-4 h-4 text-text-secondary" />
                       <span>View Code</span>
                     </a>
                   ) : null}
@@ -177,7 +177,7 @@ const ProjectsSection = () => {
       <div className="mt-12 rounded-[16px] glass-panel p-6">
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="flex items-center justify-center gap-2">
-            <FiTrendingUp className="w-5 h-5 text-accent-600" />
+            <AppleTrendingUp className="w-5 h-5 text-accent-600" />
             <p className="text-sm font-medium text-text-secondary">
               Currently working on{" "}
               <span className="text-accent-700 font-bold">new projects</span>{" "}
@@ -191,7 +191,7 @@ const ProjectsSection = () => {
             text="GitHub Profile"
             activeText="Opening GitHub"
             hue={250}
-            icon={<FiGithub />}
+            icon={<AppleGithub />}
           />
         </div>
       </div>
@@ -205,7 +205,7 @@ const ProjectsSection = () => {
         {selectedProjectForApk && (
           <div className="space-y-5">
             <div className="flex items-center gap-3 p-4 rounded-[16px] bg-accent-50/50 border border-accent-100/50">
-              <FiSmartphone className="w-8 h-8 text-accent-600 shrink-0" />
+              <AppleDevice className="w-8 h-8 text-accent-600 shrink-0" />
               <div>
                 <h4 className="font-heading font-bold text-text-primary text-[15px]">
                   {selectedProjectForApk.title}
@@ -227,7 +227,7 @@ const ProjectsSection = () => {
                 )}`}
                 containerClassName="flex-1 flex"
               >
-                <FiMail className="w-4 h-4" />
+                <AppleMail className="w-4 h-4" />
                 <span>Email Request</span>
               </RadialGlowButton>
               <a
@@ -243,7 +243,7 @@ const ProjectsSection = () => {
                 }}
                 className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-transparent border border-border-default text-text-primary rounded-[12px] px-5 py-3 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
               >
-                <FiMessageCircle className="w-4 h-4 text-text-secondary" />
+                <AppleMessage className="w-4 h-4 text-text-secondary" />
                 <span>Contact Form</span>
               </a>
             </div>

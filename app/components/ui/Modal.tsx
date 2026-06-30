@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from "react";
-import { FiX } from "react-icons/fi";
+import { AppleX } from "~/components/ui/AppleIcons";
 import { ICON_CLASS } from "~/lib/constants";
 
 type ModalProps = {
@@ -59,7 +59,7 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
             className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-button-secondary text-text-secondary hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent-600"
             aria-label="Close modal"
           >
-            <FiX className={ICON_CLASS.action} />
+            <AppleX className={ICON_CLASS.action} />
           </button>
         </div>
 

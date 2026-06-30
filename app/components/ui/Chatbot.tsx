@@ -1,4 +1,4 @@
-import { FiCpu, FiSend, FiStar, FiUser } from "react-icons/fi";
+import { AppleCpu, AppleSend, AppleStar, AppleUser } from "~/components/ui/AppleIcons";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import { CHATBOT_QUICK_PROMPTS } from "~/data/chatbotContext";
@@ -94,7 +94,7 @@ const Chatbot = () => {
         <div className="flex items-center justify-between border-b border-border-default bg-white/5 backdrop-blur-sm px-4 py-3">
           <div className="flex items-center gap-3">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-accent-100 bg-accent-50 text-accent-700">
-              <FiCpu className={ICON_CLASS.nav} />
+              <AppleCpu className={ICON_CLASS.nav} />
             </span>
             <div>
               <p className="text-sm font-bold text-text-primary">
@@ -126,7 +126,7 @@ const Chatbot = () => {
                 >
                   {isAssistant && (
                     <span className="mb-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-accent-100 bg-accent-50 text-accent-700">
-                      <FiStar className={ICON_CLASS.action} />
+                      <AppleStar className={ICON_CLASS.action} />
                     </span>
                   )}
 
@@ -145,7 +145,7 @@ const Chatbot = () => {
 
                   {!isAssistant && (
                     <span className="mb-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border-default bg-bg-surface-hover text-text-secondary">
-                      <FiUser className={ICON_CLASS.action} />
+                      <AppleUser className={ICON_CLASS.action} />
                     </span>
                   )}
                 </div>
@@ -155,7 +155,7 @@ const Chatbot = () => {
             {isLoading && (
               <div className="flex items-end gap-2">
                 <span className="mb-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-accent-100 bg-accent-50 text-accent-700">
-                  <FiStar className={ICON_CLASS.action} />
+                  <AppleStar className={ICON_CLASS.action} />
                 </span>
                 <div className="rounded-2xl rounded-bl-md border border-border-default bg-bg-surface px-4 py-3 text-sm text-text-secondary">
                   <div className="flex items-center gap-1.5">
@@ -197,7 +197,7 @@ const Chatbot = () => {
                 className="w-full rounded-full glass-input py-3 pl-4 pr-12 text-sm text-text-primary outline-none placeholder:text-text-muted disabled:opacity-50"
               />
               <span className="pointer-events-none absolute inset-y-0 right-3 inline-flex items-center text-text-muted">
-                <FiCpu className={ICON_CLASS.action} />
+                <AppleCpu className={ICON_CLASS.action} />
               </span>
             </div>
             <button
@@ -206,7 +206,7 @@ const Chatbot = () => {
               className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent-600 text-white transition hover:bg-accent-700 active:bg-accent-800 disabled:cursor-not-allowed disabled:bg-accent-100 disabled:text-text-muted"
               aria-label="Send message"
             >
-              <FiSend className={ICON_CLASS.action} />
+              <AppleSend className={ICON_CLASS.action} />
             </button>
           </form>
         </div>

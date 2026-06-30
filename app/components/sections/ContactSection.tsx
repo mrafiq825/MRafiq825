@@ -1,17 +1,15 @@
 import {
-  FiMail,
-  FiMessageCircle,
-  FiCheckCircle,
-  FiAlertCircle,
-} from "react-icons/fi";
-import {
-  FaFacebookF,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaWhatsapp,
-  FaXTwitter,
-} from "react-icons/fa6";
+  AppleMail,
+  AppleMessage,
+  AppleCheckCircle,
+  AppleWarning,
+  AppleFacebook,
+  AppleGithub,
+  AppleInstagram,
+  AppleLinkedin,
+  AppleWhatsapp,
+  AppleXSocial,
+} from "~/components/ui/AppleIcons";
 import { useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Section from "~/components/layout/Section";
@@ -24,12 +22,13 @@ import { socials } from "~/data/socials";
 import { ICON_CLASS } from "~/lib/constants";
 
 const SOCIAL_ICONS = {
-  Facebook: FaFacebookF,
-  Github: FaGithub,
-  X: FaXTwitter,
-  Linkedin: FaLinkedinIn,
-  Instagram: FaInstagram,
-  Whatsapp: FaWhatsapp,
+  Facebook: AppleFacebook,
+  Github: AppleGithub,
+  X: AppleXSocial,
+  Linkedin: AppleLinkedin,
+  Instagram: AppleInstagram,
+  Whatsapp: AppleWhatsapp,
+  WhatsApp: AppleWhatsapp,
 };
 
 const ContactSection = () => {
@@ -47,7 +46,7 @@ const ContactSection = () => {
       id="contact"
       title={
         <>
-          <FiMail className={`${ICON_CLASS.section} text-accent-600`} />
+          <AppleMail className={`${ICON_CLASS.section} text-accent-600`} />
           Contact and Chat
         </>
       }
@@ -59,7 +58,7 @@ const ContactSection = () => {
           <div className="relative">
             <div className="mb-5 flex items-center gap-3">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-accent-100 bg-accent-50 text-accent-700">
-                <FiMessageCircle className={ICON_CLASS.nav} />
+                <AppleMessage className={ICON_CLASS.nav} />
               </span>
               <div>
                 <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
@@ -78,7 +77,7 @@ const ContactSection = () => {
             {state.succeeded && (
               <div className="mt-6 rounded-[12px] border border-emerald-800/40 bg-emerald-950/30 p-4 text-center">
                 <div className="mb-2 flex items-center justify-center">
-                  <FiCheckCircle className="h-6 w-6 text-emerald-400" />
+                  <AppleCheckCircle className="h-6 w-6 text-emerald-400" />
                 </div>
                 <h3 className="mb-1 text-base font-bold text-emerald-400">
                   Message sent
@@ -155,7 +154,7 @@ const ContactSection = () => {
               {Array.isArray(state.errors) && state.errors.length > 0 && (
                 <div className="rounded-[12px] border border-rose-800/40 bg-rose-950/30 p-4">
                   <div className="flex items-center gap-2 text-sm text-rose-400">
-                    <FiAlertCircle className="h-4 w-4 text-rose-400" />
+                    <AppleWarning className="h-4 w-4 text-rose-400" />
                     <span>Please check the errors above and try again.</span>
                   </div>
                 </div>
@@ -168,7 +167,7 @@ const ContactSection = () => {
                   variant="metal"
                   size="sm"
                   dark
-                  icon={state.submitting ? null : <FiMessageCircle className="h-4 w-4" />}
+                  icon={state.submitting ? null : <AppleMessage className="h-4 w-4" />}
                 >
                   {state.submitting ? "Sending..." : "Send Message"}
                 </Button>

@@ -3,16 +3,16 @@ import Navbar from "~/components/layout/Navbar";
 import RadialGlowButton from "~/components/ui/RadialGlowButton";
 import { prompts, type Prompt, type PromptCategory } from "~/data/prompts";
 import {
-  LuSearch,
-  LuCopy,
-  LuCheck,
-  LuSparkles,
-  LuTerminal,
-  LuSlidersHorizontal,
-  LuLightbulb,
-  LuChevronDown,
-  LuChevronUp
-} from "react-icons/lu";
+  AppleSearch,
+  AppleCopy,
+  AppleCheck,
+  AppleSparkles,
+  AppleTerminal,
+  AppleSliders,
+  AppleLightbulb,
+  AppleChevronDown,
+  AppleChevronUp
+} from "~/components/ui/AppleIcons";
 import type { Route } from "./+types/prompts";
 
 export const meta: Route.MetaFunction = () => [
@@ -153,7 +153,7 @@ export default function PromptsPage() {
           {/* Header section */}
           <div className="text-center md:text-left mt-8 mb-12 relative">
             <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100/50 px-3.5 py-1.5 rounded-full backdrop-blur-md">
-              <LuSparkles className="animate-pulse" /> AI Engine Toolkit
+              <AppleSparkles className="animate-pulse" /> AI Engine Toolkit
             </span>
             <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight sm:text-6xl text-text-primary">
               The AI Prompt Deck
@@ -170,7 +170,7 @@ export default function PromptsPage() {
 
             {/* Search Input */}
             <div className="relative w-full z-10">
-              <LuSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-lg transition-colors duration-200" />
+              <AppleSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-lg transition-colors duration-200" />
               <input
                 type="text"
                 placeholder="Search prompts by title, description, or concepts..."
@@ -219,7 +219,7 @@ export default function PromptsPage() {
           {/* Empty state fallback */}
           {filteredPrompts.length === 0 && (
             <div className="text-center py-20 bg-bg-surface/40 border border-border-default/60 rounded-[28px] backdrop-blur-xl">
-              <LuTerminal className="mx-auto text-4xl text-text-muted mb-4" />
+              <AppleTerminal className="mx-auto text-4xl text-text-muted mb-4" />
               <p className="font-body text-text-secondary text-base">No prompt templates found matching your selections.</p>
               <button
                 onClick={() => {
@@ -277,7 +277,7 @@ export default function PromptsPage() {
                     {hasVariables && (
                       <div className="mb-6 p-4 rounded-2xl bg-bg-page/35 border border-border-default/45 backdrop-blur-md">
                         <div className="flex items-center gap-1.5 mb-3">
-                          <LuSlidersHorizontal className="text-accent-600 text-xs" />
+                          <AppleSliders className="text-accent-600 text-xs" />
                           <span className="font-mono text-[10px] uppercase tracking-wider text-text-secondary font-semibold">
                             Playground Variables
                           </span>
@@ -331,9 +331,9 @@ export default function PromptsPage() {
                           onClick={() => toggleTips(prompt.id)}
                           className="flex items-center gap-1.5 text-xs text-text-muted hover:text-text-primary transition-colors duration-200 cursor-pointer font-mono font-semibold"
                         >
-                          <LuLightbulb className="text-amber-500" />
+                          <AppleLightbulb className="text-amber-500" />
                           <span>Pro Tips for Best Results</span>
-                          {tipsExpanded ? <LuChevronUp /> : <LuChevronDown />}
+                          {tipsExpanded ? <AppleChevronUp /> : <AppleChevronDown />}
                         </button>
                         {tipsExpanded && (
                           <ul className="mt-2.5 space-y-1.5 list-disc pl-4 text-xs text-text-secondary leading-relaxed font-body">
@@ -362,12 +362,12 @@ export default function PromptsPage() {
                     >
                       {isCopied ? (
                         <>
-                          <LuCheck className="text-lg animate-bounce" />
+                          <AppleCheck className="text-lg animate-bounce" />
                           <span>Copied to Clipboard!</span>
                         </>
                       ) : (
                         <>
-                          <LuCopy className="text-sm" />
+                          <AppleCopy className="text-sm" />
                           <span>Copy Prompt Template</span>
                         </>
                       )}

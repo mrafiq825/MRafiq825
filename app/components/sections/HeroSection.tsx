@@ -1,4 +1,4 @@
-import { FiArrowRight, FiDownload } from "react-icons/fi";
+import { AppleArrowRight, AppleDownload } from "~/components/ui/AppleIcons";
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Button from "~/components/ui/Button";
@@ -44,7 +44,7 @@ const HeroSection = () => {
               href="#projects"
               variant="metal"
               dark
-              icon={<FiArrowRight className="h-5 w-5" />}
+              icon={<AppleArrowRight className="h-5 w-5" />}
               size="md"
             >
               View Projects
@@ -56,7 +56,7 @@ const HeroSection = () => {
               dark
               className="group py-3 font-medium transition-all duration-300"
             >
-              <FiDownload className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" />
+              <AppleDownload className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" />
               <span>Resume</span>
             </AnimatedButton>
           </div>

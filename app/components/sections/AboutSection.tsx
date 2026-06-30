@@ -1,15 +1,15 @@
 import {
-  FiArrowUpRight,
-  FiCpu,
-  FiCode,
-  FiTrendingUp,
-  FiUser,
-  FiZap,
-  FiCalendar,
-  FiMapPin,
-  FiAward,
-  FiCheckCircle,
-} from "react-icons/fi";
+  AppleArrowUpRight,
+  AppleCpu,
+  AppleCode,
+  AppleTrendingUp,
+  AppleUser,
+  AppleZap,
+  AppleCalendar,
+  AppleMapPin,
+  AppleAward,
+  AppleCheckCircle
+} from "~/components/ui/AppleIcons";
 import Section from "~/components/layout/Section";
 import Badge from "~/components/ui/Badge";
 import Card from "~/components/ui/Card";
@@ -22,25 +22,25 @@ const STRENGTHS = [
     title: "FULL-STACK",
     description:
       "Architecting and implementing scalable client-server applications and cross-platform mobile apps.",
-    icon: FiCode,
+    icon: AppleCode,
   },
   {
     title: "SDET",
     description:
       "Designing robust end-to-end test automation frameworks to guarantee high-fidelity releases.",
-    icon: FiTrendingUp,
+    icon: AppleTrendingUp,
   },
   {
     title: "DEVOPS",
     description:
       "Configuring optimized CI/CD pipelines, containerized deployments, and cloud infrastructure.",
-    icon: FiZap,
+    icon: AppleZap,
   },
   {
     title: "AI/ML",
     description:
       "Integrating state-of-the-art LLMs, AI agents, and custom machine learning inference endpoints.",
-    icon: FiCpu,
+    icon: AppleCpu,
   },
 ];
 
@@ -50,7 +50,7 @@ const AboutSection = () => {
       id="about"
       title={
         <>
-          <FiUser className={`${ICON_CLASS.section} text-accent-600`} />
+          <AppleUser className={`${ICON_CLASS.section} text-accent-600`} />
           About Muhammad Rafiq
         </>
       }
@@ -82,7 +82,7 @@ const AboutSection = () => {
                 <div className="space-y-3">
                   {/* Degree badge + mode indicator */}
                   <div className="flex flex-wrap items-center gap-2">
-                    <FiAward className="h-5 w-5 text-accent-600" />
+                    <AppleAward className="h-5 w-5 text-accent-600" />
                     <Badge>{item.degree}</Badge>
                   </div>
                   {/* Institution */}
@@ -96,11 +96,11 @@ const AboutSection = () => {
                   {/* Location & Years */}
                   <div className="flex flex-wrap items-center gap-4 text-xs text-text-secondary">
                     <span className="flex items-center gap-1.5">
-                      <FiMapPin className="h-3.5 w-3.5 text-accent-600" />
+                      <AppleMapPin className="h-3.5 w-3.5 text-accent-600" />
                       {item.location}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <FiCalendar className="h-3.5 w-3.5 text-accent-600" />
+                      <AppleCalendar className="h-3.5 w-3.5 text-accent-600" />
                       {item.startYear} – {item.endYear}
                     </span>
                   </div>
@@ -120,7 +120,7 @@ const AboutSection = () => {
                 {/* Highlights */}
                 <div>
                   <div className="mb-4 flex items-center gap-2">
-                    <FiCheckCircle className="h-5 w-5 text-accent-600" />
+                    <AppleCheckCircle className="h-5 w-5 text-accent-600" />
                     <h4 className="text-sm font-bold uppercase tracking-wider text-text-primary">
                       Highlights
                     </h4>
@@ -139,7 +139,7 @@ const AboutSection = () => {
                 {/* Courses */}
                 <div>
                   <div className="mb-4 flex items-center gap-2">
-                    <FiCode className="h-5 w-5 text-accent-600" />
+                    <AppleCode className="h-5 w-5 text-accent-600" />
                     <h4 className="text-sm font-bold uppercase tracking-wider text-text-primary">
                       Key Courses
                     </h4>
@@ -191,17 +191,17 @@ const AboutSection = () => {
                 {
                   label: "Build",
                   value: "Scalable systems",
-                  icon: FiCode,
+                  icon: AppleCode,
                 },
                 {
                   label: "Verify",
                   value: "Reliable delivery",
-                  icon: FiTrendingUp,
+                  icon: AppleTrendingUp,
                 },
                 {
                   label: "Automate",
                   value: "Smarter workflows",
-                  icon: FiZap,
+                  icon: AppleZap,
                 },
               ].map((item) => {
                 const ItemIcon = item.icon;
@@ -282,7 +282,7 @@ const AboutSection = () => {
                         {stat.value}
                       </p>
                     </div>
-                    <FiArrowUpRight
+                    <AppleArrowUpRight
                       className={`${ICON_CLASS.action} mt-1 text-accent-600`}
                     />
                   </div>

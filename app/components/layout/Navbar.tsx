@@ -1,8 +1,15 @@
-import { LuBriefcase, LuGraduationCap, LuLayers, LuMessageCircle, LuUser, LuBookOpen, LuTerminal } from "react-icons/lu";
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router";
 import { ICON_CLASS } from "~/lib/constants";
 import { useGlassCursor } from "~/hooks/useGlassCursor";
+import {
+  AppleUser,
+  AppleBriefcase,
+  AppleLayers,
+  AppleBook,
+  AppleTerminal,
+  AppleMessage
+} from "~/components/ui/AppleIcons";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { cn } from "~/lib/utils";
@@ -436,11 +443,11 @@ const MorphingIcon = ({ type, isActive, isHovered }: MorphingIconProps) => {
 };
 
 const NAV_ITEMS = [
-  { label: "About", href: "#about", icon: LuUser, morphType: "home" },
-  { label: "Experience", href: "#experience", icon: LuBriefcase },
-  { label: "Projects", href: "#projects", icon: LuLayers, morphType: "github" },
-  { label: "Blog", href: "/blog", icon: LuBookOpen, morphType: "blog" },
-  { label: "Prompts", href: "/prompts", icon: LuTerminal },
+  { label: "About", href: "#about", icon: AppleUser, morphType: "home" },
+  { label: "Experience", href: "#experience", icon: AppleBriefcase },
+  { label: "Projects", href: "#projects", icon: AppleLayers, morphType: "github" },
+  { label: "Blog", href: "/blog", icon: AppleBook, morphType: "blog" },
+  { label: "Prompts", href: "/prompts", icon: AppleTerminal },
 ];
 
 const Navbar = () => {
@@ -658,7 +665,7 @@ const Navbar = () => {
           href={isHomePage ? "#contact" : "/#contact"}
           className="relative hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 md:inline-flex liquid-glass-accent-button text-white"
         >
-          <LuMessageCircle className={ICON_CLASS.action} />
+          <AppleMessage className={ICON_CLASS.action} />
           Let's Talk
         </a>
       </nav>

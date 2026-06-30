@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router";
 import Navbar from "~/components/layout/Navbar";
 import { blogPosts, type BlogCategory } from "~/data/blog";
-import { FiSearch, FiCalendar, FiClock, FiArrowRight, FiUser } from "react-icons/fi";
+import { AppleSearch, AppleCalendar, AppleClock, AppleArrowRight, AppleUser } from "~/components/ui/AppleIcons";
 import type { Route } from "./+types/blog";
 
 export const meta: Route.MetaFunction = () => [
@@ -98,7 +98,7 @@ const BlogList = () => {
 
             {/* Search Input */}
             <div className="relative w-full">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-lg transition-colors duration-200 group-focus-within:text-accent-600" />
+              <AppleSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-lg transition-colors duration-200 group-focus-within:text-accent-600" />
               <input
                 type="text"
                 placeholder="Search insights by title, tags, or concept..."
@@ -189,11 +189,11 @@ const BlogList = () => {
                           {featuredPost.category}
                         </span>
                         <span className="inline-flex items-center gap-1">
-                          <FiCalendar />
+                          <AppleCalendar />
                           {featuredPost.publishedAt}
                         </span>
                         <span className="inline-flex items-center gap-1">
-                          <FiClock />
+                          <AppleClock />
                           {featuredPost.readTime}
                         </span>
                       </div>
@@ -227,7 +227,7 @@ const BlogList = () => {
 
                       {/* CTA */}
                       <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 group-hover:text-accent-800 group-hover:translate-x-1.5 transition-all duration-300">
-                        Read Post <FiArrowRight className="transition-transform duration-300" />
+                        Read Post <AppleArrowRight className="transition-transform duration-300" />
                       </span>
                     </div>
                   </div>
@@ -278,11 +278,11 @@ const BlogList = () => {
                           {/* Meta */}
                           <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-text-muted mb-3">
                             <span className="inline-flex items-center gap-1">
-                              <FiCalendar />
+                              <AppleCalendar />
                               {post.publishedAt}
                             </span>
                             <span className="inline-flex items-center gap-1">
-                              <FiClock />
+                              <AppleClock />
                               {post.readTime}
                             </span>
                           </div>
@@ -326,7 +326,7 @@ const BlogList = () => {
 
                             {/* Read more */}
                             <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent-700 group-hover:text-accent-800 group-hover:translate-x-1 transition-all duration-200">
-                              Read <FiArrowRight />
+                              Read <AppleArrowRight />
                             </span>
                           </div>
                         </div>
