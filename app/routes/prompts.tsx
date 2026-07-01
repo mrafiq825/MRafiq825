@@ -3,7 +3,6 @@ import Navbar from "~/components/layout/Navbar";
 import RadialGlowButton from "~/components/ui/RadialGlowButton";
 import { prompts, type Prompt, type PromptCategory } from "~/data/prompts";
 import {
-  AppleSearch,
   AppleCopy,
   AppleCheck,
   AppleSparkles,
@@ -32,7 +31,8 @@ const CATEGORIES: ("All" | PromptCategory)[] = [
   "Image Generation",
   "Video & Motion",
   "Resume & Career",
-  "Product & Strategy"
+  "Product & Strategy",
+  "IPhone Wallpapers"
 ];
 
 // Helper to check and apply custom colors to platform tags

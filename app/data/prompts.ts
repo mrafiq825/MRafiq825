@@ -4,7 +4,8 @@ export type PromptCategory =
   | "Fixing Bugs & Code"
   | "Resume & Career"
   | "Writing & Content"
-  | "Product & Strategy";
+  | "Product & Strategy"
+  | "IPhone Wallpapers";
 
 export interface PromptVariable {
   name: string;
@@ -129,6 +130,95 @@ Current Bullet: [Current Bullet Point]`,
     ]
   },
   {
+    id: "resume-recruiter-test",
+    title: "Resume Recruiter Compatibility Test (The Recruiter Test)",
+    category: "Resume & Career",
+    platforms: ["ChatGPT", "Gemini", "Claude"],
+    summary: "Assesses a resume against a target job description, generating a compatibility score, missing keywords, and hiring manager red flags.",
+    promptText: `Take on the role of a lead recruiter for [Company Name]. Review my attached resume against the provided job description. Generate a compatibility score out of 100! list the 5 most critical missing keywords! and point out 3 major red flags a hiring manager would notice within the first 10 seconds.
+
+Target Company: [Company Name]
+Job Description: [Job Description]
+Resume Details: [Resume Details]`,
+    variables: [
+      {
+        name: "Company Name",
+        description: "The target company you are applying to",
+        placeholder: "Google"
+      },
+      {
+        name: "Job Description",
+        description: "The job posting text or description",
+        placeholder: "Paste the job description here...",
+        type: "textarea"
+      },
+      {
+        name: "Resume Details",
+        description: "Your current resume text",
+        placeholder: "Paste your resume content here...",
+        type: "textarea"
+      }
+    ],
+    tips: [
+      "Providing the specific company name helps the AI tailor keywords matching the company's engineering culture.",
+      "Keep formatting plain text when pasting your resume and job description to prevent token bloat."
+    ]
+  },
+  {
+    id: "resume-google-xyz",
+    title: "The Google XYZ Resume Bullet Rewrite",
+    category: "Resume & Career",
+    platforms: ["ChatGPT", "Gemini", "Claude"],
+    summary: "Revises your work experience section using the Google XYZ framework (Accomplished X, measured by Y, by doing Z) to integrate target keywords.",
+    promptText: `Now revise my work experience section to seamlessly integrate these missing keywords: [Missing Keywords] and eliminate these identified red flags: [Red Flags]. Apply the Google XYZ framework for this rewrite: achieved X! measured by Y! by doing Z.
+
+Work Experience Section: [Work Experience]`,
+    variables: [
+      {
+        name: "Missing Keywords",
+        description: "Keywords to integrate into the bullets",
+        placeholder: "Kubernetes, System Architecture, Go"
+      },
+      {
+        name: "Red Flags",
+        description: "Identified red flags to eliminate",
+        placeholder: "Vague action verbs, short tenures"
+      },
+      {
+        name: "Work Experience",
+        description: "Your current work experience bullets",
+        placeholder: "Paste your work experience bullets here...",
+        type: "textarea"
+      }
+    ],
+    tips: [
+      "The Google XYZ framework is the gold standard for tech resumes: 'Accomplished [X] as measured by [Y], by doing [Z]'.",
+      "Make sure to provide rough metrics so the AI can craft realistic Y measures."
+    ]
+  },
+  {
+    id: "resume-ats-filter",
+    title: "The ATS & Scroll-Stopping Review",
+    category: "Resume & Career",
+    platforms: ["ChatGPT", "Gemini", "Claude"],
+    summary: "Evaluates a resume from the perspective of an ATS filter and an overworked recruiter to identify ignored sections and make them scroll-stopping.",
+    promptText: `Assume the persona of a strict ATS software and a tired hiring manager reviewing 200 applications at once. Evaluate my updated resume to identify any parts that would be ignored! and rewrite those specific sections to guarantee they grab attention and stop the scroll.
+
+Resume Content: [Resume Content]`,
+    variables: [
+      {
+        name: "Resume Content",
+        description: "Your resume content",
+        placeholder: "Paste your resume content here...",
+        type: "textarea"
+      }
+    ],
+    tips: [
+      "Hiring managers look at resumes for an average of 6-7 seconds. This prompt helps ensure your top section has immediate impact.",
+      "Check that the rewritten sections use active, high-impact verbs rather than passive duties."
+    ]
+  },
+  {
     id: "seo-tech-blog",
     title: "SEO-Optimized Technical Blog Post Architect",
     category: "Writing & Content",
@@ -189,6 +279,314 @@ Feature Description: [Feature Description]`,
     tips: [
       "Mention your project's technology stack (e.g., 'PostgreSQL and WebSockets') to get custom architecture advice.",
       "Specify if there are complex role-based access rules (e.g., 'only team admins can view threads') to detail security edge cases."
+    ]
+  },
+  {
+    id: "iphone-wallpaper-girl",
+    title: "IPhone Wallpaper - Cinematic Underwater (Girls)",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "Generates an ultra-realistic, cinematic portrait of a woman floating underwater with ethereal lighting and caustic reflections, optimized for 9:16 mobile screens.",
+    promptText: `Prompt:
+Ultra-realistic cinematic underwater portrait of a beautiful young woman floating underwater, vertical 9:16 composition, close-up centered frame, eyes closed, calm dreamy expression, soft feminine facial features, wet voluminous [Hair Color] hair floating naturally in water, [Clothing] slightly open at collar, delicate collarbones visible, realistic glowing skin texture, glossy natural lips, subtle diamond stud earrings, surrounded by tiny floating air bubbles, [Water Tone] underwater environment, dramatic underwater caustic light reflections projected across face, neck and shirt, glowing ripple patterns, ethereal feminine energy, luxury editorial photography aesthetic, hyper detailed photorealistic, cinematic color grading, shallow depth of field, ultra sharp facial details, soft volumetric underwater haze, moody highlights and shadows, premium fashion magazine look, symmetrical framing, peaceful emotional vibe, realistic underwater physics, 85mm lens, f/1.8, HDR, Unreal Engine quality, RAW photo realism, soft aqua tones with warm skin highlights, masterpiece quality, no text, no watermark
+
+Negative Prompt:
+cartoon, anime, masculine face, bad anatomy, distorted eyes, extra limbs, unrealistic body proportions, take bubbles, CGI appearance, blurry skin, overexposed highlights, messy composition, grainy image, low quality, duplicate features, heavy makeup, exaggerated smile, open eyes, low detail, swimming pool edges, fish, cluttered background`,
+    variables: [
+      {
+        name: "Hair Color",
+        description: "Color and style of the subject's hair",
+        placeholder: "dark"
+      },
+      {
+        name: "Clothing",
+        description: "Outfit worn by the subject",
+        placeholder: "translucent white wet shirt"
+      },
+      {
+        name: "Water Tone",
+        description: "Color tone of the underwater environment",
+        placeholder: "teal-blue"
+      }
+    ],
+    tips: [
+      "Designed specifically for vertical 9:16 layouts, making it perfect for iPhone and mobile wallpapers.",
+      "Use high-quality rendering options or parameters (like '--v 6.0' or '--style raw' in Midjourney) to capture the delicate air bubbles and caustic lights."
+    ]
+  },
+  {
+    id: "iphone-wallpaper-guy",
+    title: "IPhone Wallpaper - Cinematic Underwater (Guys)",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "Generates an ultra-realistic, cinematic portrait of a young man floating underwater with high-contrast caustic lighting, optimized for 9:16 mobile screens.",
+    promptText: `Prompt:
+Ultra-realistic cinematic underwater portrait of a young man floating underwater, vertical 9:16 composition, face closeup centered in frame, open eyes, calm dreamy expression, thick messy wet [Hair Color] hair floating naturally in water, [Clothing] partially open at chest, realistic skin texture, soft jawline, subtle gloss lips, surrounded by tiny floating air bubbles, [Water Tone] underwater environment, dramatic underwater caustic light reflections projected across face, neck and shirt, glowing ripple light patterns, ethereal mood, luxury editorial photography aesthetic, hyper detailed, photorealistic, cinematic color grading, shallow depth of field, ultra sharp facial details, soft premium fashion magazine look, symight rail ul emotional vibe, realistic underwater physics, 85mm lens, f/1.8, HDR, Unreal Engine quality, RAW photo realism, soft aqua tones with warm skin highlights, high contrast, masterpiece quality, no text, no watermark
+
+Negative Prompt:
+cartoon, anime, low quality, blurry face, extra limbs, distorted eyes, deformed hands, bad anatomy, oversaturated skin, fake bubbles, CGI look, unrealistic lighting, duplicate features, grainy, noisy image, low detail, overexposed highlights, underwater mask, swimming pool edges, fish, smile, open eyes, beard, old face, female features, low resolution`,
+    variables: [
+      {
+        name: "Hair Color",
+        description: "Color and style of the subject's hair",
+        placeholder: "black"
+      },
+      {
+        name: "Clothing",
+        description: "Outfit worn by the subject",
+        placeholder: "translucent white wet shirt"
+      },
+      {
+        name: "Water Tone",
+        description: "Color tone of the underwater environment",
+        placeholder: "teal-blue"
+      }
+    ],
+    tips: [
+      "Designed specifically for vertical 9:16 layouts, making it perfect for iPhone and mobile wallpapers.",
+      "The phrase 'symight rail ul' is a stylistic seed term preserved for specific composition styles, but can be replaced or removed if desired."
+    ]
+  },
+  {
+    id: "gta-classic",
+    title: "GTA VI Style - Classic",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "Transforms a photo into a premium GTA VI styled iPhone wallpaper set in Miami's neon environment.",
+    promptText: `Transform this photo into a premium GTA VI inspired iPhone wallpaper. Keep the person’s face, hairstyle, skin tone, and identity perfectly recognizable. Dress them in a [Outfit] with a confident cinematic pose. Place them in a vibrant neon Vice City inspired environment with glowing pink, orange, purple, and cyan sunset lighting, palm trees, luxury cars, city skyline, reflections on wet streets, and a premium cinematic atmosphere. Add dramatic rim lighting, volumetric lighting, and realistic depth. Make it look like official AAA game promotional artwork, not a cartoon. Ultra realistic, highly detailed, vibrant colors, sharp focus, premium digital painting quality. Compose it specifically for an iPhone lock screen with extra headroom for the clock and Dynamic Island, ensuring the subject remains fully visible. Vertical 9:19.5 aspect ratio, 1290×2796 resolution, wallpaper quality, no text, no logos, no watermark, no UI elements.`,
+    variables: [
+      {
+        name: "Outfit",
+        description: "Style of clothing worn by the subject",
+        placeholder: "stylish modern Miami-inspired outfit"
+      }
+    ],
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
+    ]
+  },
+  {
+    id: "gta-helicopter",
+    title: "GTA VI Style - Helicopter Scene",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "Cinematic GTA VI art of a protagonist sitting on the edge of a flying luxury helicopter door overlooking Vice City.",
+    promptText: `Use ONLY the uploaded photo as the reference.
+Create an ORIGINAL GTA VI inspired cinematic iPhone wallpaper.
+Preserve my exact face, facial structure, hairstyle, skin tone, body proportions, expression, and identity with extremely high accuracy. My face must remain instantly recognizable. Do NOT replace me with any fictional GTA character. Do NOT change my gender, age, hairstyle, ethnicity, facial features, or body type.
+Transform me into a fearless Vice City protagonist sitting inside a [Helicopter Style] with the side door completely open while flying thousands of feet above the glowing Miami skyline during sunset.
+I am sitting naturally on the edge of the helicopter’s open doorway with both legs hanging outside the helicopter. My left hand is firmly gripping the inside door frame while my right hand is confidently holding a realistic modern semi-automatic handgun resting casually on my thigh, with the barrel pointed safely downward. My expression is calm, fearless, and confident, looking toward the city below.
+I am wearing [Streetwear Description]. My clothes and hair are naturally blowing in the powerful wind created by the spinning helicopter blades.
+The helicopter interior features black leather seats, tactical lighting, illuminated cockpit instruments, and premium cabin details. The open door reveals an incredible aerial view of Vice City below.
+Far beneath the helicopter is a breathtaking Miami-inspired city filled with neon-lit skyscrapers, luxury hotels, Ocean Drive, palm-lined beaches, yachts, marinas, bridges, sports cars, glowing highways, and colorful city lights stretching into the horizon.
+A second helicopter flies in the distance while police helicopters patrol far below. The ocean reflects the brilliant sunset colors, and the entire city glows with vibrant pink, orange, purple, cyan, and deep blue lighting inspired by GTA VI.
+Add dramatic rim lighting, realistic volumetric clouds, atmospheric haze, soft cabin lighting, rotor motion blur, lens bloom, realistic reflections, cinematic depth of field, and ultra detailed AAA video game promotional artwork quality.
+The composition should feel like the opening promotional artwork of a blockbuster open-world crime game while remaining completely original. I should occupy most of the frame, with the helicopter dominating the upper half and the glowing city creating an epic backdrop.
+Ultra realistic digital painting, razor-sharp facial details, realistic anatomy, premium clothing textures, cinematic color grading, and extraordinary environmental detail.
+Designed specifically as an iPhone lock screen wallpaper with extra space at the top for the clock and Dynamic Island.
+Vertical 9:19.5 aspect ratio (1290 × 2796).
+No text, no GTA logo, no Rockstar logo, no watermark, no UI elements, no phone frame.`,
+    variables: [
+      {
+        name: "Helicopter Style",
+        description: "Color and style of the helicopter",
+        placeholder: "matte black luxury helicopter"
+      },
+      {
+        name: "Streetwear Description",
+        description: "Street clothing and accessories details",
+        placeholder: "premium luxury streetwear including a fitted black bomber jacket over a white T-shirt, cargo pants, luxury sneakers, a high-end watch, subtle gold chains, and stylish sunglasses"
+      }
+    ],
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
+    ]
+  },
+  {
+    id: "gta-gun-pose",
+    title: "GTA VI Style - Gun Pose Poster",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "Presents the subject as a Vice City protagonist standing confidently in a two-handed shooting stance.",
+    promptText: `Use ONLY the uploaded photo as the reference.
+Create an ORIGINAL premium iPhone wallpaper inspired by the visual style of GTA VI promotional artwork.
+Preserve my exact face, facial structure, hairstyle, skin tone, body proportions, expression, and identity with extremely high accuracy. My face must remain instantly recognizable. Do NOT replace me with a fictional GTA character. Do NOT change my gender, ethnicity, age, hairstyle, facial features, or body type.
+Transform me into a stylish modern Vice City protagonist wearing a fashionable Miami-inspired outfit. Position me exactly like a blockbuster action game poster: standing confidently in the center of the frame, slightly angled toward the camera, with a determined expression.
+Place a realistic modern semi-automatic pistol in both hands, held in a professional two-handed shooting stance with my arms extended forward toward the viewer. The firearm must look realistic and naturally fit my hands, with accurate proportions, grip, finger placement, lighting, and perspective.
+Create a breathtaking neon Vice City inspired environment behind me featuring:
+• Vibrant pink, orange, purple, and cyan sunset sky
+• Palm trees
+• Luxury yachts
+• Sports cars
+• Waterfront city skyline
+• Neon-lit skyscrapers
+• Wet reflective streets and docks
+• Dramatic clouds in
+• Cinematic atmosphere
+Use dramatic rim lighting, volumetric lighting, realistic shadows, lens bloom, atmospheric haze, glowing reflections, and premium AAA video game key art quality.
+The artwork should feel like an official modern open-world crime game promotional poster with ultra realistic digital painting quality, crisp facial details, vibrant colors, and sharp focus.
+Compose the wallpaper exactly like a premium lock screen:
+• Full body visible
+• Subject centered and dominant
+• Leave generous empty space at the top for the iPhone clock and Dynamic Island
+• Clean composition with no objects covering the face
+Vertical 9:19.5 aspect ratio, 1290 × 2796 resolution, ultra high resolution.
+No text.
+No logo.
+No watermark.
+No phone frame.
+No UI elements.
+No extra people.`,
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
+    ]
+  },
+  {
+    id: "gta-couples",
+    title: "GTA VI Style - Iconic Couple",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "GTA VI style key art of a couple recreating the iconic poster, with the man aiming a pistol and the woman holding a duffel bag of cash.",
+    promptText: `Use ONLY the uploaded couple photo as the reference.
+Create an ORIGINAL premium iPhone wallpaper inspired by the visual style of GTA VI promotional artwork.
+Preserve both people's exact faces, facial structure, hairstyle, skin tone, body proportions, expressions, and identities with extremely high accuracy. Their faces must remain instantly recognizable. Do not replace them with fictional characters or alter their appearance.
+Recreate the exact composition and cinematic feeling of the iconic GTA VI wallpaper:
+• The male stands in the foreground, slightly right of center, aiming a pistol toward the camera with a confident expression.
+• The female stands slightly behind and to his left, holding a duffel bag full of cash with a fearless expression.
+• Keep both characters full body from head to toe.
+• Match the same spacing, proportions, camera angle, perspective, pose, framing, and visual balance as the reference wallpaper.
+Dress them in [Outfits] with subtle luxury fashion.
+Background:
+A breathtaking neon Vice City inspired waterfront at sunset with tall palm trees, glowing skyscrapers, luxury yachts, sports cars, colorful clouds, marina lights, wet reflective pavement, cinematic atmosphere, distant buildings, and warm tropical lighting.
+Lighting:
+Use the exact vibrant GTA VI color palette with glowing pink, orange, purple, cyan, and blue sunset lighting. Add dramatic rim lighting, volumetric lighting, realistic reflections, cinematic shadows, atmospheric haze, and premium AAA game lighting.
+Style:
+Ultra realistic digital painting.
+Official AAA video game promotional key art.
+Hyper detailed faces.
+Keep focus sharp, with premium textures, realistic anatomy, high cinematic value, and extremely vibrant colors.
+Wallpaper Composition:
+Designed specifically for an iPhone lock screen with extra empty space at the top for the clock and Dynamic Island. The characters should occupy the lower two-thirds of the wallpaper, just like the reference image.
+Vertical 9:19.5 aspect ratio (1290×2796).
+No text.
+No GTA logo.
+No Rockstar logo.
+No watermark.
+No UI.
+No phone frame.
+The final result should look almost identical in composition, lighting, atmosphere, and premium quality to the famous GTA VI promotional wallpaper while using the uploaded couple as the main characters instead of the original game characters.`,
+    variables: [
+      {
+        name: "Outfits",
+        description: "Clothing style description for both subjects",
+        placeholder: "stylish modern Miami-inspired outfits"
+      }
+    ],
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
+    ]
+  },
+  {
+    id: "gta-supercar",
+    title: "GTA VI Style - Sitting Inside Supercar",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "GTA VI style key art of the subject sitting sideways in a luxury supercar parked on Ocean Drive at sunset.",
+    promptText: `Use ONLY the uploaded photo as the reference.
+Create an ORIGINAL GTA VI inspired cinematic iPhone wallpaper.
+Preserve my exact face, hairstyle, skin tone, body proportions, expression, and identity with extremely high accuracy. My face must remain instantly recognizable. Do NOT replace me with any fictional GTA character.
+Transform me into a stylish Vice City protagonist sitting inside a [Supercar Model] parked on Ocean Drive at sunset. The driver's side scissor door is open. I am sitting sideways in the driver's seat with one hand resting casually on the steering wheel and the other holding a modern handgun pointed downward in a relaxed, cinematic pose. My expression is calm, fearless, and confident.
+Wear [Outfit Description].
+Outside the car are towering palm trees, neon hotels, glowing sports cars, motorcycles, colorful Miami nightlife, reflections on wet streets, and a breathtaking orange, pink, purple, and cyan sunset sky.
+The interior glows with ambient blue and magenta lighting. Add cinematic reflections on the windshield, volumetric lighting, realistic shadows, dramatic rim lighting, lens bloom, shallow depth of field, and AAA open-world game promotional artwork quality.
+Ultra realistic digital painting, premium Rockstar-inspired key art aesthetic without copying existing artwork.
+Designed specifically as an iPhone wallpaper with space for the clock and Dynamic Island.
+Vertical 1290×2796.
+No text, logos, watermark, or UI.`,
+    variables: [
+      {
+        name: "Supercar Model",
+        description: "Make and model of the supercar",
+        placeholder: "luxury Lamborghini Aventador"
+      },
+      {
+        name: "Outfit Description",
+        description: "Clothing and accessories details",
+        placeholder: "a fitted designer shirt, cargo pants, luxury watch, chains, and premium sneakers"
+      }
+    ],
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
+    ]
+  },
+  {
+    id: "gta-rooftop",
+    title: "GTA VI Style - Rooftop Sniper Vibes",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "GTA VI styled key art of the subject sitting on the edge of a skyscraper rooftop overlooking the glowing Miami skyline.",
+    promptText: `Use ONLY the uploaded photo as the reference.
+Create an ORIGINAL GTA VI inspired cinematic wallpaper.
+Preserve my exact face and identity.
+Transform me into a stylish Vice City protagonist sitting on the edge of a skyscraper rooftop overlooking the glowing Miami skyline at sunset. Hold a [Weapon Type] resting casually on one knee while looking over the city with a calm, fearless expression. Palm trees, yachts, sports cars, helicopters, luxury hotels, and neon skyscrapers fill the background. Warm sunset colors blend with pink, purple, cyan, and blue city lights. Dramatic cinematic lighting, realistic reflections, atmospheric haze, AAA game promotional artwork quality.
+Ultra realistic digital painting.
+No text or watermark.`,
+    variables: [
+      {
+        name: "Weapon Type",
+        description: "Type of handgun or weapon held",
+        placeholder: "modern handgun"
+      }
+    ],
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
+    ]
+  },
+  {
+    id: "gta-motorcycle-chase",
+    title: "GTA VI Style - Motorcycle Chase",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "Action-packed GTA VI style key art of the subject riding a superbike through wet, neon-lit Miami streets.",
+    promptText: `Use ONLY the uploaded photo as the reference.
+Create an ORIGINAL GTA VI inspired action wallpaper.
+Preserve my exact face and identity.
+Transform me into a stylish Vice City outlaw riding a [Motorcycle Model] through neon-lit Miami streets at night. Hold a handgun in one hand while confidently controlling the motorcycle. Sports cars drift behind me, police lights flash in the distance, helicopters illuminate the streets, smoke fills the air, and rain creates glowing reflections across the road. Palm trees line the boulevard beneath a colorful sunset fading into the night.
+Epic AAA game key art. Ultra realistic digital painting with dramatic motion blur, cinematic lighting, and premium iPhone wallpaper composition.
+No text, watermark, or logos.`,
+    variables: [
+      {
+        name: "Motorcycle Model",
+        description: "Make and model of the motorcycle",
+        placeholder: "Ducati Panigale superbike"
+      }
+    ],
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
+    ]
+  },
+  {
+    id: "gta-yacht-boss",
+    title: "GTA VI Style - Luxury Yacht Boss",
+    category: "IPhone Wallpapers",
+    platforms: ["Midjourney", "Stable Diffusion", "DALL-E"],
+    summary: "GTA VI styled key art of the subject cruising through Miami Harbor on a luxury yacht deck during sunset.",
+    promptText: `Use ONLY the uploaded photo as the reference.
+Create an ORIGINAL GTA VI inspired luxury wallpaper.
+Preserve my exact face and identity.
+Transform me into a wealthy Vice City kingpin sitting confidently on the deck of a luxury yacht cruising through Miami Harbor during sunset. One hand rests on the chair while the other casually holds a modern handgun pointed downward. [Accessories Description], distant skyline, helicopters, speedboats, and palm-lined waterfront create an elite atmosphere. Rich pink, orange, purple, and cyan sunset lighting reflects beautifully across the water.
+Ultra realistic AAA promotional artwork. Cinematic lighting, premium digital painting, luxury lifestyle aesthetic.
+Designed for an iPhone wallpaper.
+No text, watermark, or logos.`,
+    variables: [
+      {
+        name: "Accessories Description",
+        description: "Luxury accessories surrounding the subject",
+        placeholder: "Luxury watches, gold chains, designer sunglasses, champagne on the table"
+      }
+    ],
+    tips: [
+      "Designed specifically for 9:19.5 aspect ratios (1290x2796 px) which corresponds exactly to modern iPhone sizes."
     ]
   }
 ];
