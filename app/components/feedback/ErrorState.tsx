@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import Link from "next/link";
 
 type ErrorStateProps = {
   title?: string;
@@ -24,7 +24,7 @@ const ErrorState = ({
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
-            to="/"
+            href="/"
             className="inline-flex items-center justify-center font-body text-sm font-medium transition-all duration-200 ease-out bg-accent-600 text-white rounded-[12px] px-6 py-3 hover:bg-accent-700 active:bg-accent-800"
           >
             Back to Home

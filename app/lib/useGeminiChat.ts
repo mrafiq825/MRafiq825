@@ -1,6 +1,4 @@
-import { useMemo, useState } from "react";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { getChatbotPrompt } from "~/data/chatbotContext";
+import { useState } from "react";
 
 export type ChatMessage = {
   id: number;
@@ -13,13 +11,6 @@ type GeminiHistoryEntry = {
   role: "user" | "model";
   parts: Array<{ text: string }>;
 };
-
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY as
-  | string
-  | undefined;
-const GEMINI_MODEL =
-  (import.meta.env.VITE_GEMINI_MODEL as string | undefined) ||
-  "gemini-2.5-flash";
 
 const getCurrentTime = () =>
   new Date().toLocaleTimeString([], {
@@ -47,29 +38,10 @@ export const useGeminiChat = () => {
     ),
   ]);
 
-  const genAI = useMemo(
-    () => (GEMINI_API_KEY ? new GoogleGenerativeAI(GEMINI_API_KEY) : null),
-    [],
-  );
-
-  const model = useMemo(
-    () => genAI?.getGenerativeModel({ model: GEMINI_MODEL }) ?? null,
-    [genAI],
-  );
-
   const sendChatMessage = async (text: string) => {
     const trimmedText = text.trim();
 
     if (!trimmedText || isLoading) {
-      return;
-    }
-
-    if (!GEMINI_API_KEY || !model) {
-      const errorMessage = createChatMessage(
-        "assistant",
-        "Error: Gemini API key is not configured. Please set VITE_GEMINI_API_KEY in your .env.local file.",
-      );
-      setChatMessages((currentMessages) => [...currentMessages, errorMessage]);
       return;
     }
 
@@ -78,12 +50,24 @@ export const useGeminiChat = () => {
     setIsLoading(true);
 
     try {
-      const chat = model.startChat({ history: chatHistory });
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: trimmedText,
+          history: chatHistory,
+        }),
+      });
 
-      const result = await chat.sendMessage(
-        `${getChatbotPrompt(trimmedText)}\n\nUser question: ${trimmedText}`,
-      );
-      const response = result.response.text();
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to communicate with AI endpoint");
+      }
+
+      const data = await res.json();
+      const response = data.response;
 
       setChatHistory((prevHistory) => [
         ...prevHistory,

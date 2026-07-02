@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import Navbar from "~/components/layout/Navbar";
 import RadialGlowButton from "~/components/ui/RadialGlowButton";
@@ -12,17 +14,6 @@ import {
   AppleChevronDown,
   AppleChevronUp
 } from "~/components/ui/AppleIcons";
-import type { Route } from "./+types/prompts";
-
-export const meta: Route.MetaFunction = () => [
-  { title: "AI Prompts Library | Muhammad Rafiq" },
-  {
-    name: "description",
-    content: "Explore a curated library of high-fidelity, interactive AI prompt templates for Gemini, ChatGPT, Claude, and Midjourney to optimize code, writing, and art.",
-  },
-  { name: "keywords", content: "AI Prompts, Gemini Prompts, ChatGPT Prompts, Claude Prompts, Midjourney Prompts, Prompt Engineering, Code Debugging Prompts" },
-  { name: "robots", content: "index, follow" },
-];
 
 const CATEGORIES: ("All" | PromptCategory)[] = [
   "All",
@@ -35,7 +26,6 @@ const CATEGORIES: ("All" | PromptCategory)[] = [
   "IPhone Wallpapers"
 ];
 
-// Helper to check and apply custom colors to platform tags
 const getPlatformColor = (platform: string) => {
   const norm = platform.toLowerCase();
   if (norm.includes("claude")) {
@@ -56,28 +46,20 @@ const getPlatformColor = (platform: string) => {
   return "bg-neutral-50/70 dark:bg-neutral-900/40 border-neutral-200/50 dark:border-neutral-800/40 text-neutral-600 dark:text-neutral-400";
 };
 
-export default function PromptsPage() {
+export default function PromptsClient() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<"All" | PromptCategory>("All");
   const [selectedPlatform, setSelectedPlatform] = useState("All");
-
-  // Track prompt variables values: { [promptId]: { [variableName]: value } }
   const [variablesState, setVariablesState] = useState<Record<string, Record<string, string>>>({});
-
-  // Track copy feedback state: { [promptId]: boolean }
   const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});
-
-  // Track expanded tips: { [promptId]: boolean }
   const [expandedTips, setExpandedTips] = useState<Record<string, boolean>>({});
 
-  // Get all unique platforms dynamically from the prompt list
   const allPlatforms = useMemo(() => {
     const platformsSet = new Set<string>();
     prompts.forEach((p) => p.platforms.forEach((plat) => platformsSet.add(plat)));
     return ["All", ...Array.from(platformsSet)];
   }, []);
 
-  // Filter prompts based on search, category, and platform
   const filteredPrompts = useMemo(() => {
     return prompts.filter((p) => {
       const matchesSearch =
@@ -92,7 +74,6 @@ export default function PromptsPage() {
     });
   }, [searchQuery, selectedCategory, selectedPlatform]);
 
-  // Handle updates to variable fields
   const handleVariableChange = (promptId: string, varName: string, value: string) => {
     setVariablesState((prev) => ({
       ...prev,
@@ -103,7 +84,6 @@ export default function PromptsPage() {
     }));
   };
 
-  // Compile the prompt with active variables
   const compilePrompt = (prompt: Prompt) => {
     let result = prompt.promptText;
     const promptVars = prompt.variables || [];
@@ -118,7 +98,6 @@ export default function PromptsPage() {
     return result;
   };
 
-  // Copy compile prompt to clipboard
   const handleCopy = async (prompt: Prompt) => {
     const compiled = compilePrompt(prompt);
     try {
@@ -132,7 +111,6 @@ export default function PromptsPage() {
     }
   };
 
-  // Toggle expanded tips
   const toggleTips = (promptId: string) => {
     setExpandedTips((prev) => ({ ...prev, [promptId]: !prev[promptId] }));
   };
@@ -170,7 +148,6 @@ export default function PromptsPage() {
 
             {/* Search Input */}
             <div className="relative w-full z-10">
-
               <input
                 type="text"
                 placeholder="Search prompts by title, description, or concepts..."
@@ -362,12 +339,16 @@ export default function PromptsPage() {
                     >
                       {isCopied ? (
                         <>
-                          <AppleCheck className="w-4 h-4 animate-bounce" />
+                          <span className="mr-1.5">
+                            <AppleCheck className="w-4 h-4 animate-bounce" />
+                          </span>
                           <span>Copied to Clipboard!</span>
                         </>
                       ) : (
                         <>
-                          <AppleCopy className="w-3.5 h-3.5" />
+                          <span className="mr-1.5">
+                            <AppleCopy className="w-3.5 h-3.5" />
+                          </span>
                           <span>Copy Prompt Template</span>
                         </>
                       )}

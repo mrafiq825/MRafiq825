@@ -1,19 +1,10 @@
+"use client";
+
 import { useState, useMemo } from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import Navbar from "~/components/layout/Navbar";
 import { blogPosts, type BlogCategory } from "~/data/blog";
 import { AppleSearch, AppleCalendar, AppleClock, AppleArrowRight, AppleUser } from "~/components/ui/AppleIcons";
-import type { Route } from "./+types/blog";
-
-export const meta: Route.MetaFunction = () => [
-  { title: "Blog & Insights | Muhammad Rafiq" },
-  {
-    name: "description",
-    content: "Read technical articles, case studies, and guides on AI & Machine Learning, Full Stack Development, System Design, DevOps & SRE, and Career Learning by Muhammad Rafiq.",
-  },
-  { name: "keywords", content: "Software Engineering, AI Engineering, Machine Learning, RAG, System Design, DevOps, SRE, Full Stack, React, Next.js, Node.js, FastAPI, Docker, Kubernetes" },
-  { name: "robots", content: "index, follow" },
-];
 
 const CATEGORIES: ("All" | BlogCategory)[] = [
   "All",
@@ -25,7 +16,7 @@ const CATEGORIES: ("All" | BlogCategory)[] = [
   "Career & Learning"
 ];
 
-const BlogList = () => {
+const BlogListClient = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<"All" | BlogCategory>("All");
 
@@ -146,7 +137,7 @@ const BlogList = () => {
               {/* Card shadow glow */}
               <div className="absolute -inset-1.5 rounded-[30px] bg-gradient-to-r from-accent-600/30 to-purple-600/30 opacity-30 blur-xl group-hover:opacity-100 transition duration-1000 pointer-events-none" />
 
-              <Link to={`/blog/${featuredPost.slug}`} className="group block relative">
+              <Link href={`/blog/${featuredPost.slug}`} className="group block relative">
                 <article className="grid grid-cols-1 md:grid-cols-12 overflow-hidden rounded-[28px] border border-border-default bg-bg-surface/40 backdrop-blur-xl shadow-2xl transition-all duration-300 hover:border-border-hover">
                   {/* Decorative Gradient Cover */}
                   <div
@@ -248,7 +239,7 @@ const BlogList = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {otherPosts.map((post) => (
-                  <Link key={post.slug} to={`/blog/${post.slug}`} className="group block h-full">
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="group block h-full">
                     <article className="h-full flex flex-col justify-between overflow-hidden rounded-[24px] border border-border-default bg-bg-surface/30 backdrop-blur-xl shadow-lg transition-all duration-300 hover:border-border-hover hover:-translate-y-1">
                       {/* Gradient Header */}
                       <div
@@ -341,4 +332,4 @@ const BlogList = () => {
   );
 };
 
-export default BlogList;
+export default BlogListClient;

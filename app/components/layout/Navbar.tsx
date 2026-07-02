@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useLocation } from "react-router";
+import { usePathname } from "next/navigation";
 import { ICON_CLASS } from "~/lib/constants";
 import { useGlassCursor } from "~/hooks/useGlassCursor";
 import {
@@ -451,8 +451,8 @@ const NAV_ITEMS = [
 ];
 
 const Navbar = () => {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [activeHref, setActiveHref] = useState<string>("");
   const glassRef = useGlassCursor<HTMLElement>();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -462,9 +462,9 @@ const Navbar = () => {
 
   useEffect(() => {
     if (!isHomePage) {
-      if (location.pathname.startsWith("/blog")) {
+      if (pathname.startsWith("/blog")) {
         setActiveHref("/blog");
-      } else if (location.pathname.startsWith("/prompts")) {
+      } else if (pathname.startsWith("/prompts")) {
         setActiveHref("/prompts");
       } else {
         setActiveHref("");
@@ -501,7 +501,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
     };
-  }, [isHomePage, location.pathname]);
+  }, [isHomePage, pathname]);
 
   const getHref = (href: string) => {
     if (href.startsWith("/")) {

@@ -1,38 +1,16 @@
+"use client";
+
 import { useState, useEffect, useMemo } from "react";
-import { useParams, Link } from "react-router";
+import Link from "next/link";
 import Navbar from "~/components/layout/Navbar";
 import { blogPosts } from "~/data/blog";
-import NotFoundPage from "~/components/feedback/NotFoundPage";
 import { AppleArrowLeft, AppleCalendar, AppleClock, AppleShare, AppleArrowRight } from "~/components/ui/AppleIcons";
-import type { Route } from "./+types/blog-detail";
 
-export const meta: Route.MetaFunction = ({ params }) => {
-  const post = blogPosts.find((p) => p.slug === params.slug);
-  if (!post) {
-    return [
-      { title: "Article Not Found | Muhammad Rafiq" },
-      { name: "description", content: "The requested blog article was not found." },
-    ];
-  }
-  return [
-    { title: `${post.seoTitle || post.title} | Muhammad Rafiq` },
-    { name: "description", content: post.metaDescription || post.excerpt },
-    { name: "keywords", content: `${post.category}, ${post.tags.join(", ")}, Portfolio Blog` },
-    
-    // Open Graph
-    { property: "og:title", content: post.title },
-    { property: "og:description", content: post.metaDescription || post.excerpt },
-    { property: "og:type", content: "article" },
-    { property: "og:site_name", content: "Muhammad Rafiq Blog" },
-    { property: "og:image", content: post.ogImage || "https://mrafiq85.vercel.app/images/og-default.png" }, // Fallback URL
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: post.title },
-    { name: "twitter:description", content: post.metaDescription || post.excerpt },
-  ];
-};
+interface BlogDetailClientProps {
+  slug: string;
+}
 
-const BlogDetail = () => {
-  const { slug } = useParams();
+const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
   const [headings, setHeadings] = useState<{ id: string; text: string }[]>([]);
@@ -152,14 +130,7 @@ const BlogDetail = () => {
     setTimeout(() => setIsCopied(false), 2000);
   };
 
-  if (!post) {
-    return (
-      <>
-        <Navbar />
-        <NotFoundPage />
-      </>
-    );
-  }
+  if (!post) return null;
 
   return (
     <>
@@ -178,7 +149,7 @@ const BlogDetail = () => {
           
           {/* Back button */}
           <Link
-            to="/blog"
+            href="/blog"
             className="group inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-accent-600 transition-colors duration-200 mb-8"
           >
             <AppleArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
@@ -267,7 +238,7 @@ const BlogDetail = () => {
               </div>
             </div>
 
-            {/* Right Column: Sticky Table of Contents (TOC) */}
+            {/* Right Column: Table of Contents (TOC) */}
             <div className="lg:col-span-3 hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto pr-2">
               <h4 className="font-heading text-xs font-bold uppercase tracking-wider text-text-muted mb-4 pl-1">
                 Table of Contents
@@ -299,7 +270,7 @@ const BlogDetail = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {relatedPosts.map((rPost) => (
-                  <Link key={rPost.slug} to={`/blog/${rPost.slug}`} className="group block">
+                  <Link key={rPost.slug} href={`/blog/${rPost.slug}`} className="group block">
                     <article className="h-full flex flex-col justify-between overflow-hidden rounded-[16px] border border-border-default bg-bg-surface shadow-sm glass-panel glass-panel-hover">
                       <div className="p-5 flex-grow flex flex-col justify-between">
                         <div>
@@ -337,4 +308,4 @@ const BlogDetail = () => {
   );
 };
 
-export default BlogDetail;
+export default BlogDetailClient;
