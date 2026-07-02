@@ -1,4 +1,4 @@
-import { AppleCpu, AppleSend, AppleStar, AppleUser } from "~/components/ui/AppleIcons";
+import { AppleCpu, AppleSend, AppleStar, AppleUser } from "@/components/ui/AppleIcons";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import { CHATBOT_QUICK_PROMPTS } from "~/data/chatbotContext";

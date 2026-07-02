@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import LoadingScreen from "~/components/feedback/LoadingScreen";
-import Navbar from "~/components/layout/Navbar";
-import AboutSection from "~/components/sections/AboutSection";
-import ContactSection from "~/components/sections/ContactSection";
-import ExperienceSection from "~/components/sections/ExperienceSection";
-import HeroSection from "~/components/sections/HeroSection";
-import ProjectsSection from "~/components/sections/ProjectsSection";
+import LoadingScreen from "@/components/feedback/LoadingScreen";
+import Navbar from "@/components/layout/Navbar";
+import AboutSection from "@/components/sections/AboutSection";
+import ContactSection from "@/components/sections/ContactSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
+import HeroSection from "@/components/sections/HeroSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
 
 const HOME_LOADING_DURATION = 2400;
 

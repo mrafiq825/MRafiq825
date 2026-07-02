@@ -9,7 +9,7 @@ import {
   AppleBook,
   AppleTerminal,
   AppleMessage
-} from "~/components/ui/AppleIcons";
+} from "@/components/ui/AppleIcons";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { cn } from "~/lib/utils";

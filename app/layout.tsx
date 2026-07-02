@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
-import GlassDistortion from "~/components/GlassDistortion";
+import GlassDistortion from "@/components/GlassDistortion";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({

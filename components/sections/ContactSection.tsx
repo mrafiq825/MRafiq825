@@ -9,14 +9,14 @@ import {
   AppleLinkedin,
   AppleWhatsapp,
   AppleXSocial,
-} from "~/components/ui/AppleIcons";
+} from "@/components/ui/AppleIcons";
 import { useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
-import Section from "~/components/layout/Section";
-import Card from "~/components/ui/Card";
-import Button from "~/components/ui/Button";
-import AnimatedButton from "~/components/ui/AnimatedButton";
-import Chatbot from "~/components/ui/Chatbot";
+import Section from "@/components/layout/Section";
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+import AnimatedButton from "@/components/ui/AnimatedButton";
+import Chatbot from "@/components/ui/Chatbot";
 import { site } from "~/data/site";
 import { socials } from "~/data/socials";
 import { ICON_CLASS } from "~/lib/constants";

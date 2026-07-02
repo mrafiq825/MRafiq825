@@ -6,36 +6,46 @@ This file contains the core guidelines, technical constraints, design patterns, 
 
 ## 1. Project Technology Stack & Architecture
 
-- **React 19 & React Router v7 (SPA Mode)**: The project is built using React 19 and React Router v7 configured in Single Page Application (SPA) mode (`ssr: false` in `react-router.config.ts`).
-- **Vite Build System**: Code compilation and bundling are managed by Vite.
+- **Next.js 16 & React 19 (App Router)**: The project is built using Next.js 16 and React 19 with App Router configuration.
+- **Client/Server Split**: Frontend components execute client-side. Sensitive API endpoints (such as the Gemini Chatbot) run server-side via Next.js Route Handlers (`app/api/chat/route.ts`) to avoid exposing keys to the browser.
 - **TypeScript**: Strictly typed development. Run verification checks prior to committing changes.
-- **Client-Side Runtime**: No backend server runs at runtime (with the exception of static file serving). Any API logic, such as the Gemini Chatbot or Formspree contact submission, must run client-side.
 
-### Build-Time Environment Variables Warning
+### Build-Time vs. Runtime Environment Variables
 > [!IMPORTANT]
-> Because the application is a static SPA, runtime environment variables are not available in the browser. 
-> Any variable starting with `VITE_` (e.g., `VITE_GEMINI_API_KEY`, `VITE_GEMINI_MODEL`) is baked into the JavaScript bundle **at build-time**. 
-> - If you add a new API key or setting, it must be provided during build (e.g., passed as a `--build-arg` in Docker or set in the CI/CD pipeline).
+> - Client-exposed environment variables must start with the `NEXT_PUBLIC_` prefix (e.g. `NEXT_PUBLIC_VAR`).
+> - Server-only environment variables (like `GEMINI_API_KEY`) do not use `NEXT_PUBLIC_` and are accessed strictly in server files (e.g., in Next.js Route Handlers) via `process.env`.
+> - Do not expose raw API keys or credentials in client-side code bundles.
 
 ---
 
 ## 2. Directory Layout & Organization
 
-Always place new code in its respective directory within `app/`:
+Place new files in their respective folders. The project structure separates root UI components from routing pages:
 
 ```
-app/
-├── components/
-│   ├── feedback/   # Loading states, error indicators, fallbacks (ErrorBoundary views)
-│   ├── layout/     # Scaffolding containers (Section wrappers, Navbar)
-│   ├── sections/   # Major page content sections (Hero, About, Projects, Experience, Contact)
-│   └── ui/         # Small reusable UI primitives (Buttons, Cards, Modals, AppleIcons, Chatbot)
-├── data/           # Centralized static data layers serving as our client-side database
-├── hooks/          # Custom hooks (e.g., cursor tracking, scroll physics)
-├── lib/            # Utilities, helper scripts, constant structures, AI model configurations
-├── routes/         # Router pages (+types override files)
-└── app.css         # Core global styles & Tailwind theme mappings
+components/          # Root-level layout and UI components
+├── feedback/        # Loading states, error indicators, fallbacks
+├── layout/          # Scaffolding containers (Section wrappers, Navbar)
+├── sections/        # Major homepage content sections (Hero, About, Projects, Experience, Contact)
+└── ui/              # Small reusable UI primitives (Buttons, Cards, Modals, AppleIcons, Chatbot)
+
+app/                 # Next.js App Router root
+├── api/             # Next.js Route Handlers (Server API endpoints like /api/chat)
+├── blog/            # Blog pages and static dynamic routes
+├── prompts/         # Prompts layout and client components
+├── data/            # Centralized static data layers serving as our client-side database
+├── hooks/           # Custom hooks (e.g. cursor tracking, scroll physics)
+├── lib/             # Utilities, helper scripts, constant structures
+├── types/           # TypeScript interfaces and definitions
+├── globals.css      # Core global styles & Tailwind theme mappings
+├── layout.tsx       # Root layout configuration
+├── page.tsx         # Homepage entry point
+└── not-found.tsx    # 404 fallback page layout
 ```
+
+### Import Aliasing Conventions
+- Use the `@/components/*` alias to import layout elements from the root `components/` directory (e.g., `@/components/ui/Button`).
+- Use the `~/` alias to import directories under `app/` (e.g., `~/data/projects`, `~/lib/utils`, `~/hooks/useGlassCursor`).
 
 ---
 
@@ -44,10 +54,10 @@ app/
 ### Style Variables Authority
 > [!WARNING]
 > Do NOT use the beige "Warm Light Mode" variables described in `colors-and-typography.md` (e.g., `#F3F0EA` as background). 
-> The live application is styled strictly in **Dark Mode** (`color-scheme: dark`) using the variables defined in [app/app.css](file:///Users/muhammadrafiq/Desktop/Personal%20Portfolio/app/app.css).
+> The live application is styled strictly in **Dark Mode** (`color-scheme: dark`) using the variables defined in [app/globals.css](file:///Users/muhammadrafiq/Desktop/Self%20Projects/Personal%20Portfolio/app/globals.css).
 
 ### Color & Token Swatches (Dark Mode SSOT)
-Use the CSS custom variables mapped to Tailwind CSS v4 in `app/app.css`:
+Use the CSS custom variables mapped to Tailwind CSS v4 in `app/globals.css`:
 
 * **Backgrounds & Canvas**:
   - Page Canvas: `var(--bg-page)` / `#0B0C10` (mapped to Tailwind `bg-bg-page`)
@@ -63,7 +73,7 @@ Use the CSS custom variables mapped to Tailwind CSS v4 in `app/app.css`:
   - Pressed Blue: `var(--accent-800)` / `#93C5FD`
 
 ### Glassmorphism Utility Classes
-To maintain consistent glass layouts, leverage the standard utility classes defined in `app/app.css`. Do not re-create glass styles from scratch:
+To maintain consistent glass layouts, leverage the standard utility classes defined in `app/globals.css`. Do not re-create glass styles from scratch:
 - **`.glass-panel`**: Semitransparent background, backdrop filter blur (`16px`), fine white border overlay.
 - **`.glass-panel-hover`**: Adds a transition with subtle hover translation (`translateY(-2px)`) and glows the border blue.
 - **`.glass-panel-inset`**: Used for recessed input sections and code containers.
@@ -86,16 +96,16 @@ To maintain consistent glass layouts, leverage the standard utility classes defi
   > - Limit the visible tags to a maximum of **4**.
   > - Truncate the rest and represent them as `+X more` (e.g., `+2 more`). This ensures visual stability across grids and prevents layout shifts.
 - **Iconography Standard**:
-  - Always use SF Symbol-inspired SVGs exported from [app/components/ui/AppleIcons.tsx](file:///Users/muhammadrafiq/Desktop/Personal%20Portfolio/app/components/ui/AppleIcons.tsx).
+  - Always use SF Symbol-inspired SVGs exported from [components/ui/AppleIcons.tsx](file:///Users/muhammadrafiq/Desktop/Self%20Projects/Personal%20Portfolio/components/ui/AppleIcons.tsx).
   - All icons must accept `AppleIconProps` (`React.SVGProps<SVGSVGElement>`) and utilize `strokeWidth="1.9"` and `stroke="currentColor"`.
 
 ---
 
 ## 5. Mock Database & Data Flow Rules
 
-- **Client Data Separation**: Never hardcode arrays of data (projects, experiences, credentials, socials) directly inside UI components. Always store them inside [app/data/](file:///Users/muhammadrafiq/Desktop/Personal%20Portfolio/app/data) and import them into components dynamically.
+- **Client Data Separation**: Never hardcode arrays of data (projects, experiences, credentials, socials) directly inside UI components. Always store them inside [app/data/](file:///Users/muhammadrafiq/Desktop/Self%20Projects/Personal%20Portfolio/app/data) and import them into components dynamically.
 - **Gemini Chatbot Prompts**:
-  - The AI assistant logic resides in [app/lib/useGeminiChat.ts](file:///Users/muhammadrafiq/Desktop/Personal%20Portfolio/app/lib/useGeminiChat.ts) and [app/data/chatbotContext.ts](file:///Users/muhammadrafiq/Desktop/Personal%20Portfolio/app/data/chatbotContext.ts).
+  - The AI assistant logic resides on the server in [app/api/chat/route.ts](file:///Users/muhammadrafiq/Desktop/Self%20Projects/Personal%20Portfolio/app/api/chat/route.ts) which uses [app/data/chatbotContext.ts](file:///Users/muhammadrafiq/Desktop/Self%20Projects/Personal%20Portfolio/app/data/chatbotContext.ts).
   - The chatbot uses keyword relevance scoring to parse context-rich blog articles matching the user query to inject them directly into the instruction set sent to Gemini. Maintain this template format to keep answers accurate.
 
 ---
@@ -104,6 +114,6 @@ To maintain consistent glass layouts, leverage the standard utility classes defi
 
 Before submitting or requesting reviews on code changes, you **must** perform the following local validations:
 
-1. **Type Verification**: Run `npm run typecheck` to confirm there are no compiler or React Router auto-generated types error matches.
-2. **Build Compilation**: Run `npm run build` to confirm the static SPA bundle compiles correctly.
+1. **Type Verification**: Run `npx tsc --noEmit` to confirm there are no TypeScript compiler errors.
+2. **Build Compilation**: Run `npm run build` to confirm the Next.js production build compiles correctly.
 3. **Local Dev Test**: Launch the project using `npm run dev` to verify user interfaces function cleanly.

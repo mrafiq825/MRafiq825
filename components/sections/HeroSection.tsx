@@ -1,8 +1,8 @@
-import { AppleArrowRight, AppleDownload } from "~/components/ui/AppleIcons";
-import Section from "~/components/layout/Section";
-import Badge from "~/components/ui/Badge";
-import Button from "~/components/ui/Button";
-import AnimatedButton from "~/components/ui/AnimatedButton";
+import { AppleArrowRight, AppleDownload } from "@/components/ui/AppleIcons";
+import Section from "@/components/layout/Section";
+import Badge from "@/components/ui/Badge";
+import Button from "@/components/ui/Button";
+import AnimatedButton from "@/components/ui/AnimatedButton";
 import { site } from "~/data/site";
 
 const HeroSection = () => {

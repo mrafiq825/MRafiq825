@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from "react";
-import { AppleX } from "~/components/ui/AppleIcons";
+import { AppleX } from "@/components/ui/AppleIcons";
 import { ICON_CLASS } from "~/lib/constants";
 
 type ModalProps = {
