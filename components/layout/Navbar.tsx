@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { ICON_CLASS } from "~/lib/constants";
-import { useGlassCursor } from "~/hooks/useGlassCursor";
+import { ICON_CLASS } from "@/lib/constants";
+import { useGlassCursor } from "@/hooks/useGlassCursor";
 import {
   AppleUser,
   AppleBriefcase,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/AppleIcons";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
-import { cn } from "~/lib/utils";
+import { cn } from "@/lib/utils";
 
 // Attempt to register MorphSVGPlugin if available. 
 if (typeof window !== "undefined") {

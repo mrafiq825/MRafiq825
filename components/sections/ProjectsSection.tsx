@@ -14,9 +14,9 @@ import Card from "@/components/ui/Card";
 import Modal from "@/components/ui/Modal";
 import RadialGlowButton from "@/components/ui/RadialGlowButton";
 import GenerateButton from "@/components/ui/GenerateButton";
-import { projects } from "~/data/projects";
-import { ICON_CLASS } from "~/lib/constants";
-import type { Project } from "~/types/project";
+import { projects } from "@/data/projects";
+import { ICON_CLASS } from "@/lib/constants";
+import type { Project } from "@/types/project";
 
 const STATUS_CONFIG: Record<
   string,

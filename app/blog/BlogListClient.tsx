@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
-import { blogPosts, type BlogCategory } from "~/data/blog";
+import { blogPosts, type BlogCategory } from "@/data/blog";
 import { AppleSearch, AppleCalendar, AppleClock, AppleArrowRight, AppleUser } from "@/components/ui/AppleIcons";
 
 const CATEGORIES: ("All" | BlogCategory)[] = [

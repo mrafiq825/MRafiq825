@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Navbar from "@/components/layout/Navbar";
 import RadialGlowButton from "@/components/ui/RadialGlowButton";
-import { prompts, type Prompt, type PromptCategory } from "~/data/prompts";
+import { prompts, type Prompt, type PromptCategory } from "@/data/prompts";
 import {
   AppleCopy,
   AppleCheck,

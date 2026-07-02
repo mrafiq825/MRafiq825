@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Container from "@/components/layout/Container";
-import { cn } from "~/lib/utils";
+import { cn } from "@/lib/utils";
 
 type SectionProps = {
   id?: string;

@@ -2,7 +2,7 @@
  
  import React from "react";
  import { motion } from "framer-motion";
- import { cn } from "~/lib/utils";
+ import { cn } from "@/lib/utils";
  
  export type AnimatedButtonProps = React.HTMLAttributes<HTMLElement> & {
      children?: React.ReactNode;

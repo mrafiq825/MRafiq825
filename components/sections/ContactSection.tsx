@@ -17,9 +17,9 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import AnimatedButton from "@/components/ui/AnimatedButton";
 import Chatbot from "@/components/ui/Chatbot";
-import { site } from "~/data/site";
-import { socials } from "~/data/socials";
-import { ICON_CLASS } from "~/lib/constants";
+import { site } from "@/data/site";
+import { socials } from "@/data/socials";
+import { ICON_CLASS } from "@/lib/constants";
 
 const SOCIAL_ICONS = {
   Facebook: AppleFacebook,

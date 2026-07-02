@@ -7,8 +7,8 @@ import {
 import Section from "@/components/layout/Section";
 import Badge from "@/components/ui/Badge";
 import Card from "@/components/ui/Card";
-import { experience } from "~/data/experience";
-import { ICON_CLASS } from "~/lib/constants";
+import { experience } from "@/data/experience";
+import { ICON_CLASS } from "@/lib/constants";
 
 const ExperienceSection = () => {
   return (

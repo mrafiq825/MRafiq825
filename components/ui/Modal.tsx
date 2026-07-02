@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { AppleX } from "@/components/ui/AppleIcons";
-import { ICON_CLASS } from "~/lib/constants";
+import { ICON_CLASS } from "@/lib/constants";
 
 type ModalProps = {
   isOpen: boolean;

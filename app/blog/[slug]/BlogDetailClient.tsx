@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
-import { blogPosts } from "~/data/blog";
+import { blogPosts } from "@/data/blog";
 import { AppleArrowLeft, AppleCalendar, AppleClock, AppleShare, AppleArrowRight } from "@/components/ui/AppleIcons";
 
 interface BlogDetailClientProps {

@@ -1,4 +1,4 @@
-import type { Site } from "~/types/site";
+import type { Site } from "@/types/site";
 
 export const site: Site = {
   name: "Muhammad Rafiq",

@@ -1,9 +1,9 @@
 import { AppleCpu, AppleSend, AppleStar, AppleUser } from "@/components/ui/AppleIcons";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import Card from "./Card";
-import { CHATBOT_QUICK_PROMPTS } from "~/data/chatbotContext";
-import { useGeminiChat } from "~/lib/useGeminiChat";
-import { ICON_CLASS } from "~/lib/constants";
+import { CHATBOT_QUICK_PROMPTS } from "@/data/chatbotContext";
+import { useGeminiChat } from "@/lib/useGeminiChat";
+import { ICON_CLASS } from "@/lib/constants";
 
 const renderMessageText = (text: string) => {
   const lines = text.split("\n");

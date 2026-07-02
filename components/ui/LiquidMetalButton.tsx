@@ -2,7 +2,7 @@
 
 import React, { memo, forwardRef } from "react";
 import { LiquidMetal as LiquidMetalShader } from "@paper-design/shaders-react";
-import { cn } from "~/lib/utils";
+import { cn } from "@/lib/utils";
 
 // ============================================================================
 // LiquidMetal - Base shader wrapper component

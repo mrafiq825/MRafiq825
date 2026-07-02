@@ -13,9 +13,9 @@ import {
 import Section from "@/components/layout/Section";
 import Badge from "@/components/ui/Badge";
 import Card from "@/components/ui/Card";
-import { site } from "~/data/site";
-import { education } from "~/data/education";
-import { ICON_CLASS } from "~/lib/constants";
+import { site } from "@/data/site";
+import { education } from "@/data/education";
+import { ICON_CLASS } from "@/lib/constants";
 
 const STRENGTHS = [
   {

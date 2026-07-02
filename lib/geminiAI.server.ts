@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { getChatbotPrompt } from "~/data/chatbotContext";
+import { getChatbotPrompt } from "@/data/chatbotContext";
 
 const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_API_KEY!);
 

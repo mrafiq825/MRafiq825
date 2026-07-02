@@ -1,5 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import { cn } from "~/lib/utils";
+import { cn } from "@/lib/utils";
 import LiquidMetalButton, { type LiquidMetalProps } from "./LiquidMetalButton";
 
 type ButtonProps = {
