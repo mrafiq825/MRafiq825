@@ -1,4 +1,5 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { AppleX } from "@/components/ui/AppleIcons";
 import { ICON_CLASS } from "@/lib/constants";
 
@@ -10,6 +11,12 @@ type ModalProps = {
 };
 
 const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Handle escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -29,46 +36,50 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop with blur */}
       <div
-        className="absolute inset-0 bg-[#0B0C10]/60 backdrop-blur-md transition-opacity duration-300"
+        className="fixed inset-0 bg-[#0B0C10]/60 backdrop-blur-md transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Modal Container */}
-      <div
-        className="relative w-full max-w-lg rounded-[24px] glass-panel p-6 sm:p-8 shadow-2xl border border-white/10 z-10 overflow-hidden animate-fade-in-up"
-        role="dialog"
-        aria-modal="true"
-      >
-        {/* Decorative Top Accent Light */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-600/50 to-transparent" />
+      {/* Center container */}
+      <div className="flex min-h-full items-center justify-center p-4 text-center">
+        {/* Modal Container */}
+        <div
+          className="relative w-full max-w-lg rounded-[24px] glass-panel p-6 sm:p-8 shadow-2xl border border-white/10 text-left overflow-hidden animate-fade-in-up my-8"
+          role="dialog"
+          aria-modal="true"
+        >
+          {/* Decorative Top Accent Light */}
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-600/50 to-transparent" />
 
-        {/* Header */}
-        <div className="flex items-center justify-between gap-4 mb-6">
-          <h3 className="font-heading text-xl font-bold text-text-primary">
-            {title}
-          </h3>
-          <button
-            onClick={onClose}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-button-secondary text-text-secondary hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent-600"
-            aria-label="Close modal"
-          >
-            <AppleX className={ICON_CLASS.action} />
-          </button>
-        </div>
+          {/* Header */}
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <h3 className="font-heading text-xl font-bold text-text-primary">
+              {title}
+            </h3>
+            <button
+              onClick={onClose}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-button-secondary text-text-secondary hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent-600 cursor-pointer"
+              aria-label="Close modal"
+            >
+              <AppleX className={ICON_CLASS.action} />
+            </button>
+          </div>
 
-        {/* Content */}
-        <div className="font-body text-text-secondary text-[15px] leading-relaxed">
-          {children}
+          {/* Content */}
+          <div className="font-body text-text-secondary text-[15px] leading-relaxed">
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

@@ -203,33 +203,46 @@ const ProjectsSection = () => {
         title="APK Review Request"
       >
         {selectedProjectForApk && (
-          <div className="space-y-5">
-            <div className="flex items-center gap-3 p-4 rounded-[16px] bg-accent-50/50 border border-accent-100/50">
-              <AppleDevice className="w-8 h-8 text-accent-600 shrink-0" />
-              <div>
-                <h4 className="font-heading font-bold text-text-primary text-[15px]">
+          <div className="space-y-6">
+            {/* Project Details Banner */}
+            <div className="flex items-center gap-4 p-4 rounded-[16px] bg-accent-600/10 border border-accent-600/20 shadow-inner">
+              <div className="flex items-center justify-center w-12 h-12 rounded-[12px] bg-accent-600/20 text-accent-700 shrink-0 shadow-sm">
+                <AppleDevice className="w-6 h-6" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-heading font-bold text-text-primary text-[16px] truncate">
                   {selectedProjectForApk.title}
                 </h4>
-                <p className="text-xs text-text-secondary mt-0.5">
-                  Mobile Application Build (APK)
+                <p className="text-xs font-mono text-text-muted mt-0.5 tracking-wider uppercase">
+                  Mobile Build (APK)
                 </p>
               </div>
             </div>
 
-            <p className="text-[14px] text-text-secondary leading-relaxed">
-              This project is built for Android mobile devices. To review the application, test its features, or request the APK file for installation, please get in touch.
-            </p>
+            {/* Description and Info Badge */}
+            <div className="space-y-4">
+              <p className="text-sm text-text-secondary leading-relaxed">
+                This project is built and optimized for Android mobile devices. You can request the direct APK installation package to test and evaluate the build locally.
+              </p>
+              
+              <div className="flex items-start gap-2.5 p-3 rounded-[12px] bg-bg-surface-hover/50 border border-border-default/50 text-[13px] text-text-muted">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-600 shrink-0 mt-1.5" />
+                <span>Installation requires allowing installs from unknown sources in Android developer settings.</span>
+              </div>
+            </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-3">
               <RadialGlowButton
                 href={`mailto:rafkhan9323@gmail.com?subject=APK%20Review%20Request:%20${encodeURIComponent(
                   selectedProjectForApk.title,
                 )}`}
-                containerClassName="flex-1 flex"
+                containerClassName="w-full sm:flex-1 flex"
               >
                 <AppleMail className="w-4 h-4" />
                 <span>Email Request</span>
               </RadialGlowButton>
+              
               <a
                 href="#contact"
                 onClick={() => {
@@ -241,7 +254,7 @@ const ProjectsSection = () => {
                     }
                   }, 100);
                 }}
-                className="flex-1 inline-flex items-center justify-center gap-2 font-body text-sm font-medium transition-all duration-200 ease-out bg-transparent border border-border-default text-text-primary rounded-[12px] px-5 py-3 hover:border-border-hover hover:bg-bg-surface-hover active:bg-bg-surface-hover/80"
+                className="w-full sm:flex-1 h-11 inline-flex items-center justify-center gap-2 font-body text-sm font-medium rounded-[11px] glass-button-secondary text-text-primary transition-all duration-200"
               >
                 <AppleMessage className="w-4 h-4 text-text-secondary" />
                 <span>Contact Form</span>
