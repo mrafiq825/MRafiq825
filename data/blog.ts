@@ -6,8 +6,9 @@ import { caseStudiesPosts } from "./posts/case-studies";
 import { careerLearningPosts } from "./posts/career-learning";
 import type { BlogPost } from "./blog-types";
 
-// Re-export type definitions
+// Re-export type definitions and AEO helpers
 export * from "./blog-types";
+export * from "./blogAeoData";
 
 const defaultAuthor = {
   name: "Muhammad Rafiq",

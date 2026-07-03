@@ -27,14 +27,17 @@ const BlogListClient = () => {
     });
   }, []);
 
-  // Filter posts based on search query and category
+  // Filter posts based on search query (title, excerpt, metaDescription, tags, category, content/headings) and category
   const filteredPosts = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
     return sortedPosts.filter((post) => {
-      const matchesSearch =
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        post.category.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch = !query ||
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        (post.metaDescription && post.metaDescription.toLowerCase().includes(query)) ||
+        post.category.toLowerCase().includes(query) ||
+        post.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+        post.content.toLowerCase().includes(query); // Searches headings and body text
 
       const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
 
@@ -70,7 +73,7 @@ const BlogListClient = () => {
       <main className="page-shell min-h-screen bg-transparent text-text-primary pt-16 pb-32 px-4 md:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Header Section */}
-          <div className="text-center md:text-left mt-8 mb-12 relative">
+          <header className="text-center md:text-left mt-8 mb-12 relative">
             <span className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100/50 px-3.5 py-1.5 rounded-full backdrop-blur-md">
               Engineering Logs
             </span>
@@ -80,10 +83,10 @@ const BlogListClient = () => {
             <p className="mt-4 max-w-2xl font-body text-base md:text-lg text-text-secondary leading-relaxed">
               Deep-dives, tutorials, and career insights. Exploring high-scale architectures, artificial intelligence, and developer culture.
             </p>
-          </div>
+          </header>
 
           {/* Search and Category Filters */}
-          <div className="mb-12 flex flex-col gap-6 bg-bg-surface/30 backdrop-blur-xl border border-border-default/55 p-6 rounded-[28px] shadow-2xl relative overflow-hidden group">
+          <section aria-label="Search and filter articles" className="mb-12 flex flex-col gap-6 bg-bg-surface/30 backdrop-blur-xl border border-border-default/55 p-6 rounded-[28px] shadow-2xl relative overflow-hidden group">
             {/* Ambient border gradient highlight */}
             <div className="absolute inset-0 bg-gradient-to-r from-accent-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -91,15 +94,18 @@ const BlogListClient = () => {
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="Search insights by title, tags, or concept..."
+                placeholder="Search insights by title, tags, description, or content..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-5 py-4 text-sm rounded-[18px] border border-border-default bg-bg-page/40 text-text-primary placeholder-text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-600/50 focus:border-accent-600 transition-all duration-300 backdrop-blur-md"
               />
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
+                <AppleSearch className="w-5 h-5" />
+              </div>
             </div>
 
             {/* Category Filter Tabs */}
-            <div className="flex flex-wrap gap-2 justify-start items-center">
+            <nav aria-label="Article categories" className="flex flex-wrap gap-2 justify-start items-center">
               {CATEGORIES.map((category) => (
                 <button
                   key={category}
@@ -112,8 +118,8 @@ const BlogListClient = () => {
                   {category}
                 </button>
               ))}
-            </div>
-          </div>
+            </nav>
+          </section>
 
           {/* No Results Fallback */}
           {filteredPosts.length === 0 && (
@@ -133,7 +139,7 @@ const BlogListClient = () => {
 
           {/* Featured Spotlight Card */}
           {featuredPost && (
-            <div className="mb-14 relative">
+            <section aria-label="Featured article" className="mb-14 relative">
               {/* Card shadow glow */}
               <div className="absolute -inset-1.5 rounded-[30px] bg-gradient-to-r from-accent-600/30 to-purple-600/30 opacity-30 blur-xl group-hover:opacity-100 transition duration-1000 pointer-events-none" />
 
@@ -222,12 +228,12 @@ const BlogListClient = () => {
                   </div>
                 </article>
               </Link>
-            </div>
+            </section>
           )}
 
           {/* Grid of Other Posts */}
           {otherPosts.length > 0 && (
-            <div>
+            <section aria-label="Other articles list">
               <div className="flex items-center justify-between mb-8 pl-1 border-l-4 border-accent-600">
                 <h2 className="font-heading text-2xl font-bold text-text-primary ml-2">
                   All Publications
@@ -288,16 +294,16 @@ const BlogListClient = () => {
                         </div>
 
                         <div className="mt-6 pt-5 border-t border-border-default/50 flex flex-col gap-4">
-                          {/* Tags */}
+                          {/* Tags - Enforcing the Tag Capping Rule (Limit to 4 visible tags, truncate as +X more) */}
                           <div className="flex flex-wrap gap-1">
-                            {post.tags.slice(0, 3).map((tag) => (
+                            {post.tags.slice(0, 4).map((tag) => (
                               <span key={tag} className="px-2 py-0.5 rounded-[6px] text-[10px] font-mono bg-accent-50 text-accent-700 border border-accent-100/50">
                                 {tag}
                               </span>
                             ))}
-                            {post.tags.length > 3 && (
+                            {post.tags.length > 4 && (
                               <span className="text-[10px] font-mono text-text-muted self-center ml-1">
-                                +{post.tags.length - 3} more
+                                +{post.tags.length - 4} more
                               </span>
                             )}
                           </div>
@@ -324,7 +330,7 @@ const BlogListClient = () => {
                   </Link>
                 ))}
               </div>
-            </div>
+            </section>
           )}
         </div>
       </main>

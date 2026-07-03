@@ -26,4 +26,29 @@ export interface BlogPost {
   coverGradient: string;
   author: Author;
   ogImage?: string;
+  quickAnswer?: string;
+  tldr?: {
+    build: string;
+    technologies: string[];
+    learnings: string[];
+    readTime?: string;
+  };
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
+  references?: {
+    title: string;
+    url: string;
+  }[];
+  cta?: {
+    title: string;
+    description: string;
+    linkText: string;
+    linkUrl: string;
+  };
+  topicCluster?: string;
+  lastUpdated?: string;
+  githubUrl?: string;
+  demoUrl?: string;
 }
