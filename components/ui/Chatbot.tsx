@@ -5,11 +5,29 @@ import { CHATBOT_QUICK_PROMPTS } from "@/data/chatbotContext";
 import { useGeminiChat } from "@/lib/useGeminiChat";
 import { ICON_CLASS } from "@/lib/constants";
 
+const formatInlineMarkdown = (text: string) => {
+  if (!text.includes("**")) {
+    return text;
+  }
+
+  const parts = text.split("**");
+  return parts.map((part, i) => {
+    if (i % 2 === 1) {
+      return (
+        <strong key={i} className="font-semibold text-text-primary">
+          {part}
+        </strong>
+      );
+    }
+    return part;
+  });
+};
+
 const renderMessageText = (text: string) => {
   const lines = text.split("\n");
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-1.5">
       {lines.map((rawLine, index) => {
         const line = rawLine.trim();
 
@@ -17,38 +35,54 @@ const renderMessageText = (text: string) => {
           return <div key={`space-${index}`} className="h-2" />;
         }
 
+        // Match bullet lists
         const bulletMatch = line.match(/^[-*]\s+(.*)$/);
         if (bulletMatch) {
           return (
-            <div key={`bullet-${index}`} className="flex items-start gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-600" />
+            <div key={`bullet-${index}`} className="flex items-start gap-2 pl-1.5">
+              <span className="text-text-secondary select-none">•</span>
               <p className="text-sm leading-relaxed text-inherit">
-                {bulletMatch[1]}
+                {formatInlineMarkdown(bulletMatch[1])}
               </p>
             </div>
           );
         }
 
+        // Match numbered lists
         const numberedMatch = line.match(/^(\d+)\.\s+(.*)$/);
         if (numberedMatch) {
           return (
-            <div key={`numbered-${index}`} className="flex items-start gap-2">
-              <span className="min-w-5 text-xs font-semibold text-text-secondary">
+            <div key={`numbered-${index}`} className="flex items-start gap-2 pl-1.5">
+              <span className="min-w-4 text-sm text-text-secondary select-none">
                 {numberedMatch[1]}.
               </span>
               <p className="text-sm leading-relaxed text-inherit">
-                {numberedMatch[2]}
+                {formatInlineMarkdown(numberedMatch[2])}
               </p>
             </div>
           );
         }
 
+        // Match markdown headings (e.g., "### Heading")
+        const mdHeadingMatch = line.match(/^(#{1,6})\s+(.*)$/);
+        if (mdHeadingMatch) {
+          return (
+            <p
+              key={`heading-md-${index}`}
+              className="pt-1.5 text-sm font-bold text-text-primary"
+            >
+              {formatInlineMarkdown(mdHeadingMatch[2])}
+            </p>
+          );
+        }
+
+        // Match standard bold line headings (e.g., "**Heading**" or "**Heading**:")
         const headingMatch = line.match(/^\*\*(.+)\*\*:?$/);
         if (headingMatch) {
           return (
             <p
               key={`heading-${index}`}
-              className="pt-1 text-xs font-semibold uppercase tracking-[0.14em] text-text-primary"
+              className="pt-1.5 text-sm font-bold text-text-primary"
             >
               {headingMatch[1]}
             </p>
@@ -60,7 +94,7 @@ const renderMessageText = (text: string) => {
             key={`paragraph-${index}`}
             className="text-sm leading-relaxed text-inherit"
           >
-            {line}
+            {formatInlineMarkdown(line)}
           </p>
         );
       })}
