@@ -27,36 +27,7 @@ export const fullstackPosts: BlogPost[] = [
       <p>Historically, web applications stored session IDs in cookies and kept session state in server memory. With the rise of single-page apps and serverless environments, stateless JWTs (JSON Web Tokens) became popular because they don't require database lookups. However, JWT storage on the client presents significant security challenges.</p>
 
       <h2>Implementation</h2>
-      <p>We designed an authentication workflow combining stateful security with stateless scalability. Access tokens are kept in short-lived memory, while refresh tokens are stored in secure, HttpOnly, SameSite=Strict cookies. Here is an Express implementation registering a secure login endpoint:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">auth-controller.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> { Request, Response } <span class="code-keyword">from</span> <span class="code-string">"express"</span>;
-<span class="code-keyword">import</span> jwt <span class="code-keyword">from</span> <span class="code-string">"jsonwebtoken"</span>;
-
-<span class="code-keyword">export</span> <span class="code-keyword">const</span> <span class="code-function">login</span> = <span class="code-keyword">async</span> (req: Request, res: Response) =&gt; {
-    <span class="code-keyword">const</span> { email, password } = req.body;
-    <span class="code-comment">// Validate user credentials (hashed check)</span>
-    <span class="code-keyword">const</span> user = <span class="code-keyword">await</span> validateUser(email, password);
-    <span class="code-keyword">if</span> (!user) {
-        <span class="code-keyword">return</span> res.status(<span class="code-number">401</span>).json({ error: <span class="code-string">"Invalid credentials"</span> });
-    }
-
-    <span class="code-keyword">const</span> accessToken = jwt.sign({ userId: user.id }, process.env.JWT_ACCESS_SECRET!, { expiresIn: <span class="code-string">"15m"</span> });
-    <span class="code-keyword">const</span> refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_REFRESH_SECRET!, { expiresIn: <span class="code-string">"7d"</span> });
-
-    res.cookie(<span class="code-string">"refreshToken"</span>, refreshToken, {
-        httpOnly: <span class="code-keyword">true</span>,
-        secure: process.env.NODE_ENV === <span class="code-string">"production"</span>,
-        sameSite: <span class="code-string">"strict"</span>,
-        maxAge: <span class="code-number">7 * 24 * 60 * 60 * 1000</span>
-    });
-
-    res.json({ accessToken });
-};</code></pre>
-      </div>
+      <p>We designed an authentication workflow combining stateful security with stateless scalability. Access tokens are kept in short-lived memory, while refresh tokens are stored in secure, HttpOnly, SameSite=Strict cookies.</p>
 
       <h2>Challenges</h2>
       <p>During deployment, several authentication security vulnerabilities were identified:</p>
@@ -107,24 +78,7 @@ export const fullstackPosts: BlogPost[] = [
       <p>For mid-market SaaS systems, Shared Database/Shared Schema offers the best balance of cost and operational simplicity.</p>
 
       <h2>Implementation</h2>
-      <p>To enforce isolation in a Shared Database design, we utilize PostgreSQL's <strong>Row Level Security (RLS)</strong>. RLS intercepts all SQL queries and automatically appends tenant checks, preventing developers from accidentally omitting <code>tenant_id</code> WHERE clauses. Here is the SQL implementation:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">rls-schema.sql</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-comment">-- Enable RLS on the users table</span>
-<span class="code-keyword">ALTER TABLE</span> users <span class="code-keyword">ENABLE ROW LEVEL SECURITY</span>;
-
-<span class="code-comment">-- Create policy enforcing tenant access</span>
-<span class="code-keyword">CREATE POLICY</span> tenant_user_isolation <span class="code-keyword">ON</span> users
-    <span class="code-keyword">FOR ALL</span>
-    <span class="code-keyword">USING</span> (tenant_id = current_setting(<span class="code-string">'app.current_tenant_id'</span>));
-
-<span class="code-comment">-- Setting tenant session variable in connection middleware</span>
-<span class="code-keyword">SET LOCAL</span> app.current_tenant_id = <span class="code-string">'tenant_uuid_1234'</span>;
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> users; <span class="code-comment">-- Only returns matching records</span></code></pre>
-      </div>
+      <p>To enforce isolation in a Shared Database design, we utilize PostgreSQL's <strong>Row Level Security (RLS)</strong>. RLS intercepts all SQL queries and automatically appends tenant checks, preventing developers from accidentally omitting <code>tenant_id</code> WHERE clauses.</p>
 
       <h2>Challenges</h2>
       <p>Deploying RLS and tenant structures uncovered major scale challenges:</p>
@@ -167,26 +121,7 @@ export const fullstackPosts: BlogPost[] = [
       <p>Traditional serverless backends abstract the database entirely (e.g., Firestore). Supabase, however, exposes the raw PostgreSQL API directly. This lets developers run complex SQL queries, set up database triggers, write stored procedures, and configure robust Row-Level Security (RLS) directly on relational data.</p>
 
       <h2>Implementation</h2>
-      <p>We built a real-time message board using Supabase, utilizing Postgres triggers to capture table updates and broadcast them to connected clients. Below is a trigger SQL example that automatically populates profiles when a user signs up via Supabase Auth:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">profile-trigger.sql</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-comment">-- Automatically create a profile on signup</span>
-<span class="code-keyword">CREATE FUNCTION</span> public.handle_new_user()
-<span class="code-keyword">RETURNS TRIGGER AS</span> $$
-<span class="code-keyword">BEGIN</span>
-    <span class="code-keyword">INSERT INTO</span> public.profiles (id, username, avatar_url)
-    <span class="code-keyword">VALUES</span> (new.id, new.email, <span class="code-string">''</span>);
-    <span class="code-keyword">RETURN</span> new;
-<span class="code-keyword">END</span>;
-$$ <span class="code-keyword">LANGUAGE</span> plpgsql security definer;
-
-<span class="code-keyword">CREATE TRIGGER</span> on_auth_user_created
-    <span class="code-keyword">AFTER INSERT ON</span> auth.users
-    <span class="code-keyword">FOR EACH ROW EXECUTE PROCEDURE</span> public.handle_new_user();</code></pre>
-      </div>
+      <p>We built a real-time message board using Supabase, utilizing Postgres triggers to capture table updates and broadcast them to connected clients.</p>
 
       <h2>Challenges</h2>
       <p>Relying fully on client-side Supabase SDK calls presented unique challenges:</p>
@@ -225,28 +160,7 @@ $$ <span class="code-keyword">LANGUAGE</span> plpgsql security definer;
       <p>Many developers build FastAPI applications using a single, monolithic file. In production, this becomes unmaintainable. A mature FastAPI application requires a clean separation of router files, dependency injections (like database sessions and security checks), and Pydantic validation schemas.</p>
 
       <h2>Implementation</h2>
-      <p>We structured our FastAPI app using a modular router layout and async database sessions via SQLAlchemy. Below is a production router file demonstrating async database dependencies and validation schemas:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">routes/items.py</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">from</span> fastapi <span class="code-keyword">import</span> APIRouter, Depends, HTTPException
-<span class="code-keyword">from</span> sqlalchemy.ext.asyncio <span class="code-keyword">import</span> AsyncSession
-<span class="code-keyword">from</span> typing <span class="code-keyword">import</span> List
-<span class="code-keyword">from</span> ..database <span class="code-keyword">import</span> get_db
-<span class="code-keyword">from</span> ..schemas <span class="code-keyword">import</span> ItemCreate, ItemResponse
-<span class="code-keyword">from</span> ..crud <span class="code-keyword">import</span> create_db_item
-
-router = APIRouter(prefix=<span class="code-string">"/items"</span>, tags=[<span class="code-string">"items"</span>])
-
-@router.post(<span class="code-string">"/"</span>, response_model=ItemResponse)
-<span class="code-keyword">async def</span> <span class="code-type">add_item</span>(item: ItemCreate, db: AsyncSession = Depends(get_db)):
-    db_item = <span class="code-keyword">await</span> create_db_item(db=db, item=item)
-    <span class="code-keyword">if</span> not db_item:
-        <span class="code-keyword">raise</span> HTTPException(status_code=<span class="code-number">400</span>, detail=<span class="code-string">"Item creation failed"</span>)
-    <span class="code-keyword">return</span> db_item</code></pre>
-      </div>
+      <p>We structured our FastAPI app using a modular router layout and async database sessions via SQLAlchemy.</p>
 
       <h2>Challenges</h2>
       <p>Optimizing python applications in containerized settings presented several challenges:</p>
@@ -290,26 +204,7 @@ router = APIRouter(prefix=<span class="code-string">"/items"</span>, tags=[<span
       <p>React Server Components run exclusively on the server, meaning their dependencies do not bloat the bundle size of the client. By default, all components in Next.js App Router are Server Components. We only mark components with <code>"use client"</code> when they require interactive hooks like <code>useState</code>, <code>useEffect</code>, or browser APIs.</p>
 
       <h2>Implementation</h2>
-      <p>We designed a high-performance rendering hierarchy: data fetching is done inside Server Components at the layout level, and values are passed down as properties to lightweight Client Components that manage interaction. Below is a next-gen Server Component fetching API data directly:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">app/dashboard/page.tsx</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code>import { fetchAnalytics } from "../lib/api";
-import { DashboardClient } from "./dashboard-client";
-
-export default async function DashboardPage() {
-    const data = await fetchAnalytics();
-
-    return (
-        &lt;main className="dashboard-container"&gt;
-            &lt;h1&gt;Production Dashboard&lt;/h1&gt;
-            &lt;DashboardClient initialData={data} /&gt;
-        &lt;/main&gt;
-    );
-}</code></pre>
-      </div>
+      <p>We designed a high-performance rendering hierarchy: data fetching is done inside Server Components at the layout level, and values are passed down as properties to lightweight Client Components that manage interaction.</p>
 
       <h2>Challenges</h2>
       <p>Implementing RSCs introduces unique compilation challenges:</p>

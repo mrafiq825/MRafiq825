@@ -34,21 +34,7 @@ export const devopsSrePosts: BlogPost[] = [
         <li><strong>Containers & Orchestration</strong>: Building Docker containers and running Kubernetes clusters.</li>
         <li><strong>Telemetry & Monitoring</strong>: Deploying Prometheus and Grafana to track systems performance.</li>
       </ul>
-      <p>Below is a Terraform configuration automating standard virtual private cloud (VPC) subnets, representing one of the first infrastructure components I built:</p>
 
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">vpc.tf</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">resource</span> <span class="code-string">"aws_vpc"</span> <span class="code-string">"main"</span> {
-  cidr_block           = <span class="code-string">"10.0.0.0/16"</span>
-  enable_dns_hostnames = <span class="code-keyword">true</span>
-
-  <span class="code-keyword">tags</span> = {
-    Name = <span class="code-string">"sre-production-vpc"</span>
-  }
-}</code></pre>
-      </div>
 
       <h2>Challenges</h2>
       <p>The journey presented two primary challenges:</p>
@@ -91,29 +77,7 @@ export const devopsSrePosts: BlogPost[] = [
       <p>Docker uses Linux kernel namespaces and cgroups to isolate processes. Unlike heavy Virtual Machines that run their own operating systems, Docker containers share the host kernel. This makes them lightweight, fast to boot, and highly resource-efficient.</p>
 
       <h2>Implementation</h2>
-      <p>To run multi-container applications locally, we use <strong>Docker Compose</strong>. Compose simplifies running databases, caches, and application servers together with a single command. Below is a configuration linking a Node.js API with a PostgreSQL database:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">docker-compose.yml</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">version</span>: <span class="code-string">"3.8"</span>
-<span class="code-keyword">services</span>:
-  <span class="code-keyword">api</span>:
-    <span class="code-keyword">build</span>: .
-    <span class="code-keyword">ports</span>:
-      - <span class="code-string">"3000:3000"</span>
-    <span class="code-keyword">environment</span>:
-      - DATABASE_URL=postgres://user:pass@db:5432/app
-    <span class="code-keyword">depends_on</span>:
-      - db
-  <span class="code-keyword">db</span>:
-    <span class="code-keyword">image</span>: postgres:15-alpine
-    <span class="code-keyword">volumes</span>:
-      - postgres_data:/var/lib/postgresql/data
-<span class="code-keyword">volumes</span>:
-  <span class="code-keyword">postgres_data</span>:</code></pre>
-      </div>
+      <p>To run multi-container applications locally, we use <strong>Docker Compose</strong>. Compose simplifies running databases, caches, and application servers together with a single command.</p>
 
       <h2>Challenges</h2>
       <p>During initial setups, developers make common container mistakes:</p>
@@ -156,31 +120,7 @@ export const devopsSrePosts: BlogPost[] = [
       <p>GitHub Actions has become an industry standard because it integrates directly into Git repositories. Developers write workflow configurations in YAML files under the <code>.github/workflows/</code> directory, defining triggers (like <code>push</code> or <code>pull_request</code>) and jobs containing steps executed on virtual runners.</p>
 
       <h2>Implementation</h2>
-      <p>We configured a CI pipeline that caches dependencies, runs code linters, and executes unit tests. Below is the YAML workflow file:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">ci.yml</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">name</span>: Continuous Integration
-<span class="code-keyword">on</span>:
-  <span class="code-keyword">pull_request</span>:
-    <span class="code-keyword">branches</span>: [ main ]
-<span class="code-keyword">jobs</span>:
-  <span class="code-keyword">build-and-test</span>:
-    <span class="code-keyword">runs-on</span>: ubuntu-latest
-    <span class="code-keyword">steps</span>:
-      - <span class="code-keyword">uses</span>: actions/checkout@v4
-      - <span class="code-keyword">name</span>: Set up Node.js
-        <span class="code-keyword">uses</span>: actions/setup-node@v4
-        <span class="code-keyword">with</span>:
-          <span class="code-keyword">node-version</span>: 20
-          <span class="code-keyword">cache</span>: 'npm'
-      - <span class="code-keyword">name</span>: Install dependencies
-        <span class="code-keyword">run</span>: npm ci
-      - <span class="code-keyword">name</span>: Run tests
-        <span class="code-keyword">run</span>: npm test</code></pre>
-      </div>
+      <p>We configured a CI pipeline that caches dependencies, runs code linters, and executes unit tests.</p>
 
       <h2>Challenges</h2>
       <p>Optimizing automated workflows introduces distinct challenges:</p>
@@ -228,32 +168,7 @@ export const devopsSrePosts: BlogPost[] = [
       </ol>
 
       <h2>Implementation</h2>
-      <p>We configured a scalable Kubernetes Deployment that runs 3 replicas of our API and exposes them using a load balancer. Below is the YAML manifest:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">deployment.yaml</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">apiVersion</span>: apps/v1
-<span class="code-keyword">kind</span>: Deployment
-<span class="code-keyword">metadata</span>:
-  <span class="code-keyword">name</span>: api-server
-<span class="code-keyword">spec</span>:
-  <span class="code-keyword">replicas</span>: 3
-  <span class="code-keyword">selector</span>:
-    <span class="code-keyword">matchLabels</span>:
-      <span class="code-keyword">app</span>: api
-  <span class="code-keyword">template</span>:
-    <span class="code-keyword">metadata</span>:
-      <span class="code-keyword">labels</span>:
-        <span class="code-keyword">app</span>: api
-    <span class="code-keyword">spec</span>:
-      <span class="code-keyword">containers</span>:
-      - <span class="code-keyword">name</span>: api
-        <span class="code-keyword">image</span>: myregistry.com/api:v1.0.0
-        <span class="code-keyword">ports</span>:
-        - <span class="code-keyword">containerPort</span>: 3000</code></pre>
-      </div>
+      <p>We configured a scalable Kubernetes Deployment that runs 3 replicas of our API and exposes them using a load balancer.</p>
 
       <h2>Challenges</h2>
       <p>Running Kubernetes in production reveals typical orchestration challenges:</p>
@@ -296,32 +211,7 @@ export const devopsSrePosts: BlogPost[] = [
       <p>The standard stack for monitoring is <strong>Prometheus</strong> (a time-series database that scrapes metrics via HTTP) and <strong>Grafana</strong> (a visualization tool that queries Prometheus to build interactive dashboards). Prometheus metrics fall into four categories: Counter, Gauge, Histogram, and Summary.</p>
 
       <h2>Implementation</h2>
-      <p>We instrumented our Node.js APIs to expose standard runtime metrics. Below is an implementation file setting up a Prometheus metrics server using <code>prom-client</code>:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">metrics-server.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> express <span class="code-keyword">from</span> <span class="code-string">"express"</span>;
-<span class="code-keyword">import</span> client <span class="code-keyword">from</span> <span class="code-string">"prom-client"</span>;
-
-<span class="code-keyword">const</span> app = express();
-
-client.collectDefaultMetrics();
-
-<span class="code-keyword">export</span> <span class="code-keyword">const</span> httpRequestCounter = <span class="code-keyword">new</span> client.Counter({
-  name: <span class="code-string">"http_requests_total"</span>,
-  help: <span class="code-string">"Total number of HTTP requests"</span>,
-  labelNames: [<span class="code-string">"method"</span>, <span class="code-string">"route"</span>, <span class="code-string">"status"</span>]
-});
-
-app.get(<span class="code-string">"/metrics"</span>, <span class="code-keyword">async</span> (req, res) =&gt; {
-  res.set(<span class="code-string">"Content-Type"</span>, client.register.contentType);
-  res.end(<span class="code-keyword">await</span> client.register.metrics());
-});
-
-app.listen(<span class="code-number">9090</span>);</code></pre>
-      </div>
+      <p>We instrumented our Node.js APIs to expose standard runtime metrics.</p>
 
       <h2>Challenges</h2>
       <p>Building production monitoring platforms presents standard challenges:</p>

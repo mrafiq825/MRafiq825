@@ -150,7 +150,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
   return (
     <>
       <Navbar />
-
       {/* Reading Scroll Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-border-default/30">
         <div
@@ -161,7 +160,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
 
       <main className="page-shell min-h-screen bg-transparent text-text-primary pt-12 pb-32 px-4 md:px-8 relative z-10">
         <div className="max-w-6xl mx-auto mt-8">
-          
           {/* Breadcrumb Navigation - Semantic HTML & Microdata */}
           <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-1.5 text-xs font-mono text-text-muted">
             <Link href="/" className="hover:text-accent-600 transition-colors">Home</Link>
@@ -172,7 +170,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
             <span>&gt;</span>
             <span className="text-text-primary font-semibold truncate max-w-[200px] md:max-w-xs">{post.title}</span>
           </nav>
-
           {/* Back button */}
           <Link
             href="/blog"
@@ -184,11 +181,11 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
 
           {/* Grid Layout (Article content vs TOC sidebar) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             {/* Left Column: Article Body wrapper */}
             <div className="lg:col-span-9">
               <article className="overflow-hidden rounded-[24px] border border-border-default bg-bg-surface shadow-sm mb-8 glass-panel">
-                
+
                 {/* Visual Cover Gradient (Hero image representation) */}
                 <header
                   className="h-44 md:h-60 w-full relative flex flex-col justify-end p-6 md:p-8"
@@ -204,7 +201,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                     </h1>
                   </div>
                 </header>
-
                 {/* Author Info, Publish Date, and Reading Time bar */}
                 <section aria-label="Article details" className="px-6 md:px-8 py-4 border-b border-border-default/40 bg-bg-surface-hover/30 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-text-muted">
@@ -228,7 +224,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                       <span>Calculated Time: {computedReadTime}</span>
                     </span>
                   </div>
-
                   {/* Share button */}
                   <button
                     onClick={handleShare}
@@ -238,7 +233,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                     {isCopied ? "Link Copied!" : "Share Post"}
                   </button>
                 </section>
-
                 {/* Mobile Expandable Table of Contents */}
                 <div className="lg:hidden px-6 md:px-8 pt-6">
                   <div className="border border-border-default bg-bg-surface-hover/20 rounded-xl p-4 glass-panel">
@@ -258,13 +252,11 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                             key={h.id}
                             href={`#${h.id}`}
                             onClick={() => setMobileTocOpen(false)}
-                            className={`text-xs py-1.5 px-3 rounded-lg font-body transition-all duration-200 border-l-2 leading-snug ${
-                              h.depth === 3 ? "ml-4 text-text-muted" : "text-text-secondary"
-                            } ${
-                              activeId === h.id
+                            className={`text-xs py-1.5 px-3 rounded-lg font-body transition-all duration-200 border-l-2 leading-snug ${h.depth === 3 ? "ml-4 text-text-muted" : "text-text-secondary"
+                              } ${activeId === h.id
                                 ? "border-accent-600 bg-accent-50 text-accent-700 font-semibold"
                                 : "border-transparent hover:text-text-primary hover:bg-bg-surface-hover/50"
-                            }`}
+                              }`}
                           >
                             {h.text}
                           </a>
@@ -273,10 +265,9 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                     )}
                   </div>
                 </div>
-
                 {/* Inner Content Wrapper */}
                 <div className="px-6 md:px-8 py-6 border-b border-border-default/40">
-                  
+
                   {/* Quick Answer Section (AEO optimized summary for answer engines) */}
                   <section aria-label="Quick Answer Summary" className="mb-8 p-6 rounded-[20px] border border-accent-600/35 bg-accent-50/15 backdrop-blur-md relative overflow-hidden group">
                     <div className="absolute top-0 right-0 bg-accent-600 text-white font-mono text-[8px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl-lg shadow-sm">
@@ -289,11 +280,10 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                       {post.quickAnswer}
                     </p>
                   </section>
-
                   {/* TL;DR Section */}
                   <section aria-label="TL;DR Key Points" className="mb-10 p-6 rounded-[20px] border border-border-default bg-bg-surface-hover/20 backdrop-blur-md relative overflow-hidden group glass-panel-inset">
                     <h2 className="font-heading text-base font-extrabold text-text-primary mb-4 flex items-center gap-2 border-b border-border-default/50 pb-2">
-                      ⚡ TL;DR Summary
+                      TL;DR Summary
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
@@ -324,16 +314,13 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                       <span className="text-accent-700 font-semibold">{post.tldr.readTime || computedReadTime}</span>
                     </div>
                   </section>
-
                   {/* Main Article Content */}
                   <div
                     id="blog-content-body"
                     className="prose-custom"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
-
                 </div>
-
                 {/* FAQ Section */}
                 {post.faqs && post.faqs.length > 0 && (
                   <section aria-label="Frequently Asked Questions" className="px-6 md:px-8 py-8 border-b border-border-default/40 bg-bg-surface-hover/10">
@@ -354,7 +341,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                     </div>
                   </section>
                 )}
-
                 {/* References Section */}
                 {post.references && post.references.length > 0 && (
                   <section aria-label="Sources and references" className="px-6 md:px-8 py-6 border-b border-border-default/40 bg-bg-surface/50">
@@ -378,7 +364,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                     </ul>
                   </section>
                 )}
-
                 {/* Call To Action Block */}
                 {post.cta && (
                   <section aria-label="Engagement call to action" className="px-6 md:px-8 py-8 bg-gradient-to-r from-accent-600/10 to-purple-600/10 rounded-b-[24px]">
@@ -401,7 +386,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                 )}
 
               </article>
-
               {/* Author Box with EEAT signals */}
               <section aria-label="Author Profile" className="p-6 md:p-8 rounded-[24px] border border-border-default bg-bg-surface shadow-sm glass-panel flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-12">
                 <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-accent-600 text-white font-mono text-2xl font-bold border border-accent-100 shadow-sm shadow-accent-600/10">
@@ -418,9 +402,8 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                       </p>
                     </div>
                     <div className="flex items-center justify-center gap-4 text-xs font-mono">
-                      <a href="https://github.com/Rafiqdevhub" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent-600 transition-colors">GitHub</a>
-                      <a href="https://linkedin.com/in/muhammadrafiq" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent-600 transition-colors">LinkedIn</a>
-                      <a href="https://rafiq.dev" className="text-text-secondary hover:text-accent-600 transition-colors">Portfolio</a>
+                      <a href="https://github.com/mrafiq825" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent-600 transition-colors">GitHub</a>
+                      <a href="https://linkedin.com/in/mrafiq825" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent-600 transition-colors">LinkedIn</a>
                     </div>
                   </div>
                   <p className="text-xs md:text-sm font-body text-text-secondary leading-relaxed mb-4">
@@ -436,7 +419,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                 </div>
               </section>
             </div>
-
             {/* Right Column: Sticky Table of Contents (TOC) for Desktop */}
             <aside className="lg:col-span-3 hidden lg:block sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto pr-2">
               <h2 className="font-heading text-xs font-bold uppercase tracking-wider text-text-muted mb-4 pl-1">
@@ -447,22 +429,18 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                   <a
                     key={h.id}
                     href={`#${h.id}`}
-                    className={`text-xs py-1.5 px-3 rounded-lg font-body transition-all duration-200 border-l-2 leading-snug ${
-                      h.depth === 3 ? "ml-4 text-text-muted" : "text-text-secondary"
-                    } ${
-                      activeId === h.id
+                    className={`text-xs py-1.5 px-3 rounded-lg font-body transition-all duration-200 border-l-2 leading-snug ${h.depth === 3 ? "ml-4 text-text-muted" : "text-text-secondary"
+                      } ${activeId === h.id
                         ? "border-accent-600 bg-accent-50 text-accent-700 font-semibold"
                         : "border-transparent hover:text-text-primary hover:bg-bg-surface-hover/50"
-                    }`}
+                      }`}
                   >
                     {h.text}
                   </a>
                 ))}
               </nav>
             </aside>
-
           </div>
-
           {/* Related Articles Section (Displaying 3 related posts, enforcing the Tag Capping Rule) */}
           {relatedPosts.length > 0 && (
             <section aria-label="Related Publications" className="mt-12 border-t border-border-default/50 pt-10">
@@ -517,7 +495,6 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
               </div>
             </section>
           )}
-
         </div>
       </main>
     </>

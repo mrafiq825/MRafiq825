@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { blogPosts, getAeoEnrichedPost } from "@/data/blog";
-import BlogDetailClient from "./BlogDetailClient";
+import BlogDetailClient from "@/components/blog/BlogDetailClient";
 
 interface PageProps {
   params: Promise<{

@@ -27,39 +27,7 @@ export const caseStudiesPosts: BlogPost[] = [
       <p>Building a parser requires extracting text from non-standard document formats and converting it to structured data. While raw regular expressions fail on diverse layout structures, combining text extractors with Google's Gemini 1.5 Pro models allows us to convert raw text into structured JSON evaluations accurately.</p>
 
       <h2>Implementation</h2>
-      <p>The architecture is built on a Next.js serverless app. Files are uploaded, parsed using <code>pdf-parse</code>, and sent to Gemini using structured JSON modes. Below is the API route handler that extracts profile fields using Gemini schemas:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">app/api/analyze/route.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code>import { GoogleGenAI, Type } from "@google/generative-ai";
-import { NextResponse } from "next/server";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const model = ai.getGenerativeModel({
-    model: "gemini-1.5-pro",
-    generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: {
-            type: Type.OBJECT,
-            properties: {
-                name: { type: Type.STRING },
-                skills: { type: Type.ARRAY, items: { type: Type.STRING } },
-                score: { type: Type.INTEGER }
-            },
-            required: ["name", "skills", "score"]
-        }
-    }
-});
-
-export async function POST(req: Request) {
-    const { resumeText } = await req.json();
-    const prompt = "Evaluate this resume:\\n" + resumeText;
-    const result = await model.generateContent(prompt);
-    return NextResponse.json(JSON.parse(result.response.text()));
-}</code></pre>
-      </div>
+      <p>The architecture is built on a Next.js serverless app. Files are uploaded, parsed using <code>pdf-parse</code>, and sent to Gemini using structured JSON modes.</p>
 
       <h2>Challenges</h2>
       <p>I encountered two major challenges during implementation:</p>
@@ -163,37 +131,7 @@ export async function POST(req: Request) {
       <p>University knowledge bases are updated regularly. Fine-tuning an LLM on calendars is slow and expensive. A RAG architecture allows the chatbot to retrieve source text directly from a vector database containing parsed documents and reference them in responses.</p>
 
       <h2>Implementation</h2>
-      <p>The knowledge base is built on a vector index (Pinecone) using text-embedding models. When a user asks a question, the backend retrieves matching documents, builds a prompt, and streams the answer using the Gemini API. Below is the API route handling text retrieval and streaming responses:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">app/api/chat/route.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code>import { GoogleGenAI } from "@google/generative-ai";
-import { Pinecone } from "@pinecone-database/pinecone";
-
-const pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
-
-export async function POST(req: Request) {
-    const { message } = await req.json();
-    const queryEmbedding = await getEmbedding(message);
-    
-    const queryResponse = await pc.Index("campus").query({
-        vector: queryEmbedding,
-        topK: 3,
-        includeMetadata: true
-    });
-    
-    const context = queryResponse.matches.map(m => m.metadata?.text).join("\\n");
-    const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const chatStream = await model.generateContentStream(
-        "Context: " + context + "\\n\\nQuestion: " + message
-    );
-    
-    return new Response(chatStream.stream);
-}</code></pre>
-      </div>
+      <p>The knowledge base is built on a vector index (Pinecone) using text-embedding models. When a user asks a question, the backend retrieves matching documents, builds a prompt, and streams the answer using the Gemini API.</p>
 
       <h2>Challenges</h2>
       <p>Deploying the campus chatbot revealed two primary challenges:</p>
@@ -236,32 +174,7 @@ export async function POST(req: Request) {
       <p>Generating raw HTML directly from an LLM often results in broken layouts or invalid syntax. To ensure layout quality, the website builder generates a structured JSON page schema that defines sections, blocks, colors, and content, which is then rendered by pre-built React components.</p>
 
       <h2>Implementation</h2>
-      <p>The builder uses Next.js server functions to request JSON schemas from Gemini. The client parses this schema and renders components using dynamic routing. Below is the React component mapping schemas to layouts:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">app/components/page-renderer.tsx</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code>import { HeroSection } from "./sections/Hero";
-import { FeaturesSection } from "./sections/Features";
-
-const SECTION_COMPONENTS = {
-    hero: HeroSection,
-    features: FeaturesSection
-};
-
-export function PageRenderer({ schema }: { schema: any }) {
-    return (
-        &lt;div className="generated-page"&gt;
-            {schema.sections.map((section: any, idx: number) =&gt; {
-                const Comp = SECTION_COMPONENTS[section.type];
-                if (!Comp) return null;
-                return &lt;Comp key={idx} data={section.data} /&gt;;
-            })}
-        &lt;/div&gt;
-    );
-}</code></pre>
-      </div>
+      <p>The builder uses Next.js server functions to request JSON schemas from Gemini. The client parses this schema and renders components using dynamic routing.</p>
 
       <h2>Challenges</h2>
       <p>Generating UI layouts using LLMs presents several design challenges:</p>
@@ -304,28 +217,7 @@ export function PageRenderer({ schema }: { schema: any }) {
       <p>If two users book the same room at the same time, database queries run concurrently. A naive database read-then-write check results in both reservations being processed, causing operational issues. Relational databases address this using database locking or transaction isolation levels.</p>
 
       <h2>Implementation</h2>
-      <p>We structured our booking queries using PostgreSQL transaction blocks with explicit <strong>row locking (FOR UPDATE)</strong>. This blocks concurrent queries from reading the room's booking state until the active transaction completes. Below is the database query implementation:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">booking-query.sql</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code>BEGIN;
-
--- Lock the target room row to block concurrent bookings
-SELECT id, status FROM rooms
-WHERE id = 'room_101' AND status = 'available'
-FOR UPDATE;
-
--- Create reservation on match
-INSERT INTO bookings (room_id, guest_id, check_in)
-VALUES ('room_101', 'guest_456', '2026-06-25');
-
--- Update room status to booked
-UPDATE rooms SET status = 'booked' WHERE id = 'room_101';
-
-COMMIT;</code></pre>
-      </div>
+      <p>We structured our booking queries using PostgreSQL transaction blocks with explicit <strong>row locking (FOR UPDATE)</strong>. This blocks concurrent queries from reading the room's booking state until the active transaction completes.</p>
 
       <h2>Challenges</h2>
       <p>Implementing reservation locks introduced operational challenges:</p>

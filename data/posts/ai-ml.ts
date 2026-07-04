@@ -28,39 +28,7 @@ export const aiMlPosts: BlogPost[] = [
 
       <h2>Implementation</h2>
       <p>Building a RAG system involves two primary workflows: the **Ingestion Pipeline** and the **Retrieval/Generation Loop**.</p>
-      <p>First, documents are parsed, divided into chunks of optimal size (e.g., 500 characters with 100 characters overlap), and embedded into vectors. Here is a basic implementation of a retrieval loop using Python:</p>
-      
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">rag_pipeline.py</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> openai
-<span class="code-keyword">from</span> sentence_transformers <span class="code-keyword">import</span> SentenceTransformer
-<span class="code-keyword">import</span> pinecone
-
-<span class="code-comment"># Initialize embedder and vector database client</span>
-embedder = SentenceTransformer(<span class="code-string">"all-MiniLM-L6-v2"</span>)
-pc = pinecone.Pinecone(api_key=<span class="code-string">"PINECONE_API_KEY"</span>)
-index = pc.Index(<span class="code-string">"knowledge-base"</span>)
-
-<span class="code-keyword">def</span> <span class="code-function">ask_rag</span>(query: <span class="code-keyword">str</span>) -&gt; <span class="code-keyword">str</span>:
-    <span class="code-comment"># 1. Embed query</span>
-    query_vector = embedder.encode(query).tolist()
-    
-    <span class="code-comment"># 2. Retrieve top matches from Vector DB</span>
-    results = index.query(vector=query_vector, top_k=<span class="code-number">3</span>, include_metadata=<span class="code-keyword">True</span>)
-    context = <span class="code-string">"\\n"</span>.join([match[<span class="code-string">"metadata"</span>][<span class="code-string">"text"</span>] <span class="code-keyword">for</span> match <span class="code-keyword">in</span> results[<span class="code-string">"matches"</span>]])
-    
-    <span class="code-comment"># 3. Construct contextual prompt for LLM</span>
-    prompt = <span class="code-string">f"Context:\\n{context}\\n\\nQuestion: {query}\\nAnswer the question using the context above:"</span>
-    
-    <span class="code-comment"># 4. Generate response</span>
-    response = openai.chat.completions.create(
-        model=<span class="code-string">"gpt-4o"</span>,
-        messages=[{<span class="code-string">"role"</span>: <span class="code-string">"user"</span>, <span class="code-string">"content"</span>: prompt}]
-    )
-    <span class="code-keyword">return</span> response.choices[<span class="code-number">0</span>].message.content</code></pre>
-      </div>
+      <p>First, documents are parsed, divided into chunks of optimal size (e.g., 500 characters with 100 characters overlap), and embedded into vectors.</p>
 
       <h2>Challenges</h2>
       <p>Several major challenges arose during production deployment:</p>
@@ -221,29 +189,7 @@ index = pc.Index(<span class="code-string">"knowledge-base"</span>)
       </ul>
 
       <h2>Solutions</h2>
-      <p>We solved this by establishing a decoupled adapter architecture using standard abstraction libraries. We configured a unified gateway client that maps unified requests to individual SDKs, handles backoff retries on rate limits, and uses schemas to enforce structures at the model level:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">model_gateway.py</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> os
-<span class="code-keyword">from</span> langchain_google_genai <span class="code-keyword">import</span> ChatGoogleGenerativeAI
-<span class="code-keyword">from</span> langchain_openai <span class="code-keyword">import</span> ChatOpenAI
-
-<span class="code-keyword">def</span> <span class="code-function">get_model_client</span>(provider: <span class="code-keyword">str</span>):
-    <span class="code-keyword">if</span> provider == <span class="code-string">"gemini"</span>:
-        <span class="code-keyword">return</span> ChatGoogleGenerativeAI(
-            model=<span class="code-string">"gemini-1.5-pro"</span>,
-            google_api_key=os.getenv(<span class="code-string">"GEMINI_API_KEY"</span>)
-        )
-    <span class="code-keyword">elif</span> provider == <span class="code-string">"openai"</span>:
-        <span class="code-keyword">return</span> ChatOpenAI(
-            model=<span class="code-string">"gpt-4o"</span>,
-            api_key=os.getenv(<span class="code-string">"OPENAI_API_KEY"</span>)
-        )
-    <span class="code-comment"># Fallback to other providers</span></code></pre>
-      </div>
+      <p>We solved this by establishing a decoupled adapter architecture using standard abstraction libraries. We configured a unified gateway client that maps unified requests to individual SDKs, handles backoff retries on rate limits, and uses schemas to enforce structures at the model level.</p>
 
       <h2>Results</h2>
       <p>Integrating Gemini's native code execution reduced runtime generation bugs by 45%. Under high volume tests, Claude 3.5 Sonnet yielded the highest software test success score of 91%, while Gemini 1.5 Pro reduced ingestion cost by 62% for document-heavy analysis.</p>
@@ -272,43 +218,7 @@ index = pc.Index(<span class="code-string">"knowledge-base"</span>)
       <p>The standard framework for autonomous agents is the **ReAct (Reason + Action)** pattern. Instead of predicting the next token sequentially, the agent writes its "Thought", decides an "Action" (tool call), reads the "Observation" (tool result), and repeats. This mimics human problem-solving and significantly improves reasoning success rates.</p>
 
       <h2>Implementation</h2>
-      <p>We built a stateful executor using standard function calling. Function calling lets the model output a structured JSON object representing arguments rather than writing raw code. Below is a basic scratch agent executor pattern:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">agent_executor.py</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> json
-
-<span class="code-keyword">def</span> <span class="code-function">run_agent_loop</span>(client, prompt, tools_config):
-    messages = [{<span class="code-string">"role"</span>: <span class="code-string">"user"</span>, <span class="code-string">"content"</span>: prompt}]
-    
-    <span class="code-keyword">for</span> step <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-number">5</span>): <span class="code-comment"># Limit loops to prevent infinite loops</span>
-        response = client.chat.completions.create(
-            model=<span class="code-string">"gpt-4o"</span>,
-            messages=messages,
-            tools=tools_config
-        )
-        message = response.choices[<span class="code-number">0</span>].message
-        messages.append(message)
-        
-        <span class="code-keyword">if</span> not message.tool_calls:
-            <span class="code-comment"># Agent finished its work</span>
-            <span class="code-keyword">return</span> message.content
-            
-        <span class="code-keyword">for</span> tool_call <span class="code-keyword">in</span> message.tool_calls:
-            tool_name = tool_call.function.name
-            args = json.loads(tool_call.function.arguments)
-            
-            <span class="code-comment"># Execute the local function</span>
-            observation = execute_tool(tool_name, args)
-            
-            messages.append({
-                <span class="code-string">"role"</span>: <span class="code-string">"tool"</span>,
-                <span class="code-string">"tool_call_id"</span>: tool_call.id,
-                <span class="code-string">"content"</span>: json.dumps(observation)
-            })</code></pre>
-      </div>
+      <p>We built a stateful executor using standard function calling. Function calling lets the model output a structured JSON object representing arguments rather than writing raw code.</p>
 
       <h2>Challenges</h2>
       <p>Designing autonomous agents reveals major production difficulties:</p>

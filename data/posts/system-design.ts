@@ -27,29 +27,7 @@ export const systemDesignPosts: BlogPost[] = [
       <p>A high-performance recruitment architecture has two primary parts: the Web Portal (which handles candidates and recruiters) and the Asynchronous Processing Pipeline (which handles parsing, scoring, and matching). This separation ensures that even if AI services fail or slow down, candidates can still upload profiles without issues.</p>
 
       <h2>Implementation</h2>
-      <p>We designed this system using a microservices model. File uploads go directly to Amazon S3/GCP Cloud Storage with pre-signed URLs, while background parsing is orchestrated using Redis-backed queues (BullMQ/Celery). Below is an architecture schema for the background processor routing parser jobs:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">queue-worker.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> { Worker, Job } <span class="code-keyword">from</span> <span class="code-string">"bullmq"</span>;
-<span class="code-keyword">import</span> { parseResumePDF } <span class="code-keyword">from</span> <span class="code-string">"./parser"</span>;
-<span class="code-keyword">import</span> { evaluateWithGemini } <span class="code-keyword">from</span> <span class="code-string">"./ai"</span>;
-
-<span class="code-keyword">const</span> resumeWorker = <span class="code-keyword">new</span> Worker(<span class="code-string">"resume-processing"</span>, <span class="code-keyword">async</span> (job: Job) =&gt; {
-    <span class="code-keyword">const</span> { fileUrl, candidateId } = job.data;
-    
-    <span class="code-comment">// 1. Parse text from storage file</span>
-    <span class="code-keyword">const</span> parsedText = <span class="code-keyword">await</span> parseResumePDF(fileUrl);
-    
-    <span class="code-comment">// 2. Analyze parsing results with LLM</span>
-    <span class="code-keyword">const</span> analysisResult = <span class="code-keyword">await</span> evaluateWithGemini(parsedText);
-    
-    <span class="code-comment">// 3. Update main database with score</span>
-    <span class="code-keyword">await</span> saveCandidateEvaluation(candidateId, analysisResult);
-}, { connection: redisClient });</code></pre>
-      </div>
+      <p>We designed this system using a microservices model. File uploads go directly to Amazon S3/GCP Cloud Storage with pre-signed URLs, while background parsing is orchestrated using Redis-backed queues (BullMQ/Celery).</p>
 
       <h2>Challenges</h2>
       <p>Designing this recruitment architecture revealed major design challenges:</p>
@@ -163,41 +141,7 @@ export const systemDesignPosts: BlogPost[] = [
       <p>In an event-driven system, a service broadcasts an event (e.g., "OrderPlaced") to an event bus or messaging broker (like RabbitMQ or Apache Kafka). Other services subscribe to this event and perform tasks independently. This isolates services and improves overall system resilience.</p>
 
       <h2>Implementation</h2>
-      <p>To implement event-driven updates safely, we use the **Transactional Outbox Pattern**. This pattern ensures that database updates and event publications happen inside a single transaction, preventing events from being sent if the database write fails. Below is a SQL and Node.js implementation example:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">transactional-outbox.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> { Pool } <span class="code-from">from</span> <span class="code-string">"pg"</span>;
-
-<span class="code-keyword">export</span> <span class="code-keyword">const</span> <span class="code-function">createOrder</span> = <span class="code-keyword">async</span> (db: Pool, orderData: any) =&gt; {
-    <span class="code-keyword">const</span> client = <span class="code-keyword">await</span> db.connect();
-    <span class="code-keyword">try</span> {
-        <span class="code-keyword">await</span> client.query(<span class="code-string">"BEGIN"</span>);
-        
-        <span class="code-comment">// 1. Insert order record</span>
-        <span class="code-keyword">const</span> res = <span class="code-keyword">await</span> client.query(
-            <span class="code-string">"INSERT INTO orders (total, status) VALUES ($1, $2) RETURNING id"</span>,
-            [orderData.total, <span class="code-string">"pending"</span>]
-        );
-        <span class="code-keyword">const</span> orderId = res.rows[<span class="code-number">0</span>].id;
-
-        <span class="code-comment">// 2. Save event payload into outbox table (same transaction)</span>
-        <span class="code-keyword">await</span> client.query(
-            <span class="code-string">"INSERT INTO outbox (event_type, payload) VALUES ($1, $2)"</span>,
-            [<span class="code-string">"OrderPlaced"</span>, JSON.stringify({ orderId, total: orderData.total })]
-        );
-        
-        <span class="code-keyword">await</span> client.query(<span class="code-string">"COMMIT"</span>);
-    } <span class="code-keyword">catch</span> (err) {
-        <span class="code-keyword">await</span> client.query(<span class="code-string">"ROLLBACK"</span>);
-        <span class="code-keyword">throw</span> err;
-    } <span class="code-keyword">finally</span> {
-        client.release();
-    }
-};</code></pre>
-      </div>
+      <p>To implement event-driven updates safely, we use the **Transactional Outbox Pattern**. This pattern ensures that database updates and event publications happen inside a single transaction, preventing events from being sent if the database write fails.</p>
 
       <h2>Challenges</h2>
       <p>Managing asynchronous message routing introduces several design challenges:</p>
@@ -240,24 +184,7 @@ export const systemDesignPosts: BlogPost[] = [
       <p>SaaS databases must support two conflicting requirements: fast transactional updates (OLTP) and fast analytical reports (OLAP). Relational databases like PostgreSQL are excellent for transactional workloads, but they require careful schema design to scale efficiently as tenant numbers grow.</p>
 
       <h2>Implementation</h2>
-      <p>We designed our relational schema using composite indexes to speed up queries across tenants. Below is a schema example showing tenant partitioning and indexing keys:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">saas-schema.sql</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-comment">-- Partitioned tenant payments table</span>
-<span class="code-keyword">CREATE TABLE</span> tenant_payments (
-    id UUID,
-    tenant_id UUID <span class="code-keyword">NOT NULL</span>,
-    amount <span class="code-keyword">DECIMAL</span>(<span class="code-number">10</span>, <span class="code-number">2</span>),
-    created_at <span class="code-keyword">TIMESTAMP DEFAULT</span> CURRENT_TIMESTAMP,
-    <span class="code-keyword">PRIMARY KEY</span> (tenant_id, id)
-) <span class="code-keyword">PARTITION BY LIST</span> (tenant_id);
-
-<span class="code-comment">-- Composite index for fast tenant query lookups</span>
-<span class="code-keyword">CREATE INDEX</span> idx_payments_tenant_date <span class="code-keyword">ON</span> tenant_payments(tenant_id, created_at <span class="code-keyword">DESC</span>);</code></pre>
-      </div>
+      <p>We designed our relational schema using composite indexes to speed up queries across tenants.</p>
 
       <h2>Challenges</h2>
       <p>As the table sizes grew beyond 100 million rows, performance issues surfaced:</p>
@@ -303,29 +230,7 @@ export const systemDesignPosts: BlogPost[] = [
         3. **Browser**: Uses HTTP headers to tell client browsers to store assets locally.</p>
 
       <h2>Implementation</h2>
-      <p>We implemented a Cache-Aside pattern (Lazy Loading) inside our Node.js services. The application checks the Redis cache first. On a cache miss, it reads from the database, saves the result back to Redis with a Time-To-Live (TTL), and returns the response. Here is the implementation code:</p>
-
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">cache-aside.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code>import Redis from "ioredis";
-const redis = new Redis();
-
-export const getCachedUser = async (userId: string) => {
-    const cacheKey = "user:" + userId;
-    
-    const cachedData = await redis.get(cacheKey);
-    if (cachedData) {
-        return JSON.parse(cachedData);
-    }
-    
-    const user = await db.query("SELECT * FROM users WHERE id = $1", [userId]);
-    
-    await redis.setex(cacheKey, 3600, JSON.stringify(user));
-    return user;
-};</code></pre>
-      </div>
+      <p>We implemented a Cache-Aside pattern (Lazy Loading) inside our Node.js services. The application checks the Redis cache first. On a cache miss, it reads from the database, saves the result back to Redis with a Time-To-Live (TTL), and returns the response.</p>
 
       <h2>Challenges</h2>
       <p>Managing large caching layers presents several operational difficulties:</p>

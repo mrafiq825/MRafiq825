@@ -33,21 +33,7 @@ export const careerLearningPosts: BlogPost[] = [
         <li><strong>Phase 2: Full-Stack Integration</strong>: Building REST APIs using Express, securing databases (Postgres/MongoDB), and writing React client apps.</li>
         <li><strong>Phase 3: Operations & Scalability</strong>: Running services inside Docker containers, building CI/CD pipelines, and deploying to cloud platforms.</li>
       </ol>
-      <p>Below is a clean routing endpoint that demonstrates the backend patterns I learned during my integration phase:</p>
 
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">app.js</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">const</span> express = require(<span class="code-string">"express"</span>);
-<span class="code-keyword">const</span> app = express();
-
-app.get(<span class="code-string">"/api/health"</span>, (req, res) =&gt; {
-  res.status(<span class="code-number">200</span>).json({ status: <span class="code-string">"healthy"</span>, timestamp: <span class="code-keyword">new</span> Date() });
-});
-
-app.listen(<span class="code-number">5000</span>);</code></pre>
-      </div>
 
       <h2>Challenges</h2>
       <p>The journey presented two primary learning challenges:</p>
@@ -92,20 +78,7 @@ app.listen(<span class="code-number">5000</span>);</code></pre>
         <li><strong>Python Coding & SDKs</strong>: Mastering prompt templates, function calling parameters, and streaming responses.</li>
         <li><strong>LLM evaluation</strong>: Measuring model correctness, response precision, and hallucination rates using frameworks like Ragas.</li>
       </ol>
-      <p>Below is a Python coding pattern demonstrating how to evaluate LLM responses using cosine similarity, a typical interview topic:</p>
 
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">similarity.py</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
-
-<span class="code-keyword">def</span> <span class="code-function">cosine_similarity</span>(v1, v2):
-    dot_product = np.dot(v1, v2)
-    norm_v1 = np.linalg.norm(v1)
-    norm_v2 = np.linalg.norm(v2)
-    <span class="code-keyword">return</span> dot_product / (norm_v1 * norm_v2)</code></pre>
-      </div>
 
       <h2>Challenges</h2>
       <p>Preparing for these interviews presented two key challenges:</p>
@@ -151,24 +124,7 @@ app.listen(<span class="code-number">5000</span>);</code></pre>
         <li><strong>Local Model Deployment</strong>: Deploying small models (like Llama 3 or Phi-3) locally using Ollama.</li>
         <li><strong>LLM evaluation</strong>: Automating output testing before deploying updates to production.</li>
       </ul>
-      <p>Below is a Python snippet demonstrating how to load and run a small language model locally using Ollama:</p>
 
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">local_inference.py</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> requests
-
-<span class="code-keyword">def</span> <span class="code-function">generate_local_response</span>(prompt: <span class="code-keyword">str</span>):
-    url = <span class="code-string">"http://localhost:11434/api/generate"</span>
-    payload = {
-        <span class="code-string">"model"</span>: <span class="code-string">"llama3"</span>,
-        <span class="code-string">"prompt"</span>: prompt,
-        <span class="code-string">"stream"</span>: <span class="code-keyword">False</span>
-    }
-    response = requests.post(url, json=payload)
-    <span class="code-keyword">return</span> response.json()[<span class="code-string">"response"</span>]</code></pre>
-      </div>
 
       <h2>Challenges</h2>
       <p>Developing these skills presents specific challenges:</p>
@@ -213,25 +169,7 @@ app.listen(<span class="code-number">5000</span>);</code></pre>
         <li><strong>Ignoring data quality</strong>: I focused on tuning algorithms instead of cleaning raw datasets, which is often the most important step in model performance.</li>
         <li><strong>Tutorial loops</strong>: Following guided tutorials without writing custom code or troubleshooting errors independently.</li>
       </ul>
-      <p>Below is a clean Pandas preprocessing script that represents the data-first focus I adopted to address these mistakes:</p>
 
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">clean_data.py</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
-
-<span class="code-keyword">def</span> <span class="code-function">clean_dataset</span>(filepath: <span class="code-keyword">str</span>):
-    df = pd.read_csv(filepath)
-    
-    <span class="code-comment"># Drop rows missing critical target labels</span>
-    df.dropna(subset=[<span class="code-string">"target_label"</span>], inplace=<span class="code-keyword">True</span>)
-    
-    <span class="code-comment"># Fill remaining numeric nulls with column median values</span>
-    numeric_cols = df.select_dtypes(include=[<span class="code-string">"number"</span>]).columns
-    df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].median())
-    <span class="code-keyword">return</span> df</code></pre>
-      </div>
 
       <h2>Challenges</h2>
       <p>Shifting from theory to implementation presented challenges:</p>
@@ -280,23 +218,7 @@ app.listen(<span class="code-number">5000</span>);</code></pre>
         <li><strong>Observability</strong>: Adding simple analytics or dashboard alerts (like error logging via Sentry or metrics dashboards).</li>
         <li><strong>Tests and CI/CD</strong>: Configuring GitHub Actions to run tests automatically on every pull request.</li>
       </ol>
-      <p>Below is a clean test script representing the quality checks that should be included in every project showcase:</p>
 
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">app.test.js</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-keyword">const</span> request = require(<span class="code-string">"supertest"</span>);
-<span class="code-keyword">const</span> app = require(<span class="code-string">"../app"</span>);
-
-describe(<span class="code-string">"GET /api/health"</span>, () =&gt; {
-  it(<span class="code-string">"should return 200 and healthy status"</span>, <span class="code-keyword">async</span> () =&gt; {
-    <span class="code-keyword">const</span> res = <span class="code-keyword">await</span> request(app).get(<span class="code-string">"/api/health"</span>);
-    expect(res.statusCode).toEqual(<span class="code-number">200</span>);
-    expect(res.body.status).toEqual(<span class="code-string">"healthy"</span>);
-  });
-});</code></pre>
-      </div>
 
       <h2>Challenges</h2>
       <p>Creating production-ready showcases reveals common hurdles:</p>
@@ -337,20 +259,6 @@ describe(<span class="code-string">"GET /api/health"</span>, () =&gt; {
       <h2>The Abstraction Ladder</h2>
       <p class="mb-6">Programming has always been a continuous climb up the ladder of abstraction. In the early days of computing, developers toggled physical switches or wrote raw binary instructions. Assembly language abstracted away binary into readable mnemonics. High-level compiled languages like C and Fortran allowed developers to write mathematical statements, delegating memory management to compiler routines. Modern languages and frameworks (such as React, Node.js, and cloud APIs) removed the need to manage hardware buffers or route TCP packets manually. Each shift was met with apprehension that engineering jobs would disappear, yet each lower cost of development unlocked massive demand for new software systems.</p>
 
-      <div class="code-block-wrapper relative mb-6">
-        <div class="flex items-center justify-between px-4 py-2 bg-bg-surface-hover border-t border-x border-border-default/50 rounded-t-lg">
-          <span class="text-xs font-mono text-text-muted">abstraction.ts</span>
-        </div>
-        <pre class="bg-bg-page border-x border-b border-border-default/50 rounded-b-lg p-4 font-mono text-sm overflow-x-auto text-text-primary"><code><span class="code-comment">// High-Level Abstraction: The Developer Focuses on Intent, Not Infrastructure</span>
-<span class="code-keyword">const</span> saveUserData = <span class="code-keyword">async</span> (userId: <span class="code-keyword">string</span>, data: UserPayload) => {
-  <span class="code-comment">// A developer configures security, validates payload, handles error states</span>
-  <span class="code-keyword">const</span> validated = validate(data);
-  <span class="code-keyword">if</span> (!validated.success) <span class="code-keyword">throw</span> <span class="code-keyword">new</span> ValidationError();
-  
-  <span class="code-keyword">await</span> db.users.update(userId, validated.data);
-  <span class="code-keyword">await</span> telemetry.log(<span class="code-string">"user_update_success"</span>, { userId });
-};</code></pre>
-      </div>
 
       <h2>Challenges</h2>
       <p class="mb-6">AI code assistants are exceptionally fast at writing localized code blocks, but building high-quality software presents challenges that AI cannot solve alone:</p>

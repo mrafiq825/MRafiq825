@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import BlogListClient from "./BlogListClient";
+import BlogListClient from "@/components/blog/BlogListClient";
 
 export const metadata: Metadata = {
   title: "Blog & Insights | Muhammad Rafiq | AI & Full Stack Engineer",
