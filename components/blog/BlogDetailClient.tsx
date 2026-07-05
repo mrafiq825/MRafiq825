@@ -5,6 +5,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import { blogPosts, getAeoEnrichedPost } from "@/data/blog";
 import { AppleArrowLeft, AppleCalendar, AppleClock, AppleShare, AppleArrowRight } from "@/components/ui/AppleIcons";
+import Button from "@/components/ui/Button";
 
 interface BlogDetailClientProps {
   slug: string;
@@ -106,7 +107,7 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
       const header = wrapper.querySelector(".flex");
       if (pre && header && !header.querySelector(".copy-btn")) {
         const btn = document.createElement("button");
-        btn.className = "copy-btn text-xs font-mono text-text-muted hover:text-accent-600 transition-colors duration-150 cursor-pointer flex items-center gap-1 bg-transparent border-0 outline-none py-0.5 px-1.5 rounded";
+        btn.className = "copy-btn text-[11px] font-mono text-text-muted hover:text-accent-600 transition-colors duration-150 cursor-pointer flex items-center gap-1 bg-transparent border-0 outline-none py-0.5 px-1.5 rounded";
         btn.innerHTML = "Copy";
         btn.onclick = () => {
           navigator.clipboard.writeText(pre.innerText.trim());
@@ -171,13 +172,17 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
             <span className="text-text-primary font-semibold truncate max-w-[200px] md:max-w-xs">{post.title}</span>
           </nav>
           {/* Back button */}
-          <Link
-            href="/blog"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-accent-600 transition-colors duration-200 mb-8"
-          >
-            <AppleArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
-            Back to Articles
-          </Link>
+          <div className="mb-8">
+            <Button
+              href="/blog"
+              variant="metal"
+              dark
+              icon={<AppleArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />}
+              size="sm"
+            >
+              Back to Articles
+            </Button>
+          </div>
 
           {/* Grid Layout (Article content vs TOC sidebar) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -211,7 +216,7 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                       <span>By {post.author.name}</span>
                     </span>
                     <span className="inline-flex items-center gap-1">
-                      <AppleCalendar className="w-3.5 h-3.5" />
+                      <AppleCalendar className="w-3 h-3" />
                       <span>Published: {post.publishedAt}</span>
                     </span>
                     {post.lastUpdated && post.lastUpdated !== post.publishedAt && (
@@ -220,16 +225,16 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                       </span>
                     )}
                     <span className="inline-flex items-center gap-1">
-                      <AppleClock className="w-3.5 h-3.5" />
+                      <AppleClock className="w-3 h-3" />
                       <span>Calculated Time: {computedReadTime}</span>
                     </span>
                   </div>
                   {/* Share button */}
                   <button
                     onClick={handleShare}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-text-secondary hover:text-accent-600 bg-bg-surface border border-border-default/80 hover:border-accent-100 rounded-lg py-1.5 px-3 transition-all duration-200 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-[11px] font-mono font-medium text-text-secondary hover:text-accent-600 bg-bg-surface border border-border-default/80 hover:border-accent-100 rounded-lg py-1 px-2.5 transition-all duration-200 cursor-pointer"
                   >
-                    <AppleShare className="w-3.5 h-3.5" />
+                    <AppleShare className="w-3 h-3" />
                     {isCopied ? "Link Copied!" : "Share Post"}
                   </button>
                 </section>
@@ -238,10 +243,10 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                   <div className="border border-border-default bg-bg-surface-hover/20 rounded-xl p-4 glass-panel">
                     <button
                       onClick={() => setMobileTocOpen(!mobileTocOpen)}
-                      className="w-full flex items-center justify-between font-heading text-sm font-bold text-text-primary"
+                      className="w-full flex items-center justify-between font-heading text-[13px] font-bold text-text-primary"
                     >
                       <span>Table of Contents</span>
-                      <span className="transform transition-transform duration-200 text-xs" style={{ transform: mobileTocOpen ? "rotate(180deg)" : "rotate(0)" }}>
+                      <span className="transform transition-transform duration-200 text-[10px]" style={{ transform: mobileTocOpen ? "rotate(180deg)" : "rotate(0)" }}>
                         ▼
                       </span>
                     </button>
@@ -376,10 +381,10 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                       </p>
                       <a
                         href={post.cta.linkUrl}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[12px] bg-accent-600 text-white font-mono text-xs font-semibold hover:bg-accent-700 transition-all duration-300 shadow-md shadow-accent-600/20"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-[10px] bg-accent-600 text-white font-mono text-[11px] font-semibold hover:bg-accent-700 transition-all duration-300 shadow-md shadow-accent-600/20"
                       >
                         {post.cta.linkText}
-                        <span className="text-xs">→</span>
+                        <span className="text-[11px]">→</span>
                       </a>
                     </div>
                   </section>
@@ -484,7 +489,7 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                               {rPost.category}
                             </span>
                             <span className="inline-flex items-center gap-0.5 text-xs font-semibold text-accent-700 group-hover:translate-x-0.5 transition-transform duration-200">
-                              Read <AppleArrowRight className="w-3.5 h-3.5" />
+                              Read <AppleArrowRight className="w-3 h-3" />
                             </span>
                           </div>
                         </div>
