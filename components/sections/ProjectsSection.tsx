@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   AppleLayers,
   AppleExternalLink,
@@ -8,9 +8,10 @@ import {
   AppleDevice,
   AppleMail,
   AppleMessage,
+  AppleArrowLeft,
+  AppleArrowRight,
 } from "@/components/ui/AppleIcons";
 import Section from "@/components/layout/Section";
-import Card from "@/components/ui/Card";
 import Modal from "@/components/ui/Modal";
 import RadialGlowButton from "@/components/ui/RadialGlowButton";
 import GenerateButton from "@/components/ui/GenerateButton";
@@ -50,20 +51,69 @@ const getStatusConfig = (status: string) => {
 
 const ProjectsSection = () => {
   const [selectedProjectForApk, setSelectedProjectForApk] = useState<Project | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isAtStart, setIsAtStart] = useState(true);
+  const [isAtEnd, setIsAtEnd] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const checkScrollPosition = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      setIsAtStart(scrollLeft <= 5);
+      setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 5);
+
+      const maxScroll = scrollWidth - clientWidth;
+      if (maxScroll > 0) {
+        setScrollProgress((scrollLeft / maxScroll) * 100);
+      } else {
+        setScrollProgress(0);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (el) {
+      el.addEventListener("scroll", checkScrollPosition);
+      checkScrollPosition();
+      window.addEventListener("resize", checkScrollPosition);
+      return () => {
+        el.removeEventListener("scroll", checkScrollPosition);
+        window.removeEventListener("resize", checkScrollPosition);
+      };
+    }
+  }, []);
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (carouselRef.current) {
+      const { clientWidth } = carouselRef.current;
+      const scrollAmount = direction === "left" ? -clientWidth * 0.85 : clientWidth * 0.85;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
 
   return (
     <Section
       id="projects"
-      title={
-        <>
-          <AppleLayers className={`${ICON_CLASS.section} text-accent-600`} />
-          Featured Projects
-        </>
-      }
-      description="Explore innovative projects where each build solves a unique challenge with modern technology."
       className="border-t border-border-default bg-transparent"
     >
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Section Header */}
+      <div className="mb-8 md:mb-10 max-w-3xl">
+        <h2 className="flex items-center gap-3 font-heading text-h2 font-bold tracking-tight text-text-primary">
+          <AppleLayers className={`${ICON_CLASS.section} text-accent-600`} />
+          Featured Projects
+        </h2>
+        <p className="mt-3 max-w-2xl font-body text-body text-text-secondary leading-relaxed">
+          Explore innovative projects where each build solves a unique challenge with modern technology.
+        </p>
+      </div>
+
+      {/* Carousel Container */}
+      <div
+        ref={carouselRef}
+        className="flex items-stretch gap-6 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory py-4 -mx-4 px-4 sm:mx-0 sm:px-0"
+        style={{ scrollbarWidth: "none" }}
+      >
         {projects.map((project) => {
           const statusConfig = getStatusConfig(project.status);
 
@@ -73,69 +123,82 @@ const ProjectsSection = () => {
           const remainingTagsCount = project.tech.length - maxTags;
 
           return (
-            <div key={project.id} className="flex h-full flex-col">
-              <Card className="flex flex-col h-full justify-between group">
-                <div>
+            <div
+              key={project.id}
+              className="snap-start shrink-0 w-[85vw] sm:w-[380px] md:w-[420px] flex flex-col"
+            >
+              <article className="glass-panel glass-panel-hover flex-1 flex flex-col justify-between rounded-[16px] overflow-hidden group">
+                <div className="flex flex-col flex-1">
                   {/* Project Thumbnail */}
                   {project.thumbnail && (
-                    <div className="mb-5 overflow-hidden rounded-[12px] border border-border-default/50 aspect-video relative bg-bg-surface-hover/30">
+                    <div className="overflow-hidden border-b border-border-default/50 aspect-video relative bg-bg-surface-hover/30 shrink-0">
                       <img
                         src={project.thumbnail}
                         alt={project.imageAlt}
                         className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10]/20 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10]/40 to-transparent pointer-events-none" />
                     </div>
                   )}
 
-                  {/* Header Section */}
-                  <div className="mb-6 pb-6 border-b border-border-default">
-                    <div className="flex items-start justify-between gap-3 mb-3">
-                      <div className="flex-1">
-                        <h3 className="font-heading text-lg font-bold text-text-primary">
-                          {project.title}
-                        </h3>
+                  {/* Header & Content Section */}
+                  <div className="p-6 sm:px-8 sm:py-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      {/* Header Title & Status */}
+                      <div className="mb-6 pb-6 border-b border-border-default">
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div className="flex-1">
+                            <h3 className="font-heading text-lg font-bold text-text-primary group-hover:text-accent-700 transition-colors duration-300">
+                              {project.title}
+                            </h3>
+                          </div>
+                          <div className="shrink-0">
+                            <div
+                              className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${statusConfig.color} border ${statusConfig.border} ${statusConfig.bg}`}
+                            >
+                              <span
+                                className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current animate-pulse"
+                              />
+                              {project.status}
+                            </div>
+                          </div>
+                        </div>
+                        <p className="font-body text-sm text-text-secondary leading-relaxed">
+                          {project.summary}
+                        </p>
                       </div>
-                      <div className="shrink-0">
-                        <div
-                          className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${statusConfig.color} border ${statusConfig.border} ${statusConfig.bg}`}
-                        >
-                          <span
-                            className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current"
-                          />
-                          {project.status}
+
+                      {/* Tech Stack */}
+                      <div className="mb-2">
+                        <div className="flex items-center gap-2 mb-3">
+                          <AppleCode className="w-4 h-4 text-accent-600" />
+                          <p className="font-mono text-xs font-bold uppercase tracking-wide text-text-muted">
+                            Tech Stack
+                          </p>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {visibleTech.map((item) => (
+                            <span
+                              key={item}
+                              className="inline-flex items-center font-mono text-[13px] bg-accent-50 text-accent-700 px-2.5 py-1 rounded-[8px] border-none font-medium select-none"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                          {remainingTagsCount > 0 && (
+                            <span className="inline-flex items-center font-mono text-[13px] bg-bg-surface text-text-secondary px-2.5 py-1 rounded-[8px] border border-border-default font-medium select-none">
+                              +{remainingTagsCount} more
+                            </span>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <p className="font-body text-sm text-text-secondary leading-relaxed">
-                      {project.summary}
-                    </p>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <AppleCode className="w-4 h-4 text-accent-600" />
-                      <p className="font-mono text-xs font-bold uppercase tracking-wide text-text-muted">
-                        Tech Stack
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {visibleTech.map((item) => (
-                        <span
-                          key={item}
-                          className="inline-flex items-center font-mono text-[13px] bg-accent-50 text-accent-700 px-2.5 py-1 rounded-[8px] border-none font-medium select-none"
-                        >
-                          {item}
-                        </span>
-                      ))}
                     </div>
                   </div>
                 </div>
 
-                {/* CTA Section */}
-                <div className="flex gap-2 pt-6 border-t border-border-default">
+                {/* CTA Section - Anchored Footer */}
+                <div className="px-6 pb-6 sm:px-8 sm:pb-6 flex gap-2 pt-6 border-t border-border-default bg-bg-surface/10">
                   {project.status === "APK Available" ? (
                     <RadialGlowButton
                       onClick={() => setSelectedProjectForApk(project)}
@@ -167,10 +230,38 @@ const ProjectsSection = () => {
                     </a>
                   ) : null}
                 </div>
-              </Card>
+              </article>
             </div>
           );
         })}
+      </div>
+
+      {/* Sleek Carousel Controls & Progress bar at the bottom center */}
+      <div className="flex items-center justify-center gap-6 mt-8 mb-2">
+        <button
+          onClick={() => handleScroll("left")}
+          disabled={isAtStart}
+          className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-border-default bg-bg-surface/40 text-text-primary backdrop-blur-md transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-bg-surface-hover hover:border-accent-600/30 hover:text-accent-700 active:scale-95 shadow-sm cursor-pointer"
+          aria-label="Previous Project"
+        >
+          <AppleArrowLeft className="w-5 h-5" />
+        </button>
+
+        <div className="h-1 w-36 rounded-full bg-border-default overflow-hidden relative">
+          <div
+            className="absolute top-0 bottom-0 left-0 bg-accent-600 transition-all duration-150 ease-out rounded-full"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+
+        <button
+          onClick={() => handleScroll("right")}
+          disabled={isAtEnd}
+          className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-border-default bg-bg-surface/40 text-text-primary backdrop-blur-md transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-bg-surface-hover hover:border-accent-600/30 hover:text-accent-700 active:scale-95 shadow-sm cursor-pointer"
+          aria-label="Next Project"
+        >
+          <AppleArrowRight className="w-5 h-5" />
+        </button>
       </div>
 
       {/* GitHub CTA at bottom */}
@@ -224,7 +315,7 @@ const ProjectsSection = () => {
               <p className="text-sm text-text-secondary leading-relaxed">
                 This project is built and optimized for Android mobile devices. You can request the direct APK installation package to test and evaluate the build locally.
               </p>
-              
+
               <div className="flex items-start gap-2.5 p-3 rounded-[12px] bg-bg-surface-hover/50 border border-border-default/50 text-[13px] text-text-muted">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-600 shrink-0 mt-1.5" />
                 <span>Installation requires allowing installs from unknown sources in Android developer settings.</span>
@@ -242,7 +333,7 @@ const ProjectsSection = () => {
                 <AppleMail className="w-4 h-4" />
                 <span>Email Request</span>
               </RadialGlowButton>
-              
+
               <a
                 href="#contact"
                 onClick={() => {
