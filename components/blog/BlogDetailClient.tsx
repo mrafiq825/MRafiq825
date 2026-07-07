@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import { blogPosts, getAeoEnrichedPost } from "@/data/blog";
-import { AppleArrowLeft, AppleCalendar, AppleClock, AppleShare, AppleArrowRight } from "@/components/ui/AppleIcons";
+import { AppleArrowLeft, AppleCalendar, AppleClock, AppleShare, AppleArrowRight, AppleGithub, AppleLinkedin } from "@/components/ui/AppleIcons";
 import Button from "@/components/ui/Button";
 
 interface BlogDetailClientProps {
@@ -406,9 +406,27 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
                         {post.author.role}
                       </p>
                     </div>
-                    <div className="flex items-center justify-center gap-4 text-xs font-mono">
-                      <a href="https://github.com/mrafiq825" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent-600 transition-colors">GitHub</a>
-                      <a href="https://linkedin.com/in/mrafiq825" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent-600 transition-colors">LinkedIn</a>
+                    <div className="flex items-center justify-center gap-4">
+                      <a
+                        href="https://github.com/mrafiq825"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-text-secondary hover:text-accent-600 transition-colors cursor-pointer"
+                        aria-label="GitHub Profile"
+                        title="GitHub"
+                      >
+                        <AppleGithub className="w-4.5 h-4.5" />
+                      </a>
+                      <a
+                        href="https://linkedin.com/in/mrafiq825"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-text-secondary hover:text-accent-600 transition-colors cursor-pointer"
+                        aria-label="LinkedIn Profile"
+                        title="LinkedIn"
+                      >
+                        <AppleLinkedin className="w-4.5 h-4.5" />
+                      </a>
                     </div>
                   </div>
                   <p className="text-xs md:text-sm font-body text-text-secondary leading-relaxed mb-4">
