@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HomeClient from "./HomeClient";
+import HomeClient from "@/components/layout/HomeClient";
 
 export const metadata: Metadata = {
   title: "Muhammad Rafiq | Full Stack Developer & Software Engineer",
