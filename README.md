@@ -1,27 +1,210 @@
-# Muhammad Rafiq:
+# Muhammad Rafiq
+### Full-Stack Software Engineer | AI/ML & DevOps Enthusiast
 
-Transforming business challenges into elegant, scalable solutions. Specialized in building high-performance web and mobile applications that drive measurable results. From startup MVPs to enterprise systems, I deliver code that matters.
+Transforming complex business challenges into elegant, high-performance, and scalable software solutions. With over **3+ years of experience** spanning modern frontend architectures, robust backend microservices, AI/ML integrations, and CI/CD automation, I deliver clean code that drives measurable business outcomes.
 
-## What I Focus On:
+---
 
-- Frontend engineering with responsive, accessible UI.
-- Full-stack delivery across product, UI, API, and deployment layers.
-- Automation, maintainability, and performance-minded implementation.
+## Quick Actions & Contact Info
 
-# Tech Stack:
+<div align="center">
+  <a href="https://drive.google.com/file/d/1_TXPBNeQByNsvacKaBYxcM9SNU9aWxIR/view?usp=drive_link" target="_blank">
+    <img src="https://img.shields.io/badge/Download-Resume%20%2F%20CV-blue?style=for-the-badge&logo=google-drive&logoColor=white" alt="Resume" />
+  </a>
+  <a href="mailto:rafkhan9323@gmail.com">
+    <img src="https://img.shields.io/badge/Email-rafkhan9323%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://www.linkedin.com/in/mrafiq825/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect%20on%20LinkedIn-0077B5?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
+  </a>
+  <a href="https://github.com/mrafiq825" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-Follow%20on%20GitHub-181717?style=for-the-badge&logo=github" alt="GitHub" />
+  </a>
+  <a href="https://wa.me/923129185825" target="_blank">
+    <img src="https://img.shields.io/badge/WhatsApp-Chat%20Now-25D366?style=for-the-badge&logo=whatsapp" alt="WhatsApp" />
+  </a>
+</div>
 
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7) ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![DaisyUI](https://img.shields.io/badge/daisyui-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white) ![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi) ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD) ![PNPM](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white) ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white) ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101) ![Strapi](https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white) ![Appwrite](https://img.shields.io/badge/Appwrite-%23FD366E.svg?style=for-the-badge&logo=appwrite&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white) ![Playwright](https://img.shields.io/badge/-playwright-%232EAD33?style=for-the-badge&logo=playwright&logoColor=white) ![Sentry](https://img.shields.io/badge/sentry-%23362D59.svg?style=for-the-badge&logo=sentry&logoColor=white) ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black) ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white) ![Portfolio](https://img.shields.io/badge/Portfolio-%23000000.svg?style=for-the-badge&logo=firefox&logoColor=#FF7139) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+<br />
 
-# GitHub Stats:
+| Metric | Details |
+| :--- | :--- |
+| **Location** | Pakistan (Open to Remote / Hybrid / Onsite Roles) |
+| **Availability** | Available for Hire | Open to exciting opportunities |
+| **Live Portfolio** | [mrafiq85.vercel.app](https://mrafiq85.vercel.app) |
 
-![](https://github-readme-stats.shion.dev/api?username=mrafiq825&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://streak-stats.demolab.com/?user=mrafiq825&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.shion.dev/api/top-langs/?username=mrafiq825&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+---
 
-### Top Contributed Repo
+## Performance Metrics
 
-![](https://github-contributor-stats.vercel.app/api?username=mrafiq825&limit=5&theme=dark&combine_all_yearly_contributions=true)
+- **10+** Production-ready Projects Completed
+- **3+** Years of Software Engineering Experience
+- **25+** Modern Technologies Mastered
+- **99%** Client & Stakeholder Satisfaction
 
-[![](https://komarev.com/ghpvc/?username=mrafiq825&icon=0&color=0)](https://visitcount.itsvg.in)
+---
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+## Technical Stack & Expertise
+
+<table>
+  <tr>
+    <td valign="top" width="50%">
+      <h4>Languages & Core</h4>
+      <code>JavaScript</code>, <code>TypeScript</code>, <code>Python</code>, <code>SQL</code>, <code>HTML/ CSS</code>
+    </td>
+    <td valign="top" width="50%">
+      <h4>Frontend Development</h4>
+      <code>React.js</code>, <code>Next.js (App Router)</code>, <code>React Native</code>, <code>Expo</code>, <code>Tailwind CSS</code>, <code>SASS</code>, <code>Radix UI</code>, <code>shadcn/ui</code>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" width="50%">
+      <h4>Backend & APIs</h4>
+      <code>Node.js</code>, <code>Express.js</code>, <code>NestJS</code>, <code>FastAPI</code>, <code>RESTful APIs</code>, <code>JWT Authentication</code>, <code>LangChain</code>, <code>OpenAI & Gemini APIs</code>
+    </td>
+    <td valign="top" width="50%">
+      <h4>Databases & Cloud Integration</h4>
+      <code>PostgreSQL</code>, <code>MongoDB</code>, <code>MySQL</code>, <code>SQLite</code>, <code>Prisma ORM</code>, <code>Supabase</code>, <code>Firebase</code>, <code>Redis Caching</code>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <h4>DevOps, Testing & Tools</h4>
+      <code>Docker</code>, <code>CI/CD (GitHub Actions)</code>, <code>Playwright</code>, <code>Jest / Vitest</code>, <code>Git & GitHub</code>, <code>Postman</code>, <code>Vercel</code>, <code>Netlify</code>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Professional Experience
+
+### **Developer Experience (DevEx) Engineer** | **ZiriumAI**
+*June 2026 - Present | Onsite*
+- Engineered and maintained high-performance customer-facing **Next.js** applications using **TypeScript** and **Tailwind CSS**, increasing application stability and page responsiveness.
+- Advocated for developer-centric integrations, API usability, and comprehensive documentation to optimize team workflows and accelerate feature delivery.
+- Collaborated with product and design teams to build modular, accessible UI components utilizing **Radix UI** and **shadcn/ui**, increasing frontend development efficiency by **20%**.
+- *Technologies:* Next.js, React.js, TypeScript, Tailwind CSS, shadcn/ui, Radix UI, API Usability.
+
+### **Full Stack Developer** | **Freelance / Self-Employed**
+*Jan 2023 - Present | Remote*
+- Delivered end-to-end web and mobile applications for **5+ startups** from scoping and MVP through scaled production deployment, serving as sole technical lead on multiple concurrent engagements.
+- Integrated **OpenAI** and **Google Gemini** APIs into client products to build AI chatbots, resume analyzers, and recommendation engines, directly improving user engagement for paying customers.
+- Reduced client mobile development costs by building cross-platform iOS and Android apps with **React Native (Expo)**, eliminating the need for separate native codebases.
+- Designed and deployed secure REST APIs using **Node.js/Express** and **FastAPI** with **JWT authentication**, **MongoDB** schemas, and CI/CD pipelines via **GitHub Actions**.
+- *Technologies:* React Native, Expo, Node.js, Express.js, FastAPI, MongoDB, OpenAI API, Google Gemini API, GitHub Actions, JWT.
+
+### **Backend Developer Intern** | **Clouditecture**
+*November 2024 - April 2025 | Hybrid*
+- Architected and deployed scalable, containerized microservices handling **10K+ daily API requests**, utilizing **Node.js, Express, and FastAPI**.
+- Designed and implemented secure RESTful endpoints featuring **JWT authorization**, reducing potential security vulnerabilities by **60%**.
+- Optimized SQL database query efficiency and integrated **Redis caching**, resulting in a **50% improvement** in API response times.
+- Established structured logging, error handling, and health-check endpoints to maintain **99.9% service availability**.
+- *Technologies:* Node.js, Express.js, Python, FastAPI, RESTful APIs, Microservices, Docker, Redis, JWT.
+
+### **Frontend Developer** | **Zypher Enterprise**
+*July 2025 - September 2025 | Onsite*
+- Developed and launched **5+ high-traffic web applications** with a mobile-first approach, driving a **45% increase** in mobile user engagement.
+- Improved page loading times by **55%** through code splitting, lazy loading, and frontend asset optimization.
+- Collaborated closely with UX designers and backend engineers to implement pixel-perfect, accessible, and responsive user interfaces.
+- Wrote comprehensive unit and integration tests using **Jest and Vitest**, achieving **85% code coverage** to ensure application reliability.
+- *Technologies:* React.js, JavaScript, TypeScript, HTML5/CSS3, Responsive Design, Jest/Vitest, Git.
+
+### **Software Ambassador** | **Insite**
+*July 2025 - October 2025 | Remote*
+- Performed comprehensive usability and quality assurance (QA) testing on beta releases, providing detailed feedback to the engineering team.
+- Conducted market and technical research that influenced key product features, usability enhancements, and release strategies.
+- Contributed to developer community forums, discussing safe practices for Large Language Model (LLM) prompt engineering and application integration.
+- *Technologies:* Software Testing, UX Research, Product Development, AI/LLM, Community Engagement.
+
+### **Full-Stack Developer Intern** | **HiSkyTech**
+*August 2024 - September 2024 | Remote*
+- Engineered internal web automation tools that automated repetitive data entry, reducing manual team workflow time by **35%**.
+- Refactored and optimized Node.js API endpoints, resulting in a **40% reduction** in server response latency.
+- Collaborated on key UI/UX features using React.js, contributing to a **25% increase** in user session duration.
+- Implemented cross-browser compatible, responsive styling patterns to ensure seamless rendering across desktop and mobile viewports.
+- *Technologies:* JavaScript, React.js, Node.js, RESTful APIs, Git, Responsive Design.
+
+---
+
+## Featured Projects
+
+### **JobPsych: AI-Powered Career Intelligence Platform**
+*Next-generation career optimization dashboard*
+- **Description:** An enterprise-grade AI career intelligence platform utilizing Google Gemini LLM API to automate tailored resume analysis, cover letter generation, and interactive interview simulations.
+- **Tech Stack:** Next.js, TailwindCSS, Express.js, FastAPI, Google Gemini API
+- **Links:** [Live Demo](https://jobpsych.vercel.app/)
+
+### **HireDesk: AI-Powered Recruitment Platform**
+*Streamlining hiring pipelines with AI*
+- **Description:** A next-generation AI-powered recruitment platform designed to parse candidates, analyze alignment to job descriptions, and streamline interview loops, reducing hiring cycles by 50%.
+- **Tech Stack:** React, TailwindCSS, FastAPI, Express.js, NeonDB
+- **Links:** [Live Demo](https://hiredesk.vercel.app/)
+
+### **Readora: AI Voice-Powered Smart Library**
+*Conversational learning for digital reading*
+- **Description:** A smart digital library utilizing Next.js, Radix UI, and AI voice integrations (Vapi AI) to transform static PDFs into interactive, spoken-dialogue learning sessions.
+- **Tech Stack:** Next.js, Tailwind CSS, MongoDB, VAPI AI
+- **Links:** [Live Demo](https://readora-ai.vercel.app/)
+
+### **Codify: AI Code Review Agent**
+*Automated repository quality and vulnerability analytics*
+- **Description:** An AI-driven code analysis and review agent leveraging LangChain and Node.js to evaluate repository quality, safety vulnerabilities, and maintainability with chat-assisted feedback.
+- **Tech Stack:** React, Tailwind CSS, Express.js, LangChain
+- **Links:** [Live Demo](https://codify-omega.vercel.app/)
+
+### **HisabKitab: Personal Budget Tracker**
+*Cross-platform mobile personal finance utility*
+- **Description:** A cross-platform personal finance mobile application built with React Native and Expo, incorporating local data persistence and dynamic visual charts for real-time spending insights.
+- **Tech Stack:** React Native, Expo, NativeWind
+
+### **QRify: Modern QR Code Generator**
+*Sleek utility with rich micro-animations*
+- **Description:** A sleek mobile QR code utility utilizing Expo and React Native Reanimated, enabling dynamic QR code generation, sharing, and file system management.
+- **Tech Stack:** React Native, Expo, NativeWind
+
+---
+
+## Education & Background
+
+### **Bachelor of Computer Science**
+**Iqra National University** | *2022 – 2026*
+- Built a robust academic foundation in computer science theory, systems architecture, and design patterns.
+- Completed advanced coursework in AI, machine learning, and data-driven web/mobile systems using Python and JavaScript.
+- Collaborated on real-world team projects, applying Agile methodologies and version control best practices.
+- **Core Coursework:** Data Structures & Algorithms (DSA), Software Engineering, Database Systems, Computer Networks, Artificial Intelligence, Machine Learning, Data Science, Probability and Statistics.
+
+---
+
+## GitHub Activity & Stats
+
+<div align="center">
+  <img src="https://github-readme-stats.shion.dev/api?username=mrafiq825&theme=dark&hide_border=false&include_all_commits=false&count_private=false" alt="Muhammad's GitHub Stats" width="48%" />
+  <img src="https://streak-stats.demolab.com/?user=mrafiq825&theme=dark&hide_border=false" alt="GitHub Streak" width="48%" />
+</div>
+
+<br />
+
+<div align="center">
+  <img src="https://github-readme-stats.shion.dev/api/top-langs/?username=mrafiq825&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact" alt="Top Languages" width="48%" />
+  <img src="https://github-contributor-stats.vercel.app/api?username=mrafiq825&limit=5&theme=dark&combine_all_yearly_contributions=true" alt="Top Contributed Repos" width="48%" />
+</div>
+
+<br />
+
+<div align="center">
+  <a href="https://github.com/mrafiq825" target="_blank">
+    <img src="https://komarev.com/ghpvc/?username=mrafiq825&icon=0&color=0" alt="Profile Views" />
+  </a>
+</div>
+
+---
+
+## Let's Connect!
+
+I am always open to discussing full-time engineering roles, remote consulting work, or technical partnerships. 
+
+- Email: [rafkhan9323@gmail.com](mailto:rafkhan9323@gmail.com)
+- LinkedIn: [linkedin.com/in/mrafiq825/](https://www.linkedin.com/in/mrafiq825/)
+- WhatsApp: [+92 312 9185825](https://wa.me/923129185825)
+- Web Portfolio: [mrafiq85.vercel.app](https://mrafiq85.vercel.app)
