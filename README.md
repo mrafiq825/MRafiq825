@@ -23,6 +23,15 @@ Transforming complex business challenges into elegant, high-performance, and sca
   <a href="https://wa.me/923129185825" target="_blank">
     <img src="https://img.shields.io/badge/WhatsApp-Chat%20Now-25D366?style=for-the-badge&logo=whatsapp" alt="WhatsApp" />
   </a>
+  <a href="https://www.facebook.com/profile.php?id=100069771234437&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank">
+    <img src="https://img.shields.io/badge/Facebook-Follow%20on%20Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook" />
+  </a>
+  <a href="https://x.com/mrafiq825" target="_blank">
+    <img src="https://img.shields.io/badge/X-Follow%20on%20X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" />
+  </a>
+  <a href="https://www.instagram.com/dmrafiq825/" target="_blank">
+    <img src="https://img.shields.io/badge/Instagram-Follow%20on%20Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
+  </a>
 </div>
 
 <br />
@@ -204,7 +213,10 @@ Transforming complex business challenges into elegant, high-performance, and sca
 
 I am always open to discussing full-time engineering roles, remote consulting work, or technical partnerships. 
 
+- Portfolio: [mrafiq85.vercel.app](https://mrafiq85.vercel.app)
 - Email: [rafkhan9323@gmail.com](mailto:rafkhan9323@gmail.com)
 - LinkedIn: [linkedin.com/in/mrafiq825/](https://www.linkedin.com/in/mrafiq825/)
 - WhatsApp: [+92 312 9185825](https://wa.me/923129185825)
-- Web Portfolio: [mrafiq85.vercel.app](https://mrafiq85.vercel.app)
+- Facebook: [facebook.com/mrafiq825](https://www.facebook.com/mrafiq825)
+- Instagram: [instagram.com/dmrafiq825](https://www.instagram.com/dmrafiq825/)
+- X: [x.com/mrafiq825](https://x.com/mrafiq825)
