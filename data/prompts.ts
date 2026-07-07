@@ -282,6 +282,87 @@ Feature Description: [Feature Description]`,
     ]
   },
   {
+    id: "prd-pm-expert",
+    title: "Expert PM PRD Generator",
+    category: "Product & Strategy",
+    platforms: ["Claude", "ChatGPT", "Gemini",],
+    summary: "Collaborates with you as an expert PM to clarify your app idea through targeted questions, then generates a structured, AI-ready Product Requirements Document (PRD).",
+    promptText: `You are an expert Product Manager helping me write a PRD (Product Requirements Document) for a new app or software project I want to build using AI coding tools like Cursor, Lovable, Claude Code, or Bolt.
+
+Here is my idea:
+
+\`[Describe Your App Idea]\`
+
+---
+
+STEP 1 — CLARIFYING QUESTIONS (do this first, before writing anything)
+
+Before generating the PRD, ask me up to 8 focused clarifying questions to fill in any gaps. Cover these areas only if my idea doesn't already answer them:
+
+- Who exactly is the target user? (role, age, skill level, context)
+- What is the core problem or pain point being solved?
+- What platform? (web app, mobile, browser extension, desktop)
+- What tech stack or AI tools should be used, if any preference?
+- What does a successful v1 look like — what's the ONE thing it must do well?
+- Are there any competitors or existing tools I'm inspired by or want to be different from?
+- What is explicitly out of scope for the first version?
+- Any monetization, auth, or third-party integrations needed? (e.g., Stripe, Google login)
+
+Ask only the questions that are genuinely unclear from my idea. 
+Keep each question short and specific. Number them.
+Wait for my answers before writing the PRD.
+
+---
+
+STEP 2 — GENERATE THE PRD (only after I've answered your questions)
+
+Once I respond, generate a complete PRD with these sections:
+
+1. **Problem Statement**
+   - What problem does this solve?
+   - Who experiences this problem?
+   - Why does this problem matter now?
+
+2. **Target User**
+   - Who is the primary user? (be specific — not just "everyone")
+   - What are their goals, frustrations, and behaviors?
+
+3. **Core Features (MVP Only)**
+   - List the 3–5 must-have features for the first version
+   - For each feature, describe what it does in 1–2 sentences
+   - Mark anything as "Nice to Have" that is NOT needed for launch
+
+4. **Out of Scope**
+   - Explicitly list what we are NOT building in v1
+   - This prevents scope creep when prompting AI tools
+
+5. **Success Metrics**
+   - How will we know this product is working?
+   - Include 2–3 measurable KPIs (e.g., DAU, task completion rate, retention)
+
+6. **Technical Assumptions**
+   - Preferred tech stack (if any)
+   - Platform: Web / Mobile / Both
+   - Any integrations needed (e.g., Stripe, Google Auth, OpenAI API)
+
+7. **Open Questions**
+   - List 3–5 things that still need to be decided before or during development
+
+Format the PRD cleanly with headers and bullet points so I can paste it directly into an AI coding tool as a starting prompt.`,
+    variables: [
+      {
+        name: "Describe Your App Idea",
+        description: "Your app/software project idea in 2-3 sentences",
+        placeholder: "A mobile-first SaaS app that allows freelancers to track invoices and sends automated WhatsApp payment reminders.",
+        type: "textarea"
+      }
+    ],
+    tips: [
+      "Keep your initial idea description concise (2-3 sentences) so the AI can ask the most relevant clarifying questions.",
+      "Be as specific as possible when answering the clarifying questions in Step 1 to get a precise, actionable PRD."
+    ]
+  },
+  {
     id: "iphone-wallpaper-girl",
     title: "IPhone Wallpaper - Cinematic Underwater (Girls)",
     category: "IPhone Wallpapers",

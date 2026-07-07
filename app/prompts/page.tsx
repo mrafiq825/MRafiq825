@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PromptsClient from "./PromptsClient";
+import PromptsClient from "@/components/prompt/PromptsClient";
 
 export const metadata: Metadata = {
   title: "AI Prompts Library | Muhammad Rafiq",
