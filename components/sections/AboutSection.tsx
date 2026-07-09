@@ -204,24 +204,12 @@ const AboutSection = () => {
         <div className="relative group max-w-sm mx-auto lg:mr-0 w-full">
           {/* Subtle glow behind card */}
           <div className="absolute -inset-2.5 rounded-[24px] bg-accent-600/10 blur-xl opacity-75 group-hover:opacity-100 transition duration-1000" />
-
-          <div className="relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface aspect-square shadow-2xl">
+          <div className="relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface aspect-square shadow-2xl p-1.5">
             <img
-              src="/about.jpeg"
+              src="/profile.png"
               alt="Muhammad Rafiq"
-              className="w-full h-full object-cover grayscale-[15%] contrast-[1.05] group-hover:scale-103 transition-transform duration-700 ease-out"
+              className="w-full h-full object-contain rounded-[16px] grayscale-[15%] contrast-[1.05] group-hover:scale-103 transition-transform duration-700 ease-out"
             />
-          </div>
-
-          {/* Overlapping Overlay Stat Badge */}
-          <div className="absolute -bottom-5 -left-5 rounded-2xl glass-panel p-4 flex items-center gap-4.5 shadow-xl border border-border-hover min-w-[190px]">
-            <div className="text-4xl font-extrabold tracking-tight text-accent-700 font-heading">
-              {yearsExp}
-            </div>
-            <div className="h-8 w-px bg-border-default" />
-            <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-text-muted leading-tight">
-              Years of<br />Experience
-            </div>
           </div>
         </div>
       </div>
