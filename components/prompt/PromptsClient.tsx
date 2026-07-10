@@ -125,24 +125,23 @@ export default function PromptsClient() {
         <div className="absolute top-[60%] right-[5%] w-[450px] h-[450px] rounded-full bg-indigo-600/5 blur-[140px]" />
       </div>
 
-      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-16 pb-32 px-4 md:px-8 relative z-10">
+      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-5 pb-22 px-4 md:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
-
           {/* Header section */}
-          <div className="text-center md:text-left mt-8 mb-12 relative">
+          <div className="text-center md:text-left mt-0 mb-1 relative">
             <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100/50 px-3.5 py-1.5 rounded-full backdrop-blur-md">
-              <AppleSparkles className="w-3.5 h-3.5 animate-pulse" /> AI Engine Toolkit
+              AI Engine Toolkit
             </span>
-            <h1 className="mt-5 font-heading text-4xl font-extrabold tracking-tight sm:text-6xl text-text-primary">
+            <h1 className="mt-3 font-heading text-4xl font-extrabold tracking-tight sm:text-6xl text-text-primary">
               The AI Prompt Deck
             </h1>
-            <p className="mt-4 max-w-2xl font-body text-base md:text-lg text-text-secondary leading-relaxed">
+            <p className="mt-3 max-w-2xl font-body text-base md:text-lg text-text-secondary leading-relaxed">
               A curated registry of high-performance prompt templates. Type your variables directly into the fields below, see the live compilation, and copy the customized output.
             </p>
           </div>
 
           {/* Search, Category, and Platform controls */}
-          <div className="mb-12 flex flex-col gap-6 bg-bg-surface/30 backdrop-blur-xl border border-border-default/55 p-6 rounded-[28px] shadow-2xl relative overflow-hidden group">
+          <div className="mb-5 flex flex-col gap-5 bg-bg-surface/30 backdrop-blur-xl border border-border-default/55 p-6 rounded-[28px] shadow-2xl relative overflow-hidden group">
             {/* Ambient border gradient highlight on hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-accent-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
