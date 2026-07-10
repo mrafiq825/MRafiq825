@@ -70,10 +70,10 @@ const BlogListClient = () => {
         <div className="absolute top-[60%] right-[5%] w-[450px] h-[450px] rounded-full bg-purple-600/5 blur-[140px]" />
       </div>
 
-      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-16 pb-32 px-4 md:px-8 relative z-10">
+      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-5 pb-22 px-4 md:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Header Section */}
-          <header className="text-center md:text-left mt-8 mb-12 relative">
+          <header className="text-center md:text-left mt-0 mb-5 relative">
             <span className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100/50 px-3.5 py-1.5 rounded-full backdrop-blur-md">
               Engineering Logs
             </span>
@@ -86,7 +86,7 @@ const BlogListClient = () => {
           </header>
 
           {/* Search and Category Filters */}
-          <section aria-label="Search and filter articles" className="mb-12 flex flex-col gap-6 bg-bg-surface/30 backdrop-blur-xl border border-border-default/55 p-6 rounded-[28px] shadow-2xl relative overflow-hidden group">
+          <section aria-label="Search and filter articles" className="mb-12 flex flex-col gap-2 bg-bg-surface/30 backdrop-blur-xl border border-border-default/55 p-6 rounded-[28px] shadow-2xl relative overflow-hidden group">
             {/* Ambient border gradient highlight */}
             <div className="absolute inset-0 bg-gradient-to-r from-accent-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -111,8 +111,8 @@ const BlogListClient = () => {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-3 py-1.5 rounded-[10px] text-[11px] font-mono transition-all duration-300 cursor-pointer border ${selectedCategory === category
-                      ? "bg-accent-600 text-white shadow-lg shadow-accent-600/25 font-semibold border-accent-500"
-                      : "bg-bg-page/30 border-border-default/80 text-text-secondary hover:bg-bg-surface-hover hover:border-border-hover hover:text-text-primary"
+                    ? "bg-accent-600 text-white shadow-lg shadow-accent-600/25 font-semibold border-accent-500"
+                    : "bg-bg-page/30 border-border-default/80 text-text-secondary hover:bg-bg-surface-hover hover:border-border-hover hover:text-text-primary"
                     }`}
                 >
                   {category}

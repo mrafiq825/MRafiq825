@@ -159,7 +159,7 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
         />
       </div>
 
-      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-12 pb-32 px-4 md:px-8 relative z-10">
+      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-2 pb-25 px-4 md:px-8 relative z-10">
         <div className="max-w-6xl mx-auto mt-8">
           {/* Breadcrumb Navigation - Semantic HTML & Microdata */}
           <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-1.5 text-xs font-mono text-text-muted">
@@ -172,7 +172,7 @@ const BlogDetailClient = ({ slug }: BlogDetailClientProps) => {
             <span className="text-text-primary font-semibold truncate max-w-[200px] md:max-w-xs">{post.title}</span>
           </nav>
           {/* Back button */}
-          <div className="mb-8">
+          <div className="mb-4">
             <Button
               href="/blog"
               variant="metal"
