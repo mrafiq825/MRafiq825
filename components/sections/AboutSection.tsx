@@ -311,7 +311,7 @@ const AboutSection = () => {
       </div>
 
       {/* 3. Technical Mastery Skill Grid */}
-      <div className="mt-28 mb-12 text-center">
+      <div id="tech-stack" className="mt-28 mb-12 text-center">
         <h2 className="font-heading text-3xl font-bold tracking-tight text-text-primary">
           Technical <span className="text-accent-600">Mastery</span>
         </h2>

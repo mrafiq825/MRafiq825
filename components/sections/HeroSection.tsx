@@ -39,8 +39,8 @@ const HeroSection = () => {
             </Badge>
           </div>
 
-          <p className="mt-8 font-mono text-[13px] font-semibold uppercase tracking-[0.24em] text-accent-700/90">
-            // {site.greeting}
+          <p className="mt-8 font-mono text-[13px] font-semibold tracking-[0.24em] text-accent-700/90">
+            {site.greeting}
           </p>
 
           <h1 className="mt-3 font-heading text-hero font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-text-primary via-[#e2e8f0] to-accent-600">
@@ -70,7 +70,7 @@ const HeroSection = () => {
             ))}
             {remainingCount > 0 && (
               <a
-                href="#about"
+                href="#tech-stack"
                 className="inline-flex items-center font-mono text-[11px] bg-accent-50/10 text-accent-700 hover:bg-accent-50/20 px-2.5 py-1 rounded-[6px] border border-accent-600/30 transition-colors font-medium hover:border-accent-600/50"
               >
                 +{remainingCount} more
