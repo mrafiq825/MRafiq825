@@ -158,8 +158,6 @@ const HeroSection = () => {
 
           {/* Combined Profile Photo & Philosophy Glass Card */}
           <div className="relative rounded-[1.5rem] glass-panel p-5 flex flex-col sm:flex-row items-center gap-5.5 shadow-xl border border-border-default hover:border-accent-600/20 hover:translate-y-[-2px] transition-all duration-300 group">
-            {/* Interactive Image Frame */}
-
             <div className="text-center sm:text-left flex-1">
               <div className="flex items-center justify-center sm:justify-between flex-wrap gap-2">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-accent-700">
@@ -167,7 +165,7 @@ const HeroSection = () => {
                 </p>
               </div>
               <p className="mt-2 text-xs sm:text-[13px] italic leading-relaxed text-text-secondary">
-                "A great software engineer does not just write code; they analyze complex problems, design modular, resilient systems, and ship products that deliver measurable real-world value."
+                A great software engineer does not just write code; they analyze complex problems, design modular, resilient systems, and ship products that deliver measurable real-world value.
               </p>
             </div>
           </div>

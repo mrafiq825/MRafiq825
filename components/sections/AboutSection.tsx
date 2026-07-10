@@ -8,145 +8,19 @@ import {
   AppleCalendar,
   AppleCheckCircle,
   AppleMessage,
+  AppleMonitor,
+  AppleReactIcon,
+  AppleServerIcon,
+  AppleCloudIcon,
+  AppleBoxIcon,
+  AppleFigmaIcon,
+  Apple3dIcon,
+  AppleShieldIcon,
 } from "@/components/ui/AppleIcons";
 import Section from "@/components/layout/Section";
 import Button from "@/components/ui/Button";
 import { site } from "@/data/site";
 import { education } from "@/data/education";
-
-// Custom inline SVG Icons matching AppleIconProps conventions
-const AppleMonitor = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <rect x="2" y="3" width="20" height="14" rx="2" />
-    <line x1="8" y1="21" x2="16" y2="21" />
-    <line x1="12" y1="17" x2="12" y2="21" />
-  </svg>
-);
-
-const AppleReactIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)" />
-    <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(90 12 12)" />
-    <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(150 12 12)" />
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-  </svg>
-);
-
-const AppleServerIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <rect x="2" y="2" width="20" height="8" rx="2" />
-    <rect x="2" y="14" width="20" height="8" rx="2" />
-    <line x1="6" y1="6" x2="6.01" y2="6" strokeWidth="2.5" />
-    <line x1="6" y1="18" x2="6.01" y2="18" strokeWidth="2.5" />
-    <line x1="2" y1="10" x2="22" y2="10" strokeDasharray="3 3" opacity="0.3" />
-  </svg>
-);
-
-const AppleCloudIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M17.5 19A5.5 5.5 0 0 0 18 8.02a7.5 7.5 0 0 0-14.56 2.18A5.5 5.5 0 0 0 4.5 21h13a.5.5 0 0 0 0-2z" />
-  </svg>
-);
-
-const AppleBoxIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-    <line x1="12" y1="22.08" x2="12" y2="12" />
-  </svg>
-);
-
-const AppleFigmaIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5zM5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5zM5 19.5A3.5 3.5 0 0 1 8.5 16H12v4.5a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 5 19.5zM12 2h3.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5H12V2zM19 12.5a3.5 3.5 0 0 1-3.5 3.5H12v-7h3.5a3.5 3.5 0 0 1 3.5 3.5z" />
-  </svg>
-);
-
-const Apple3dIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    <path d="M2 12h20" />
-  </svg>
-);
-
-const AppleShieldIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.9"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-  </svg>
-);
 
 // Map dynamic skill names to corresponding custom icons
 const getSkillIcon = (name: string) => {
