@@ -36,7 +36,112 @@ const getSkillIcon = (name: string) => {
   return AppleShieldIcon;
 };
 
+// Skill categories configuration with styling tokens
+const SKILL_CATEGORIES = [
+  {
+    id: "languages",
+    title: "Programming Languages",
+    description: "The foundational syntax and type systems used to write clean, maintainable, and type-safe source code.",
+    icon: AppleCode,
+    skills: ["javascript", "typescript", "python"],
+    theme: {
+      accent: "text-sky-400",
+      glowBg: "from-sky-600/10 via-transparent to-transparent",
+      borderColor: "hover:border-sky-500/30",
+      badgeHover: "hover:bg-sky-500/10 hover:border-sky-500/30 hover:text-sky-300",
+    }
+  },
+  {
+    id: "frontend",
+    title: "Frontend Engineering",
+    description: "Creating responsive, fast, and visually beautiful client-side applications.",
+    icon: AppleReactIcon,
+    skills: ["react.js", "next.js", "react native"],
+    theme: {
+      accent: "text-blue-400",
+      glowBg: "from-blue-600/10 via-transparent to-transparent",
+      borderColor: "hover:border-blue-500/30",
+      badgeHover: "hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-blue-300",
+    }
+  },
+  {
+    id: "backend",
+    title: "Backend & Systems",
+    description: "Architecting robust servers, scalable REST/GraphQL APIs, and microservices.",
+    icon: AppleServerIcon,
+    skills: ["node.js", "express.js", "nestjs", "fastapi", "restful apis"],
+    theme: {
+      accent: "text-violet-400",
+      glowBg: "from-violet-600/10 via-transparent to-transparent",
+      borderColor: "hover:border-violet-500/30",
+      badgeHover: "hover:bg-violet-500/10 hover:border-violet-500/30 hover:text-violet-300",
+    }
+  },
+  {
+    id: "databases",
+    title: "Databases & BaaS",
+    description: "Modeling schemas, query tuning, and managing persistent cloud data layers.",
+    icon: AppleBoxIcon,
+    skills: ["sql", "mongodb", "postgresql", "supabase", "firebase"],
+    theme: {
+      accent: "text-emerald-400",
+      glowBg: "from-emerald-600/10 via-transparent to-transparent",
+      borderColor: "hover:border-emerald-500/30",
+      badgeHover: "hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300",
+    }
+  },
+  {
+    id: "devops",
+    title: "DevOps & Tooling",
+    description: "Automating integration pipelines, container deployment, and quality assurance.",
+    icon: AppleZap,
+    skills: ["docker", "ci/cd", "github actions", "playwright", "git", "postman"],
+    theme: {
+      accent: "text-amber-400",
+      glowBg: "from-amber-600/10 via-transparent to-transparent",
+      borderColor: "hover:border-amber-500/30",
+      badgeHover: "hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-300",
+    }
+  }
+];
+
 const AboutSection = () => {
+  // Group site skills dynamically
+  const categorizedGroups = SKILL_CATEGORIES.map((category) => {
+    const matchedSkills = site.skills.filter((skill) =>
+      category.skills.includes(skill.toLowerCase())
+    );
+    return {
+      ...category,
+      matchedSkills,
+    };
+  });
+
+  // Collect any skills in site.skills that were not matched by any category definition
+  const allCategorySkillsLower = SKILL_CATEGORIES.flatMap((c) => c.skills);
+  const unmatchedSkills = site.skills.filter(
+    (skill) => !allCategorySkillsLower.includes(skill.toLowerCase())
+  );
+
+  // Add a fallback group if there are unmatched skills
+  const finalGroups = [...categorizedGroups];
+  if (unmatchedSkills.length > 0) {
+    finalGroups.push({
+      id: "other",
+      title: "Additional Technologies",
+      description: "Other tools, libraries, and auxiliary packages in my development utility belt.",
+      icon: AppleShieldIcon,
+      skills: unmatchedSkills.map(s => s.toLowerCase()),
+      matchedSkills: unmatchedSkills,
+      theme: {
+        accent: "text-text-secondary",
+        glowBg: "from-neutral-600/10 via-transparent to-transparent",
+        borderColor: "hover:border-neutral-500/30",
+        badgeHover: "hover:bg-neutral-500/10 hover:border-neutral-500/30 hover:text-neutral-300",
+      }
+    });
+  }
+
   // Extract clean uppercase title from site role
   const displayRole = (site.role.split("|")[0] || "Full-Stack Software Engineer")
     .trim()
@@ -195,19 +300,54 @@ const AboutSection = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto py-4">
-        {site.skills.map((skillName) => {
-          const IconComponent = getSkillIcon(skillName);
-
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto py-4 px-4 sm:px-0">
+        {finalGroups.map((group) => {
+          const CategoryIcon = group.icon;
           return (
             <div
-              key={skillName}
-              className="flex items-center gap-3.5 px-5 py-3 rounded-[14px] border border-border-default bg-bg-surface/50 hover:bg-bg-surface-hover hover:border-accent-600/30 transition-all duration-300 hover:-translate-y-0.5 shadow-sm group select-none"
+              key={group.id}
+              className={`glass-panel rounded-[22px] p-6 sm:p-8 relative overflow-hidden group hover:bg-bg-surface-hover/60 ${group.theme.borderColor} transition-all duration-500 hover:-translate-y-1 shadow-md ${group.id === "languages" ? "md:col-span-2" : ""}`}
             >
-              <IconComponent className="w-4.5 h-4.5 text-accent-600 group-hover:text-accent-700 transition-colors" />
-              <span className="font-mono text-xs uppercase tracking-[0.14em] font-semibold text-text-primary">
-                {skillName}
-              </span>
+              {/* Radial gradient glow in top corner of card, faint and premium */}
+              <div className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${group.theme.glowBg} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+
+              {/* Card Header */}
+              <div className="flex items-center gap-4.5 mb-4 relative z-10">
+                <div className={`p-3.5 rounded-[16px] bg-bg-surface border border-border-default/50 ${group.theme.accent} transition-transform duration-500 group-hover:scale-105`}>
+                  <CategoryIcon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-xl font-bold text-text-primary tracking-tight">
+                    {group.title}
+                  </h3>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted">
+                    {group.matchedSkills.length} Technologies
+                  </span>
+                </div>
+              </div>
+
+              {/* Card Description */}
+              <p className="text-[13px] leading-relaxed text-text-secondary font-body mb-6 relative z-10">
+                {group.description}
+              </p>
+
+              {/* Skills grid/flex list */}
+              <div className="flex flex-wrap gap-2 relative z-10">
+                {group.matchedSkills.map((skillName) => {
+                  const SkillIcon = getSkillIcon(skillName);
+                  return (
+                    <div
+                      key={skillName}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-[10px] border border-border-default bg-bg-surface/30 ${group.theme.badgeHover} transition-all duration-300 select-none group/badge`}
+                    >
+                      <SkillIcon className="w-3.5 h-3.5 text-text-muted group-hover/badge:text-accent-600 transition-colors" />
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] font-semibold text-text-secondary group-hover/badge:text-text-primary">
+                        {skillName}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           );
         })}
