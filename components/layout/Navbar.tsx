@@ -14,25 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-// Attempt to register MorphSVGPlugin if available.
-if (typeof window !== "undefined") {
-  try {
-    // Use Function constructor to prevent bundlers from statically compiling the missing premium plugin.
-    const loadPlugin = new Function("return import('gsap/MorphSVGPlugin')");
-    loadPlugin()
-      .then((plugin: any) => {
-        gsap.registerPlugin(plugin.MorphSVGPlugin);
-      })
-      .catch((e: any) => {
-        console.warn(
-          "GSAP MorphSVGPlugin not found. Morphing animations will be disabled.",
-          e,
-        );
-      });
-  } catch (e) {
-    console.warn("GSAP MorphSVGPlugin not found.", e);
-  }
-}
+// Note: MorphSVGPlugin is a paid GSAP plugin. Since we are using standard free GSAP, morphing animations are disabled and we use keyframe animations instead.
 
 
 interface MorphingIconProps {
