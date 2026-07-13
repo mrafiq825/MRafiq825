@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import {
   AppleLayers,
@@ -50,7 +51,8 @@ const getStatusConfig = (status: string) => {
 };
 
 const ProjectsSection = () => {
-  const [selectedProjectForApk, setSelectedProjectForApk] = useState<Project | null>(null);
+  const [selectedProjectForApk, setSelectedProjectForApk] =
+    useState<Project | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
@@ -87,7 +89,8 @@ const ProjectsSection = () => {
   const handleScroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
       const { clientWidth } = carouselRef.current;
-      const scrollAmount = direction === "left" ? -clientWidth * 0.85 : clientWidth * 0.85;
+      const scrollAmount =
+        direction === "left" ? -clientWidth * 0.85 : clientWidth * 0.85;
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -104,7 +107,8 @@ const ProjectsSection = () => {
           Featured Projects
         </h2>
         <p className="mt-3 max-w-2xl font-body text-body text-text-secondary leading-relaxed">
-          Explore innovative projects where each build solves a unique challenge with modern technology.
+          Explore innovative projects where each build solves a unique challenge
+          with modern technology.
         </p>
       </div>
 
@@ -132,9 +136,12 @@ const ProjectsSection = () => {
                   {/* Project Thumbnail */}
                   {project.thumbnail && (
                     <div className="overflow-hidden border-b border-border-default/50 aspect-video relative bg-bg-surface-hover/30 shrink-0">
-                      <img
+                      <Image
                         src={project.thumbnail}
                         alt={project.imageAlt}
+                        width={1200}
+                        height={675}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                         loading="lazy"
                       />
@@ -157,9 +164,7 @@ const ProjectsSection = () => {
                             <div
                               className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${statusConfig.color} border ${statusConfig.border} ${statusConfig.bg}`}
                             >
-                              <span
-                                className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current animate-pulse"
-                              />
+                              <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
                               {project.status}
                             </div>
                           </div>
@@ -313,12 +318,17 @@ const ProjectsSection = () => {
             {/* Description and Info Badge */}
             <div className="space-y-4">
               <p className="text-sm text-text-secondary leading-relaxed">
-                This project is built and optimized for Android mobile devices. You can request the direct APK installation package to test and evaluate the build locally.
+                This project is built and optimized for Android mobile devices.
+                You can request the direct APK installation package to test and
+                evaluate the build locally.
               </p>
 
               <div className="flex items-start gap-2.5 p-3 rounded-[12px] bg-bg-surface-hover/50 border border-border-default/50 text-[13px] text-text-muted">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-600 shrink-0 mt-1.5" />
-                <span>Installation requires allowing installs from unknown sources in Android developer settings.</span>
+                <span>
+                  Installation requires allowing installs from unknown sources
+                  in Android developer settings.
+                </span>
               </div>
             </div>
 

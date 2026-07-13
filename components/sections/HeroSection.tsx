@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import {
   AppleArrowRight,
@@ -7,7 +8,7 @@ import {
   AppleBriefcase,
   AppleCpu,
   AppleAward,
-  AppleSparkles
+  AppleSparkles,
 } from "@/components/ui/AppleIcons";
 import Section from "@/components/layout/Section";
 import Badge from "@/components/ui/Badge";
@@ -115,39 +116,52 @@ const HeroSection = () => {
                 <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
                 <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
               </div>
-              <span className="font-mono text-xs text-text-muted">MuhammadRafiq.ts</span>
+              <span className="font-mono text-xs text-text-muted">
+                MuhammadRafiq.ts
+              </span>
               <span className="w-12" />
             </div>
 
             {/* Simulated Code Space */}
             <div className="p-6 font-mono text-[12px] sm:text-[13px] leading-relaxed text-text-secondary select-none overflow-x-auto no-scrollbar">
               <div>
-                <span className="code-keyword">const</span> <span className="text-accent-600">engineer</span> = &#123;
+                <span className="code-keyword">const</span>{" "}
+                <span className="text-accent-600">engineer</span> = &#123;
               </div>
               <div className="pl-4">
                 name: <span className="code-string">"{site.name}"</span>,
               </div>
               <div className="pl-4">
-                role: <span className="code-string">"Full-Stack Software Engineer"</span>,
+                role:{" "}
+                <span className="code-string">
+                  "Full-Stack Software Engineer"
+                </span>
+                ,
               </div>
               <div className="pl-4">
                 experience: <span className="code-string">"3+ Years"</span>,
               </div>
               <div className="pl-4">
                 passions: <span className="text-accent-600">[</span>
-                <span className="code-string">"Scalable Backends"</span>, <span className="code-string">"Aesthetics"</span>, <span className="code-string">"DevOps"</span>
+                <span className="code-string">"Scalable Backends"</span>,{" "}
+                <span className="code-string">"Aesthetics"</span>,{" "}
+                <span className="code-string">"DevOps"</span>
                 <span className="text-accent-600">]</span>,
               </div>
               <div className="pl-4">
-                status: <span className="code-string">"{site.availability}"</span>
+                status:{" "}
+                <span className="code-string">"{site.availability}"</span>
               </div>
               <div>&#125;;</div>
 
               <div className="mt-4">
-                <span className="code-comment">// Let's engineering something meaningful</span>
+                <span className="code-comment">
+                  // Let's engineering something meaningful
+                </span>
               </div>
               <div>
-                <span className="code-keyword">if</span> (project.isComplex || project.needsAutomation) &#123;
+                <span className="code-keyword">if</span> (project.isComplex ||
+                project.needsAutomation) &#123;
               </div>
               <div className="pl-4 text-accent-700">
                 engineer.collaborate(project);
@@ -165,7 +179,9 @@ const HeroSection = () => {
                 </p>
               </div>
               <p className="mt-2 text-xs sm:text-[13px] italic leading-relaxed text-text-secondary">
-                A great software engineer does not just write code; they analyze complex problems, design modular, resilient systems, and ship products that deliver measurable real-world value.
+                A great software engineer does not just write code; they analyze
+                complex problems, design modular, resilient systems, and ship
+                products that deliver measurable real-world value.
               </p>
             </div>
           </div>
@@ -175,7 +191,9 @@ const HeroSection = () => {
       {/* Stats metrics layout at the bottom of HeroSection */}
       <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
         {site.stats.map((stat, idx) => {
-          const Icon = [AppleBriefcase, AppleCpu, AppleAward, AppleSparkles][idx] || AppleAward;
+          const Icon =
+            [AppleBriefcase, AppleCpu, AppleAward, AppleSparkles][idx] ||
+            AppleAward;
           return (
             <div
               key={stat.label}
@@ -201,9 +219,12 @@ const HeroSection = () => {
         title="Muhammad Rafiq"
       >
         <div className="relative overflow-hidden rounded-[16px] bg-bg-page border border-border-default w-full max-w-sm sm:max-w-md mx-auto shadow-2xl p-2 flex items-center justify-center">
-          <img
+          <Image
             src="/profile.png"
             alt={site.name}
+            width={900}
+            height={900}
+            priority
             className="w-full h-auto max-h-[70vh] object-contain rounded-[12px]"
           />
         </div>

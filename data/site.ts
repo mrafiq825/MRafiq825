@@ -42,7 +42,7 @@ export const site: Site = {
     { label: "Technologies Mastered", value: "25+" },
     { label: "Client Satisfaction", value: "99%" },
   ],
-  url: "https://mrafiq85.vercel.app",
+  url: "https://rafiq.dev",
   keywords: [
     "Muhammad Rafiq",
     "Rafiq Portfolio",
@@ -61,7 +61,7 @@ export const site: Site = {
     "CI/CD",
     "Github Actions",
     "Playwright",
-    "Software Ambassador"
+    "Software Ambassador",
   ],
   ogImage: "/profile.png",
 };

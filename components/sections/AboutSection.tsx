@@ -1,3 +1,4 @@
+import Image from "next/image";
 import * as React from "react";
 import {
   AppleCode,
@@ -25,14 +26,40 @@ import { education } from "@/data/education";
 // Map dynamic skill names to corresponding custom icons
 const getSkillIcon = (name: string) => {
   const lower = name.toLowerCase();
-  if (lower.includes("typescript") || lower.includes("javascript")) return AppleCode;
+  if (lower.includes("typescript") || lower.includes("javascript"))
+    return AppleCode;
   if (lower.includes("react") || lower.includes("next")) return AppleReactIcon;
-  if (lower.includes("node") || lower.includes("express") || lower.includes("api") || lower.includes("restful")) return AppleServerIcon;
-  if (lower.includes("aws") || lower.includes("azure") || lower.includes("cloud")) return AppleCloudIcon;
-  if (lower.includes("docker") || lower.includes("k8s") || lower.includes("sql") || lower.includes("mongo")) return AppleBoxIcon;
-  if (lower.includes("figma") || lower.includes("design")) return AppleFigmaIcon;
+  if (
+    lower.includes("node") ||
+    lower.includes("express") ||
+    lower.includes("api") ||
+    lower.includes("restful")
+  )
+    return AppleServerIcon;
+  if (
+    lower.includes("aws") ||
+    lower.includes("azure") ||
+    lower.includes("cloud")
+  )
+    return AppleCloudIcon;
+  if (
+    lower.includes("docker") ||
+    lower.includes("k8s") ||
+    lower.includes("sql") ||
+    lower.includes("mongo")
+  )
+    return AppleBoxIcon;
+  if (lower.includes("figma") || lower.includes("design"))
+    return AppleFigmaIcon;
   if (lower.includes("three") || lower.includes("webgl")) return Apple3dIcon;
-  if (lower.includes("performance") || lower.includes("ci/cd") || lower.includes("zap") || lower.includes("git") || lower.includes("playwright")) return AppleZap;
+  if (
+    lower.includes("performance") ||
+    lower.includes("ci/cd") ||
+    lower.includes("zap") ||
+    lower.includes("git") ||
+    lower.includes("playwright")
+  )
+    return AppleZap;
   return AppleShieldIcon;
 };
 
@@ -41,75 +68,92 @@ const SKILL_CATEGORIES = [
   {
     id: "languages",
     title: "Programming Languages",
-    description: "The foundational syntax and type systems used to write clean, maintainable, and type-safe source code.",
+    description:
+      "The foundational syntax and type systems used to write clean, maintainable, and type-safe source code.",
     icon: AppleCode,
     skills: ["javascript", "typescript", "python"],
     theme: {
       accent: "text-sky-400",
       glowBg: "from-sky-600/10 via-transparent to-transparent",
       borderColor: "hover:border-sky-500/30",
-      badgeHover: "hover:bg-sky-500/10 hover:border-sky-500/30 hover:text-sky-300",
-    }
+      badgeHover:
+        "hover:bg-sky-500/10 hover:border-sky-500/30 hover:text-sky-300",
+    },
   },
   {
     id: "frontend",
     title: "Frontend Engineering",
-    description: "Creating responsive, fast, and visually beautiful client-side applications.",
+    description:
+      "Creating responsive, fast, and visually beautiful client-side applications.",
     icon: AppleReactIcon,
     skills: ["react.js", "next.js", "react native"],
     theme: {
       accent: "text-blue-400",
       glowBg: "from-blue-600/10 via-transparent to-transparent",
       borderColor: "hover:border-blue-500/30",
-      badgeHover: "hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-blue-300",
-    }
+      badgeHover:
+        "hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-blue-300",
+    },
   },
   {
     id: "backend",
     title: "Backend & Systems",
-    description: "Architecting robust servers, scalable REST/GraphQL APIs, and microservices.",
+    description:
+      "Architecting robust servers, scalable REST/GraphQL APIs, and microservices.",
     icon: AppleServerIcon,
     skills: ["node.js", "express.js", "nestjs", "fastapi", "restful apis"],
     theme: {
       accent: "text-violet-400",
       glowBg: "from-violet-600/10 via-transparent to-transparent",
       borderColor: "hover:border-violet-500/30",
-      badgeHover: "hover:bg-violet-500/10 hover:border-violet-500/30 hover:text-violet-300",
-    }
+      badgeHover:
+        "hover:bg-violet-500/10 hover:border-violet-500/30 hover:text-violet-300",
+    },
   },
   {
     id: "databases",
     title: "Databases & BaaS",
-    description: "Modeling schemas, query tuning, and managing persistent cloud data layers.",
+    description:
+      "Modeling schemas, query tuning, and managing persistent cloud data layers.",
     icon: AppleBoxIcon,
     skills: ["sql", "mongodb", "postgresql", "supabase", "firebase"],
     theme: {
       accent: "text-emerald-400",
       glowBg: "from-emerald-600/10 via-transparent to-transparent",
       borderColor: "hover:border-emerald-500/30",
-      badgeHover: "hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300",
-    }
+      badgeHover:
+        "hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300",
+    },
   },
   {
     id: "devops",
     title: "DevOps & Tooling",
-    description: "Automating integration pipelines, container deployment, and quality assurance.",
+    description:
+      "Automating integration pipelines, container deployment, and quality assurance.",
     icon: AppleZap,
-    skills: ["docker", "ci/cd", "github actions", "playwright", "git", "postman"],
+    skills: [
+      "docker",
+      "ci/cd",
+      "github actions",
+      "playwright",
+      "git",
+      "postman",
+    ],
     theme: {
       accent: "text-amber-400",
       glowBg: "from-amber-600/10 via-transparent to-transparent",
       borderColor: "hover:border-amber-500/30",
-      badgeHover: "hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-300",
-    }
-  }
+      badgeHover:
+        "hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-300",
+    },
+  },
 ];
 
 const AboutSection = () => {
   // Group site skills dynamically
   const categorizedGroups = SKILL_CATEGORIES.map((category) => {
     const matchedSkills = site.skills.filter((skill) =>
-      category.skills.includes(skill.toLowerCase())
+      category.skills.includes(skill.toLowerCase()),
     );
     return {
       ...category,
@@ -120,7 +164,7 @@ const AboutSection = () => {
   // Collect any skills in site.skills that were not matched by any category definition
   const allCategorySkillsLower = SKILL_CATEGORIES.flatMap((c) => c.skills);
   const unmatchedSkills = site.skills.filter(
-    (skill) => !allCategorySkillsLower.includes(skill.toLowerCase())
+    (skill) => !allCategorySkillsLower.includes(skill.toLowerCase()),
   );
 
   // Add a fallback group if there are unmatched skills
@@ -129,27 +173,32 @@ const AboutSection = () => {
     finalGroups.push({
       id: "other",
       title: "Additional Technologies",
-      description: "Other tools, libraries, and auxiliary packages in my development utility belt.",
+      description:
+        "Other tools, libraries, and auxiliary packages in my development utility belt.",
       icon: AppleShieldIcon,
-      skills: unmatchedSkills.map(s => s.toLowerCase()),
+      skills: unmatchedSkills.map((s) => s.toLowerCase()),
       matchedSkills: unmatchedSkills,
       theme: {
         accent: "text-text-secondary",
         glowBg: "from-neutral-600/10 via-transparent to-transparent",
         borderColor: "hover:border-neutral-500/30",
-        badgeHover: "hover:bg-neutral-500/10 hover:border-neutral-500/30 hover:text-neutral-300",
-      }
+        badgeHover:
+          "hover:bg-neutral-500/10 hover:border-neutral-500/30 hover:text-neutral-300",
+      },
     });
   }
 
   // Extract clean uppercase title from site role
-  const displayRole = (site.role.split("|")[0] || "Full-Stack Software Engineer")
+  const displayRole = (
+    site.role.split("|")[0] || "Full-Stack Software Engineer"
+  )
     .trim()
     .toUpperCase();
 
   // Extract years of experience stat
-  const yearsExp = site.stats.find((s) => s.label.toLowerCase().includes("years"))
-    ?.value || "3+";
+  const yearsExp =
+    site.stats.find((s) => s.label.toLowerCase().includes("years"))?.value ||
+    "3+";
 
   return (
     <Section id="about" className="bg-transparent">
@@ -184,9 +233,13 @@ const AboutSection = () => {
           {/* Subtle glow behind card */}
           <div className="absolute -inset-2.5 rounded-[24px] bg-accent-600/10 blur-xl opacity-75 group-hover:opacity-100 transition duration-1000" />
           <div className="relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface aspect-square shadow-2xl p-1.5">
-            <img
+            <Image
               src="/profile.png"
               alt="Muhammad Rafiq"
+              width={900}
+              height={900}
+              priority
+              sizes="(max-width: 768px) 100vw, 45vw"
               className="w-full h-full object-contain rounded-[16px] grayscale-[15%] contrast-[1.05] group-hover:scale-103 transition-transform duration-700 ease-out"
             />
           </div>
@@ -295,8 +348,8 @@ const AboutSection = () => {
           Technical <span className="text-accent-600">Mastery</span>
         </h2>
         <p className="mt-3 text-sm text-text-secondary max-w-md mx-auto leading-relaxed font-body">
-          A curated selection of the tools and technologies I use to bring vision to
-          life.
+          A curated selection of the tools and technologies I use to bring
+          vision to life.
         </p>
       </div>
 
@@ -309,11 +362,15 @@ const AboutSection = () => {
               className={`glass-panel rounded-[22px] p-6 sm:p-8 relative overflow-hidden group hover:bg-bg-surface-hover/60 ${group.theme.borderColor} transition-all duration-500 hover:-translate-y-1 shadow-md ${group.id === "languages" ? "md:col-span-2" : ""}`}
             >
               {/* Radial gradient glow in top corner of card, faint and premium */}
-              <div className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${group.theme.glowBg} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+              <div
+                className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${group.theme.glowBg} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}
+              />
 
               {/* Card Header */}
               <div className="flex items-center gap-4.5 mb-4 relative z-10">
-                <div className={`p-3.5 rounded-[16px] bg-bg-surface border border-border-default/50 ${group.theme.accent} transition-transform duration-500 group-hover:scale-105`}>
+                <div
+                  className={`p-3.5 rounded-[16px] bg-bg-surface border border-border-default/50 ${group.theme.accent} transition-transform duration-500 group-hover:scale-105`}
+                >
                   <CategoryIcon className="w-6 h-6" />
                 </div>
                 <div>

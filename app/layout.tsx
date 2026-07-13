@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import GlassDistortion from "@/components/GlassDistortion";
+import { site } from "@/data/site";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -22,6 +23,8 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = site.url ?? "https://rafiq.dev";
+
 export const metadata: Metadata = {
   title: {
     default: "Muhammad Rafiq | Full-Stack Developer & Software Engineer",
@@ -29,6 +32,12 @@ export const metadata: Metadata = {
   },
   description:
     "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
+  applicationName: "Muhammad Rafiq Portfolio",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
+  },
   keywords: [
     "Muhammad Rafiq",
     "Rafiq Portfolio",
@@ -49,9 +58,9 @@ export const metadata: Metadata = {
     "LLM applications",
   ],
   authors: [{ name: "Muhammad Rafiq" }],
-  metadataBase: new URL("https://rafiq.dev"),
+  metadataBase: new URL(siteUrl),
   alternates: {
-    canonical: "https://rafiq.dev",
+    canonical: siteUrl,
   },
   robots: {
     index: true,
@@ -68,10 +77,18 @@ export const metadata: Metadata = {
     title: "Muhammad Rafiq | Full-Stack Developer & Software Engineer",
     description:
       "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
-    url: "https://rafiq.dev",
+    url: siteUrl,
     type: "website",
     siteName: "Muhammad Rafiq Portfolio",
     locale: "en_US",
+    images: [
+      {
+        url: `${siteUrl}${site.ogImage}`,
+        width: 1200,
+        height: 630,
+        alt: "Muhammad Rafiq portrait",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -79,6 +96,7 @@ export const metadata: Metadata = {
     description:
       "Explore Muhammad Rafiq's portfolio. Full-Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
     creator: "@mrafiq825",
+    images: [`${siteUrl}${site.ogImage}`],
   },
 };
 
@@ -101,6 +119,12 @@ export default function RootLayout({
       className={`${playfairDisplay.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg-page text-text-primary selection:bg-accent-600/30 selection:text-white">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        >
+          Skip to content
+        </a>
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
@@ -115,7 +139,7 @@ export default function RootLayout({
           `}
         </Script>
         <GlassDistortion />
-        {children}
+        <div id="main-content">{children}</div>
       </body>
     </html>
   );

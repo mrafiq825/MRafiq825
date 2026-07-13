@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/blog", "/blog/"],
+        allow: ["/", "/blog", "/blog/", "/seo", "/prompts"],
         disallow: ["/admin", "/api/"],
       },
       {
@@ -22,6 +22,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api/"],
       },
     ],
+    host: "https://rafiq.dev",
     sitemap: "https://rafiq.dev/sitemap.xml",
   };
 }
