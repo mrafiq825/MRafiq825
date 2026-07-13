@@ -1,6 +1,23 @@
 import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
+    {
+    id: "skillflow",
+    title: "SkillFlow: Reusable AI Agent Skills",
+    status: "Open Source",
+    summary:
+      "A production-ready open-source repository containing reusable AI engineering skills for coding agents, standardizing tasks like testing, security audits, performance, and prompt engineering.",
+    tech: [
+      "AI Agents",
+      "TypeScript",
+      "Node.js",
+      "CI/CD",
+    ],
+    imageAlt: "SkillFlow AI Agent Skills framework preview",
+    liveUrl: "https://github.com/mrafiq825/SkillFlow",
+    featured: true,
+    thumbnail: "/thumbnails/SkillFlow.png",
+  },
   {
     id: "jobpsych",
     title: "JobPsych: AI-Powered Career Intelligence Platform",
@@ -104,22 +121,6 @@ export const projects: Project[] = [
     featured: true,
     thumbnail: "/thumbnails/QRify.png",
   },
-  {
-    id: "skillflow",
-    title: "SkillFlow: Reusable AI Agent Skills",
-    status: "Open Source",
-    summary:
-      "A production-ready open-source repository containing reusable AI engineering skills for coding agents, standardizing tasks like testing, security audits, performance, and prompt engineering.",
-    tech: [
-      "AI Agents",
-      "TypeScript",
-      "Node.js",
-      "CI/CD",
-    ],
-    imageAlt: "SkillFlow AI Agent Skills framework preview",
-    liveUrl: "https://github.com/mrafiq825/SkillFlow",
-    featured: true,
-    thumbnail: "/thumbnails/SkillFlow.png",
-  },
+
 ];
 

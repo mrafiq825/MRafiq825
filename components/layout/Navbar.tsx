@@ -17,12 +17,13 @@ import { cn } from "@/lib/utils";
 // Attempt to register MorphSVGPlugin if available.
 if (typeof window !== "undefined") {
   try {
-    // @ts-ignore
-    import("gsap/MorphSVGPlugin")
-      .then((plugin) => {
+    // Use Function constructor to prevent bundlers from statically compiling the missing premium plugin.
+    const loadPlugin = new Function("return import('gsap/MorphSVGPlugin')");
+    loadPlugin()
+      .then((plugin: any) => {
         gsap.registerPlugin(plugin.MorphSVGPlugin);
       })
-      .catch((e) => {
+      .catch((e: any) => {
         console.warn(
           "GSAP MorphSVGPlugin not found. Morphing animations will be disabled.",
           e,
@@ -32,6 +33,7 @@ if (typeof window !== "undefined") {
     console.warn("GSAP MorphSVGPlugin not found.", e);
   }
 }
+
 
 interface MorphingIconProps {
   type: string;
