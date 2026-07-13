@@ -684,7 +684,6 @@ const NAV_ITEMS = [
     morphType: "github",
   },
   { label: "Blog", href: "/blog", icon: AppleBook, morphType: "blog" },
-  { label: "SEO", href: "/seo", icon: AppleTerminal },
   { label: "Prompts", href: "/prompts", icon: AppleTerminal },
 ];
 

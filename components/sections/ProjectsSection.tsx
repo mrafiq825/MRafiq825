@@ -44,6 +44,11 @@ const STATUS_CONFIG: Record<
     bg: "bg-blue-950/30",
     border: "border-blue-800/40",
   },
+  "Open Source": {
+    color: "text-indigo-400",
+    bg: "bg-indigo-950/30",
+    border: "border-indigo-800/40",
+  },
 };
 
 const getStatusConfig = (status: string) => {
@@ -211,6 +216,16 @@ const ProjectsSection = () => {
                     >
                       <AppleDevice className="w-4 h-4" />
                       <span>Get APK</span>
+                    </RadialGlowButton>
+                  ) : project.status === "Open Source" ? (
+                    <RadialGlowButton
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      containerClassName="flex-1 flex"
+                    >
+                      <AppleGithub className="w-4 h-4" />
+                      <span>GitHub Repo</span>
                     </RadialGlowButton>
                   ) : (
                     <RadialGlowButton
