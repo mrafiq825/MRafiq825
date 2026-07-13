@@ -3,7 +3,7 @@ import type { BlogPost } from "../blog-types";
 const defaultAuthor = {
   name: "Muhammad Rafiq",
   role: "Full Stack Developer & AI/ML Enthusiast",
-  avatar: "MR"
+  avatar: "MR",
 };
 
 export const aiMlPosts: BlogPost[] = [
@@ -11,9 +11,11 @@ export const aiMlPosts: BlogPost[] = [
     slug: "what-is-rag-and-how-does-it-work",
     title: "What is RAG and How Does It Work?",
     seoTitle: "What is Retrieval-Augmented Generation (RAG)? Complete Guide",
-    metaDescription: "Understand Retrieval-Augmented Generation (RAG) and how it combines embeddings, vector search, and LLMs to eliminate hallucinations.",
+    metaDescription:
+      "Understand Retrieval-Augmented Generation (RAG) and how it combines embeddings, vector search, and LLMs to eliminate hallucinations.",
     category: "AI & Machine Learning",
-    excerpt: "Demystify Retrieval-Augmented Generation (RAG). Learn how embeddings, chunking, vector databases, and LLM orchestration work together to build accurate AI systems.",
+    excerpt:
+      "Demystify Retrieval-Augmented Generation (RAG). Learn how embeddings, chunking, vector databases, and LLM orchestration work together to build accurate AI systems.",
     publishedAt: "May 12, 2026",
     readTime: "8 min read",
     tags: ["AI", "RAG", "Embeddings", "LLMs"],
@@ -51,15 +53,18 @@ export const aiMlPosts: BlogPost[] = [
 
       <h2>Conclusion</h2>
       <p>RAG is a foundational architecture for bringing custom data into LLMs. By combining intelligent document ingestion, hybrid search, rerankers, and rigorous prompt boundaries, developers can deploy robust, production-ready AI assistants that users can trust.</p>
-    `
+    `,
   },
   {
     slug: "vector-databases-explained",
     title: "Vector Databases Explained",
-    seoTitle: "Vector Databases Explained: Pinecone, OpenSearch & Weaviate Guide",
-    metaDescription: "Learn how vector databases organize embeddings, handle high-dimensional similarity searches, and compare Pinecone, OpenSearch, and Weaviate.",
+    seoTitle:
+      "Vector Databases Explained: Pinecone, OpenSearch & Weaviate Guide",
+    metaDescription:
+      "Learn how vector databases organize embeddings, handle high-dimensional similarity searches, and compare Pinecone, OpenSearch, and Weaviate.",
     category: "AI & Machine Learning",
-    excerpt: "Understand similarity search algorithms like HNSW, index compression, and how to choose the right database for your vector search workload.",
+    excerpt:
+      "Understand similarity search algorithms like HNSW, index compression, and how to choose the right database for your vector search workload.",
     publishedAt: "May 25, 2026",
     readTime: "7 min read",
     tags: ["VectorDB", "Embeddings", "Pinecone", "Weaviate"],
@@ -125,15 +130,17 @@ export const aiMlPosts: BlogPost[] = [
 
       <h2>Conclusion</h2>
       <p>Choosing a vector database depends on your scaling constraints. For rapid zero-ops setups, Pinecone is unmatched. For highly custom open-source pipelines that need relational integrations, Weaviate and OpenSearch are the industry standards.</p>
-    `
+    `,
   },
   {
     slug: "openai-vs-claude-vs-gemini",
     title: "OpenAI vs Claude vs Gemini",
     seoTitle: "OpenAI vs Claude vs Gemini: 2026 LLM Developer Comparison",
-    metaDescription: "A deep comparative analysis of OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, and Google Gemini 1.5 Pro for API cost, coding capabilities, and performance.",
+    metaDescription:
+      "A deep comparative analysis of OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, and Google Gemini 1.5 Pro for API cost, coding capabilities, and performance.",
     category: "AI & Machine Learning",
-    excerpt: "An engineering-first comparison evaluating performance benchmarks, API costs, coding capabilities, and the best use cases for each model.",
+    excerpt:
+      "An engineering-first comparison evaluating performance benchmarks, API costs, coding capabilities, and the best use cases for each model.",
     publishedAt: "June 02, 2026",
     readTime: "7 min read",
     tags: ["LLMs", "OpenAI", "Claude", "Gemini"],
@@ -196,15 +203,17 @@ export const aiMlPosts: BlogPost[] = [
 
       <h2>Conclusion</h2>
       <p>For logical code editing and structured system compliance, Claude 3.5 Sonnet is highly recommended. For tasks requiring enormous contexts (entire repositories or video inputs), Gemini 1.5 Pro is the optimal choice. For general agent loops with high throughput, GPT-4o remains a robust contender.</p>
-    `
+    `,
   },
   {
     slug: "building-ai-agents",
     title: "Building AI Agents",
     seoTitle: "Building AI Agents: ReAct Architecture & Tool Calling",
-    metaDescription: "A complete developer guide to designing, building, and scaling autonomous AI agents using ReAct loops, tool calling, and stateful memory.",
+    metaDescription:
+      "A complete developer guide to designing, building, and scaling autonomous AI agents using ReAct loops, tool calling, and stateful memory.",
     category: "AI & Machine Learning",
-    excerpt: "Learn how to structure agent loops, configure function definitions for tool calling, and manage persistent conversation states.",
+    excerpt:
+      "Learn how to structure agent loops, configure function definitions for tool calling, and manage persistent conversation states.",
     publishedAt: "June 10, 2026",
     readTime: "9 min read",
     tags: ["Agents", "AI", "ToolCalling", "LangChain"],
@@ -241,15 +250,17 @@ export const aiMlPosts: BlogPost[] = [
 
       <h2>Conclusion</h2>
       <p>AI Agents are shifting software from automated scripts to self-correcting workers. Designing them requires careful state tracking, strict validation, and reliable fallback logic.</p>
-    `
+    `,
   },
   {
     slug: "fine-tuning-vs-prompt-engineering",
     title: "Fine-Tuning vs Prompt Engineering",
     seoTitle: "Fine-Tuning vs Prompt Engineering: Costs & Tradeoffs Guide",
-    metaDescription: "Understand when to use prompt engineering vs fine-tuning for your generative AI models, comparing compute cost, specificity, and performance.",
+    metaDescription:
+      "Understand when to use prompt engineering vs fine-tuning for your generative AI models, comparing compute cost, specificity, and performance.",
     category: "AI & Machine Learning",
-    excerpt: "Compare tradeoffs, cost structures, data requirements, and execution speed between fine-tuning and prompt engineering.",
+    excerpt:
+      "Compare tradeoffs, cost structures, data requirements, and execution speed between fine-tuning and prompt engineering.",
     publishedAt: "June 14, 2026",
     readTime: "6 min read",
     tags: ["LLMs", "FineTuning", "PromptEngineering", "AI-Strategy"],
@@ -312,6 +323,114 @@ export const aiMlPosts: BlogPost[] = [
 
       <h2>Conclusion</h2>
       <p>Never start with fine-tuning. Begin with prompt engineering and RAG to validate the product. Shift to fine-tuning only when you need to optimize latency, reduce API costs, enforce strict tone, or train on niche syntactic styles.</p>
-    `
-  }
+    `,
+  },
+  {
+    slug: "what-are-ai-agents",
+    title: "What Are AI Agents?",
+    seoTitle:
+      "What Are AI Agents? A Complete Guide to Building Autonomous AI Systems",
+    metaDescription:
+      "Learn what AI agents are, how they differ from chatbots, and how to design reliable agent workflows with tools, memory, and guardrails.",
+    category: "AI & Machine Learning",
+    excerpt:
+      "Discover how AI agents work, what makes them different from standard chatbots, and how modern teams build secure, practical agent systems.",
+    publishedAt: "July 13, 2026",
+    readTime: "8 min read",
+    tags: ["AI Agents", "LLMs", "Automation", "Architecture"],
+    coverGradient: "linear-gradient(135deg, #3B82F6 0%, #7C3AED 100%)",
+    author: defaultAuthor,
+    content: `
+      <h2>Introduction</h2>
+      <p>AI agents are changing how software is built. Instead of waiting for a user to ask one question and receive one answer, agents can interpret a goal, call tools, inspect results, and continue working until the task is complete. In practice, that means they can browse documents, query databases, send messages, or trigger workflows with far less manual intervention.</p>
+
+      <div class="bg-bg-surface/70 border border-border-default/50 rounded-xl p-5 mb-6">
+        <p class="text-xs uppercase tracking-[0.25em] text-text-muted mb-2">Quick Definition</p>
+        <p class="text-text-primary">AI agents are goal-driven software systems that combine a large language model with tools, memory, and control logic so they can plan steps, act, observe outcomes, and improve their next move.</p>
+      </div>
+
+      <h2>What Makes AI Agents Different From Chatbots?</h2>
+      <p>A chatbot usually responds to a prompt in one turn. An AI agent, by contrast, can operate across multiple steps. It decides what action to take next, uses external systems when needed, and can revise its approach if the first attempt fails. That extra loop is what turns a helpful assistant into a semi-autonomous worker.</p>
+
+      <table class="w-full text-left border-collapse border border-border-default mb-6">
+        <thead>
+          <tr class="bg-bg-surface-hover border-b border-border-default text-text-primary text-sm font-semibold">
+            <th class="p-3">Capability</th>
+            <th class="p-3">Chatbot</th>
+            <th class="p-3">AI Agent</th>
+          </tr>
+        </thead>
+        <tbody class="text-text-secondary text-sm">
+          <tr class="border-b border-border-default/50">
+            <td class="p-3 font-semibold text-text-primary">Primary Goal</td>
+            <td class="p-3">Answer a single request</td>
+            <td class="p-3">Complete a multi-step objective</td>
+          </tr>
+          <tr class="border-b border-border-default/50">
+            <td class="p-3 font-semibold text-text-primary">Tool Use</td>
+            <td class="p-3">Limited or none</td>
+            <td class="p-3">Uses APIs, databases, and workflows</td>
+          </tr>
+          <tr class="border-b border-border-default/50">
+            <td class="p-3 font-semibold text-text-primary">Memory</td>
+            <td class="p-3">Mostly session-based</td>
+            <td class="p-3">Can maintain state across tasks</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>How AI Agents Work</h2>
+      <p>The most common pattern is the ReAct loop: the model reasons about the task, chooses an action, observes the result, and then decides whether to continue. This simple feedback loop makes agents more reliable for real-world work than a single-shot prompt.</p>
+
+      <ol>
+        <li><strong>Understand the goal</strong>: The agent receives a high-level instruction such as “summarize the latest customer tickets and draft a response.”</li>
+        <li><strong>Select a tool</strong>: It may search a knowledge base, call an API, or read a file.</li>
+        <li><strong>Evaluate the result</strong>: It inspects the output and decides whether the job is done or needs another action.</li>
+        <li><strong>Repeat until success</strong>: The loop continues until the system reaches a final answer or exits safely.</li>
+      </ol>
+
+      <h2>Core Components of an AI Agent</h2>
+      <p>Building a strong agent requires more than a prompt. Teams usually combine several building blocks that give the system a practical execution layer.</p>
+
+      <ul>
+        <li><strong>Language model</strong>: The reasoning core that interprets instructions and produces decisions.</li>
+        <li><strong>Tools</strong>: APIs, search endpoints, databases, calculators, or workflow triggers that extend the agent’s reach.</li>
+        <li><strong>Memory</strong>: Short-term state for the current task and long-term memory for past interactions.</li>
+        <li><strong>Guardrails</strong>: Validation, permissions, and safety checks that stop the agent from taking dangerous or irrelevant actions.</li>
+      </ul>
+
+      <h2>Common Use Cases for AI Agents</h2>
+      <p>AI agents are already useful in customer support, operations, research, software engineering, and internal productivity. They are strongest when a task involves several steps, multiple data sources, or conditional logic.</p>
+
+      <ul>
+        <li>Research assistants that gather information from docs, web pages, and internal notes.</li>
+        <li>Support agents that classify issues, fetch account data, and draft replies.</li>
+        <li>Developer agents that navigate codebases, run tests, and summarize changes.</li>
+        <li>Operations agents that monitor systems, detect anomalies, and recommend next steps.</li>
+      </ul>
+
+      <h2>Best Practices for Building Reliable Agents</h2>
+      <p>The biggest mistake teams make is treating agents like magic black boxes. Reliable systems need structure, visibility, and clear boundaries.</p>
+
+      <ol>
+        <li><strong>Start with narrow tasks</strong>: A focused workflow is easier to test than an open-ended “do everything” agent.</li>
+        <li><strong>Give the agent explicit tools</strong>: Avoid vague capabilities and define each tool’s purpose clearly.</li>
+        <li><strong>Use human review for risky steps</strong>: Approval checkpoints are essential for actions like sending messages or executing commands.</li>
+        <li><strong>Track state carefully</strong>: Long conversations can get noisy, so summarize or prune context when needed.</li>
+      </ol>
+
+      <h2>FAQ</h2>
+      <h3>What is the difference between an AI agent and a workflow?</h3>
+      <p>A workflow is usually a fixed sequence of steps. An AI agent can choose between paths and adapt when conditions change.</p>
+
+      <h3>Do AI agents need memory?</h3>
+      <p>They do not always need permanent memory, but most useful agents benefit from some form of state management to avoid repeating work or losing context.</p>
+
+      <h3>Are AI agents safe to deploy?</h3>
+      <p>They become much safer when you add permissions, validation, logging, and approval steps around high-impact actions.</p>
+
+      <h2>Conclusion</h2>
+      <p>AI agents are best understood as systems that combine reasoning with action. When designed carefully, they can automate repetitive work, improve productivity, and turn static AI assistants into useful digital collaborators.</p>
+    `,
+  },
 ];

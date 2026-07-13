@@ -8,6 +8,19 @@ export default function robots(): MetadataRoute.Robots {
         allow: ["/", "/blog", "/blog/"],
         disallow: ["/admin", "/api/"],
       },
+      {
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "PerplexityBot",
+          "ClaudeBot",
+          "anthropic-ai",
+          "Google-Extended",
+          "Bingbot",
+        ],
+        allow: ["/", "/blog", "/blog/"],
+        disallow: ["/admin", "/api/"],
+      },
     ],
     sitemap: "https://rafiq.dev/sitemap.xml",
   };

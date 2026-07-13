@@ -1,0 +1,22 @@
+# Muhammad Rafiq
+
+## About
+Muhammad Rafiq is a full-stack developer, software engineer, and AI/ML enthusiast focused on modern web applications, automation, system design, and practical AI implementation.
+
+## Site Overview
+Primary website: https://rafiq.dev/
+Blog: https://rafiq.dev/blog
+
+## Core Topics
+- Full-stack web development with React, Next.js, Node.js, and TypeScript
+- AI/ML engineering, LLM applications, and agent systems
+- DevOps, cloud deployment, and software testing
+- System design, architecture, and developer education
+
+## Key Content
+- Portfolio and contact information: https://rafiq.dev/
+- Articles and technical guides: https://rafiq.dev/blog
+- Project case studies and engineering insights: https://rafiq.dev/blog
+
+## Content Style
+The site publishes technical, practical, and implementation-focused content with clear explanations, architecture patterns, and real-world examples.
