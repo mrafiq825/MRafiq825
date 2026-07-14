@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import HomeClient from "@/components/layout/HomeClient";
 import { site } from "@/data/site";
+import { services } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Muhammad Rafiq | Full Stack Developer & Software Engineer",
   description:
-    "Explore Muhammad Rafiq's portfolio. Full Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
+    "Explore Muhammad Rafiq's professional portfolio. Offering custom Next.js/React full-stack web engineering, AI integrations & agentic systems, mobile apps, and DevOps/SDET testing worldwide.",
   keywords:
-    "Muhammad Rafiq, Rafiq Portfolio, Full-Stack Developer, Software Engineer, DevOps, SDET, React, Next.js, Node.js, Express, Python, FastAPI, Docker, Playwright, Vercel",
+    "Muhammad Rafiq, Rafiq Portfolio, Full-Stack Developer, Software Engineer, DevOps, SDET, React, Next.js, Node.js, Express, Python, FastAPI, Docker, Playwright, Vercel, AI Agent Development, Hire NextJS Developer, React Native Contractor, Playwright QA Automation Services",
   alternates: {
     canonical: `${site.url}/`,
   },
   openGraph: {
     title: "Muhammad Rafiq | Full Stack Developer & Software Engineer",
     description:
-      "Explore Muhammad Rafiq's portfolio. Full Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
+      "Explore Muhammad Rafiq's professional portfolio. Offering custom Next.js/React full-stack web engineering, AI integrations & agentic systems, mobile apps, and DevOps/SDET testing worldwide.",
     images: [
       {
         url: `${site.url}${site.ogImage}`,
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Muhammad Rafiq | Full Stack Developer & Software Engineer",
     description:
-      "Explore Muhammad Rafiq's portfolio. Full Stack Developer specializing in high-performance web/mobile apps, AI/ML integrations, DevOps, and SDET.",
+      "Explore Muhammad Rafiq's professional portfolio. Offering custom Next.js/React full-stack web engineering, AI integrations & agentic systems, mobile apps, and DevOps/SDET testing worldwide.",
     images: [`${site.url}${site.ogImage}`],
     creator: "@mrafiq825",
   },
@@ -102,6 +103,41 @@ const websiteJsonLd = {
   },
 };
 
+// Generate Service Schemas for each offered service
+const servicesJsonLd = services.map((service) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.title,
+  "serviceType": "Software Engineering & Consulting",
+  "description": service.description,
+  "provider": {
+    "@type": "Person",
+    "name": "Muhammad Rafiq",
+    "url": site.url
+  },
+  "areaServed": "Worldwide",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock"
+  }
+}));
+
+// Aggregate all FAQs across all services to build a comprehensive FAQPage schema
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": services.flatMap((service) =>
+    service.faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  )
+};
+
 export default function Home() {
   return (
     <>
@@ -112,6 +148,8 @@ export default function Home() {
             personJsonLd,
             organizationJsonLd,
             websiteJsonLd,
+            ...servicesJsonLd,
+            faqJsonLd,
           ]),
         }}
       />

@@ -91,7 +91,25 @@ To deliver an exceptional user experience, you must format all responses accordi
 * **Projects Completed:** 10+
 * **Years of Experience:** 3+
 * **Technologies Mastered:** 25+
-* **Client Satisfaction:** 99%`;
+* **Client Satisfaction:** 99%
+
+#### Offered Services (Worldwide)
+1. **Full-Stack Web Engineering** (Scalable Next.js & React Solutions)
+   * *Description:* Deploying fast, SEO-optimized, pixel-perfect web apps using React/Next.js and Node.js/FastAPI.
+   * *Metrics:* 55% average page speed improvements, 99.9% uptime backend architectures.
+   * *Tech:* Next.js, React.js, TypeScript, Node.js, Express.js, FastAPI, Tailwind CSS, MongoDB, PostgreSQL.
+2. **AI & Agentic Systems** (Advanced LLM & Workflow Integrations)
+   * *Description:* Integrating advanced cognitive capabilities: Gemini API, OpenAI, LangChain, custom AI agents, RAG, and Vapi AI voice integrations.
+   * *Metrics:* 50% average reduction in hiring cycles using AI recruitment features.
+   * *Tech:* Gemini API, OpenAI API, LangChain, Vapi AI, Python, Node.js.
+3. **Mobile App Engineering** (Seamless React Native & Expo Apps)
+   * *Description:* Unified codebase iOS & Android applications with fluid 60fps animations.
+   * *Metrics:* 50% savings on development costs compared to double native setups.
+   * *Tech:* React Native, Expo, NativeWind, TypeScript.
+4. **DevOps & Test Automation** (Zero-Defect CI/CD & QA Pipelines)
+   * *Description:* Containerization, GitHub Actions pipelines, and automated browser testing with Playwright.
+   * *Metrics:* 35% automated reduction in team manual workflow time.
+   * *Tech:* Docker, CI/CD, GitHub Actions, Playwright, Jest, Vitest.`;
 
 // Dynamic high-level directory of all blog posts
 const BLOGS_DIRECTORY = blogPosts
