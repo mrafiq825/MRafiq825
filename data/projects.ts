@@ -1,7 +1,7 @@
 import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
-    {
+  {
     id: "skillflow",
     title: "SkillFlow: Reusable AI Agent Skills",
     status: "Open Source",
@@ -9,7 +9,6 @@ export const projects: Project[] = [
       "A production-ready open-source repository containing reusable AI engineering skills for coding agents, standardizing tasks like testing, security audits, performance, and prompt engineering.",
     tech: [
       "AI Agents",
-      "TypeScript",
       "Node.js",
       "CI/CD",
     ],

@@ -9,6 +9,7 @@ import {
   AppleCpu,
   AppleAward,
   AppleSparkles,
+  AppleCode,
 } from "@/components/ui/AppleIcons";
 import Section from "@/components/layout/Section";
 import Badge from "@/components/ui/Badge";
@@ -88,6 +89,16 @@ const HeroSection = () => {
               <span>Explore My Work</span>
               <AppleArrowRight className="h-4.5 w-4.5 ml-1" />
             </RadialGlowButton>
+
+            <AnimatedButton
+              as="a"
+              href="#github-activity"
+              dark
+              className="group py-3 px-6 rounded-[12px] font-semibold text-sm transition-all duration-300 border border-border-default bg-[#0d0e12] hover:bg-[#14161c]"
+            >
+              <AppleCode className="mr-2 h-4 w-4 text-accent-600 transition-transform duration-200 group-hover:scale-110" />
+              <span>Proof of Work</span>
+            </AnimatedButton>
 
             <AnimatedButton
               as="a"

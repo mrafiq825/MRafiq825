@@ -1,10 +1,10 @@
 import Image from "next/image";
 import * as React from "react";
+import dynamic from "next/dynamic";
 import {
   AppleCode,
   AppleZap,
   AppleSparkles,
-  AppleAward,
   AppleMapPin,
   AppleCalendar,
   AppleCheckCircle,
@@ -22,6 +22,23 @@ import Section from "@/components/layout/Section";
 import Button from "@/components/ui/Button";
 import { site } from "@/data/site";
 import { education } from "@/data/education";
+
+const GitHubCalendar = dynamic(
+  () => import("react-github-calendar").then((mod) => mod.GitHubCalendar),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center min-h-[160px]">
+        <div className="animate-pulse flex space-x-2">
+          <div className="h-3 w-3 bg-accent-600/40 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+          <div className="h-3 w-3 bg-accent-600/40 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+          <div className="h-3 w-3 bg-accent-600/40 rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    ),
+  }
+);
+
 
 // Map dynamic skill names to corresponding custom icons
 const getSkillIcon = (name: string) => {
@@ -150,6 +167,8 @@ const SKILL_CATEGORIES = [
 ];
 
 const AboutSection = () => {
+  const [selectedYear, setSelectedYear] = React.useState<number | "last">("last");
+
   // Group site skills dynamically
   const categorizedGroups = SKILL_CATEGORIES.map((category) => {
     const matchedSkills = site.skills.filter((skill) =>
@@ -407,6 +426,89 @@ const AboutSection = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* 3.5 GitHub Contributions Calendar */}
+      <div id="github-activity" className="mt-28 mb-12 text-center">
+        <h2 className="font-heading text-3xl font-bold tracking-tight text-text-primary">
+          Proof of <span className="text-accent-600">Work</span>
+        </h2>
+        <p className="mt-3 text-sm text-text-secondary max-w-md mx-auto leading-relaxed font-body">
+          A live look at my contributions and commit activity on GitHub.
+        </p>
+      </div>
+
+      <div className="max-w-5xl mx-auto py-4 px-4 sm:px-0">
+        <div className="glass-panel rounded-[22px] p-6 sm:p-8 relative overflow-hidden group hover:bg-bg-surface-hover/60 transition-all duration-500 shadow-md">
+          {/* Subtle glow */}
+          <div className="absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br from-accent-600/10 via-transparent to-transparent rounded-full blur-2xl opacity-60 pointer-events-none" />
+
+          {/* GitHub Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div className="flex items-center gap-4.5">
+              <div className="p-3.5 rounded-[16px] bg-bg-surface border border-border-default/50 text-accent-600">
+                <AppleCode className="w-6 h-6" />
+              </div>
+              <div className="text-left">
+                <h3 className="font-heading text-xl font-bold text-text-primary tracking-tight">
+                  mrafiq825
+                </h3>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted">
+                  GitHub Profile
+                </span>
+              </div>
+            </div>
+            <div>
+              <Button
+                href="https://github.com/mrafiq825"
+                variant="metal"
+                dark
+                size="sm"
+                icon={<AppleZap className="h-4 w-4" />}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Profile
+              </Button>
+            </div>
+          </div>
+
+          {/* Year Selector */}
+          <div className="flex flex-wrap gap-2 mb-6 border-b border-border-default/30 pb-4 relative z-10 justify-start items-center">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted mr-2">
+              Filter by Year:
+            </span>
+            {(['last', 2026, 2025, 2024, 2023] as const).map((year) => (
+              <button
+                key={year}
+                onClick={() => setSelectedYear(year)}
+                className={`px-3 py-1.5 rounded-[8px] font-mono text-[10px] font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${selectedYear === year
+                  ? 'bg-accent-600/20 text-accent-700 border border-accent-600/50'
+                  : 'bg-bg-surface border border-border-default text-text-secondary hover:text-text-primary hover:border-border-hover'
+                  }`}
+              >
+                {year === 'last' ? 'Last Year' : year}
+              </button>
+            ))}
+          </div>
+
+          {/* Calendar Wrapper */}
+          <div className="overflow-x-auto flex justify-center py-2 min-h-[160px] relative z-10">
+            <div className="min-w-[800px] sm:min-w-0 w-full flex justify-center">
+              <GitHubCalendar
+                username="mrafiq825"
+                year={selectedYear}
+                colorScheme="dark"
+                theme={{
+                  dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+                }}
+                labels={{
+                  totalCount: '{{count}} contributions in the last year',
+                }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* 4. Ready to Collaborate CTA Card */}
