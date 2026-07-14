@@ -267,7 +267,6 @@ const AboutSection = () => {
               <div className="space-y-3.5">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <span className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wider bg-accent-50/15 border border-accent-100 px-2.5 py-1 rounded-[6px] text-accent-700">
-                    <AppleAward className="h-3.5 w-3.5 text-accent-600" />
                     {item.degree}
                   </span>
                 </div>

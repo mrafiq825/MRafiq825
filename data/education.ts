@@ -11,7 +11,7 @@ export const education: Education[] = [
     startYear: 2022,
     endYear: 2026,
     highlights: [
-      "Built a robust academic foundation in computer science theory, systems architecture, and design patterns.",
+      "Built a robust academic foundation in Computer Science theory, systems architecture, and design patterns.",
       "Completed advanced coursework in AI, machine learning, and data-driven web/mobile systems using Python and JavaScript.",
       "Collaborated on real-world team projects, applying Agile methodologies and version control best practices.",
     ],
@@ -21,7 +21,9 @@ export const education: Education[] = [
       "Database Systems",
       "Computer Networks",
       "Artificial Intelligence",
+      "Artificial Neural Networks",
       "Machine Learning",
+      "Natural Language Processing",
       "Data Science",
       "Probability and Statistics",
     ],
