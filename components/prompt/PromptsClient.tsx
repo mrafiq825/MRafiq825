@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import RadialGlowButton from "@/components/ui/RadialGlowButton";
 import { prompts, type Prompt, type PromptCategory } from "@/data/prompts";
@@ -12,7 +13,8 @@ import {
   AppleSliders,
   AppleLightbulb,
   AppleChevronDown,
-  AppleChevronUp
+  AppleChevronUp,
+  AppleArrowLeft
 } from "@/components/ui/AppleIcons";
 
 const CATEGORIES: ("All" | PromptCategory)[] = [
@@ -127,6 +129,17 @@ export default function PromptsClient() {
 
       <main className="page-shell min-h-screen bg-transparent text-text-primary pt-5 pb-22 px-4 md:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
+          {/* Back to Portfolio button */}
+          <div className="mb-6 flex justify-center">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-mono font-bold tracking-wider text-text-secondary hover:text-text-primary border border-border-default hover:border-accent-600 bg-white/5 hover:bg-accent-600/10 transition-all duration-300 group shadow-sm hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] cursor-pointer"
+            >
+              <AppleArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1 text-text-secondary group-hover:text-accent-700" />
+              <span>BACK TO PORTFOLIO</span>
+            </Link>
+          </div>
+
           {/* Header section */}
           <div className="text-center md:text-left mt-0 mb-1 relative">
             <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-accent-700 bg-accent-50/70 border border-accent-100/50 px-3.5 py-1.5 rounded-full backdrop-blur-md">

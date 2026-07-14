@@ -17,14 +17,48 @@ import {
   AppleCheckCircle,
   AppleArrowLeft,
   AppleMessage,
+  AppleCode,
+  AppleLayers,
+  AppleFolder,
+  AppleCloudIcon,
+  AppleBoxIcon,
+  AppleSliders,
 } from "@/components/ui/AppleIcons";
 
-// Map string icon names to their respective components
+// Map string icon names to their respective components for service tracks
 const ICON_MAP: Record<string, React.ComponentType<any>> = {
   AppleReactIcon: AppleReactIcon,
   AppleCpu: AppleCpu,
   AppleDevice: AppleDevice,
   AppleServerIcon: AppleServerIcon,
+};
+
+// Map tech names to their visual icon representation for tags
+const TECH_ICON_MAP: Record<string, React.ComponentType<any>> = {
+  "React.js": AppleReactIcon,
+  "React Native": AppleDevice,
+  "Next.js": AppleReactIcon,
+  "Redux Toolkit": AppleLayers,
+  "TypeScript": AppleCode,
+  "JavaScript": AppleCode,
+  "Python": AppleCode,
+  "Gemini API": AppleCpu,
+  "OpenAI API": AppleCpu,
+  "LangChain": AppleSparkles,
+  "Vapi AI": AppleMessage,
+  "Node.js": AppleServerIcon,
+  "Express.js": AppleServerIcon,
+  "FastAPI": AppleServerIcon,
+  "MongoDB": AppleFolder,
+  "PostgreSQL": AppleServerIcon,
+  "Tailwind CSS": AppleSliders,
+  "NativeWind": AppleSliders,
+  "Docker": AppleBoxIcon,
+  "CI/CD": AppleCloudIcon,
+  "GitHub Actions": AppleCloudIcon,
+  "Playwright": AppleCheckCircle,
+  "Jest": AppleCheckCircle,
+  "Vitest": AppleCheckCircle,
 };
 
 export default function ServicesClient() {
@@ -40,7 +74,7 @@ export default function ServicesClient() {
       <main className="page-shell bg-transparent text-text-primary pt-4 pb-21 min-h-screen">
         <Container>
           {/* Back Navigation Link */}
-          <div className="mb-2">
+          <div className="mb-6 flex justify-center">
             <Link
               href="/"
               className="inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-mono font-bold tracking-wider text-text-secondary hover:text-text-primary border border-border-default hover:border-accent-600 bg-white/5 hover:bg-accent-600/10 transition-all duration-300 group shadow-sm hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] cursor-pointer"
@@ -125,14 +159,18 @@ export default function ServicesClient() {
                         <span className="font-mono text-[10px] text-text-muted font-bold mr-1.5">
                           TECH WORKSPACE:
                         </span>
-                        {service.techStack.slice(0, 4).map((tech) => (
-                          <span
-                            key={tech}
-                            className="inline-flex items-center font-mono text-[9px] uppercase tracking-wider glass-badge px-2 py-0.5 rounded-[4px] font-semibold text-accent-700"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                        {service.techStack.slice(0, 4).map((tech) => {
+                          const TechIcon = TECH_ICON_MAP[tech] || AppleCode;
+                          return (
+                            <span
+                              key={tech}
+                              className="inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-wider glass-badge px-2 py-0.5 rounded-[4px] font-semibold text-accent-700"
+                            >
+                              <TechIcon className="w-3 h-3 stroke-[1.9] shrink-0" />
+                              <span>{tech}</span>
+                            </span>
+                          );
+                        })}
                         {service.techStack.length > 4 && (
                           <span className="font-mono text-[9px] text-text-muted px-1.5 py-0.5 select-none font-semibold">
                             +{service.techStack.length - 4} MORE
