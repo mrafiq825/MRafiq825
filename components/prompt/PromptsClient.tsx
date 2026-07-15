@@ -120,17 +120,14 @@ export default function PromptsClient() {
   return (
     <>
       <Navbar />
-
-      {/* Background glow effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
         <div className="absolute top-[20%] left-[10%] w-[350px] h-[350px] rounded-full bg-accent-600/5 blur-[120px]" />
         <div className="absolute top-[60%] right-[5%] w-[450px] h-[450px] rounded-full bg-indigo-600/5 blur-[140px]" />
       </div>
 
-      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-5 pb-22 px-4 md:px-8 relative z-10">
+      <main className="page-shell min-h-screen bg-transparent text-text-primary pt-2 pb-21 px-4 md:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
-          {/* Back to Portfolio button */}
-          <div className="mb-6 flex justify-center">
+          <div className="mb-2 flex justify-center">
             <Link
               href="/"
               className="inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-mono font-bold tracking-wider text-text-secondary hover:text-text-primary border border-border-default hover:border-accent-600 bg-white/5 hover:bg-accent-600/10 transition-all duration-300 group shadow-sm hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] cursor-pointer"
