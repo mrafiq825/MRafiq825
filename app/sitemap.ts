@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { blogPosts, getAeoEnrichedPost } from "@/data/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rafiq.dev";
+  const baseUrl = "https://mrafiq.vercel.app";
 
   // Base static routes
   const staticRoutes = [

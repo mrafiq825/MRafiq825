@@ -17,17 +17,17 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://rafiq.dev/blog",
+    canonical: "https://mrafiq.vercel.app/blog",
   },
   openGraph: {
     title: "Blog & Insights | Muhammad Rafiq | AI & Full Stack Engineer",
     description: "Read technical articles, case studies, and guides on AI & Machine Learning, Full Stack Development, System Design, DevOps & SRE, and Career Learning.",
-    url: "https://rafiq.dev/blog",
+    url: "https://mrafiq.vercel.app/blog",
     siteName: "Muhammad Rafiq Portfolio",
     type: "website",
     images: [
       {
-        url: "https://rafiq.dev/images/og-blog-default.png",
+        url: "https://mrafiq.vercel.app/images/og-blog-default.png",
         width: 1200,
         height: 630,
         alt: "Muhammad Rafiq Blog & Insights",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Blog & Insights | Muhammad Rafiq | AI & Full Stack Engineer",
     description: "Read technical articles, case studies, and guides on AI & Machine Learning, Full Stack Development, System Design, DevOps & SRE, and Career Learning.",
-    images: ["https://rafiq.dev/images/og-blog-default.png"],
+    images: ["https://mrafiq.vercel.app/images/og-blog-default.png"],
   },
 };
 
@@ -47,22 +47,22 @@ export default function BlogPage() {
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "@id": "https://rafiq.dev/#website",
+      "@id": "https://mrafiq.vercel.app/#website",
       "name": "Muhammad Rafiq Portfolio",
-      "url": "https://rafiq.dev",
+      "url": "https://mrafiq.vercel.app",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://rafiq.dev/blog?search={search_term_string}",
+        "target": "https://mrafiq.vercel.app/blog?search={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "@id": "https://rafiq.dev/#organization",
+      "@id": "https://mrafiq.vercel.app/#organization",
       "name": "Muhammad Rafiq Portfolio",
-      "url": "https://rafiq.dev",
-      "logo": "https://rafiq.dev/favicon.ico",
+      "url": "https://mrafiq.vercel.app",
+      "logo": "https://mrafiq.vercel.app/favicon.ico",
       "sameAs": [
         "https://github.com/Rafiqdevhub",
         "https://linkedin.com/in/muhammadrafiq"
@@ -71,10 +71,10 @@ export default function BlogPage() {
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "@id": "https://rafiq.dev/#person",
+      "@id": "https://mrafiq.vercel.app/#person",
       "name": "Muhammad Rafiq",
       "jobTitle": "Full Stack Developer & AI Engineer",
-      "url": "https://rafiq.dev",
+      "url": "https://mrafiq.vercel.app",
       "sameAs": [
         "https://github.com/Rafiqdevhub",
         "https://linkedin.com/in/muhammadrafiq"
@@ -88,13 +88,13 @@ export default function BlogPage() {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://rafiq.dev"
+          "item": "https://mrafiq.vercel.app"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Blog",
-          "item": "https://rafiq.dev/blog"
+          "item": "https://mrafiq.vercel.app/blog"
         }
       ]
     }

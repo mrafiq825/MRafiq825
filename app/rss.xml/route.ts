@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { blogPosts, getAeoEnrichedPost } from "@/data/blog";
 
 export async function GET() {
-  const baseUrl = "https://rafiq.dev";
-  
+  const baseUrl = "https://mrafiq.vercel.app";
+
   // Sort posts by date descending so the latest uploads are always at the top
   const sortedPosts = [...blogPosts].sort((a, b) => {
     return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();

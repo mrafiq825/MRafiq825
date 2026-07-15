@@ -22,7 +22,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api/"],
       },
     ],
-    host: "https://rafiq.dev",
-    sitemap: "https://rafiq.dev/sitemap.xml",
+    host: "https://mrafiq.vercel.app",
+    sitemap: "https://mrafiq.vercel.app/sitemap.xml",
   };
 }

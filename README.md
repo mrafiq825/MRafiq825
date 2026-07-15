@@ -40,7 +40,7 @@ Transforming complex business challenges into elegant, high-performance, and sca
 | :--- | :--- |
 | **Location** | Pakistan (Open to Remote / Hybrid / Onsite Roles) |
 | **Availability** | Available for Hire | Open to exciting opportunities |
-| **Portfolio** | [mrafiq85.vercel.app](https://mrafiq85.vercel.app) |
+| **Portfolio** | [mrafiq.vercel.app](https://mrafiq.vercel.app) |
 
 ---
 

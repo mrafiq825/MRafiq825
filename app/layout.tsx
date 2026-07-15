@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = site.url ?? "https://rafiq.dev";
+const siteUrl = site.url ?? "https://mrafiq.vercel.app";
 
 export const metadata: Metadata = {
   title: {

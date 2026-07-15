@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.metaDescription || post.excerpt,
     keywords: `${post.category}, ${post.tags.join(", ")}, Portfolio Blog, AEO, Developer Insights`,
     alternates: {
-      canonical: `https://rafiq.dev/blog/${slug}`,
+      canonical: `https://mrafiq.vercel.app/blog/${slug}`,
     },
     robots: {
       index: true,
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: post.title,
       description: post.metaDescription || post.excerpt,
       type: "article",
-      url: `https://rafiq.dev/blog/${slug}`,
+      url: `https://mrafiq.vercel.app/blog/${slug}`,
       siteName: "Muhammad Rafiq Portfolio",
       publishedTime: isNaN(publishDate.getTime()) ? undefined : publishDate.toISOString(),
       modifiedTime: isNaN(updatedDate.getTime()) ? undefined : updatedDate.toISOString(),
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       tags: post.tags,
       images: [
         {
-          url: post.ogImage || "https://rafiq.dev/images/og-blog-default.png",
+          url: post.ogImage || "https://mrafiq.vercel.app/images/og-blog-default.png",
           width: 1200,
           height: 630,
           alt: post.title,
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: "summary_large_image",
       title: post.title,
       description: post.metaDescription || post.excerpt,
-      images: [post.ogImage || "https://rafiq.dev/images/og-blog-default.png"],
+      images: [post.ogImage || "https://mrafiq.vercel.app/images/og-blog-default.png"],
     },
   };
 }
@@ -91,30 +91,30 @@ export default async function BlogDetailPage({ params }: PageProps) {
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "@id": `https://rafiq.dev/blog/${slug}#article`,
+      "@id": `https://mrafiq.vercel.app/blog/${slug}#article`,
       "headline": post.title,
       "description": post.metaDescription || post.excerpt,
-      "image": post.ogImage || "https://rafiq.dev/images/og-blog-default.png",
+      "image": post.ogImage || "https://mrafiq.vercel.app/images/og-blog-default.png",
       "datePublished": isNaN(publishDate.getTime()) ? undefined : publishDate.toISOString(),
       "dateModified": isNaN(updatedDate.getTime()) ? undefined : updatedDate.toISOString(),
       "author": {
         "@type": "Person",
         "name": post.author.name,
         "jobTitle": post.author.role,
-        "url": "https://rafiq.dev"
+        "url": "https://mrafiq.vercel.app"
       },
       "publisher": {
         "@type": "Organization",
-        "@id": "https://rafiq.dev/#organization",
+        "@id": "https://mrafiq.vercel.app/#organization",
         "name": "Muhammad Rafiq Portfolio",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://rafiq.dev/favicon.ico"
+          "url": "https://mrafiq.vercel.app/favicon.ico"
         }
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `https://rafiq.dev/blog/${slug}`
+        "@id": `https://mrafiq.vercel.app/blog/${slug}`
       }
     },
     {
@@ -125,25 +125,25 @@ export default async function BlogDetailPage({ params }: PageProps) {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://rafiq.dev"
+          "item": "https://mrafiq.vercel.app"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Blog",
-          "item": "https://rafiq.dev/blog"
+          "item": "https://mrafiq.vercel.app/blog"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": post.category,
-          "item": `https://rafiq.dev/blog?category=${encodeURIComponent(post.category)}`
+          "item": `https://mrafiq.vercel.app/blog?category=${encodeURIComponent(post.category)}`
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": post.title,
-          "item": `https://rafiq.dev/blog/${slug}`
+          "item": `https://mrafiq.vercel.app/blog/${slug}`
         }
       ]
     }
