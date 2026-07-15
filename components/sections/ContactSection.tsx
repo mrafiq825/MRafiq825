@@ -10,8 +10,7 @@ import {
   AppleWhatsapp,
   AppleXSocial,
 } from "@/components/ui/AppleIcons";
-import { useEffect, useRef } from "react";
-import { useForm, ValidationError } from "@formspree/react";
+import { useEffect, useRef, useState } from "react";
 import Section from "@/components/layout/Section";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
@@ -32,14 +31,53 @@ const SOCIAL_ICONS = {
 };
 
 const ContactSection = () => {
-  const [state, handleSubmit] = useForm("mbdqoqay");
+  const [submitting, setSubmitting] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const contactFormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.succeeded) {
+    if (succeeded) {
       contactFormRef.current?.reset();
     }
-  }, [state.succeeded]);
+  }, [succeeded]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSucceeded(false);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message. Please try again.");
+      }
+
+      setSucceeded(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An unexpected error occurred.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <Section
@@ -74,7 +112,7 @@ const ContactSection = () => {
               {site.availability}
             </p>
 
-            {state.succeeded && (
+            {succeeded && (
               <div className="mt-6 rounded-[12px] border border-emerald-800/40 bg-emerald-950/30 p-4 text-center">
                 <div className="mb-2 flex items-center justify-center">
                   <AppleCheckCircle className="h-6 w-6 text-emerald-400" />
@@ -106,7 +144,6 @@ const ContactSection = () => {
                     required
                     className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                   />
-                  <ValidationError field="name" errors={state.errors} />
                 </label>
 
                 <label className="space-y-2 block">
@@ -120,7 +157,6 @@ const ContactSection = () => {
                     required
                     className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                   />
-                  <ValidationError field="email" errors={state.errors} />
                 </label>
               </div>
 
@@ -134,7 +170,6 @@ const ContactSection = () => {
                   placeholder="Need a portfolio website redesign"
                   className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                 />
-                <ValidationError field="subject" errors={state.errors} />
               </label>
 
               <label className="space-y-2 block">
@@ -148,14 +183,13 @@ const ContactSection = () => {
                   required
                   className="w-full resize-none glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
                 />
-                <ValidationError field="message" errors={state.errors} />
               </label>
 
-              {Array.isArray(state.errors) && state.errors.length > 0 && (
+              {error && (
                 <div className="rounded-[12px] border border-rose-800/40 bg-rose-950/30 p-4">
                   <div className="flex items-center gap-2 text-sm text-rose-400">
                     <AppleWarning className="h-4 w-4 text-rose-400" />
-                    <span>Please check the errors above and try again.</span>
+                    <span>{error}</span>
                   </div>
                 </div>
               )}
@@ -163,13 +197,13 @@ const ContactSection = () => {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <Button
                   type="submit"
-                  disabled={state.submitting}
+                  disabled={submitting}
                   variant="metal"
                   size="sm"
                   dark
-                  icon={state.submitting ? null : <AppleMessage className="h-4 w-4" />}
+                  icon={submitting ? null : <AppleMessage className="h-4 w-4" />}
                 >
-                  {state.submitting ? "Sending..." : "Send Message"}
+                  {submitting ? "Sending..." : "Send Message"}
                 </Button>
                 <AnimatedButton
                   as="a"
