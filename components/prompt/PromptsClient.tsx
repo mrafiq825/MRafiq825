@@ -8,7 +8,6 @@ import { prompts, type Prompt, type PromptCategory } from "@/data/prompts";
 import {
   AppleCopy,
   AppleCheck,
-  AppleSparkles,
   AppleTerminal,
   AppleSliders,
   AppleLightbulb,
