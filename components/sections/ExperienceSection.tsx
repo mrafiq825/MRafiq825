@@ -11,7 +11,7 @@ const TIMELINE_COLORS = [
 
 const ExperienceSection = () => {
   return (
-    <Section id="experience" className="bg-transparent">
+    <Section id="experience" className="bg-transparent pt-12 md:pt-5">
       {/* Professional Journey Header */}
       <div className="mb-12 flex flex-col md:flex-row md:items-baseline md:justify-between gap-3 border-b border-border-default/50 pb-4">
         <h2 className="font-heading text-3xl font-bold tracking-tight text-text-primary">
@@ -46,25 +46,22 @@ const ExperienceSection = () => {
 
                 {/* Period/Year - alternating columns on desktop */}
                 <div
-                  className={`order-1 mb-1 font-mono text-xs font-semibold uppercase tracking-wider md:mb-0 md:flex md:items-center ${
-                    isEven
-                      ? "md:order-1 md:justify-end md:pr-12 text-accent-700"
-                      : "md:order-2 md:justify-start md:pl-12 text-text-secondary"
-                  }`}
+                  className={`order-1 mb-1 font-mono text-xs font-semibold uppercase tracking-wider md:mb-0 md:flex md:items-center ${isEven
+                    ? "md:order-1 md:justify-end md:pr-12 text-accent-700"
+                    : "md:order-2 md:justify-start md:pl-12 text-text-secondary"
+                    }`}
                 >
                   {item.period}
                 </div>
 
                 {/* Card Container - alternating columns on desktop */}
                 <div
-                  className={`order-2 ${
-                    isEven ? "md:order-2 md:pl-12" : "md:order-1 md:pr-12"
-                  }`}
+                  className={`order-2 ${isEven ? "md:order-2 md:pl-12" : "md:order-1 md:pr-12"
+                    }`}
                 >
                   <div
-                    className={`glass-panel rounded-[16px] p-6 max-w-[460px] ${
-                      isEven ? "mr-auto" : "ml-auto"
-                    }`}
+                    className={`glass-panel rounded-[16px] p-6 max-w-[460px] ${isEven ? "mr-auto" : "ml-auto"
+                      }`}
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -77,7 +74,7 @@ const ExperienceSection = () => {
                     <p className="font-mono text-xs font-semibold tracking-wider text-accent-700 mt-1.5">
                       {item.company}
                     </p>
-                    
+
                     {/* Responsibilities list */}
                     <ul className="text-[13px] text-text-secondary mt-3.5 space-y-2 leading-relaxed font-body">
                       {item.responsibilities.map((resp, i) => (

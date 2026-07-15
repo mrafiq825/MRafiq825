@@ -51,7 +51,7 @@ const ContactSection = () => {
         </>
       }
       description="Use the contact form for project inquiries and the chatbot panel for quick questions about services, availability, and next steps."
-      className="border-t border-border-default bg-transparent"
+      className="border-t border-border-default bg-transparent pt-0 md:pt-5"
     >
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <Card className="relative flex flex-col justify-between">

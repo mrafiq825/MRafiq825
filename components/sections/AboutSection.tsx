@@ -88,7 +88,7 @@ const SKILL_CATEGORIES = [
     description:
       "The foundational syntax and type systems used to write clean, maintainable, and type-safe source code.",
     icon: AppleCode,
-    skills: ["javascript", "typescript", "python"],
+    skills: ["javascript", "python"],
     theme: {
       accent: "text-sky-400",
       glowBg: "from-sky-600/10 via-transparent to-transparent",
@@ -133,7 +133,7 @@ const SKILL_CATEGORIES = [
     description:
       "Modeling schemas, query tuning, and managing persistent cloud data layers.",
     icon: AppleBoxIcon,
-    skills: ["sql", "mongodb", "postgresql", "supabase", "firebase"],
+    skills: ["sql", "mongodb", "postgresql", "supabase", "firebase",],
     theme: {
       accent: "text-emerald-400",
       glowBg: "from-emerald-600/10 via-transparent to-transparent",
@@ -222,7 +222,7 @@ const AboutSection = () => {
   return (
     <Section id="about" className="bg-transparent">
       {/* 1. Introduction Card / Hero Section */}
-      <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center pt-8 pb-12">
+      <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center pt-5 pb-12">
         <div className="flex flex-col items-start text-left">
           <span className="inline-flex items-center font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-accent-700 bg-accent-50/10 border border-accent-100 px-3.5 py-1.5 rounded-full select-none">
             {displayRole}

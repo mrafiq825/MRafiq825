@@ -39,7 +39,7 @@ export const site: Site = {
   stats: [
     { label: "Projects Completed", value: "10+" },
     { label: "Years Experience", value: "3+" },
-    { label: "Technologies Mastered", value: "25+" },
+    { label: "Technologies Mastered", value: "20+" },
     { label: "Client Satisfaction", value: "99%" },
   ],
   url: "https://rafiq.dev",

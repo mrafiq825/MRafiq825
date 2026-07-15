@@ -71,10 +71,10 @@ export default function ServicesClient() {
   return (
     <>
       <Navbar />
-      <main className="page-shell bg-transparent text-text-primary pt-4 pb-21 min-h-screen">
+      <main className="page-shell bg-transparent text-text-primary pt-2 pb-21 min-h-screen">
         <Container>
           {/* Back Navigation Link */}
-          <div className="mb-6 flex justify-center">
+          <div className="mb-2 flex justify-center">
             <Link
               href="/"
               className="inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-mono font-bold tracking-wider text-text-secondary hover:text-text-primary border border-border-default hover:border-accent-600 bg-white/5 hover:bg-accent-600/10 transition-all duration-300 group shadow-sm hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] cursor-pointer"
@@ -85,11 +85,11 @@ export default function ServicesClient() {
           </div>
 
           {/* Hero Header */}
-          <div className="mb-8 border-b border-border-default/50 pb-0 max-w-4xl">
-            <h1 className="font-heading text-h1 font-bold tracking-tight text-text-primary mb-4">
+          <div className="mb-0 border-b border-border-default/50 pb-0 max-w-4xl mx-auto text-center flex flex-col items-center">
+            <h1 className="font-heading text-h1 font-bold tracking-tight text-text-primary mb-2">
               Engineered <span className="text-accent-600">Services</span>
             </h1>
-            <p className="font-body text-[17px] text-text-secondary leading-relaxed max-w-3xl">
+            <p className="font-body text-[17px] text-text-secondary leading-relaxed max-w-3xl mb-6">
               I provide high-fidelity full-stack engineering, production-grade AI agent integrations,
               cross-platform mobile apps, and zero-defect QA automation systems. Every project is scoped
               for optimal performance, scalability, and measurable business outcomes.
@@ -97,7 +97,7 @@ export default function ServicesClient() {
           </div>
 
           {/* Immersive Services Showcase */}
-          <div className="space-y-10 max-w-4xl">
+          <div className="space-y-10 max-w-4xl mx-auto">
             {services.map((service) => {
               const IconComponent = ICON_MAP[service.iconName] || AppleSparkles;
               const isExpanded = expandedServiceId === service.id;

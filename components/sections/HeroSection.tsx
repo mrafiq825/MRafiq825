@@ -26,22 +26,21 @@ const HeroSection = () => {
   const remainingCount = site.skills.length - topSkills.length;
 
   return (
-    <Section id="home" className="pb-16 pt-8 md:pt-12">
-      <div className="grid items-center gap-12 xl:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-        {/* Left Column: Redesigned Typography and Details */}
-        <div className="flex flex-col items-start text-left">
-          {/* Animated Availability Badge */}
-          <div className="flex flex-wrap items-center gap-3">
-            <Badge>
-              <span className="relative flex h-2 w-2 mr-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              {site.availability}
-            </Badge>
-          </div>
+    <Section id="home" className="pb-16 pt-0 md:pt-2 md:pb-16">
+      {/* Animated Availability Badge */}
+      <div className="flex justify-center mb-6">
+        <Badge>
+          <span className="relative flex h-2 w-2 mr-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          {site.availability}
+        </Badge>
+      </div>
 
-          <p className="mt-8 font-mono text-[13px] font-semibold tracking-[0.24em] text-accent-700/90">
+      <div className="grid items-center gap-12 xl:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div className="flex flex-col items-start text-left">
+          <p className="font-mono text-[13px] font-semibold tracking-[0.24em] text-accent-700/90">
             {site.greeting}
           </p>
 

@@ -103,7 +103,7 @@ const ProjectsSection = () => {
   return (
     <Section
       id="projects"
-      className="border-t border-border-default bg-transparent"
+      className="border-t border-border-default bg-transparent pt-0 md:pt-5"
     >
       {/* Section Header */}
       <div className="mb-8 md:mb-10 max-w-3xl">
