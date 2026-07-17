@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { site } from "@/data/site";
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const RESEND_API_KEY = process.env.NEXT_PUBLIC_RESEND_API_KEY;
 
 export async function POST(request: Request) {
   try {
@@ -37,12 +37,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const resend = new Resend(RESEND_API_KEY);
-    
+    const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+
     // Use configured sender domain or fallback to onboarding@resend.dev
-    const fromEmail = process.env.CONTACT_SENDER_EMAIL || "Portfolio Contact <onboarding@resend.dev>";
+    const fromEmail = process.env.NEXT_PUBLIC_CONTACT_SENDER_EMAIL || "Portfolio Contact <onboarding@resend.dev>";
     // Use configured receiver or fallback to the site's email address
-    const toEmail = process.env.CONTACT_RECEIVER_EMAIL || site.email;
+    const toEmail = process.env.NEXT_PUBLIC_CONTACT_RECEIVER_EMAIL || site.email;
 
     // Send the email and handle data and error returned by the SDK directly (no try/catch for SDK response error status)
     const { data, error } = await resend.emails.send({
