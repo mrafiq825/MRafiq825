@@ -97,11 +97,11 @@ const LoadingScreen = ({
   return (
     <main className="page-shell flex min-h-screen items-center justify-center bg-bg-page px-6">
       <div className="relative z-10 w-full max-w-xl rounded-[20px] border border-border-default bg-bg-surface px-6 py-10 text-center shadow-sm sm:px-10">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-border-default bg-bg-surface-hover shadow-sm">
+        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-border-default bg-black shadow-sm overflow-hidden">
           <img
             src="/Rafiq-logo.png"
             alt="Muhammad Rafiq logo - Full-Stack Developer & Software Engineer"
-            className="h-16 w-16 object-contain"
+            className="h-full w-full object-cover"
           />
         </div>
 

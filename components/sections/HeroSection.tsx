@@ -26,7 +26,21 @@ const HeroSection = () => {
   const remainingCount = site.skills.length - topSkills.length;
 
   return (
-    <Section id="home" className="pb-16 pt-0 md:pt-2 md:pb-16">
+    <Section id="home" className="pb-16 pt-0 md:pt-2 md:pb-16 relative">
+      {/* Video Background */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <video
+          src="/logo-animated-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover opacity-20"
+        />
+        {/* Gradients to blend video smoothly into dark canvas */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,var(--bg-page)_85%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-page/20 via-transparent to-bg-page" />
+      </div>
       {/* Animated Availability Badge */}
       <div className="flex justify-center mb-6">
         <Badge>
@@ -118,9 +132,9 @@ const HeroSection = () => {
           <div className="absolute -inset-4 rounded-[2rem] bg-accent-600/5 blur-3xl pointer-events-none" />
 
           {/* Apple-styled IDE Terminal Mockup */}
-          <div className="relative w-full overflow-hidden rounded-[1.5rem] border border-border-default bg-[#0c0d12]/95 backdrop-blur-xl shadow-2xl">
+          <div className="relative w-full overflow-hidden rounded-[1.5rem] border border-border-default bg-black/20 backdrop-blur-xl shadow-2xl">
             {/* Editor Top Bar */}
-            <div className="flex items-center justify-between border-b border-border-default bg-[#07080b]/80 px-4 py-3.5 select-none">
+            <div className="flex items-center justify-between border-b border-border-default bg-black/45 px-4 py-3.5 select-none backdrop-blur-md">
               <div className="flex items-center gap-1.5">
                 <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
                 <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
@@ -181,7 +195,7 @@ const HeroSection = () => {
           </div>
 
           {/* Combined Profile Photo & Philosophy Glass Card */}
-          <div className="relative rounded-[1.5rem] glass-panel p-5 flex flex-col sm:flex-row items-center gap-5.5 shadow-xl border border-border-default hover:border-accent-600/20 hover:translate-y-[-2px] transition-all duration-300 group">
+          <div className="relative rounded-[1.5rem] glass-panel bg-black/20 backdrop-blur-2xl p-5 flex flex-col sm:flex-row items-center gap-5.5 shadow-xl border border-border-default hover:border-accent-600/20 hover:translate-y-[-2px] transition-all duration-300 group">
             <div className="text-center sm:text-left flex-1">
               <div className="flex items-center justify-center sm:justify-between flex-wrap gap-2">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-accent-700">

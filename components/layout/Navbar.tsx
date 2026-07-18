@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { ICON_CLASS } from "@/lib/constants";
 import { useGlassCursor } from "@/hooks/useGlassCursor";
 import {
@@ -102,10 +103,14 @@ const Navbar = () => {
           className="relative inline-flex items-center gap-1.5 sm:gap-2 rounded-full p-1 sm:pr-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-600"
           aria-label="Go to home"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-default/50 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
-            <span className="text-sm font-bold tracking-wide text-text-primary font-heading">
-              MR
-            </span>
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-default/50 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] overflow-hidden">
+            <Image
+              src="/Rafiq-logo.png"
+              alt="Muhammad Rafiq Logo"
+              width={36}
+              height={36}
+              className="h-full w-full object-cover"
+            />
           </span>
           <span className="hidden sm:inline text-base font-bold tracking-tight text-text-primary font-heading">
             Rafiq
