@@ -173,6 +173,50 @@ export const blogAeoData: Record<string, Partial<AeoPostMetadata>> = {
       linkText: "Inspect Portfolio Chatbot",
       linkUrl: "https://github.com/Rafiqdevhub/Personal-Portfolio"
     }
+  },
+  "the-prompt-is-the-new-programming-language": {
+    topicCluster: "Prompt Engineering",
+    lastUpdated: "July 18, 2026",
+    quickAnswer: "Prompt engineering is the new programming language of the generative AI era. It is the skill of translating human ideas into clear, structured instructions (including roles, objectives, context, constraints, output structure, and quality standards) that AI models like Claude or Gemini can interpret and execute. Elevating prompt quality directly determines output quality, reducing generic assumptions and eliminating ambiguity.",
+    tldr: {
+      build: "A framework guide to prompt architecture, defining role behaviors, enforcing constraints, and prompt development.",
+      technologies: ["Prompt Engineering", "LLMs", "Claude", "Gemini"],
+      learnings: [
+        "Define detailed role personas and specific objective success criteria.",
+        "Provide contextual environment variables and enforce strict constraints.",
+        "Specify output formats and set step-by-step thinking quality standards.",
+        "Iterate and refine prompts based on output evaluations."
+      ],
+      readTime: "6 min read"
+    },
+    references: [
+      { title: "Google Gemini Prompting Guide", url: "https://ai.google.dev/gemini-api/docs/prompting" },
+      { title: "Anthropic Prompt Engineering Library", url: "https://docs.anthropic.com/en/docs/about-claude/use-cases/prompt-engineering" }
+    ],
+    faqs: [
+      {
+        question: "Why do simple prompts produce average or generic AI responses?",
+        answer: "Simple prompts lack detailed goals, contexts, and constraints. Without these bounds, the AI must fill the gaps with general assumptions, leading to standard or average results."
+      },
+      {
+        question: "What is the anatomy of a great prompt?",
+        answer: "A great prompt defines the role, explains the objective, provides context, sets constraints, specifies the desired output format, and dictates quality standards like step-by-step reasoning."
+      },
+      {
+        question: "How do you enforce code safety or prevent UI layout breaks using prompts?",
+        answer: "By setting strict constraints in the prompt context (e.g., instructing the model never to break layouts, specify type-safety rules, return strict format wrappers, and self-review before output)."
+      },
+      {
+        question: "What is the role of iteration in prompt engineering?",
+        answer: "Iteration is the process of reviewing the model output, identifying gaps, and refining prompt specifications. It aligns human intent with AI interpretation over successive runs."
+      }
+    ],
+    cta: {
+      title: "Unlock the power of Agentic Workflows",
+      description: "Ready to build systems that automate real work? Check out my guide on building autonomous AI agents.",
+      linkText: "Read AI Agents Guide",
+      linkUrl: "/blog/what-are-ai-agents"
+    }
   }
 };
 
