@@ -250,8 +250,8 @@ const AboutSection = () => {
         {/* Image Card Frame */}
         <div className="relative group max-w-sm mx-auto lg:mr-0 w-full">
           {/* Subtle glow behind card */}
-          <div className="absolute -inset-2.5 rounded-[24px] bg-accent-600/10 blur-xl opacity-75 group-hover:opacity-100 transition duration-1000" />
-          <div className="relative overflow-hidden rounded-[20px] border border-border-default bg-bg-surface aspect-square shadow-2xl p-1.5">
+          <div className="absolute -inset-2.5 transition duration-1000" />
+          <div className="relative overflow-hidden">
             <Image
               src="/profile.png"
               alt="Muhammad Rafiq"
@@ -259,7 +259,7 @@ const AboutSection = () => {
               height={900}
               priority
               sizes="(max-width: 768px) 100vw, 45vw"
-              className="w-full h-full object-contain rounded-[16px] grayscale-[15%] contrast-[1.05] group-hover:scale-103 transition-transform duration-700 ease-out"
+              className="w-full h-full object-contain group-hover:scale-103 transition-transform duration-700 ease-out"
             />
           </div>
         </div>
