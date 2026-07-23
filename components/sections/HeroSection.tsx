@@ -121,7 +121,7 @@ const HeroSection = () => {
               className="group py-3 px-6 rounded-[12px] font-semibold text-sm transition-all duration-300 border border-border-default bg-[#0d0e12] hover:bg-[#14161c]"
             >
               <AppleDownload className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" />
-              <span>Resume</span>
+              <span>CV/Resume</span>
             </AnimatedButton>
           </div>
         </div>
