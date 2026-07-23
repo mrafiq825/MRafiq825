@@ -4,9 +4,9 @@ import { experience } from "@/data/experience";
 
 // Colors for alternating timeline dots and glowing drop-shadows
 const TIMELINE_COLORS = [
-  { dot: "bg-accent-600", glow: "rgba(59, 130, 246, 0.4)" }, // blue
-  { dot: "bg-purple-500", glow: "rgba(167, 139, 250, 0.4)" }, // purple
-  { dot: "bg-cyan-500", glow: "rgba(34, 211, 238, 0.4)" },   // cyan
+  { dot: "bg-accent-cyan", glow: "rgba(94, 234, 212, 0.45)" },   // cyan
+  { dot: "bg-accent-amber", glow: "rgba(232, 163, 61, 0.45)" },  // amber
+  { dot: "bg-accent-cyan-alt", glow: "rgba(78, 205, 196, 0.45)" },// cyan-alt
 ];
 
 const ExperienceSection = () => {

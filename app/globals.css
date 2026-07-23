@@ -7,22 +7,41 @@
   --font-body: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --bg-page: #0B0C10;
-  --bg-surface: #14161C;
-  --bg-surface-hover: #1D1F27;
+  /* Color Palette — from IMPLEMENTATION.md */
+  --color-bg-primary: #0A1F1F;      /* Deep dark teal — main page background */
+  --color-bg-secondary: #0D2B2B;    /* Slightly lighter teal — gradient end */
+  --color-bg-card: #122E2E;         /* Project/competency card background */
 
-  --border-default: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.16);
+  --color-text-primary: #F5F5F0;    /* Off-white — headings, name, titles */
+  --color-text-muted: #9CA3AF;      /* Gray — descriptions, secondary text */
 
-  --text-primary: #F3F4F6;
-  --text-secondary: #9CA3AF;
-  --text-muted: #6B7280;
+  --color-accent-cyan: #5EEAD4;     /* Bright cyan-teal — labels, tags, section headers */
+  --color-accent-cyan-alt: #4ECDC4; /* Slightly deeper cyan variant */
+  --color-accent-amber: #E8A33D;    /* Warm amber/gold — highlights, numbered indices */
+  --color-accent-amber-alt: #F0A830;/* Lighter amber variant */
 
-  --accent-50: rgba(59, 130, 246, 0.1);
-  --accent-100: rgba(59, 130, 246, 0.2);
-  --accent-600: #3B82F6;
-  --accent-700: #60A5FA;
-  --accent-800: #93C5FD;
+  --color-border: #2A4545;          /* Faint teal-gray — tag borders, divider lines */
+
+  /* Mapped design system variables */
+  --bg-page: var(--color-bg-primary);
+  --bg-surface: var(--color-bg-card);
+  --bg-surface-hover: #1A3D3D;
+
+  --border-default: var(--color-border);
+  --border-hover: #3A5C5C;
+
+  --text-primary: var(--color-text-primary);
+  --text-secondary: #D1D5DB;
+  --text-muted: var(--color-text-muted);
+
+  --accent-50: rgba(94, 234, 212, 0.1);
+  --accent-100: rgba(94, 234, 212, 0.2);
+  --accent-600: var(--color-accent-cyan);
+  --accent-700: var(--color-accent-cyan-alt);
+  --accent-800: #2DD4BF;
+
+  --accent-amber: var(--color-accent-amber);
+  --accent-amber-alt: var(--color-accent-amber-alt);
 }
 
 @theme {
@@ -56,6 +75,11 @@
   --color-accent-600: var(--accent-600);
   --color-accent-700: var(--accent-700);
   --color-accent-800: var(--accent-800);
+
+  --color-accent-cyan: var(--color-accent-cyan);
+  --color-accent-cyan-alt: var(--color-accent-cyan-alt);
+  --color-accent-amber: var(--color-accent-amber);
+  --color-accent-amber-alt: var(--color-accent-amber-alt);
 }
 
 /* =========================
@@ -65,9 +89,9 @@ html,
 body {
   background:
     radial-gradient(circle at top center,
-      rgba(20, 22, 28, 0.95) 0%,
-      rgba(12, 13, 17, 1) 45%,
-      rgba(10, 11, 14, 1) 100%);
+      rgba(13, 43, 43, 0.95) 0%,
+      rgba(10, 31, 31, 1) 45%,
+      rgba(8, 24, 24, 1) 100%);
 
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -88,9 +112,9 @@ body {
   pointer-events: none;
 
   background:
-    radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.08), transparent 40%),
-    radial-gradient(circle at 85% 25%, rgba(13, 14, 18, 0.8), transparent 35%),
-    radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.05), transparent 45%);
+    radial-gradient(circle at 15% 20%, rgba(94, 234, 212, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(13, 43, 43, 0.8), transparent 35%),
+    radial-gradient(circle at 50% 85%, rgba(232, 163, 61, 0.06), transparent 45%);
 }
 
 /* =========================
@@ -292,14 +316,14 @@ body {
    Glassmorphism UI System
 ========================= */
 .glass-panel {
-  background: rgba(20, 22, 28, 0.45);
+  background: rgba(18, 46, 46, 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-default);
   box-shadow:
     0 4px 20px -2px rgba(0, 0, 0, 0.35),
     0 2px 8px -1px rgba(0, 0, 0, 0.2),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -309,39 +333,39 @@ body {
 
 .glass-panel-hover:hover {
   transform: translateY(-2px);
-  background: rgba(26, 28, 36, 0.6);
-  border-color: rgba(59, 130, 246, 0.25);
-  /* Subtle blue tint on hover to match ambient glows */
+  background: rgba(26, 61, 61, 0.65);
+  border-color: rgba(94, 234, 212, 0.35);
+  /* Subtle cyan glow on hover to match ambient theme */
   box-shadow:
     0 20px 40px -8px rgba(0, 0, 0, 0.45),
     0 4px 12px -2px rgba(0, 0, 0, 0.25),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    inset 0 1px 1px rgba(94, 234, 212, 0.15);
 }
 
 .glass-panel-inset {
-  background: rgba(13, 14, 18, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(10, 31, 31, 0.55);
+  border: 1px solid var(--border-default);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .glass-input {
-  background: rgba(20, 22, 28, 0.3);
+  background: rgba(18, 46, 46, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-default);
   transition: all 0.2s ease-out;
 }
 
 .glass-input:focus {
-  background: rgba(26, 28, 36, 0.65);
+  background: rgba(26, 61, 61, 0.7);
   border-color: var(--accent-600);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 0 4px rgba(94, 234, 212, 0.15);
   outline: none;
 }
 
 .glass-badge {
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(94, 234, 212, 0.1);
+  border: 1px solid rgba(94, 234, 212, 0.25);
   color: var(--accent-700);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -352,7 +376,7 @@ body {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-default);
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -361,7 +385,7 @@ body {
 
 .glass-button-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(94, 234, 212, 0.3);
   transform: translateY(-1px);
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.2),
@@ -375,17 +399,17 @@ body {
 
 /* Chatbot Messages */
 .glass-chatbot-message-assistant {
-  background: rgba(20, 22, 28, 0.65);
+  background: rgba(18, 46, 46, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-default);
 }
 
 .glass-chatbot-message-user {
-  background: rgba(59, 130, 246, 0.15);
+  background: rgba(94, 234, 212, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  border: 1px solid rgba(94, 234, 212, 0.3);
   color: var(--accent-700);
 }
 
@@ -538,8 +562,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, #0B0C10 0%, transparent 12%, transparent 88%, #0B0C10 100%),
-    radial-gradient(circle at center, rgba(11, 12, 16, 0.2) 0%, #0B0C10 82%);
+    linear-gradient(to bottom, #0A1F1F 0%, transparent 12%, transparent 88%, #0A1F1F 100%),
+    radial-gradient(circle at center, rgba(10, 31, 31, 0.2) 0%, #0A1F1F 82%);
   pointer-events: none;
   z-index: 1;
 }
@@ -602,8 +626,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, #0B0C10 0%, transparent 15%, transparent 85%, #0B0C10 100%),
-    radial-gradient(circle at center, rgba(11, 12, 16, 0.15) 0%, #0B0C10 85%);
+    linear-gradient(to bottom, #0A1F1F 0%, transparent 15%, transparent 85%, #0A1F1F 100%),
+    radial-gradient(circle at center, rgba(10, 31, 31, 0.15) 0%, #0A1F1F 85%);
   pointer-events: none;
   z-index: 1;
 }

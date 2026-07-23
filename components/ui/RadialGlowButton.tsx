@@ -47,11 +47,11 @@ export function RadialGlowButton({
         @property --rg-pos-y { syntax: '<percentage>'; initial-value: 140%; inherits: false; }
         @property --rg-spread-x { syntax: '<percentage>'; initial-value: 130%; inherits: false; }
         @property --rg-spread-y { syntax: '<percentage>'; initial-value: 170%; inherits: false; }
-        @property --rg-color-1 { syntax: '<color>'; initial-value: #000022; inherits: false; }
-        @property --rg-color-2 { syntax: '<color>'; initial-value: #1f3f6d; inherits: false; }
-        @property --rg-color-3 { syntax: '<color>'; initial-value: #469396; inherits: false; }
-        @property --rg-color-4 { syntax: '<color>'; initial-value: #f1ffa5; inherits: false; }
-        @property --rg-color-5 { syntax: '<color>'; initial-value: hsl(250 80% 2.5%); inherits: false; }
+        @property --rg-color-1 { syntax: '<color>'; initial-value: #0A1F1F; inherits: false; }
+        @property --rg-color-2 { syntax: '<color>'; initial-value: #0D2B2B; inherits: false; }
+        @property --rg-color-3 { syntax: '<color>'; initial-value: #122E2E; inherits: false; }
+        @property --rg-color-4 { syntax: '<color>'; initial-value: #5EEAD4; inherits: false; }
+        @property --rg-color-5 { syntax: '<color>'; initial-value: #E8A33D; inherits: false; }
         @property --rg-border-angle { syntax: '<angle>'; initial-value: 180deg; inherits: true; }
         @property --rg-border-color-1 { syntax: '<color>'; initial-value: hsla(230, 75%, 90%, 0.7); inherits: true; }
         @property --rg-border-color-2 { syntax: '<color>'; initial-value: hsla(230, 50%, 90%, 0.25); inherits: true; }
@@ -121,10 +121,10 @@ export function RadialGlowButton({
           --rg-pos-y: 120%;
           --rg-spread-x: 110.24%;
           --rg-spread-y: 110.2%;
-          --rg-color-1: #000020;
-          --rg-color-2: #f1ffa5;
-          --rg-color-3: #469396;
-          --rg-color-4: #1f3f6d;
+          --rg-color-1: #0D2B2B;
+          --rg-color-2: #5EEAD4;
+          --rg-color-3: #122E2E;
+          --rg-color-4: #E8A33D;
           --rg-stop-1: 0%;
           --rg-stop-2: 10%;
           --rg-stop-3: 35.44%;

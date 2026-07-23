@@ -90,11 +90,11 @@ const SKILL_CATEGORIES = [
     icon: AppleCode,
     skills: ["javascript", "python"],
     theme: {
-      accent: "text-sky-400",
-      glowBg: "from-sky-600/10 via-transparent to-transparent",
-      borderColor: "hover:border-sky-500/30",
+      accent: "text-accent-amber",
+      glowBg: "from-amber-600/10 via-transparent to-transparent",
+      borderColor: "hover:border-accent-amber/40",
       badgeHover:
-        "hover:bg-sky-500/10 hover:border-sky-500/30 hover:text-sky-300",
+        "hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-300",
     },
   },
   {
@@ -105,11 +105,11 @@ const SKILL_CATEGORIES = [
     icon: AppleReactIcon,
     skills: ["react.js", "next.js", "react native"],
     theme: {
-      accent: "text-blue-400",
-      glowBg: "from-blue-600/10 via-transparent to-transparent",
-      borderColor: "hover:border-blue-500/30",
+      accent: "text-accent-cyan",
+      glowBg: "from-teal-600/10 via-transparent to-transparent",
+      borderColor: "hover:border-accent-cyan/40",
       badgeHover:
-        "hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-blue-300",
+        "hover:bg-teal-500/10 hover:border-teal-500/30 hover:text-teal-300",
     },
   },
   {
@@ -120,11 +120,11 @@ const SKILL_CATEGORIES = [
     icon: AppleServerIcon,
     skills: ["node.js", "express.js", "nestjs", "fastapi", "restful apis"],
     theme: {
-      accent: "text-violet-400",
-      glowBg: "from-violet-600/10 via-transparent to-transparent",
-      borderColor: "hover:border-violet-500/30",
+      accent: "text-accent-amber-alt",
+      glowBg: "from-amber-500/10 via-transparent to-transparent",
+      borderColor: "hover:border-accent-amber/40",
       badgeHover:
-        "hover:bg-violet-500/10 hover:border-violet-500/30 hover:text-violet-300",
+        "hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-300",
     },
   },
   {
@@ -133,13 +133,13 @@ const SKILL_CATEGORIES = [
     description:
       "Modeling schemas, query tuning, and managing persistent cloud data layers.",
     icon: AppleBoxIcon,
-    skills: ["sql", "mongodb", "postgresql", "supabase", "firebase",],
+    skills: ["sql", "mongodb", "postgresql", "supabase", "firebase"],
     theme: {
-      accent: "text-emerald-400",
-      glowBg: "from-emerald-600/10 via-transparent to-transparent",
-      borderColor: "hover:border-emerald-500/30",
+      accent: "text-accent-cyan-alt",
+      glowBg: "from-teal-500/10 via-transparent to-transparent",
+      borderColor: "hover:border-accent-cyan/40",
       badgeHover:
-        "hover:bg-emerald-500/10 hover:border-emerald-500/30 hover:text-emerald-300",
+        "hover:bg-teal-500/10 hover:border-teal-500/30 hover:text-teal-300",
     },
   },
   {
@@ -157,9 +157,9 @@ const SKILL_CATEGORIES = [
       "postman",
     ],
     theme: {
-      accent: "text-amber-400",
+      accent: "text-accent-amber",
       glowBg: "from-amber-600/10 via-transparent to-transparent",
-      borderColor: "hover:border-amber-500/30",
+      borderColor: "hover:border-accent-amber/40",
       badgeHover:
         "hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-300",
     },
@@ -307,7 +307,7 @@ const AboutSection = () => {
               </div>
               {/* Year highlight badge (desktop only) */}
               <div className="hidden sm:flex shrink-0 flex-col items-center justify-center rounded-2xl glass-panel-inset px-6 py-4.5 text-center min-w-[120px]">
-                <span className="text-3xl font-extrabold leading-none text-accent-700 font-heading">
+                <span className="text-3xl font-extrabold leading-none text-accent-amber font-heading">
                   {item.endYear}
                 </span>
                 <span className="mt-1.5 text-[9px] font-bold uppercase tracking-widest text-text-muted">

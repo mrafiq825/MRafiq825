@@ -221,10 +221,10 @@ const HeroSection = () => {
           return (
             <div
               key={stat.label}
-              className="glass-panel rounded-[1.25rem] p-5 hover:translate-y-[-3px] hover:border-accent-600/30 transition-all duration-300 select-none group"
+              className="glass-panel rounded-[1.25rem] p-5 hover:translate-y-[-3px] hover:border-accent-amber/40 transition-all duration-300 select-none group"
             >
               <div className="flex items-center justify-between">
-                <span className="font-heading text-2xl sm:text-3xl font-extrabold text-accent-600 group-hover:text-accent-700 transition-colors">
+                <span className="font-heading text-2xl sm:text-3xl font-extrabold text-accent-amber group-hover:text-accent-amber-alt transition-colors">
                   {stat.value}
                 </span>
               </div>
