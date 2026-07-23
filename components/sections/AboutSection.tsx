@@ -460,7 +460,7 @@ const AboutSection = () => {
             </div>
             <div>
               <Button
-                href="https://github.com/mrafiq825"
+                href="https://github.com/mrafiqdot825"
                 variant="metal"
                 dark
                 size="sm"
@@ -496,7 +496,7 @@ const AboutSection = () => {
           <div className="overflow-x-auto flex justify-center py-2 min-h-[160px] relative z-10">
             <div className="min-w-[800px] sm:min-w-0 w-full flex justify-center">
               <GitHubCalendar
-                username="mrafiq825"
+                username="mrafiqdot825"
                 year={selectedYear}
                 colorScheme="dark"
                 theme={{
