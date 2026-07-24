@@ -28,13 +28,13 @@ export const socials: SocialLink[] = [
   },
   {
     label: "X Profile",
-    href: "https://x.com/mrafiq825",
+    href: "https://x.com/mrafiqdot825",
     icon: "X",
   },
  
   {
     label: "TikTok Profile",
-    href: "https://www.tiktok.com/@rafiqcodes",
+    href: "https://www.tiktok.com/@mrafiqdot825",
     icon: "Tiktok",
   },
 ];
