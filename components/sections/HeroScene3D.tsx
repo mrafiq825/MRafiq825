@@ -143,10 +143,11 @@ export default function HeroScene3D() {
     window.addEventListener("resize", handleResize);
 
     // Animation Loop
-    let clock = new THREE.Clock();
+    const timer = new THREE.Timer();
 
-    const animate = () => {
-      const elapsedTime = clock.getElapsedTime();
+    const animate = (timestamp?: number) => {
+      timer.update(timestamp);
+      const elapsedTime = timer.getElapsed();
 
       // Smooth mouse lerp
       mouseX += (targetMouseX - mouseX) * 0.05;
@@ -191,6 +192,7 @@ export default function HeroScene3D() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
+      timer.dispose();
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
