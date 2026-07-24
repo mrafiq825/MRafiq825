@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 type LoadingScreenProps = {
   message?: string;
@@ -6,144 +9,132 @@ type LoadingScreenProps = {
   subtitle?: string;
 };
 
-const LoadingScreen = ({
-  message = "Loading...",
-  title = "Muhammad Rafiq",
-  subtitle = "Full-Stack Developer | DevOps | SDET",
-}: LoadingScreenProps) => {
-  const INTRO_DELAY_MS = 450;
-  const TITLE_SPEED_MS = 55;
-  const BETWEEN_PHASE_DELAY_MS = 220;
-  const MESSAGE_SPEED_MS = 40;
-
-  const [showTypewriter, setShowTypewriter] = useState(false);
-  const [typedTitle, setTypedTitle] = useState("");
-  const [typedMessage, setTypedMessage] = useState("");
-  const [canTypeMessage, setCanTypeMessage] = useState(false);
+export default function LoadingScreen({
+  title = "MRafiq.dev",
+  subtitle = "Crafting high-impact digital experiences",
+}: LoadingScreenProps) {
+  const [progress, setProgress] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const introTimer = window.setTimeout(() => {
-      setShowTypewriter(true);
-    }, INTRO_DELAY_MS);
+    // Progress counter animation
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 35);
 
-    return () => {
-      window.clearTimeout(introTimer);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    if (
-      !showTypewriter ||
-      typedTitle.length !== title.length ||
-      canTypeMessage
-    ) {
-      return;
-    }
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const betweenPhaseTimer = window.setTimeout(() => {
-      setCanTypeMessage(true);
-    }, BETWEEN_PHASE_DELAY_MS);
+    let animationFrameId: number;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const handleResize = () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
+
+    // Particle assembly physics
+    const numParticles = 80;
+    const particles = Array.from({ length: numParticles }, () => {
+      const targetAngle = Math.random() * Math.PI * 2;
+      const targetRadius = 120 + Math.random() * 40;
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        targetX: width / 2 + Math.cos(targetAngle) * targetRadius,
+        targetY: height / 2 + Math.sin(targetAngle) * targetRadius,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        size: Math.random() * 2.5 + 1.5,
+        color: Math.random() > 0.5 ? "#00E5FF" : "#7C3AED",
+        alpha: Math.random() * 0.7 + 0.3,
+      };
+    });
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p) => {
+        p.x += (p.targetX - p.x) * 0.04;
+        p.y += (p.targetY - p.y) * 0.04;
+
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
 
     return () => {
-      window.clearTimeout(betweenPhaseTimer);
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [
-    showTypewriter,
-    typedTitle.length,
-    title.length,
-    canTypeMessage,
-    BETWEEN_PHASE_DELAY_MS,
-  ]);
-
-  useEffect(() => {
-    if (!showTypewriter) {
-      return;
-    }
-
-    if (typedTitle.length < title.length) {
-      const titleTimer = window.setTimeout(() => {
-        setTypedTitle(title.slice(0, typedTitle.length + 1));
-      }, TITLE_SPEED_MS);
-
-      return () => {
-        window.clearTimeout(titleTimer);
-      };
-    }
-
-    if (canTypeMessage && typedMessage.length < message.length) {
-      const messageTimer = window.setTimeout(() => {
-        setTypedMessage(message.slice(0, typedMessage.length + 1));
-      }, MESSAGE_SPEED_MS);
-
-      return () => {
-        window.clearTimeout(messageTimer);
-      };
-    }
-  }, [
-    showTypewriter,
-    title,
-    message,
-    typedTitle,
-    typedMessage,
-    canTypeMessage,
-    TITLE_SPEED_MS,
-    MESSAGE_SPEED_MS,
-  ]);
-
-  const isTyping =
-    showTypewriter &&
-    (typedTitle.length < title.length || typedMessage.length < message.length);
+  }, []);
 
   return (
-    <main className="page-shell flex min-h-screen items-center justify-center bg-bg-page px-6">
-      <div className="relative z-10 w-full max-w-xl rounded-[20px] border border-border-default bg-bg-surface px-6 py-10 text-center shadow-sm sm:px-10">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-border-default bg-black shadow-sm overflow-hidden">
-          <img
+    <main className="fixed inset-0 z-50 flex min-h-screen flex-col items-center justify-center bg-[#050505] overflow-hidden">
+      {/* Particle Canvas Background */}
+      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-md">
+        {/* Glowing Logo Icon */}
+        <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-[#7C3AED]/40 bg-black/60 shadow-[0_0_35px_rgba(124,58,237,0.4)] backdrop-blur-md overflow-hidden mb-6">
+          <Image
             src="/Rafiq-logo.png"
-            alt="Muhammad Rafiq logo - Full-Stack Developer & Software Engineer"
-            className="h-full w-full object-cover"
+            alt="Muhammad Rafiq logo"
+            width={72}
+            height={72}
+            className="h-full w-full object-cover animate-pulse"
           />
         </div>
 
-        <h1 className="mt-4 font-heading text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-          {typedTitle || (showTypewriter ? "" : "\u00a0")}
-          {(showTypewriter || typedTitle.length > 0) && (
-            <span
-              aria-hidden="true"
-              className="ml-1 inline-block h-[1em] w-0.5 animate-pulse bg-accent-600 align-[-0.15em]"
-            />
-          )}
+        {/* Title & Brand */}
+        <h1 className="font-heading text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          {title}
         </h1>
-        <p className="mt-3 min-h-6 font-mono text-xs font-semibold uppercase tracking-[0.3em] text-accent-700 sm:text-sm">
-          {typedMessage || (showTypewriter ? "" : "\u00a0")}
-          {typedTitle.length === title.length &&
-            typedMessage.length < message.length && (
-              <span
-                aria-hidden="true"
-                className="ml-1 inline-block h-[1em] w-0.5 animate-pulse bg-accent-600 align-[-0.15em]"
-              />
-            )}
-        </p>
-        <p
-          className={`mt-3 font-body text-sm leading-relaxed text-text-secondary transition-opacity duration-500 sm:text-base ${
-            typedMessage.length === message.length ? "opacity-100" : "opacity-0"
-          }`}
-        >
+
+        <p className="mt-3 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-[#00E5FF]">
           {subtitle}
         </p>
 
-        <div className="mt-8 h-2 overflow-hidden rounded-full bg-bg-surface-hover border border-border-default">
-          <div className="h-full w-2/3 rounded-full bg-accent-600" />
-        </div>
-
-        <div className="mt-6 flex items-center justify-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-accent-600" />
-          <span>{isTyping ? "Starting up" : "Preparing the experience"}</span>
-          <span className="h-2 w-2 animate-pulse rounded-full bg-accent-600 [animation-delay:150ms]" />
+        {/* Progress Bar Container */}
+        <div className="mt-8 w-full max-w-xs">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#101010] border border-white/10 p-0.5">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-[#7C3AED] via-[#8B5CF6] to-[#00E5FF] transition-all duration-150 ease-out shadow-[0_0_12px_#00E5FF]"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <div className="mt-3 flex items-center justify-between text-[11px] font-mono font-semibold text-text-muted">
+            <span className="uppercase tracking-widest text-[#00E5FF]">INITIALIZING EXPERIENCE</span>
+            <span>{progress}%</span>
+          </div>
         </div>
       </div>
     </main>
   );
-};
-
-export default LoadingScreen;
+}

@@ -913,3 +913,20 @@ export const AppleShieldIcon = (props: AppleIconProps) => (
   </svg>
 );
 
+// 53. AppleTiktok (SF Symbol style TikTok)
+export const AppleTiktok = (props: AppleIconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.9"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
+

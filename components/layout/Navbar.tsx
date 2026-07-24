@@ -10,7 +10,6 @@ import {
   AppleBook,
   AppleTerminal,
   AppleMessage,
-  AppleSparkles,
 } from "@/components/ui/AppleIcons";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -23,7 +22,6 @@ const NAV_ITEMS = [
     href: "#projects",
     icon: AppleLayers,
   },
-  { label: "Services", href: "/services", icon: AppleSparkles },
   { label: "Prompts", href: "/prompts", icon: AppleTerminal },
   { label: "Blog", href: "/blog", icon: AppleBook },
 ];

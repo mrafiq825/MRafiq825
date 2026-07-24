@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AppleMail,
   AppleMessage,
@@ -9,6 +11,8 @@ import {
   AppleLinkedin,
   AppleWhatsapp,
   AppleXSocial,
+  AppleCpu,
+  AppleTiktok,
 } from "@/components/ui/AppleIcons";
 import { useEffect, useRef, useState } from "react";
 import Section from "@/components/layout/Section";
@@ -19,6 +23,7 @@ import Chatbot from "@/components/ui/Chatbot";
 import { site } from "@/data/site";
 import { socials } from "@/data/socials";
 import { ICON_CLASS } from "@/lib/constants";
+import { motion } from "framer-motion";
 
 const SOCIAL_ICONS = {
   Facebook: AppleFacebook,
@@ -28,6 +33,8 @@ const SOCIAL_ICONS = {
   Instagram: AppleInstagram,
   Whatsapp: AppleWhatsapp,
   WhatsApp: AppleWhatsapp,
+  Tiktok: AppleTiktok,
+  TikTok: AppleTiktok,
 };
 
 const ContactSection = () => {
@@ -59,9 +66,7 @@ const ContactSection = () => {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
@@ -84,47 +89,52 @@ const ContactSection = () => {
       id="contact"
       title={
         <>
-          <AppleMail className={`${ICON_CLASS.section} text-accent-600`} />
-          Contact and Chat
+          <AppleCpu className={`${ICON_CLASS.section} text-[#00E5FF]`} />
+          Futuristic Control Center
         </>
       }
-      description="Use the contact form for project inquiries and the chatbot panel for quick questions about services, availability, and next steps."
-      className="border-t border-border-default bg-transparent pt-0 md:pt-5"
+      description="Connect directly via the holographic transmission terminal or query the Gemini AI chatbot assistant."
+      className="border-t border-white/10 bg-transparent pt-12 pb-40 md:pb-10 mb-10"
     >
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <Card className="relative flex flex-col justify-between">
-          <div className="relative">
-            <div className="mb-5 flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-accent-100 bg-accent-50 text-accent-700">
-                <AppleMessage className={ICON_CLASS.nav} />
-              </span>
-              <div>
-                <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
-                  Contact form
-                </p>
-                <p className="text-sm text-text-secondary">
-                  Start a project conversation
-                </p>
+        {/* Futuristic Floating Holographic Panel */}
+        <Card className="relative flex flex-col justify-between border border-white/10 bg-[#101010]/90 shadow-[0_0_35px_rgba(124,58,237,0.2)]">
+          <div className="relative z-10">
+            <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#00E5FF]/40 bg-[#00E5FF]/10 text-[#00E5FF]">
+                  <AppleMessage className={ICON_CLASS.nav} />
+                </span>
+                <div>
+                  <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#00E5FF]">
+                    CONTROL TERMINAL
+                  </p>
+                  <p className="text-xs text-text-secondary">
+                    Direct Holographic Transmission
+                  </p>
+                </div>
               </div>
+              <span className="inline-flex items-center font-mono text-[10px] text-[#7C3AED] bg-[#7C3AED]/20 border border-[#7C3AED]/30 px-2.5 py-1 rounded-full animate-pulse">
+                SYS_ONLINE
+              </span>
             </div>
 
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 mb-6">
-              {site.availability}
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-white mb-6">
+              STATUS: <span className="text-[#00E5FF]">{site.availability}</span>
             </p>
 
             {succeeded && (
-              <div className="mt-6 rounded-[12px] border border-emerald-800/40 bg-emerald-950/30 p-4 text-center">
-                <div className="mb-2 flex items-center justify-center">
-                  <AppleCheckCircle className="h-6 w-6 text-emerald-400" />
-                </div>
-                <h3 className="mb-1 text-base font-bold text-emerald-400">
-                  Message sent
-                </h3>
-                <p className="text-sm text-emerald-400/90">
-                  Thanks for reaching out. The form has been cleared and is
-                  ready for another message.
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="mt-4 rounded-xl border border-[#00E5FF]/40 bg-[#00E5FF]/10 p-4 text-center"
+              >
+                <AppleCheckCircle className="h-6 w-6 text-[#00E5FF] mx-auto mb-2" />
+                <h4 className="text-sm font-bold text-white">Transmission Received!</h4>
+                <p className="text-xs text-text-secondary mt-1">
+                  Thank you for reaching out. Muhammad will respond within 24 hours.
                 </p>
-              </div>
+              </motion.div>
             )}
 
             <form
@@ -133,64 +143,62 @@ const ContactSection = () => {
               onSubmit={handleSubmit}
             >
               <div className="grid gap-4 sm:grid-cols-2">
-                <label className="space-y-2 block">
-                  <span className="text-sm font-medium text-text-secondary">
-                    Your name
+                <label className="space-y-1.5 block">
+                  <span className="text-xs font-mono font-semibold uppercase text-text-secondary">
+                    Your Name
                   </span>
                   <input
                     type="text"
                     name="name"
                     placeholder="Muhammad Rafiq"
                     required
-                    className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
+                    className="w-full glass-input rounded-xl py-2.5 px-3.5 text-xs text-white placeholder:text-text-muted"
                   />
                 </label>
 
-                <label className="space-y-2 block">
-                  <span className="text-sm font-medium text-text-secondary">
-                    Email address
+                <label className="space-y-1.5 block">
+                  <span className="text-xs font-mono font-semibold uppercase text-text-secondary">
+                    Email Address
                   </span>
                   <input
                     type="email"
                     name="email"
                     placeholder="you@example.com"
                     required
-                    className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
+                    className="w-full glass-input rounded-xl py-2.5 px-3.5 text-xs text-white placeholder:text-text-muted"
                   />
                 </label>
               </div>
 
-              <label className="space-y-2 block">
-                <span className="text-sm font-medium text-text-secondary">
+              <label className="space-y-1.5 block">
+                <span className="text-xs font-mono font-semibold uppercase text-text-secondary">
                   Subject
                 </span>
                 <input
                   type="text"
                   name="subject"
-                  placeholder="Need a portfolio website redesign"
-                  className="w-full glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
+                  placeholder="AI Agent Architecture / Next.js Redesign"
+                  className="w-full glass-input rounded-xl py-2.5 px-3.5 text-xs text-white placeholder:text-text-muted"
                 />
               </label>
 
-              <label className="space-y-2 block">
-                <span className="text-sm font-medium text-text-secondary">
-                  Message
+              <label className="space-y-1.5 block">
+                <span className="text-xs font-mono font-semibold uppercase text-text-secondary">
+                  Transmission Message
                 </span>
                 <textarea
                   name="message"
-                  placeholder="Tell me about your goals, timeline, and what you want to build."
-                  rows={6}
+                  placeholder="Outline project goals, scope, and timeline..."
+                  rows={5}
                   required
-                  className="w-full resize-none glass-input rounded-[10px] py-2.5 px-3.5 text-text-primary placeholder:text-text-muted"
+                  className="w-full resize-none glass-input rounded-xl py-2.5 px-3.5 text-xs text-white placeholder:text-text-muted"
                 />
               </label>
 
               {error && (
-                <div className="rounded-[12px] border border-rose-800/40 bg-rose-950/30 p-4">
-                  <div className="flex items-center gap-2 text-sm text-rose-400">
-                    <AppleWarning className="h-4 w-4 text-rose-400" />
-                    <span>{error}</span>
-                  </div>
+                <div className="rounded-xl border border-rose-800/40 bg-rose-950/30 p-3 text-xs text-rose-400 flex items-center gap-2">
+                  <AppleWarning className="h-4 w-4" />
+                  <span>{error}</span>
                 </div>
               )}
 
@@ -201,32 +209,21 @@ const ContactSection = () => {
                   variant="metal"
                   size="sm"
                   dark
-                  icon={submitting ? null : <AppleMessage className="h-4 w-4" />}
+                  icon={submitting ? null : <AppleMail className="h-4 w-4 text-[#00E5FF]" />}
                 >
-                  {submitting ? "Sending..." : "Send Message"}
+                  {submitting ? "Transmitting..." : "Send Transmission"}
                 </Button>
-                <AnimatedButton
-                  as="a"
-                  href={`mailto:${site.email}`}
-                  dark
-                  className="group py-3 font-medium transition-all duration-300"
-                >
-                  Direct Email
-                </AnimatedButton>
               </div>
             </form>
 
-            <div className="mt-6 border-t border-border-default pt-5">
-              <p className="text-sm text-text-secondary">
-                Reach me at{" "}
-                <a
-                  href={`mailto:${site.email}`}
-                  className="font-bold text-accent-700 hover:text-accent-800 transition-colors"
-                >
+            <div className="mt-6 border-t border-white/10 pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p className="text-xs font-mono text-text-secondary shrink-0">
+                Direct:{" "}
+                <a href={`mailto:${site.email}`} className="text-[#00E5FF] font-bold">
                   {site.email}
                 </a>
               </p>
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="flex items-center flex-nowrap gap-1.5 overflow-x-auto no-scrollbar py-0.5">
                 {socials.map((social) => (
                   <a
                     key={social.label}
@@ -235,21 +232,15 @@ const ContactSection = () => {
                     rel="noopener noreferrer"
                     aria-label={social.label}
                     title={social.label}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full glass-button-secondary text-text-primary hover:text-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-600"
+                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:border-[#00E5FF] hover:text-[#00E5FF] hover:bg-[#00E5FF]/10 transition-all"
                   >
                     {social.icon ? (
                       (() => {
-                        const Icon =
-                          SOCIAL_ICONS[
-                          social.icon as keyof typeof SOCIAL_ICONS
-                          ];
-
-                        return <Icon className={ICON_CLASS.nav} />;
+                        const Icon = SOCIAL_ICONS[social.icon as keyof typeof SOCIAL_ICONS];
+                        return <Icon className="w-3.5 h-3.5" />;
                       })()
                     ) : (
-                      <span className="text-xs font-semibold">
-                        {social.label}
-                      </span>
+                      <span className="text-[10px] font-mono">{social.label}</span>
                     )}
                   </a>
                 ))}
@@ -258,6 +249,7 @@ const ContactSection = () => {
           </div>
         </Card>
 
+        {/* Gemini Chatbot Console */}
         <Chatbot />
       </div>
     </Section>

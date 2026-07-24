@@ -2,6 +2,11 @@ import type { SocialLink } from "@/types/site";
 
 export const socials: SocialLink[] = [
   {
+    label: "WhatsApp",
+    href: "https://wa.me/923129185825",
+    icon: "Whatsapp",
+  },
+  {
     label: "GitHub Profile",
     href: "https://github.com/mrafiqdot825",
     icon: "Github",
@@ -26,9 +31,10 @@ export const socials: SocialLink[] = [
     href: "https://x.com/mrafiq825",
     icon: "X",
   },
+ 
   {
-    label: "WhatsApp",
-    href: "https://wa.me/923129185825",
-    icon: "Whatsapp",
+    label: "TikTok Profile",
+    href: "https://www.tiktok.com/@rafiqcodes",
+    icon: "Tiktok",
   },
 ];

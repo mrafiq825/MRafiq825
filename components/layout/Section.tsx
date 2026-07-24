@@ -20,12 +20,12 @@ const Section = ({
   return (
     <section
       id={id}
-      className={cn("section-reveal relative pt-1 pb-21 md:pt-0 md:pb-21", className)}
+      className={cn("section-reveal relative pt-1 pb-0 md:pt-0 md:pb-0", className)}
     >
       <div className="absolute inset-x-0 top-0 h-px bg-border-default" />
       <Container className="relative">
         {(title || description) && (
-          <header className="mb-8 max-w-3xl md:mb-10">
+          <header className="mb-6 max-w-3xl md:mb-6">
             {title && (
               <h2 className="flex items-center gap-3 font-heading text-h2 font-bold tracking-tight text-text-primary">
                 {title}
